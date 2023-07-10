@@ -39,7 +39,7 @@
 
 /* Thông tin giao hàng  */
 
-.title-ship-main h1 {
+.adrress-title h1 {
     font-family: "EB Garamond";
     font-size: 36px;
     font-weight: 700;
@@ -49,7 +49,7 @@
     margin-bottom: 20px;
 }
 
-.title-ship-main p {
+.adrress-title p {
     font-size: 16px;
     font-weight: 500;
     line-height: 28px;
@@ -57,7 +57,8 @@
     text-align: left;
 }
 
-.form-ship {
+.adrress-form-ship {
+    margin: 15px 80px 0px 0;
 }
 
 .form-label {

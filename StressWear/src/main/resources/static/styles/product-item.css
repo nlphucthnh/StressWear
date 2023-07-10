@@ -20,21 +20,25 @@
 
 }
 
-/* gia san pham  */
-.product-price-proItem{
-    font-size: 26px;
+.product-item-color-title{
+    font-size: 22px;
     font-weight: 500;
-    letter-spacing: 1px;
-    text-align: left;
-  }
+    color: #171e2b;
+}
+.product-item-size-title{
+    font-size: 22px;
+    font-weight: 500;
+    color: #171e2b;
+}
+.product-item-color-option {
+    display: inline-block;
+    margin-right: 10px;
+}
 
-  .old-price-proItem{
-    color: #667085;
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-align: left;
-  }
+.product-item-size-option {
+    display: inline-block;
+    margin-right: 10px;
+}
 /* product item  */
 
 
@@ -45,7 +49,6 @@ img {
 .preview {
     display: flex;
     flex-direction: column;
-    padding: 0;
 }
 
 @media screen and (max-width: 996px) {
@@ -214,16 +217,6 @@ img {
     }
 }
 
-.nav-img-list {
-    align-items: center;
-    justify-content: center;
-}
-
- .nav-item .nav-link{
-    padding: 0 0 10px 0;
-}
-
-
 .nav-item img {
     width: 137px;
     height: 114px;
@@ -231,12 +224,8 @@ img {
 
 
 /* product item texxt  */
-.product-item-text .product-item-name {
-    margin-bottom: 20px;
-}
 
-
-.product-item-text .product-item-name h3 {
+.product-item .product-item-name h3 {
     font-family: "EB Garamond";
     font-size: 40px;
     font-weight: 600;
@@ -257,9 +246,9 @@ img {
 .product-item-text .properties h3 {
     font-size: 20px;
     font-weight: 600;
-    letter-spacing: 1px;
+    line-height: 30px;
+    letter-spacing: 0.025em;
     text-align: left;
-    padding: 10px 0;
 }
 
 .product-item-text .properties h3 span {
@@ -268,9 +257,55 @@ img {
     line-height: 30px;
     letter-spacing: 0.025em;
     text-align: left;
-    color: #667085;
+    color: Gray/500;
 }
 
+/* quatittyy */
+
+
+.product-item-quantity label {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0.025em;
+    text-align: left;
+
+}
+
+.product-item-quantity .input-group {
+    flex-grow: 1;
+    width: auto;
+}
+
+.product-item-quantity .input-group-prepend,
+.product-item-quantity .input-group-append {
+    display: flex;
+}
+
+.product-item-quantity .input-group-prepend .btn,
+.product-item-quantity .input-group-append .btn {
+    border-radius: 0;
+    background-color: #171d27;
+    color: white;
+}
+
+.product-item-quantity .input-group-prepend .btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.product-item-quantity .input-group-append .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+}
+
+.quantity-input {
+    text-align: center;
+    width: 80px;
+    height: 40px;
+}
 
 /* item-more */
 .item-more label {
@@ -291,7 +326,38 @@ img {
     border: 1px solid #D0D5DD;
 }
 
+/* btn sell  */
+.button-sell .btn-sell {
+    /* width: 40%; */
+    margin-top: 38px;
+    /* height: 45px; */
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 27px;
+    letter-spacing: 0em;
+    background-color: black;
+}
 
+.button-sell .btn-sell a{
+    color: white;
+}
+
+.button-sell .btn-sell a:hover{
+    color: black;
+    background-color: white;
+}
+
+
+
+.button-sell .btn-base a{
+    text-decoration: none;
+    color: black;
+}
+
+.button-sell .btn-base:hover >a{
+    color: white;
+    background-color: black;
+}
 
 /* tab mota */
 .nav-tabs {
@@ -314,6 +380,7 @@ img {
     background: #344054;
     padding: 20px;
 }
+
 /* mo ta - huong dan lap dat  */
 /* .nav-link .active .img-item{
     position: relative;
@@ -373,44 +440,4 @@ img {
     margin-top: 100px;
   }
 
-.product-item-text .btn-cart {
-    margin-top: 45px;
-    width: 100%;
-    padding: 15px 0 ;
-    font-size: 20px;
-    font-weight: 400;
-    font-family: var(--font_tertiary);
-    background-color: var(--gray_900);
-    color: white;
-}
-
-.tab-pane .img-view {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.tab-pane  {
-    height: inherit;
-    width: 100%;
-}
-
-.img-tabcontent {
-    height: inherit;
-    width: 100%;
-}
-
-.content-description {
-    width: 100%;
-    height: fit-content;
-}
-
-.content-description .content-description-text {
-    font-size: 18px;
-    font-weight: 400;
-    text-align: justify;
-}
-.content-title {
-    margin: 0 !important;
-    padding: 0;
-}
+  
