@@ -14,6 +14,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Bootstrap JavaScript: -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -29,7 +33,7 @@
 
 <body>
     <div class="background-manager">
-        <nav id="Manager_Navigation" th:include="components/Manager-navigation" ></nav>
+        <nav id="Manager_Navigation" th:include="components/Manager-navigation"></nav>
         <div id="Manager_Content">
             <div class="header_content">
                 <div class="header_content_text-group">
@@ -48,33 +52,30 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs body_content_tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="btn-style" id="list-blogs-tab" data-bs-toggle="tab"
-                            data-bs-target="#list_blogs" type="button" role="tab" aria-controls="list_blogs"
-                            aria-selected="true">Danh sách đơn hàng</button>
+                        <button style="background-color: var(--gray_50); border: 1px solid var(--gray_300);" class="btn-style" id="list-order-tab" data-bs-toggle="tab" data-bs-target="#list_order"
+                            type="button" role="tab" aria-controls="list_order" aria-selected="true">Danh sách đơn
+                            hàng</button>
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <button class="btn-style" id="form-blogs-tab" data-bs-toggle="tab" data-bs-target="#form_blogs"
-                            type="button" role="tab" aria-controls="form_blogs" aria-selected="false">Chi tiết đơn
+                        <button class="btn-style" id="form-order-tab" data-bs-toggle="tab" data-bs-target="#form_order"
+                            type="button" role="tab" aria-controls="form_order" aria-selected="false">Chi tiết đơn
                             hàng</button>
                     </li>
                 </ul>
                 <hr>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="list_blogs" role="tabpanel" aria-labelledby="list-blogs-tab">
-                        <div class="list_blogs-header">
-                            <div class="list_blogs-header-seletion-group">
+                    <div class="tab-pane active" id="list_order" role="tabpanel" aria-labelledby="list-order-tab">
+                        <div class="list_order-header">
+                            <div class="list_order-header-seletion-group">
                                 <form action="" method="post">
-                                    <div class="mb-3" style="margin-right: 20px;">
-                                        <select class="form-select form-select-lg" name="" id="">
-                                            <option selected>Từ A đến Z</option>
-                                            <option value="">Từ Z đến A</option>
-                                            <option value="">Istanbul</option>
-                                            <option value="">Jakarta</option>
-                                        </select>
+                                    <div class="mb-3" style="margin-right: 10px;">
+                                        <a class="btn btn-style filte-sort" id="sort-down-id" style="height: 100%; display: flex; justify-content: center;"><i
+                                                class="bi bi-sort-up"></i></a>
+                                        <a class="btn btn-style filte-sort" id="sort-up-id"
+                                            style="height: 100% ;display: none;"><i class="bi bi-sort-down-alt"></i></a>
                                     </div>
-
                                     <div class="mb-3" style="margin-right: 20px;">
                                         <select class="form-select form-select-lg" name="" id="">
                                             <option selected>Chưa thanh toán</option>
@@ -94,7 +95,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="list_blogs-header-search-group">
+                            <div class="list_order-header-search-group">
                                 <form action="">
                                     <div class="input-group mb-3">
                                         <button class="btn btn-outline-secondary box-shadow-none" type="button"
@@ -106,7 +107,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="list_blogs-body">
+                        <div class="list_order-body">
                             <div class="table-responsive">
                                 <table class="table table-striped m-0">
                                     <thead>
@@ -136,9 +137,9 @@
                                                         type="checkbox" value="checkedValue"
                                                         aria-label="Text for screen reader">
 
-                                                    <div class="text-blogs-group">
-                                                        <h4 class="text-title-blogs text-title">DH19023781209</h4>
-                                                        <h6 class="text-id-blogs text-title">Mã đơn hàng</h6>
+                                                    <div class="text-order-group">
+                                                        <h4 class="text-title-order text-title">DH19023781209</h4>
+                                                        <h6 class="text-id-order text-title">Mã đơn hàng</h6>
                                                     </div>
                                                 </td>
                                                 <td>phucthnh123</td>
@@ -176,8 +177,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="form_blogs" role="tabpanel" aria-labelledby="form-blogs-tab">
-                        <div class="form_blogs-pane">
+                    <div class="tab-pane" id="form_order" role="tabpanel" aria-labelledby="form-order-tab">
+                        <div class="form_order-pane">
                             <form action="">
                                 <div class="group-fleld group-fleld-01">
                                     <h5 class="title-order title-order-infor">Thông tin đơn hàng</h5>
@@ -249,7 +250,8 @@
                                 <div class="group-fleld group-fleld-05">
                                     <div class="table-responsive" style="height: 385px; overflow: auto;">
                                         <table class="table  m-0 table-hover ">
-                                            <h6 class="title-order title-order-detail" style="margin: 15px ">Sản phẩm đơn hàng</h6>
+                                            <h6 class="title-order title-order-detail" style="margin: 15px ">Sản phẩm
+                                                đơn hàng</h6>
                                             <thead>
                                                 <tr class="table-active">
                                                     <th scope="col" style="text-align: left;">
@@ -275,10 +277,10 @@
                                                                 id="" type="checkbox" value="checkedValue"
                                                                 aria-label="Text for screen reader">
 
-                                                            <div class="text-blogs-group">
-                                                                <h4 class="text-title-blogs text-title">Tên sản phẩm
+                                                            <div class="text-order-group">
+                                                                <h4 class="text-title-order text-title">Tên sản phẩm
                                                                 </h4>
-                                                                <h6 class="text-id-blogs text-title">Mã sản phẩm</h6>
+                                                                <h6 class="text-id-order text-title">Mã sản phẩm</h6>
                                                             </div>
                                                         </td>
                                                         <td>Số lượng</td>
@@ -298,10 +300,10 @@
                                                                 id="" type="checkbox" value="checkedValue"
                                                                 aria-label="Text for screen reader">
 
-                                                            <div class="text-blogs-group">
-                                                                <h4 class="text-title-blogs text-title">Tên sản phẩm
+                                                            <div class="text-order-group">
+                                                                <h4 class="text-title-order text-title">Tên sản phẩm
                                                                 </h4>
-                                                                <h6 class="text-id-blogs text-title">Mã sản phẩm</h6>
+                                                                <h6 class="text-id-order text-title">Mã sản phẩm</h6>
                                                             </div>
                                                         </td>
                                                         <td>Số lượng</td>
@@ -321,10 +323,10 @@
                                                                 id="" type="checkbox" value="checkedValue"
                                                                 aria-label="Text for screen reader">
 
-                                                            <div class="text-blogs-group">
-                                                                <h4 class="text-title-blogs text-title">Tên sản phẩm
+                                                            <div class="text-order-group">
+                                                                <h4 class="text-title-order text-title">Tên sản phẩm
                                                                 </h4>
-                                                                <h6 class="text-id-blogs text-title">Mã sản phẩm</h6>
+                                                                <h6 class="text-id-order text-title">Mã sản phẩm</h6>
                                                             </div>
                                                         </td>
                                                         <td>Số lượng</td>
@@ -344,10 +346,10 @@
                                                                 id="" type="checkbox" value="checkedValue"
                                                                 aria-label="Text for screen reader">
 
-                                                            <div class="text-blogs-group">
-                                                                <h4 class="text-title-blogs text-title">Tên sản phẩm
+                                                            <div class="text-order-group">
+                                                                <h4 class="text-title-order text-title">Tên sản phẩm
                                                                 </h4>
-                                                                <h6 class="text-id-blogs text-title">Mã sản phẩm</h6>
+                                                                <h6 class="text-id-order text-title">Mã sản phẩm</h6>
                                                             </div>
                                                         </td>
                                                         <td>Số lượng</td>
@@ -367,10 +369,10 @@
                                                                 id="" type="checkbox" value="checkedValue"
                                                                 aria-label="Text for screen reader">
 
-                                                            <div class="text-blogs-group">
-                                                                <h4 class="text-title-blogs text-title">Tên sản phẩm
+                                                            <div class="text-order-group">
+                                                                <h4 class="text-title-order text-title">Tên sản phẩm
                                                                 </h4>
-                                                                <h6 class="text-id-blogs text-title">Mã sản phẩm</h6>
+                                                                <h6 class="text-id-order text-title">Mã sản phẩm</h6>
                                                             </div>
                                                         </td>
                                                         <td>Số lượng</td>
@@ -390,39 +392,26 @@
                                     </div>
                                 </div>
                                 <div class="group-fleld group-fleld-06">
-                                    <h5 class="title-order title-order-detail">Thông tin thanh toán</h5>
+                                    <h5 class="title-order title-order-detail">Thông tin Giao hàng</h5>
                                 </div>
-                                <div class="group-fleld group-fleld-07">
+                                <div class="group-fleld group-fleld-010">
                                     <div class="mb-3 form-group">
-                                        <label for="bank_order" class="form-label">Ngân hàng</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text" id="card-credit"><i
-                                                    class="bi-bank2"
-                                                    style="color: var(--gray_700);"></i></span>
-                                            <select class="form-control form-select box-shadow-none" name="bank_order"
-                                                id="bank_order" aria-describedby="card-credit">
-                                                <option selected>VietinBack</option>
-                                                <option value="">SacomBack</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 form-group">
-                                        <label for="number-credit_blog" class="form-label">Số thẻ</label>
-                                        <input type="tel" name="number-credit-blog" id="number-credit_blog" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx"
-                                            class="form-control box-shadow-none" placeholder="">
-                                        <!-- <small id="helpId" class="text-muted">Help text</small> -->
-                                    </div>
-                                </div>
-                                <div class="group-fleld group-fleld-08">
-                                    <div class="mb-3 form-group">
-                                        <label for="name-in-credit_order" class="form-label">Tên in trên thẻ</label>
-                                        <input type="text" name="name-in-credit-order" id="name-in-credit_order"
+                                        <label for="total-sub_order" class="form-label">Tên người Nhận</label>
+                                        <input type="text" name="person-order" id="person_order"
                                             class="form-control box-shadow-none" placeholder="">
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
                                     </div>
                                     <div class="mb-3 form-group">
-                                        <label for="date-credit_order" class="form-label">Ngày phát hàng</label>
-                                        <input type="date" name="date-credit-order" id="date-credit_order"
+                                        <label for="transport-fee_order" class="form-label">Số điện thoại</label>
+                                        <input type="tel" name="transport-fee-order" id="transport-fee_order"
+                                            class="form-control box-shadow-none" placeholder="">
+                                        <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                    </div>
+                                </div>
+                                <div class="group-fleld group-fleld-011">
+                                    <div class="mb-3 form-group">
+                                        <label for="total_order" class="form-label">Địa chỉ nhận</label>
+                                        <input type="text" name="total-order" id="total_order"
                                             class="form-control box-shadow-none" placeholder="">
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
                                     </div>
@@ -434,8 +423,9 @@
                                     <div class="mb-3 form-group">
                                         <label for="total-sub_order" class="form-label">Tổng phụ</label>
                                         <div class="input-group">
-                                            <input type="tel" name="total-sub-order" id="total-sub_order" 
-                                            class="form-control box-shadow-none" placeholder="">
+                                            <input type="text" data-type='currency' name="total-sub-order"
+                                                id="total-sub_order" class="form-control box-shadow-none"
+                                                placeholder="">
                                             <span class="input-group-text" id="card-credit">VND</span>
                                         </div>
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
@@ -443,11 +433,12 @@
                                     <div class="mb-3 form-group">
                                         <label for="transport-fee_order" class="form-label">Phí vận chuyển</label>
                                         <div class="input-group">
-                                            <input type="tel" name="transport-fee-order" id="transport-fee_order" 
-                                            class="form-control box-shadow-none" placeholder="">
+                                            <input type="text" data-type='currency' name="transport-fee-order"
+                                                id="transport-fee_order" class="form-control box-shadow-none"
+                                                placeholder="">
                                             <span class="input-group-text" id="card-credit">VND</span>
                                         </div>
-                
+
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
                                     </div>
                                 </div>
@@ -455,8 +446,8 @@
                                     <div class="mb-3 form-group">
                                         <label for="total_order" class="form-label">Tổng cộng</label>
                                         <div class="input-group">
-                                            <input type="tel" name="total-order" id="total_order" 
-                                            class="form-control box-shadow-none" placeholder="">
+                                            <input type="text" data-type='currency' name="total-order" id="total_order"
+                                                class="form-control box-shadow-none" placeholder="">
                                             <span class="input-group-text" id="card-credit">VND</span>
                                         </div>
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
@@ -464,7 +455,8 @@
                                 </div>
                                 <div class="group-fleld group-fleld-012">
                                     <button class="btn btn-style btn-update">Cập nhật</button>
-                                    <button class="btn btn-style btn-add"><i class="bi bi-printer-fill"></i> Xuất hóa đơn</button>
+                                    <button class="btn btn-style btn-add"><i class="bi bi-printer-fill"></i> Xuất hóa
+                                        đơn</button>
                                 </div>
 
                             </form>
@@ -476,5 +468,6 @@
         </div>
     </div>
 </body>
+<script src="/javascripts/manager-js/Manager-order.js"></script>
 
 </html>

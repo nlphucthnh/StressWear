@@ -29,12 +29,13 @@
 
 <body>
     <div class="background-manager">
-        <nav id="Manager_Navigation" th:include="components/Manager-navigation" ></nav>
+        <nav id="Manager_Navigation" th:include="components/Manager-navigation"></nav>
         <div id="Manager_Content">
             <div class="header_content">
                 <div class="header_content_text-group">
                     <h3 class="header_content_main-text text-title">Doanh thu</h3>
-                    <h5 class="header_content_sub-text text-title">Thổng hợp và thống kê lại doanh thu của trang web theo thời gian thực</h5>
+                    <h5 class="header_content_sub-text text-title">Thổng hợp và thống kê lại doanh thu của trang web
+                        theo thời gian thực</h5>
                 </div>
                 <div class="header_content_button-group">
                     <form action="" method="post">
@@ -48,22 +49,20 @@
                     <div class="list_blogs-header">
                         <div class="list_blogs-header-seletion-group">
                             <form action="" method="post">
-                                <div class="mb-3" style="margin-right: 20px;">
-                                    <select class="form-select form-select-lg" name="" id="">
-                                        <option selected>Từ A đến Z</option>
-                                        <option value="">Từ Z đến A</option>
-                                        <option value="">Istanbul</option>
-                                        <option value="">Jakarta</option>
-                                    </select>
+                                <div class="mb-3" style="margin-right: 10px;">
+                                    <a class="btn btn-style filte-sort" id="sort-down-id"
+                                        style="height: 100%; display: flex; justify-content: center;"><i
+                                            class="bi bi-sort-up"></i></a>
+                                    <a class="btn btn-style filte-sort" id="sort-up-id"
+                                        style="height: 100% ;display: none;"><i class="bi bi-sort-down-alt"></i></a>
                                 </div>
-
-                                <div class="mb-3">
-                                    <select class="form-select form-select-lg" name="" id="">
-                                        <option selected>Theo ngày</option>
-                                        <option value="">New Delhi</option>
-                                        <option value="">Istanbul</option>
-                                        <option value="">Jakarta</option>
-                                    </select>
+                                <div class="mb-3" style="margin-right: 10px;">
+                                    <input type="date" class="form-control box-shadow-none" name="" id="">
+                                </div>
+                                <div class="input-group mb-3 w-50">
+                                    <span class="input-group-text" id="id_product">ID</span>
+                                    <input type="text" class="form-control box-shadow-none"
+                                        aria-describedby="id_product">
                                 </div>
                             </form>
                         </div>
@@ -73,8 +72,7 @@
                                     <button class="btn btn-outline-secondary box-shadow-none" type="button"
                                         id="button-search"><i class="bi bi-search"></i></button>
                                     <input type="text" class="form-control box-shadow-none" placeholder="Tìm kiếm"
-                                        aria-label="Example text with button addon"
-                                        aria-describedby="button-search">
+                                        aria-label="Example text with button addon" aria-describedby="button-search">
                                 </div>
                             </form>
                         </div>
@@ -117,10 +115,10 @@
                                             <td>2,340,000đ</td>
                                             <td>234,000,000đ</td>
                                             <td>
-                                                <button class="btn" style="color: var(--gray_600);"><i
-                                                        class="bi bi-trash-fill"></i></button>
-                                                <button class="btn" style="color: var(--gray_600);"><i
-                                                        class="bi bi-pen-fill"></i></button>
+                                                <button class="btn" style="color: var(--gray_500);"><i
+                                                        class="bi bi-trash3"></i></button>
+                                                <button class="btn" style="color: var(--gray_500);"><i
+                                                        class="bi bi-pen"></i></button>
                                             </td>
                                         </form>
                                     </tr>
@@ -145,8 +143,8 @@
                         </div>
                     </div>
                 </div>
-                 
-               
+
+
             </div>
         </div>
     </div>

@@ -75,9 +75,9 @@
 }
 
 
-/* ------------ list blogs Manager_Content ---------------- */
+/* ------------ list product Manager_Content ---------------- */
 
-#Manager_Content #list_blogs .list_blogs-header {
+#Manager_Content #list_product .list_product-header {
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -85,12 +85,12 @@
     align-items: center;
 }
 
-#Manager_Content #list_blogs .list_blogs-header .list_blogs-header-seletion-group form {
+#Manager_Content #list_product .list_product-header .list_product-header-seletion-group form {
     display: flex;
 }
 
  
-#Manager_Content #list_blogs .list_blogs-header-seletion-group .form-select  {
+#Manager_Content #list_product .list_product-header-seletion-group .form-select  {
     font-size: 15px;
     padding: 6px 30px 6px 12px ;
     font-family: var(--font_tertiary);
@@ -101,17 +101,17 @@
     cursor: pointer;
 }
 
-#Manager_Content #list_blogs .list_blogs-header-seletion-group .form-select:focus {
+#Manager_Content #list_product .list_product-header-seletion-group .form-select:focus {
     box-shadow: none;
 
 }
 
-/* ------------ list blogs Manager_Content ---------------- */
+/* ------------ list product Manager_Content ---------------- */
 
 
-/* ------------ table blogs Manager_Content ---------------- */
+/* ------------ table product Manager_Content ---------------- */
 
-#Manager_Content .list_blogs-body .table-responsive,
+#Manager_Content .list_product-body .table-responsive,
 #Manager_Content .table-responsive {
     border-radius: 6px;
     border: 2px solid var(--gray_300);
@@ -127,12 +127,12 @@
     color: var(--bs-table-striped-color);
 }
 
-#Manager_Content .list_blogs-body .table-responsive thead,
+#Manager_Content .list_product-body .table-responsive thead,
 #Manager_Content .table-responsive thead {
     border-bottom:1px solid var(--gray_300) ;
 }
 
-#Manager_Content .list_blogs-body .table-responsive thead th,
+#Manager_Content .list_product-body .table-responsive thead th,
 #Manager_Content .table-responsive thead th {
     font-size: 12px;
     font-family: var(--font_tertiary);
@@ -143,16 +143,16 @@
 
 
 
-/* #Manager_Content .list_blogs-body .table-responsive thead th {
+/* #Manager_Content .list_product-body .table-responsive thead th {
     width: 10%;
 } */
 
-#Manager_Content .list_blogs-body .table-responsive thead th:first-child,
+#Manager_Content .list_product-body .table-responsive thead th:first-child,
 #Manager_Content .table-responsive thead th:first-child {
     width: 50% !important;      
 }
 
-#Manager_Content .list_blogs-body .table-responsive .table tbody,
+#Manager_Content .list_product-body .table-responsive .table tbody,
 #Manager_Content .table-responsive .table tbody {
     border: none !important;
     border-style:none !important ;
@@ -160,14 +160,14 @@
 
 
 
-#Manager_Content .list_blogs-body .table-responsive tbody tr,
+#Manager_Content .list_product-body .table-responsive tbody tr,
 #Manager_Content .table-responsive tbody tr {
    vertical-align: middle;
    transition: 0.5s;
   
 }
 
-#Manager_Content .list_blogs-body .table-responsive tbody tr:hover,
+#Manager_Content .list_product-body .table-responsive tbody tr:hover,
 #Manager_Content  .table-responsive tbody tr:hover  {
     background-color: var(--gray_200);
    
@@ -175,19 +175,19 @@
 
 
 
-#Manager_Content .list_blogs-body  .td-first-table,
+#Manager_Content .list_product-body  .td-first-table,
 #Manager_Content  .td-first-table {
     display: flex;
     align-items: center;
 }
 
-#Manager_Content .list_blogs-body  .text-blogs-group,
-#Manager_Content .text-blogs-group {
+#Manager_Content .list_product-body  .text-product-group,
+#Manager_Content .text-product-group {
     margin-left: 10px;
 }
 
-#Manager_Content .list_blogs-body  .text-blogs-group .text-title-blogs,
-#Manager_Content  .text-blogs-group .text-title-blogs {
+#Manager_Content .list_product-body  .text-product-group .text-title-product,
+#Manager_Content  .text-product-group .text-title-product {
     font-size: 15px;
     font-family: var(--font_tertiary);
     font-weight: 600;
@@ -196,8 +196,8 @@
 }
 
 
-#Manager_Content .list_blogs-body  .text-blogs-group .text-id-blogs,
-#Manager_Content .text-blogs-group .text-id-blogs {
+#Manager_Content .list_product-body  .text-product-group .text-id-product,
+#Manager_Content .text-product-group .text-id-product {
     font-size: 13px;
     font-family: var(--font_tertiary);
     font-weight: 400;
@@ -206,7 +206,7 @@
     text-align: left;
 }
 
-#Manager_Content .list_blogs-body .table-responsive tbody td,
+#Manager_Content .list_product-body .table-responsive tbody td,
 #Manager_Content .table-responsive tbody td {
     font-size: 14px;
     font-family: var(--font_tertiary);
@@ -226,39 +226,39 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 
-#Manager_Content .list_blogs-body .table-responsive tfoot {
+#Manager_Content .list_product-body .table-responsive tfoot {
     border-top: 1px solid var(--gray_300) ;
 }
 
 
-#Manager_Content .list_blogs-body .table-responsive tfoot .btn-style {
+#Manager_Content .list_product-body .table-responsive tfoot .btn-style {
     padding: 7px 13px;
     border-radius: 3px;
     transition: 0.4s;
 }
 
-#Manager_Content .list_blogs-body .table-responsive tfoot .btn-style:hover {
+#Manager_Content .list_product-body .table-responsive tfoot .btn-style:hover {
     background-color: var(--gray_100);
 }
 
-#Manager_Content .list_blogs-body .table-responsive tfoot td:last-child {
+#Manager_Content .list_product-body .table-responsive tfoot td:last-child {
     font-family: var(--font_tertiary);
     font-size: 14px;
     font-weight: 500;
 }
 
-/* ------------ table blogs Manager_Content ---------------- */
+/* ------------ table product Manager_Content ---------------- */
 
 
-/* ------------ form blogs Manager_Content ---------------- */
-#Manager_Content  #form_blogs  .form_blogs-pane {
+/* ------------ form product Manager_Content ---------------- */
+#Manager_Content  #form_product  .form_product-pane {
     width: 100%;
     border: 2px solid var(--gray_200);
     border-radius: 5px;
     margin-bottom: 20px;
 }
 
-#Manager_Content #form_blogs .group-fleld {
+#Manager_Content #form_product .group-fleld {
     width: 95%;
     margin: 10px auto;
     overflow: hidden;
@@ -266,55 +266,59 @@ tbody, td, tfoot, th, thead, tr {
     justify-content: space-between;
 }
 
-#Manager_Content #form_blogs .group-fleld .title-order {
+#Manager_Content #form_product .group-fleld .title-order {
     margin: 10px 0;
     font-family: var(--font_tertiary);
     font-weight: 600;
 }
 
-#Manager_Content #form_blogs .group-fleld .form-group {
+#Manager_Content #form_product .group-fleld .form-group {
     width: calc((100% - 2.5%)/3);
 }
 
 
-#Manager_Content #form_blogs .group-fleld-04 .form-group,
-#Manager_Content #form_blogs .group-fleld-06 .form-group,
-#Manager_Content #form_blogs .group-fleld-07 .form-group,
-#Manager_Content #form_blogs .group-fleld-011 .form-group {
+#Manager_Content #form_product .group-fleld-04 .form-group,
+#Manager_Content #form_product .group-fleld-06 .form-group,
+#Manager_Content #form_product .group-fleld-07 .form-group,
+#Manager_Content #form_product .group-fleld-011 .form-group {
     width: 100%;
 }
 
 
 
-#Manager_Content #form_blogs .group-fleld-03 .form-group,
-#Manager_Content #form_blogs .group-fleld-010 .form-group  {
+#Manager_Content #form_product .group-fleld-03 .form-group,
+#Manager_Content #form_product .group-fleld-010 .form-group  {
     width: calc((100% - 2.5%)/2);
 }
 
-#Manager_Content #form_blogs .group-fleld-05 .form-group {
+#Manager_Content #form_product .group-fleld-05 .form-group {
     width: calc((100% - 2.5%)/3);
 }
-#Manager_Content #form_blogs .group-fleld .on-the-table {
+#Manager_Content #form_product .group-fleld .on-the-table,
+#product-samples .modal-body .group-fleld .on-the-table  {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 10px;
 }
 
-#Manager_Content #form_blogs .group-fleld .on-the-table .on-the-table-title {
+#Manager_Content #form_product .group-fleld .on-the-table .on-the-table-title,
+#product-samples .modal-body .on-the-table .on-the-table-title {
     font-family: var(--font_tertiary);
     color: var(--gray_900);
     font-weight: 600;
 }
 
-#Manager_Content #form_blogs .group-fleld .on-the-table .btn-style {
+#Manager_Content #form_product .group-fleld .on-the-table .btn-style,
+#product-samples .modal-body .on-the-table .btn-style {
     font-family: var(--font_tertiary);
     padding: 8px 15px;
     border-radius: 4px;
     margin: 0 5px;
 }
 
-#Manager_Content #form_blogs .group-fleld .on-the-table .on-the-table-button {
+#Manager_Content #form_product .group-fleld .on-the-table .on-the-table-button,
+#product-samples .modal-body .on-the-table .on-the-table-button {
     font-family: var(--font_tertiary);
     color: var(--gray_100);
     background-color: var(--gray_700);
@@ -328,7 +332,7 @@ tbody, td, tfoot, th, thead, tr {
 
 
 
-#Manager_Content #form_blogs .group-fleld .form-group .form-select {
+#Manager_Content #form_product .group-fleld .form-group .form-select {
     color: var(--gray_900) !important;
     font-weight: 600 ;
 }
@@ -338,12 +342,12 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 #Manager_Content .group-fleld-06,
-#Manager_Content .group-fleld-07 {
+#product-samples .modal-body .group-fleld-07 {
     position: relative;
 }
 
 #Manager_Content .group-fleld-06 .on-the-table,
-#Manager_Content .group-fleld-07 .on-the-table{
+#product-samples .modal-body .group-fleld-07 .on-the-table{
     position: sticky;
     top: 0;
     background-color: white;
@@ -352,45 +356,52 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 #Manager_Content .group-fleld-06 .table-responsive tr,
-#Manager_Content .group-fleld-07 .table-responsive tr{
+#product-samples .modal-body .group-fleld-07 .table-responsive tr{
     border-bottom: 1px solid var(--gray_200);
 }
 
 
-#Manager_Content #form_blogs .group-fleld-012 {
+#Manager_Content #form_product .group-fleld-012,
+#product-samples .modal-body .group-fleld-012 {
     justify-content: right;
 }
 
 
-#Manager_Content #form_blogs .group-fleld-012 .btn {
+#Manager_Content #form_product .group-fleld-012 .btn,
+#product-samples .modal-body .group-fleld-012 .btn {
     padding: 10px 20px;
     margin: 10px;
     transition: 0.5s;
 }
 
 
-#Manager_Content #form_blogs .group-fleld-012 .btn-clear:hover {
+#Manager_Content #form_product .group-fleld-012 .btn-clear:hover,
+#product-samples .modal-body .group-fleld-012 .btn-clear:hover {
     background-color: var(--gray_300);
 }
 
-#Manager_Content #form_blogs .group-fleld-012 .btn:last-child {
+#Manager_Content #form_product .group-fleld-012 .btn:last-child,
+#product-samples .modal-body .group-fleld-012  .btn:last-child {
     margin-right: 0;
     background-color: var(--gray_900);
     color: var(--gray_50);
 }
 
-#Manager_Content #form_blogs .group-fleld-012 .btn:last-child:hover {
+#Manager_Content #form_product .group-fleld-012 .btn:last-child:hover,
+#product-samples .modal-body .group-fleld-012 .btn:last-child:hover {
     background-color: var(--gray_1000);
   
 }
 
-#Manager_Content #form_blogs .group-fleld-012 .btn-update {
+#Manager_Content #form_product .group-fleld-012 .btn-update,
+#product-samples .modal-body .group-fleld-012 .btn-update {
     margin-right: 0;
     background-color: var(--gray_100);
     color: var(--gray_700);
 }
 
-#Manager_Content #form_blogs .group-fleld-012 .btn-update:hover {
+#Manager_Content #form_product .group-fleld-012 .btn-update:hover,
+#product-samples .modal-body .group-fleld-012 .btn-update:hover {
     margin-right: 0;
     background-color: var(--gray_300);
     color: var(--gray_700);
@@ -399,13 +410,13 @@ tbody, td, tfoot, th, thead, tr {
 
 
 
-#Manager_Content #form_blogs .form-group .form-label {
+#Manager_Content #form_product .form-group .form-label {
     font-family: var(--font_tertiary);
     font-size: 14px;
     font-weight: 500;
 }
 
-#Manager_Content #form_blogs .form-group .form-control {
+#Manager_Content #form_product .form-group .form-control {
     font-family: var(--font_tertiary);
     font-size: 16px;
     font-weight: 400;
@@ -414,10 +425,62 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 
-/* ------------ form blogs Manager_Content ---------------- */
+/* ------------ form product Manager_Content ---------------- */
 
 
 
 /* ------------------------------- body Manager_Content ------------------------------- */
+
+
+/* ----------------- Modal ----------------- */
+#product-samples .modal-body .group-fleld {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#product-samples .modal-body .group-fleld .form-group {
+    width: calc((100% - 2.5%)/3) !important;
+}
+
+#product-samples .modal-body .group-fleld-02 .form-group {
+    width: calc((100% - 2.5%)/2) !important;
+}
+
+#product-samples .modal-body  .check-box-size  {
+    border: 1px solid var(--gray_300);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#product-samples .modal-body  .check-box-size {
+    border: 1px solid var(--gray_300);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#product-samples .modal-body  .check-box-size input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    padding: 6px;
+}
+
+#product-samples .modal-body .group-fleld-07 .form-group {
+    width: 100%;
+}
+
+#product-samples .modal-body .group-fleld-012{
+    justify-content: right !important;
+}
+
+#product-samples .modal-body .check-box-size{
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+#product-samples .modal-body .check-box-size:hover {
+    background-color: var(--gray_100);
+}
+
 
 

@@ -40,59 +40,52 @@
                     <h5 class="header_content_sub-text text-title">Chức năng quản lý sản phẩm giúp người dùng dễ dàng
                         quản lý, sắp xếp và cập nhật...</h5>
                 </div>
-                <div class="header_content_button-group">
-                    <form action="" method="post">
-                        <button class="btn btn-export btn-style"><i class="bi bi-cloud-download icon-text"></i> Xuất
-                            file</button>
-                    </form>
-                </div>
             </div>
             <div class="body_content">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs body_content_tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="btn-style" id="list-blogs-tab" data-bs-toggle="tab" data-bs-target="#list_blogs"
-                            type="button" role="tab" aria-controls="list_blogs" aria-selected="true">Danh sách sản
+                        <button class="btn-style" id="list-product-tab"
+                            style="border: 1px solid var(--gray_300); background-color: var(--gray_50);"
+                            data-bs-toggle="tab" data-bs-target="#list_product" type="button" role="tab"
+                            aria-controls="list_product" aria-selected="true">Danh sách sản
                             phẩm</button>
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <button class="btn-style" id="form-blogs-tab" data-bs-toggle="tab" data-bs-target="#form_blogs"
-                            type="button" role="tab" aria-controls="form_blogs" aria-selected="false">Chi tiết sản
+                        <button class="btn-style" id="form-product-tab" data-bs-toggle="tab"
+                            data-bs-target="#form_product" type="button" role="tab" aria-controls="form_product"
+                            aria-selected="false">Chi tiết sản
                             phẩm</button>
                     </li>
                 </ul>
                 <hr>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="list_blogs" role="tabpanel" aria-labelledby="list-blogs-tab">
-                        <div class="list_blogs-header">
-                            <div class="list_blogs-header-seletion-group">
+                    <div class="tab-pane active" id="list_product" role="tabpanel" aria-labelledby="list-product-tab">
+                        <div class="list_product-header">
+                            <div class="list_product-header-seletion-group">
                                 <form action="/Manager/product/sort" method="post">
-                                    <div class="mb-3" style="margin-right: 20px;">
-                                        <select class="form-select form-select-lg" name="sortOrder" id="sortOrder">
-                                            <option value="ASC" th:selected="${inforSort[0] == 'ASC'}">Từ Thấp đến Cao
-                                            </option>
-                                            <option value="DESC" th:selected="${inforSort[0] == 'DESC'}">Từ Cao đến Thấp
-                                            </option>
-                                        </select>
+                                    <div class="mb-3" style="margin-right: 10px;">
+                                        <a class="btn btn-style filte-sort" id="sort-down-id" style="height: 100%;"><i
+                                                class="bi bi-sort-up"></i></a>
+                                        <a class="btn btn-style filte-sort" id="sort-up-id"
+                                            style="height: 100%;display: none;"><i class="bi bi-sort-down-alt"></i></a>
                                     </div>
                                     <div class="mb-3" style="margin-right: 20px;">
                                         <select class="form-select form-select-lg" name="sortField" id="sortField">
-                                            <option value="tenSanPham" th:selected="${inforSort[1] == 'tenSanPham'}">Tên
-                                                sản phẩm</option>
-                                            <option value="giaSanPham" th:selected="${inforSort[1] == 'giaSanPham'}">Đơn
+                                            <option selected>Nhóm loại</option>
+                                            <option value="giaSanPham">Đơn
                                                 giá sản phẩm</option>
-                                            <option value="ngayTaoSanPham"
-                                                th:selected="${inforSort[1] == 'ngayTaoSanPham'}">Ngày tạo</option>
-                                            <option value="soLuong" th:selected="${inforSort[1] == 'soLuong'}">Số lượng
+                                            <option value="ngayTaoSanPham">Ngày tạo</option>
+                                            <option value="soLuong">Số lượng
                                             </option>
                                         </select>
                                     </div>
                                     <button style="display: none;" id="Sort">Sắp sếp</button>
                                 </form>
                             </div>
-                            <div class="list_blogs-header-search-group">
+                            <div class="list_product-header-search-group">
                                 <form action="/Manager/product/search" method="post">
                                     <div class="input-group mb-3">
                                         <button class="btn btn-outline-secondary box-shadow-none" type="button"
@@ -104,19 +97,14 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="list_blogs-body">
+                        <div class="list_product-body">
                             <div class="table-responsive">
                                 <table class="table table-striped m-0">
                                     <thead>
                                         <tr>
                                             <th scope="col" style="text-align: left;">
-                                                <form action="" method="post">
-                                                    <input class="form-check-input box-shadow-none"
-                                                        style="margin-right: 10px;" name="" id="" type="checkbox"
-                                                        value="checkedValue" aria-label="Text for screen reader">
-                                                    Sản phẩm
-                                                    <i class="bi bi-arrow-down"></i>
-                                                </form>
+                                                Sản phẩm
+                                                <i class="bi bi-arrow-down"></i>
                                             </th>
                                             <th scope="col">Số lượng</th>
                                             <th scope="col">Đơn giá</th>
@@ -125,35 +113,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:id="'idSanPham' + ${sanPham.idSanPham}"
-                                            th:each="sanPham : ${pageSP.content}">
+                                        <tr>
                                             <!-- <form action=""> -->
                                             <td scope="row" class="td-first-table">
-                                                <input class="form-check-input box-shadow-none" name="" id=""
-                                                    type="checkbox" value="checkedValue"
-                                                    aria-label="Text for screen reader">
-                                                <div class="text-blogs-group">
-                                                    <h4 class="text-title-blogs text-title"
-                                                        th:text="${sanPham.tenSanPham}">Bàn QUADA</h4>
-                                                    <h6 class="text-id-blogs text-title" th:text="${sanPham.idSanPham}">
+                                                <div class="text-product-group m-0">
+                                                    <h4 class="text-title-product text-title">Bàn QUADA</h4>
+                                                    <h6 class="text-id-product text-title">SP212
                                                     </h6>
                                                 </div>
                                             </td>
-                                            <td th:text="${sanPham.soLuong}+ ' Cái'">...</td>
-                                            <td th:text="${sanPham.giaSanPham} + ' VNĐ'">...</td>
-                                            <td th:text="${#dates.format(sanPham.ngayTaoSanPham,'dd/MM/yyyy')}">
+                                            <td>...</td>
+                                            <td>...</td>
+                                            <td>
                                                 13/03/2023</td>
-                                            <td style="display: flex; align-items: center;">
-                                                <button th:onclick="deleteSanPham([[${sanPham.idSanPham}]])" class="btn"
-                                                    style="color: var(--gray_600);"><i
+                                            <td>
+                                                <button class="btn" style="color: var(--gray_600);"><i
                                                         class="bi bi-trash-fill"></i></button>
-                                                <form
-                                                    th:action="@{/Manager/product/eidt?idSanPham=__${sanPham.idSanPham}__}"
-                                                    method="post">
-                                                    <button class="btn" style="color: var(--gray_600);"><i
-                                                            class="bi bi-pen-fill"></i></button>
-                                                </form>
-
+                                                <button class="btn" style="color: var(--gray_600);"><i
+                                                        class="bi bi-pen-fill"></i></button>
                                             </td>
                                             <!-- </form> -->
                                         </tr>
@@ -161,7 +138,7 @@
                                     <tfoot>
                                         <tr>
                                             <td style="text-align: left;">
-                                                <a class="btn-style btn-prev disnable"
+                                                <!-- <a class="btn-style btn-prev disnable"
                                                     th:if="${pageSP.number == 0}">Trước đó</a>
                                                 <a class="btn-style btn-prev" th:if="${pageSP.number > 0}"
                                                     th:href="@{/Manager/product?page=__${pageSP.number-1}__}">Trước
@@ -171,14 +148,16 @@
                                                     th:href="@{/Manager/product?page=__${pageSP.number+1}__}">Kế
                                                     tiếp</a>
                                                 <a class="btn-style btn-next disnable"
-                                                    th:if="${pageSP.number == pageSP.totalPages - 1}">Kế tiếp</a>
+                                                    th:if="${pageSP.number == pageSP.totalPages - 1}">Kế tiếp</a> -->
+                                                <button class="btn-style btn-prev m-0">Trước đó</button>
+                                                <button class="btn-style btn-next m-0">Kế tiếp</button>
                                             </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
-
-                                            <td
-                                                th:text="'Trang ' + ${pageSP.number + 1} + ' của ' + ${pageSP.totalPages}">
+                                            <td>
+                                                Trang 1 của 10
+                                            </td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -186,151 +165,93 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="form_blogs" role="tabpanel" aria-labelledby="form-blogs-tab">
-                        <div class="form_blogs-pane">
-                            <form action="/Manager/product/create" th:object="${SanPham}" method="post">
+                    <div class="tab-pane" id="form_product" role="tabpanel" aria-labelledby="form-product-tab">
+                        <div class="form_product-pane">
+                            <form action="/Manager/product/create" method="post">
                                 <div class="group-fleld group-fleld-01">
                                     <div class="mb-3 form-group">
                                         <label for="id_product" class="form-label">Mã sản phẩm</label>
-                                        <input
-                                            th:style="${flag} ? 'pointer-events: none; background-color: var(--gray_200)' : 'pointer-events: all;background-color: white'"
-                                            type="text" th:field="*{idSanPham}" name="id-product" id="id_product"
+                                        <input type="text" name="id-product" id="id_product"
                                             class="form-control box-shadow-none input-form" placeholder="">
                                         <small id="id_product-text" class="text-muted" style="display: none;">Vui lòng
                                             nhập mã sản phẩm</small>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="name_product" class="form-label">Tên sản phẩm</label>
-                                        <input type="text" th:field="*{tenSanPham}" name="name-product"
-                                            id="name_product" class="form-control box-shadow-none  input-form"
-                                            placeholder="">
+                                        <input type="text" name="name-product" id="name_product"
+                                            class="form-control box-shadow-none  input-form" placeholder="">
                                         <small id="name_product-text" class="text-muted" style="display: none;">Vui lòng
                                             nhập tên sản phẩm</small>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="price_product" class="form-label">Đơn giá</label>
                                         <div class="input-group">
-                                            <input type="number" th:field="*{giaSanPham}" name="price-product"
-                                                id="price_product" class="form-control box-shadow-none input-form"
-                                                placeholder="" aria-describedby="price_product-span">
+                                            <input type="text" data-type="currency" name="price-product" id="price_product"
+                                                class="form-control box-shadow-none input-form" placeholder=""
+                                                aria-describedby="price_product-span">
                                             <span class="input-group-text" id="price_product-span">VND</span>
                                         </div>
                                         <small id="price_product-text" class="text-muted" style="display: none;">Vui
                                             lòng nhập đơn giá sản phẩm</small>
                                     </div>
                                 </div>
-                                <div class="group-fleld group-fleld-02">
-                                    <div class="mb-3 form-group">
-                                        <label for="producer_product" class="form-label">Nhà sản xuất</label>
-                                        <select class="form-control form-select box-shadow-none" name="producer-product"
-                                            th:field="*{nhaSanXuat.idNhaSanXuat}" id="producer_product">
-                                            <option th:each="nhaSanXuat : ${NhaSanXuat}"
-                                                th:value="${nhaSanXuat.idNhaSanXuat}"
-                                                th:text="${nhaSanXuat.tenNhaSanXuat}">...</option>
-                                        </select>
-                                    </div>
+                                <div class="group-fleld group-fleld-03">
                                     <div class="mb-3 form-group">
                                         <label for="type-group_product" class="form-label">Phân nhóm loại</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="card-credit"><i class="bi-layers-fill"
                                                     style="color: var(--gray_700);"></i></span>
                                             <select class="form-control form-select box-shadow-none"
-                                                th:field="*{phanNhomLoai.idPhanNhomLoai}" name="type-group-product"
-                                                id="type-group_product" aria-describedby="card-credit">
-                                                <option th:each="phanNhomLoai : ${PhanNhomLoai}"
-                                                    th:value="${phanNhomLoai.idPhanNhomLoai}"
-                                                    th:text="${phanNhomLoai.tenPhanLoaiNhom}">...</option>
+                                                name="type-group-product" id="type-group_product"
+                                                aria-describedby="card-credit">
+                                                <option>...</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="promotion_product" class="form-label">Mã khuyến mãi</label>
                                         <select class="form-control form-select box-shadow-none"
-                                            th:field="*{khuyenMai.idKhuyenMai}" name="promotion-product"
-                                            id="promotion_product">
+                                            name="promotion-product" id="promotion_product">
                                             <option value="null" selected>Không khuyến mãi</option>
-                                            <option th:each="khuyenMai : ${KhuyenMai}"
-                                                th:value="${khuyenMai.idKhuyenMai}" th:text="${khuyenMai.idKhuyenMai}">
+                                            <option>
                                                 ...</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="group-fleld group-fleld-02">
+                                <div class="group-fleld group-fleld-03">
                                     <div class="mb-3 form-group">
                                         <label for="quatity_product" class="form-label">Số lượng sản phẩm</label>
-                                        <input type="text" th:field="*{soLuong}" name="quatity-product"
-                                            id="quatity_product" class="form-control box-shadow-none input-form"
-                                            placeholder="">
+                                        <input type="text" name="quatity-product" id="quatity_product"
+                                            class="form-control box-shadow-none input-form" placeholder="">
                                         <small id="quatity_product-text" class="text-muted" style="display: none;">Vui
                                             lòng nhập số lượng sản phẩm</small>
                                     </div>
                                     <div class="mb-3 form-group">
-                                        <label for="quatity_product" class="form-label">Khối lượng sản phẩm</label>
-                                        <div class="input-group">
-                                            <input type="text" th:field="*{khoiLuong}" name="mass-product" id="mass_product"
-                                                class="form-control box-shadow-none input-form" placeholder="">
-                                            <span class="input-group-text" id="length_product-span">KG</span>
-                                        </div>
-
-                                        
-                                        <small id="mass_product-text" class="text-muted" style="display: none;">Vui
-                                            lòng nhập khối lượng sản phẩm</small>
-                                    </div>
-                                    <div class="mb-3 form-group">
                                         <label for="date_product" class="form-label">Ngày đăng</label>
-                                        <input type="date" th:field="*{ngayTaoSanPham}" name="date-product"
-                                            id="date_product" class="form-control box-shadow-none input-form"
-                                            placeholder="">
+                                        <input type="date" name="date-product" id="date_product"
+                                            class="form-control box-shadow-none input-form" placeholder="">
                                         <small id="date_product-text" class="text-muted" style="display: none;">Vui lòng
                                             nhập ngày đăng sản phẩm</small>
                                     </div>
                                 </div>
-                                <div class="group-fleld group-fleld-05">
+                                <div class="group-fleld group-fleld-011">
                                     <div class="mb-3 form-group">
-                                        <label for="length_product" class="form-label">Chiều dài</label>
-                                        <div class="input-group">
-                                            <input type="number" min="0" name="length-product" id="length_product" th:field="*{chieuDai}"
-                                                class="form-control box-shadow-none input-form" 
-                                                placeholder="Nhập vào chiều dài" aria-describedby="youtube">
-                                            <span class="input-group-text" id="length_product-span">CM</span>
-                                        </div>
-                                        <small id="length_product-text" class="text-muted" style="display: none;">Vui
-                                            lòng nhập chiều dài sản phẩm</small>
-                                    </div>
-                                    <div class="mb-3 form-group">
-                                        <label for="width_product" class="form-label">Chiều rộng</label>
-                                        <div class="input-group">
-                                            <input type="number" min="0" name="width-product" id="width_product" th:field="*{chieuRong}"
-                                                class="form-control box-shadow-none input-form" 
-                                                placeholder="Nhập vào chiều rộng" aria-describedby="youtube">
-                                            <span class="input-group-text" id="width_product-span">CM</span>
-                                        </div>
-                                        <small id="width_product-text" class="text-muted" style="display: none;">Vui
-                                            lòng nhập chiều rộng sản phẩm</small>
-                                    </div>
-                                    <div class="mb-3 form-group">
-                                        <label for="height_product" class="form-label">Chiều cao</label>
-                                        <div class="input-group">
-                                            <input type="number" min="0" name="height-product" id="height_product" th:field="*{chieuCao}"
-                                                class="form-control box-shadow-none input-form" 
-                                                placeholder="Nhập vào chiều rộng" aria-describedby="youtube">
-                                            <span class="input-group-text" id="height_product-span">CM</span>
-                                        </div>
-                                        <small id="height_product-text" class="text-muted" style="display: none;">Vui
-                                            lòng
-                                            nhập chiều cao sản phẩm</small>
+                                        <label for="" class="form-label">Mô tả sản phẩm</label>
+                                        <textarea class="form-control input-form" name="" id="description_product"
+                                            rows="9"></textarea>
+                                        <small id="description_product-text" class="text-muted"
+                                            style="display: none;">Vui lòng nhập mô tả sản phẩm</small>
                                     </div>
                                 </div>
                                 <div class="group-fleld group-fleld-06">
                                     <div class="table-responsive" style="height: 400px; overflow: auto;">
                                         <table class="table  m-0 table-hover ">
                                             <div class="on-the-table">
-                                                <h6 class="on-the-table-title text-title">Chất liệu sản phẩm</h6>
+                                                <h6 class="on-the-table-title text-title">Chi tiết sản phẩm</h6>
                                                 <a style="cursor: pointer;" data-bs-toggle="modal"
-                                                    data-bs-target="#add-chatLieu"
+                                                    data-bs-target="#product-samples"
                                                     class="on-the-table-button btn-style hover-zoom"><i
-                                                        class="bi-plus-lg"></i>Thêm
-                                                    chất liệu</a>
+                                                        class="bi-plus-lg"></i>Thêm mẫu sản phẩm</a>
                                             </div>
                                             <thead>
                                                 <tr class="table-active">
@@ -340,35 +261,33 @@
                                                                 style="margin-right: 10px;" name="" id=""
                                                                 type="checkbox" value="checkedValue"
                                                                 aria-label="Text for screen reader">
-                                                            chất liệu
+                                                            Mẫu sản phẩm
                                                             <i class="bi bi-arrow-down"></i>
                                                         </form>
                                                     </th>
-                                                    <th scope="col">Ngày đăng</th>
+                                                    <th scope="col">Mã hex</th>
                                                     <th scope="col">Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="body-table-chatlieu">
-                                                <tr th:id="'clsp' + ${chatLieuSanPham.chatLieuSPCL.idChatLieu}"
-                                                    th:each="chatLieuSanPham : ${SanPham.ListSPCL}">
+                                                <tr>
                                                     <!-- <form action=""> -->
                                                     <td scope="row" class="td-first-table">
-                                                        <div class="text-blogs-group">
-                                                            <h4 class="text-title-blogs text-title"
-                                                                th:text="${chatLieuSanPham.chatLieuSPCL.tenChatLieu}">
-                                                                Tên chất liệu
+                                                        <div class="text-product-group">
+                                                            <h4 class="text-title-product text-title">
+                                                                Tên mẫu sản phẩm
                                                             </h4>
-                                                            <h6 class="text-id-blogs text-title"
-                                                                th:text="${chatLieuSanPham.chatLieuSPCL.idChatLieu}">
-                                                                Mã chất liệu</h6>
+                                                            <h6 class="text-id-product text-title">
+                                                                Mã mẫu sản phẩm</h6>
                                                         </div>
                                                     </td>
-                                                    <td th:text="${chatLieuSanPham.chatLieuSPCL.ngayTao}">13/03/2023
+                                                    <td>#102123
                                                     </td>
                                                     <td>
-                                                        <a th:onclick="deleteSPCL02([[${chatLieuSanPham.chatLieuSPCL.idChatLieu}]],[[${chatLieuSanPham.idSanPhamChatLieu}]])"
-                                                            class="btn" style="color: var(--gray_600);"><i
-                                                                class="bi bi-trash-fill"></i></a>
+                                                        <button class="btn" style="color: var(--gray_600);"><i
+                                                                class="bi bi-trash-fill"></i></button>
+                                                        <button class="btn" style="color: var(--gray_600);"><i
+                                                                class="bi bi-pen-fill"></i></button>
                                                     </td>
                                                     <!-- </form> -->
                                                 </tr>
@@ -377,6 +296,102 @@
 
                                         </table>
 
+                                    </div>
+                                </div>
+                                <div class="group-fleld group-fleld-012">
+                                    <a href="/Manager/product/clear" class="btn btn-style btn-clear">Làm mới</a>
+                                    <button class="btn btn-style btn-update">Cập
+                                        nhật</button>
+                                    <button class="btn btn-style btn-add">Thêm
+                                        mới</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="product-samples" tabindex="-1" data-bs-backdrop="static"
+                data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalTitleId">Thông tin mẫu sản phẩm</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <div class="group-fleld group-fleld-01">
+                                    <div class="mb-3 form-group">
+                                        <label for="id_product" class="form-label">Tên mẫu sản phẩm</label>
+                                        <input type="text" name="name-product-samples" id="name_product-samples"
+                                            class="form-control box-shadow-none input-form" placeholder="">
+                                        <small id="id_product-text" class="text-muted" style="display: none;">Vui lòng
+                                            nhập tên mẫu</small>
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="name_product" class="form-label">Mã màu hex</label>
+                                        <div class="input-group">
+                                            <input type="color" style="height: inherit; width: 20%;"
+                                                name="code-hex-color" id="code_hex-color"
+                                                class="form-control box-shadow-none" placeholder=""
+                                                aria-describedby="price_product-span">
+                                            <input type="text" style="width: 80%;" name="" id="input-text-color"
+                                                class="form-control box-shadow-none  input-form" placeholder="">
+                                        </div>
+                                        <small id="name_product-text" class="text-muted" style="display: none;">Vui lòng
+                                            nhập mã hex</small>
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="price_product" class="form-label">Ngày tạo mẫu</label>
+                                        <input type="date" name="date-product-samples" id="date_product-samples"
+                                            class="form-control box-shadow-none input-form" placeholder=""
+                                            aria-describedby="price_product-span">
+                                        <small id="price_product-text" class="text-muted" style="display: none;">Vui
+                                            lòng nhập đơn giá sản phẩm</small>
+                                    </div>
+                                </div>
+                                <div class="group-fleld group-fleld-01">
+                                    <div class="mb-3 form-group check-box-size">
+                                        <div
+                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                            <h6 class="text-title">Size S (Smail)</h6>
+                                            <input class="form-check-input form-control box-shadow-none" type="checkbox"
+                                                value="S" id="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 form-group check-box-size">
+                                        <div
+                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                            <h6 class="text-title">Size M (Medium)</h6>
+                                            <input class="form-check-input form-control box-shadow-none" type="checkbox"
+                                                value="M" id="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 form-group check-box-size">
+                                        <div
+                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                            <h6 class="text-title">Size L (Large)</h6>
+                                            <input class="form-check-input form-control box-shadow-none" type="checkbox"
+                                                value="L" id="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="group-fleld group-fleld-02">
+                                    <div class="mb-3 form-group check-box-size">
+                                        <div
+                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                            <h6 class="text-title">Size XL (Extra Large)</h6>
+                                            <input class="form-check-input form-control box-shadow-none" type="checkbox"
+                                                value="XL" id="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 form-group check-box-size">
+                                        <div
+                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                            <h6 class="text-title">Size XXL (Double Extra Large)</h6>
+                                            <input class="form-check-input form-control box-shadow-none" type="checkbox"
+                                                value="XXL" id="">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="group-fleld group-fleld-07">
@@ -417,16 +432,13 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="body-table-hinhanh">
-                                                <tr th:id="'dtbase' + ${status.index}"
-                                                    th:each="hinhAnh, status : ${SanPham.ListHinhAnhSP}">
+                                                <tr>
                                                     <!-- <form action=""> -->
-                                                    <td scope="row" style="text-align: left;"
-                                                        th:text="${hinhAnh.tenHinhAnh}"></td>
-                                                    <td th:text="${hinhAnh.dungLuongAnh/1000} + KB">...</td>
-                                                    <td th:text="${hinhAnh.ngayDang}">...</td>
+                                                    <td scope="row" style="text-align: left;"></td>
+                                                    <td>...</td>
+                                                    <td>...</td>
                                                     <td>
-                                                        <a th:onclick="deleteHA02([[${status.index}]],[[${hinhAnh.tenHinhAnh}]])"
-                                                            class="btn btn-deleteHinhAnh"
+                                                        <a class="btn btn-deleteHinhAnh"
                                                             style="color: var(--gray_600);"><i
                                                                 class="bi bi-trash-fill"></i></a>
                                                     </td>
@@ -440,77 +452,14 @@
 
                                     </div>
                                 </div>
-                                <div class="group-fleld group-fleld-011">
-                                    <div class="mb-3 form-group">
-                                        <label for="" class="form-label">Mô tả sản phẩm</label>
-                                        <textarea th:field="*{moTaSanPham}" class="form-control input-form" name=""
-                                            id="description_product" rows="9"></textarea>
-                                        <small id="description_product-text" class="text-muted"
-                                            style="display: none;">Vui lòng nhập mô tả sản phẩm</small>
-                                    </div>
-                                </div>
                                 <div class="group-fleld group-fleld-012">
-                                    <button formaction="/Manager/product/update" id="btn-update-01" disabled class="btn btn-style btn-update d-none">Cập nhật</button>
-                                    <button id="btn-add-01" disabled class="btn btn-style btn-add d-none">Thêm mới</button>
+                                    <a href="/Manager/product/clear" class="btn btn-style btn-clear">Làm mới</a>
+                                    <button class="btn btn-style btn-update">Cập
+                                        nhật</button>
+                                    <button class="btn btn-style btn-add">Thêm
+                                        mới</button>
                                 </div>
                             </form>
-                        </div>
-                        <div class="group-fleld group-fleld-012">
-                            <a href="/Manager/product/clear"  class="btn btn-style btn-clear">Làm mới</a>
-                            <button th:if="${flag}" id="btn-update-02" class="btn btn-style btn-update">Cập
-                                nhật</button>
-                            <button th:unless="${flag}" id="btn-add-02" class="btn btn-style btn-add">Thêm
-                                mới</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="add-chatLieu" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-                role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Thêm chất liệu</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="table-responsive" style="height: 400px; overflow: auto;">
-                                <table class="table  m-0 table-hover ">
-                                    <thead>
-                                        <tr class="table-active">
-                                            <th scope="col" style="text-align: left;">
-                                                <form action="" method="post">
-                                                    chất liệu
-                                                    <i class="bi bi-arrow-down"></i>
-                                                </form>
-                                            </th>
-                                            <th scope="col">Mã chất liệu</th>
-                                            <th scope="col">Ngày đăng</th>
-                                            <th scope="col">Thao tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="" style="border-bottom: 1px solid var(--gray_200);"
-                                            th:each="chatLieu : ${ChatLieu}">
-                                            <!-- <form action=""> -->
-                                            <td scope="row" style="text-align: left;" th:text="${chatLieu.tenChatLieu}">
-                                            </td>
-                                            <td th:text="${chatLieu.idChatLieu}">...</td>
-                                            <td th:text="${chatLieu.ngayTao}">...</td>
-                                            <td>
-                                                <button th:onclick="addChatLieu([[${chatLieu.idChatLieu}]],[[SanPham.idSanPham]])" class="btn"
-                                                    style="color: var(--gray_600);"><i
-                                                        class="bi bi-plus-lg"></i></button>
-                                            </td>
-                                            <!-- </form> -->
-                                        </tr>
-
-                                    </tbody>
-
-                                </table>
-
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -535,14 +484,6 @@
     firebase.initializeApp(firebaseConfig);
 </script>
 
-<script src="/javascripts/Manager-product.js"></script>
-<script th:if="${flag}">
-    $('#form-blogs-tab').css("background-color", "var(--gray_50)");
-    $('#form-blogs-tab').css("border", "1px solid var(--gray_300)");
-    $('#list-blogs-tab').css("background-color", "white");
-    $('#list-blogs-tab').css("border", "none");
-    $('#list_blogs').hide();
-    $('#form_blogs').show();
-</script>
+<script src="/javascripts/manager-js/Manager-product.js"></script>
 
 </html>

@@ -257,29 +257,33 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 
-#Manager_Content #form-promotion .group-fleld-04 {
-    justify-content: right;
+#Manager_Content #form-promotion .group-fleld-04,
+#Manager_Content #nhomLoai .group-fleld-04 {
+    justify-content: right !important;
 }
 
 #Manager_Content #form-promotion .group-fleld-04 .btn,
- .modal-footer .btn {
+#nhomLoai .btn {
     padding: 10px 20px;
     margin: 10px;
     transition: 0.5s;
 }
 
-#Manager_Content #form-promotion .group-fleld-04 .btn-clear:hover {
+#Manager_Content #form-promotion .group-fleld-04 .btn-clear:hover
+#Manager_Content #nhomLoai .group-fleld-04 .btn-clear:hover {
     background-color: var(--gray_300);
 }
 
 #Manager_Content #form-promotion .group-fleld-04 .btn:last-child,
- .modal-footer  .btn:last-child {
+#Manager_Content #nhomLoai .group-fleld-04 .btn:last-child,
+.modal-footer  .btn:last-child {
     margin-right: 0;
     background-color: var(--gray_900);
     color: var(--gray_50);
 }
 
 #Manager_Content #form-promotion .group-fleld-04 .btn:last-child:hover,
+#Manager_Content #nhomLoai .group-fleld-04 .btn:last-child:hover,
  .modal-footer .btn:last-child:hover {
     background-color: var(--gray_1000);
   
