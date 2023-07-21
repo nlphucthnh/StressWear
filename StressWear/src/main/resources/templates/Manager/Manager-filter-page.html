@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- icon web  -->
+    <link rel="icon" type="image/x-icon" href="../../img/logoMark.ico">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS: -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- link javaSprict -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JavaScript: -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- link icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!--link css -->
+    <link rel="stylesheet" href="/styles/root.css">
+    <link rel="stylesheet" href="/styles/navigation.css">
+    <link rel="stylesheet" href="/styles/filter-page.css">
+    <title>Manager filter</title>
+</head>
+
+<body>
+    <div class="background-manager">
+        <nav id="Manager_Navigation" th:include="components/Manager-navigation"></nav>
+        <div id="Manager_Content">
+            <div class="header_content">
+                <div class="header_content_text-group">
+                    <h3 class="header_content_main-text text-title">Phân loại và khuyễn mãi</h3>
+                    <h5 class="header_content_sub-text text-title">Tab dành cho phân nhóm sản phẩm và khuyến mãi</h5>
+                </div>
+            </div>
+            <div class="body_content">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs body_content_tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="btn-style btn-tab active" style="background-color: var(--gray_50); border: 1px solid var(--gray_300);" id="nhomLoai-tab" data-bs-toggle="tab"
+                            data-bs-target="#nhomLoai" type="button" role="tab" aria-controls="nhomLoai"
+                            aria-selected="true">Nhóm loại</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="btn-style btn-tab" id="form-promotion-tab" data-bs-toggle="tab"
+                            data-bs-target="#form-promotion" type="button" role="tab" aria-controls="form-promotion"
+                            aria-selected="false">Khuyến mãi</button>
+                    </li>
+                </ul>
+                <hr>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="nhomLoai" role="tabpanel" aria-labelledby="nhomLoai-tab">
+                        <div class="infor-filter-container">
+                            <h5 class="infor-filter-container-title container-item text-title">Thông tin nhóm loại</h5>
+                            <div class="container-fluid" style="width: 96%; margin: 20px auto;">
+                                <form action="">
+                                    <div class="form-group-modal form-group-modal-01">
+                                        <div class="mb-3 form-group">
+                                            <label for="" class="form-label">Mã nhóm loại</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="id-produser">NL</span>
+                                                <input type="text" name="" id="" class="form-control box-shadow-none"
+                                                    placeholder="" aria-describedby="id-produser">
+                                            </div>
+                                            <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                        </div>
+                                        <div class="mb-3 form-group">
+                                            <label for="" class="form-label">Tên nhóm loại</label>
+                                            <input type="text" name="" id="" class="form-control box-shadow-none"
+                                                placeholder="">
+                                            <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                        </div>
+                                        <div class="mb-3 form-group">
+                                            <label for="" class="form-label">Ngày tạo</label>
+                                            <input type="date" name="" id="" class="form-control box-shadow-none"
+                                                placeholder="">
+                                            <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                        </div>
+                                    </div>
+                                    <div class="form-group-modal form-group-modal-02">
+                                        <div class="mb-3 form-group">
+                                            <label for="" class="form-label">Mô tả nhóm loại</label>
+                                            <textarea class="form-control box-shadow-none" name="" id=""
+                                                rows="9"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="group-fleld group-fleld-04 d-flex">
+                                        <button formaction="/Manager/filter/khuyenMai/clear"
+                                            class="btn btn-style btn-clear"><i class="bi-brush"></i></button>
+                                        <button id="btn-update-km" formaction="/Manager/filter/khuyenMai/update"
+                                            class="btn btn-style btn-update">Cập nhật</button>
+                                        <button id="btn-add-km" class="btn btn-style btn-add">Thêm mới</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr style="width: 95%; margin: 20px auto;">
+                            <div class="table-responsive container-item">
+                                <table class="table m-0">
+                                    <div class="on-the-table">
+                                        <h6 class="text-on-table text-title">Nhóm loại sản phẩm</h6>
+                                    </div>
+                                    <thead>
+                                        <tr class="table-active">
+                                            <th scope="col" style="text-align: left;">
+                                                <form action="" method="post">
+                                                    Nhóm loại
+
+                                                </form>
+                                            </th>
+                                            <th scope="col">Mã nhóm loạit</th>
+                                            <th scope="col">Ngày đăng</th>
+                                            <th scope="col">Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="">
+                                            <!-- <form action=""> -->
+                                            <td scope="row" class="td-first-table">
+                                                Nhóm loại
+                                            </td>
+                                            <td>Mã nhóm loại</td>
+                                            <td>13/03/2023</td>
+                                            <td>
+                                                <button class="btn" style="color: var(--gray_600);"><i
+                                                        class="bi bi-trash-fill"></i></button>
+                                                <button class="btn" style="color: var(--gray_600);"
+                                                    data-bs-toggle="modal" data-bs-target="#modal-type-group"><i
+                                                        class="bi bi-pen-fill"></i></button>
+                                            </td>
+                                            <!-- </form> -->
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td style="text-align: left;">
+                                                <!-- <button class="btn-style btn-prev">Trước đó</button>
+                                                <button class="btn-style btn-next">Kế tiếp</button> -->
+                                                <!-- 
+                                                <a class="btn-style btn-prev disnable"
+                                                    th:if="${pageNhomLoai.number == 0}">Trước đó</a>
+                                                <a class="btn-style btn-prev" th:if="${pageNhomLoai.number > 0}"
+                                                    th:href="@{/Manager/filter?pageNL=__${pageNhomLoai.number-1}__&&pageNSX=__${pageNSX.number}__&&pageCL=__${pageChatLieu.number}__}">Trước
+                                                    đó</a>
+                                                <a class="btn-style btn-next"
+                                                    th:if="${pageNhomLoai.number < pageNhomLoai.totalPages - 1}"
+                                                    th:href="@{/Manager/filter?pageNL=__${pageNhomLoai.number+1}__&&pageNSX=__${pageNSX.number}__&&pageCL=__${pageChatLieu.number}__}">Kế
+                                                    tiếp</a>
+                                                <a class="btn-style btn-next disnable"
+                                                    th:if="${pageNhomLoai.number == pageNhomLoai.totalPages - 1}">Kế
+                                                    tiếp</a> -->
+                                                <button class="btn-style btn-prev m-0">Trước đó</button>
+                                                <button class="btn-style btn-next m-0">Kế tiếp</button>
+                                            </td>
+
+                                            <td></td>
+                                            <td></td>
+                                            <td style="text-align: center;">
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="form-promotion" role="tabpanel"
+                        aria-labelledby="form-promotion-tab">
+                        <div class="form-promotion-pane">
+                            <form action="" method="post">
+                                <div class="group-fleld group-fleld-01">
+                                    <h5 class="form-promotion-container-title text-title">Thông tin khuyến mãi</h5>
+                                </div>
+                                <div class="group-fleld group-fleld-02">
+                                    <div class="mb-3 form-group">
+                                        <label for="date-start_promotion" class="form-label">Ngày bắt đầu</label>
+                                        <input type="date" name="date_start_promotion" id="date-start_promotion"
+                                            class="form-control box-shadow-none" placeholder="">
+
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="date-end_promotion" class="form-label">Ngày kết thúc</label>
+                                        <input type="date" name="date_end_promotion" id="date-end_promotion"
+                                            class="form-control box-shadow-none" placeholder="">
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="discount-promotion" class="form-label">Phần trăm khuyến mãi</label>
+                                        <div class="input-group">
+                                            <input type="number" name="discount_promotion" id="discount-promotion"
+                                                class="form-control box-shadow-none" placeholder=""
+                                                aria-describedby="discount_promotion-label">
+                                            <span class="input-group-text" id="discount_promotion-label">Phần trăm
+                                                (%)</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="group-fleld group-fleld-03">
+                                    <div class="mb-3 form-group">
+                                        <label for="id_name_promotion" class="form-label">Tên mã giảm giá</label>
+                                        <input type="text" name="id-name-promotion" id="id_name_promotion"
+                                            class="form-control box-shadow-none" placeholder="">
+
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="id_promotion" class="form-label">Mã giảm giá</label>
+                                        <input type="text"
+                                            style="pointer-events: none; background-color: var(--gray_100);"
+                                            name="id_promotion" id="id_promotion" class="form-control box-shadow-none"
+                                            placeholder="">
+
+                                    </div>
+                                </div>
+
+                                <div class="group-fleld group-fleld-04">
+                                    <button formaction="/Manager/filter/khuyenMai/clear"
+                                        class="btn btn-style btn-clear"><i class="bi-brush"></i></button>
+                                    <button id="btn-update-km" formaction="/Manager/filter/khuyenMai/update"
+                                        class="btn btn-style btn-update">Cập nhật</button>
+                                    <button id="btn-add-km" class="btn btn-style btn-add">Thêm mới</button>
+                                </div>
+                            </form>
+                            <hr style="width: 95%; margin: 20px auto;">
+                            <div class="group-fleld group-fleld-05">
+                                <div class="table-responsive ">
+                                    <table class="table m-0">
+                                        <div class="on-the-table">
+                                            <h6 class="text-on-table text-title">Khuyến mãi sản phẩm</h6>
+                                        </div>
+                                        <thead>
+                                            <tr class="table-active">
+                                                <th scope="col" style="text-align: left;">
+                                                    <form action="" method="post">
+                                                        Mã giảm giá
+                                                    </form>
+                                                </th>
+                                                <th scope="col">Phần trăm</th>
+                                                <th scope="col">Ngày bắt đầu</th>
+                                                <th scope="col">Ngày kết thúc</th>
+                                                <th scope="col">Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="">
+                                                <td scope=" row" class="td-first-table">
+                                                    Nhà sản xuất
+                                                </td>
+                                                <td>10%</td>
+                                                <td>13/03/2023</td>
+                                                <td>13/05/2023</td>
+                                                <td>
+                                                    <button class="btn" style="color: var(--gray_600);"><i
+                                                            class="bi bi-trash-fill"></i></button>
+                                                    <button class="btn btn-eidt" style="color: var(--gray_600);"><i
+                                                            class="bi bi-pen-fill"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $("#form-promotion-tab").click(function (e) {
+        $("#form-promotion-tab").css("border", "1px solid var(--gray_300)");
+        $("#form-promotion-tab").css("background-color", "var(--gray_50)");
+        $("#nhomLoai-tab").css("border", "none");
+        $("#nhomLoai-tab").css("background-color", "white");
+    });
+
+    $("#nhomLoai-tab").click(function (e) {
+        $("#nhomLoai-tab").css("border", "1px solid var(--gray_300)");
+        $("#nhomLoai-tab").css("background-color", "var(--gray_50)");
+        $("#form-promotion-tab").css("border", "none");
+        $("#form-promotion-tab").css("background-color", "white");
+    });
+</script>
+
+<script src="/javascripts/manager-js/Manager-filter.js"></script>
+
+</html>
