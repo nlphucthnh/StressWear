@@ -10,4 +10,14 @@ public class testController {
     public String getPage(){
         return "Manager/Manager-login-page.html";
     }
+
+    @GetMapping("/login-page")
+    public String getLogin(){
+        return "User/User-login-page";
+    }
+
+    @GetMapping("/register-page")
+    public String getRegister(){
+        return "User/User-register-page";
+    }
 }
