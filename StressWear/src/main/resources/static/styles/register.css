@@ -5,9 +5,11 @@ body {
     padding: 0;
     background-color: #f7f8f9;
     font-size: 14px;
+    background-image: url(/img/sign-up-main.png);
+    background-size: cover;
 }
 
-.lg-container {
+.register-container {
     width: 80%;
     height: 100vh;
     margin: calc((100vh - 80vh)/2) auto;
@@ -19,7 +21,7 @@ body {
     overflow: hidden;
 }
 
-.lg-container-ctent {
+.register-container-ctent {
     width: 95%;
     height: 90%;
     display: flex;
@@ -28,12 +30,12 @@ body {
     margin: auto;
 }
 
-.lg-ct-left {
+.register-ct-left {
     width: 50%;
     height: 100%;
 }
 
-#LoginContainer .lg-ct-left-form {
+#RegisterContainer .register-ct-left-form {
     width: 95%;
     margin: auto;
     height: 100%;
@@ -42,12 +44,12 @@ body {
     justify-content: center;
 }
 
-#LoginContainer .lg-ct-left-form .lg-ct-top {
+#RegisterContainer .register-ct-left-form .register-ct-top {
     text-align: center;
     margin-bottom: 20px;
 }
 
-#LoginContainer .lg-ct-left-form .lg-ct-top .lg-ct-title {
+#RegisterContainer .register-ct-left-form .register-ct-top .register-ct-title {
     font-family: 'Open Sans', sans-serif;
     width: 70%;
     margin: 0 auto;
@@ -55,13 +57,13 @@ body {
     font-size: 24px;
 }
 
-#LoginContainer .lg-ct-left-form .form-group {
+#RegisterContainer .register-ct-left-form .form-group {
     width: 100% !important;
     
 }
 
 
-#LoginContainer .lg-ct-left-form .form-group label {
+#RegisterContainer .register-ct-left-form .form-group label {
     width: 100%;
     height: 20px;
     font-family: 'Inter';
@@ -72,7 +74,7 @@ body {
     color: #344054;
 }
 
-#LoginContainer .lg-ct-left-form .form-group .form-control {
+#RegisterContainer .register-ct-left-form .form-group .form-control {
     width: 100%;
     height: 45px;
     background: #FFFFFF;
@@ -83,7 +85,7 @@ body {
 }
 
 
-#LoginContainer .lg-ct-left-form .form-check {
+#RegisterContainer .register-ct-left-form .form-check {
     display: flex;
     justify-content: space-between;
     margin: 0 !important;
@@ -91,24 +93,24 @@ body {
     width: 100% !important;
 }
 
-#LoginContainer .lg-ct-left-form  .form-check .input-groups {
+#RegisterContainer .register-ct-left-form  .form-check .input-groups {
    display: flex;
    align-items: center !important;
 }
 
 
-#LoginContainer .lg-ct-left-form  .form-check .input-groups-01 {
+#RegisterContainer .register-ct-left-form  .form-check .input-groups-01 {
     margin-left:22px ;
  }
 
- #LoginContainer .lg-ct-left-form  .form-check .input-groups-01 label {
+ #RegisterContainer .register-ct-left-form  .form-check .input-groups-01 label {
     margin-left: 5px;
  }
 
  
-#LoginContainer .lg-ct-left-form  .btn-login  {
+#RegisterContainer .register-ct-left-form  .btn-login  {
     width: 100%;
-    background: #101828;
+    background: #293056;
     border: 1px solid #475467;
     box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
     border-radius: 3px; 
@@ -120,7 +122,7 @@ body {
     color: #FFFFFF;
 }
 
-#LoginContainer .lg-ct-left-form .lg-ct-end {
+#RegisterContainer .register-ct-left-form .register-ct-end {
     display: flex;
     justify-content: center;
     margin: 20px auto;
@@ -135,11 +137,11 @@ body {
 
 }
 
-#LoginContainer .lg-ct-left-form .lg-ct-end p {
+#RegisterContainer .register-ct-left-form .register-ct-end p {
     color: #000000;
 }
 
-#LoginContainer .lg-ct-left-form .lg-ct-end a {
+#RegisterContainer .register-ct-left-form .register-ct-end a {
     margin-left: 5px;
     color: #101828;
     text-decoration: none;
@@ -150,12 +152,12 @@ body {
 
 
 /* -------------------------------- */
-.lg-ct-right {
+.register-ct-right {
     width: 50%;
     height: 100%;
 }
 
-.lg-image {
+.register-image {
     width: 95%;
     margin: auto;
     overflow: hidden;
@@ -163,7 +165,7 @@ body {
     /* background-color: antiquewhite; */
 }
 
-.lg-image img {
+.register-image img {
     width: 100%;
     border-radius: 10px;
     height: 100%;

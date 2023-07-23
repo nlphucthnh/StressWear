@@ -6,11 +6,12 @@ body {
     background-color: #f7f8f9;
     /* font-family: 'Open Sans', sans-serif; */
     font-size: 14px;
-    /* display: flex; */
+    background-image: url(/img/log-in-main.png);
+    background-size: cover;
 }
 
 .login-container {
-    width: 70%;
+    width: 34%;
     height: 80vh;
     margin: calc((100vh - 80vh)/2) auto;
     background: #fff;
@@ -19,37 +20,43 @@ body {
     display: flex;
     /* margin-top: 4rem; */
     overflow: hidden;
+
+
 }
 
 .login-container-ctent {
-    width: 95%;
+    width: 100%;
     height: 90%;
     display: flex;
     justify-content: space-around;
     align-items: center !important;
     margin: auto;
+
 }
 
-.login-ct-left {
-    width: 50%;
+.login-content-center {
+    width: 80%;
     height: 100%;
+
 }
 
 #LoginContainer .login-ct-left-form {
-    width: 95%;
+    width: 100%;
     margin: auto;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
-#LoginContainer .login-ct-left-form .login-ct-top {
+#LoginContainer .login-ct-left-form .login-content-top-form {
     text-align: center;
     margin-bottom: 20px;
+
 }
 
-#LoginContainer .login-ct-left-form .login-ct-top .login-ct-title {
+#LoginContainer .login-ct-left-form .login-content-top-form .login-ct-title {
     font-family: 'Open Sans', sans-serif;
     width: 70%;
     margin: 0 auto;
@@ -59,7 +66,7 @@ body {
 
 #LoginContainer .login-ct-left-form .form-group {
     width: 100% !important;
-    
+
 }
 
 
@@ -93,27 +100,27 @@ body {
     width: 100% !important;
 }
 
-#LoginContainer .login-ct-left-form  .form-check .input-groups {
-   display: flex;
-   align-items: center !important;
+#LoginContainer .login-ct-left-form .form-check .input-groups {
+    display: flex;
+    align-items: center !important;
 }
 
 
-#LoginContainer .login-ct-left-form  .form-check .input-groups-01 {
-    margin-left:22px ;
- }
+#LoginContainer .login-ct-left-form .form-check .input-groups-01 {
+    margin-left: 22px;
+}
 
- #LoginContainer .login-ct-left-form  .form-check .input-groups-01 label {
+#LoginContainer .login-ct-left-form .form-check .input-groups-01 label {
     margin-left: 5px;
- }
+}
 
- 
-#LoginContainer .login-ct-left-form  .btn-login  {
+
+#LoginContainer .login-ct-left-form .btn-login {
     width: 100%;
-    background: #101828;
+    border-radius: 3px;
+    background: #293056;
     border: 1px solid #475467;
     box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-    border-radius: 3px; 
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
@@ -133,7 +140,7 @@ body {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-   
+
 
 }
 
@@ -148,30 +155,9 @@ body {
     font-weight: 600;
 }
 
-
-
-
 /* -------------------------------- */
-.login-ct-right {
-    width: 50%;
-    height: 100%;
-}
 
-.login-image {
-    width: 95%;
-    margin: auto;
-    overflow: hidden;
-    height: 100%;
-    /* background-color: antiquewhite; */
-}
 
-.login-image img {
-    width: 100%;
-    border-radius: 10px;
-    height: 100%;
-    object-fit: cover;
-
-}
 
 
 
