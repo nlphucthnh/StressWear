@@ -20,7 +20,7 @@ import com.web.Entity.NhomLoai;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/NhomLoai")
+@RequestMapping("/api/nhomloai")
 public class NhomLoaiRestController {
 
     @Autowired
