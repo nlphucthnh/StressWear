@@ -20,7 +20,7 @@ import com.web.Entity.TaiKhoan;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/TaiKhoan")
+@RequestMapping("/api/taikhoan")
 public class TaiKhoanRestController {
 
     @Autowired

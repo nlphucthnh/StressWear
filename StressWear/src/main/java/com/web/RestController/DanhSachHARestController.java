@@ -21,7 +21,7 @@ import com.web.Entity.DanhSachHAKey;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/DanhSachHA")
+@RequestMapping("/api/danhsachha")
 public class DanhSachHARestController {
 
     @Autowired

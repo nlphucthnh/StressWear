@@ -20,7 +20,7 @@ import com.web.Entity.GioHang;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/GioHang")
+@RequestMapping("/api/giohang")
 public class GioHangRestController {
 
     @Autowired

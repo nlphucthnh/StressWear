@@ -20,7 +20,7 @@ import com.web.Entity.MauSac;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/MauSac")
+@RequestMapping("/api/mausac")
 public class MauSacRestController {
 
     @Autowired

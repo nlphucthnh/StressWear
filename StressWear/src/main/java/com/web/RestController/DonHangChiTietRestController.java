@@ -20,7 +20,7 @@ import com.web.Entity.DonHangChiTiet;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/DonHangChiTiet")
+@RequestMapping("/api/donhangchitiet")
 public class DonHangChiTietRestController {
 
     @Autowired

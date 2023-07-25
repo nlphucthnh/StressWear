@@ -20,7 +20,7 @@ import com.web.Entity.DonHang;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/DonHang")
+@RequestMapping("/api/donhang")
 public class DonHangRestController {
 
     @Autowired

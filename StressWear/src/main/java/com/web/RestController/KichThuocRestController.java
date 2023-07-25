@@ -20,7 +20,7 @@ import com.web.Entity.KichThuoc;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/KichThuoc")
+@RequestMapping("/api/kichthuoc")
 public class KichThuocRestController {
 
     @Autowired

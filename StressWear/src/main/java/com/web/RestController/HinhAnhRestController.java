@@ -20,7 +20,7 @@ import com.web.Entity.HinhAnh;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/HinhAnh")
+@RequestMapping("/api/hinhanh")
 public class HinhAnhRestController {
 
     @Autowired
