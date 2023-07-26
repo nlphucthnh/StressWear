@@ -39,11 +39,15 @@ public class SanPham implements Serializable {
 
     @Column(name = "gia_san_pham")
     private double giaSanPham;
-
+    
     @Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ngay_tao_san_pham")
 	private Date ngayTaoSanPham = new Date();
+
+
+    @Column(name = "mo_ta_san_pham")
+    private String moTaSanPham;
 
     @Column(name = "so_luong")
     private int soLuongSP = 0;

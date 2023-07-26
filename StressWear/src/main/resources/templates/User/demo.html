@@ -16,10 +16,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-
-    <!-- Augularjs -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-
     <!-- link icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet"
@@ -34,7 +30,7 @@
 
 </head>
 
-<body ng-app="myApp" ng-controller="nameCtrl">
+<body>
 
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
@@ -232,74 +228,211 @@
     <!-- title nội dụng chính  -->
     <aside>
         <div class="container">
-            <div class="product-title-sale ">
+            <div class="product-title-sale my-5 d-flex justify-content-sm-start">
                 <h2>Sản phẩn khuyến mãi</h2>
             </div>
-            <div class="product row">
-                <div class="product-list col-3 my-3" ng-repeat="product in products"
-                    ng-if="product.khuyenMaiSP !== null">
+            <!-- <div class="search_product my-5 d-flex">
+                <input type="text"> 
+                <button class="btn">Tìm kiếm</button>
+            </div> -->
+
+            <div class="product">
+                <div class="product-list ">
                     <a href=product-item-page>
                         <div class="zoom_color sale">
-                            <span class="product-list-onsale">{{product.khuyenMaiSP.phanTramKhuyenMai}}%</span>
-                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1"
-                                alt="Sản phẩm 1">
-
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1" alt="Sản phẩm 1">
+                            <span class="product-list-onsale">20%</span>
                         </div>
-                        <h3 class="product-list-title">{{product.tenSanPham}}</h3>
+
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
                     </a>
-                    <p class="product-list-description">{{product.moTaSanPham}}</p>
-
-                    <p class="product-list-price" ng-if="product.khuyenMaiSP !== null">{{ product.giaSanPham | number
-                        }}đ
-                        <span>5.250,000₫</span>
-                    </p>
-
-                    <!-- <div class="product-price-main">
-                        <p th:unless="${pro.khuyenMai != null}" class="product-price"
-                            th:text="${#numbers.formatDecimal(pro.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></p>
-                        <p th:if="${pro.khuyenMai != null}" class="product-price">
-                            <span
-                                th:text="${#numbers.formatDecimal(pro.giaSanPham * (1 - pro.khuyenMai.phamTramKhuyenMai / 100), 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
-                            <del class="old-price mx-3"
-                                th:text="${#numbers.formatDecimal(pro.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></del>
-                        </p>
-                    </div> -->
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">880,000₫</p>
                 </div>
 
+                <div class="product-list ">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1" alt="Sản phẩm 1">
+                            <span class="product-list-onsale">20%</span>
+                        </div>
 
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">880,000₫</p>
+                </div>
+                <div class="product-list ">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1" alt="Sản phẩm 1">
+                            <span class="product-list-onsale">20%</span>
+                        </div>
 
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">880,000₫</p>
+                </div>
+                <div class="product-list ">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1" alt="Sản phẩm 1">
+                            <span class="product-list-onsale">20%</span>
+                        </div>
+
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">880,000₫</p>
+                </div>
             </div>
         </div>
     </aside>
 
     <article>
         <div class="container">
-            <div class="product-title-sale my-2 d-flex justify-content-start">
-                <h2>Tất cả sản phẩm</h2>
+            <div class="product-title-sale my-5 d-flex justify-content-start">
+                <h2>Sản phẩm bán chạy</h2>
             </div>
-            <div class="product row">
-                <div class="product-list col-3 my-3" ng-repeat="product in products">
+            <div class="product">
+                <div class="product-list ">
                     <a href=product-item-page>
                         <div class="zoom_color sale">
-
-
-                            <span class="product-list-onsale"
-                                ng-if="product.khuyenMaiSP !== null">{{product.khuyenMaiSP.phanTramKhuyenMai}}%</span>
-
-                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1"
-                                alt="Sản phẩm 1">
-
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1" alt="Sản phẩm 1">
                         </div>
-                        <h3 class="product-list-title">{{product.tenSanPham}}</h3>
-                    </a>
-                    <p class="product-list-description">{{product.moTaSanPham}}</p>
-                    <p class="product-list-price" ng-if="product.khuyenMaiSP == null" >{{ product.giaSanPham | number }}đ
-                    </p>
-                    <p class="product-list-price" ng-if="product.khuyenMaiSP !== null">{{ product.giaSanPham | number
-                        }}đ
-                        <span>5.250,000₫</span>
-                    </p>
 
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">880,000₫</p>
+                </div>
+                <div class="product-list">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp2.jfif?alt=media&token=9347ee50-e3a6-4775-ab3b-598a493fb2a3" alt="Sản phẩm 2">
+                            <span class="product-list-onsale">20%</span>
+                        </div>
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">4,730,000₫<span>5.250,000₫</span></p>
+                </div>
+                <div class="product-list">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp3.jfif?alt=media&token=8eec14ca-3ad9-4a1a-bddc-884f6ad5f945" alt="Sản phẩm 3">
+                            <span class="product-list-onsale">20%</span>
+                        </div>
+                        <h3 class="product-list-title">Noir Zip Balaclava Black</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">4,250,000₫<span>5.250,000₫</span></p>
+                </div>
+                <div class="product-list ">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1" alt="Sản phẩm 1">
+                        </div>
+
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">880,000₫</p>
+                </div>
+
+            </div>
+            <div class="product">
+                <div class="product-list ">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1" alt="Sản phẩm 1">
+                        </div>
+
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">880,000₫</p>
+                </div>
+                <div class="product-list">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp2.jfif?alt=media&token=9347ee50-e3a6-4775-ab3b-598a493fb2a3" alt="Sản phẩm 2">
+                            <span class="product-list-onsale">20%</span>
+                        </div>
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">4,730,000₫<span>5.250,000₫</span></p>
+                </div>
+                <div class="product-list">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp3.jfif?alt=media&token=8eec14ca-3ad9-4a1a-bddc-884f6ad5f945" alt="Sản phẩm 3">
+                            <span class="product-list-onsale">20%</span>
+                        </div>
+                        <h3 class="product-list-title">Noir Zip Balaclava Black</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">4,250,000₫<span>5.250,000₫</span></p>
+                </div>
+                <div class="product-list ">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1" alt="Sản phẩm 1">
+                        </div>
+
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">880,000₫</p>
+                </div>
+
+            </div>
+            <div class="product line">
+                <div class="product-list ">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1" alt="Sản phẩm 1">
+                        </div>
+
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">880,000₫</p>
+                </div>
+                <div class="product-list">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp2.jfif?alt=media&token=9347ee50-e3a6-4775-ab3b-598a493fb2a3" alt="Sản phẩm 2">
+                            <span class="product-list-onsale">20%</span>
+                        </div>
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">4,730,000₫<span>5.250,000₫</span></p>
+                </div>
+                <div class="product-list">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp3.jfif?alt=media&token=8eec14ca-3ad9-4a1a-bddc-884f6ad5f945" alt="Sản phẩm 3">
+                            <span class="product-list-onsale">20%</span>
+                        </div>
+                        <h3 class="product-list-title">Noir Zip Balaclava Black</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">4,250,000₫<span>5.250,000₫</span></p>
+                </div>
+                <div class="product-list ">
+                    <a href=product-item-page>
+                        <div class="zoom_color sale">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1" alt="Sản phẩm 1">
+                        </div>
+
+                        <h3 class="product-list-title">Noir All Over Tee White</h3>
+                    </a>
+                    <p class="product-list-description">Noir Zip Balaclava Black</p>
+                    <p class="product-list-price">880,000₫</p>
                 </div>
 
             </div>
@@ -315,8 +448,7 @@
                     <li class="page-item"><a class="page-link text-dark" href=product-item-page>8</a></li>
                     <li class="page-item"><a class="page-link text-dark" href=product-item-page>9</a></li>
                     <li class="page-item"><a class="page-link text-dark" href=product-item-page>10</a></li>
-                    <li class="page-item "><a class="page-link bg-dark text-white" href=product-item-page>Next
-                            >></a>
+                    <li class="page-item "><a class="page-link bg-dark text-white" href=product-item-page>Next >></a>
                     </li>
                 </ul>
             </nav>
@@ -398,30 +530,5 @@
         </div>
     </footer>
 </body>
-<script>
-    let host = "http://localhost:8080/api";
-    const app = angular.module("myApp", []);
-    app.controller("nameCtrl", function ($scope, $http) {
-        $scope.form = {};
-        $scope.items = [];
-
-        //   $scope.reset = function () {};
-
-        $scope.load_all = function () {
-            var url = `${host}/SanPham`;
-            $http
-                .get(url)
-                .then((resp) => {
-                    $scope.products = resp.data;
-                    console.log("Success", resp);
-                })
-                .catch((err) => {
-                    console.log("Error", err);
-                });
-        };
-        $scope.load_all();
-    });
-
-</script>
 
 </html>

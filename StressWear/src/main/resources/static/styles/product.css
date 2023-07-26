@@ -27,6 +27,7 @@
   letter-spacing: 0em;
   text-align: center;
   padding-top: 10px;
+  z-index: 1; 
 }
 
 article nav {
@@ -63,6 +64,7 @@ article nav {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin-top: 50px;
 }
 /* product list */
 
