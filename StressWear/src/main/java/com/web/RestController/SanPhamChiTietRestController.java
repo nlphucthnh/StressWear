@@ -24,16 +24,16 @@ import com.web.Entity.SanPhamChiTiet;
 public class SanPhamChiTietRestController {
 
     @Autowired
-    SanPhamChiTietDAO SanPhamChiTietDAO;
+    SanPhamChiTietDAO sanPhamChiTietDAO;
 
     @GetMapping
     public ResponseEntity<List<SanPhamChiTiet>> findAll(){
-        return ResponseEntity.ok(SanPhamChiTietDAO.findAll());
+        return ResponseEntity.ok(sanPhamChiTietDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<SanPhamChiTiet> findById(@PathVariable("id") String idSanPhamChiTiet){
-       Optional<SanPhamChiTiet> optional = SanPhamChiTietDAO.findById(Integer.valueOf(idSanPhamChiTiet));
+       Optional<SanPhamChiTiet> optional = sanPhamChiTietDAO.findById(Integer.valueOf(idSanPhamChiTiet));
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class SanPhamChiTietRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<SanPhamChiTiet> post(@RequestBody SanPhamChiTiet SanPhamChiTiet){
-        if(SanPhamChiTietDAO.existsById(SanPhamChiTiet.getIdSanPhamChiTiet())){
+    public ResponseEntity<SanPhamChiTiet> post(@RequestBody SanPhamChiTiet sanPhamChiTiet){
+        if(sanPhamChiTietDAO.existsById(sanPhamChiTiet.getIdSanPhamChiTiet())){
             return ResponseEntity.badRequest().build();
         }
-        SanPhamChiTietDAO.save(SanPhamChiTiet);
-        return ResponseEntity.ok(SanPhamChiTiet);
+        sanPhamChiTietDAO.save(sanPhamChiTiet);
+        return ResponseEntity.ok(sanPhamChiTiet);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<SanPhamChiTiet> put(@PathVariable("id") Integer idSanPhamChiTiet, @RequestBody SanPhamChiTiet SanPhamChiTiet){
-        if(!SanPhamChiTietDAO.existsById(idSanPhamChiTiet)){
+    public ResponseEntity<SanPhamChiTiet> put(@PathVariable("id") Integer idSanPhamChiTiet, @RequestBody SanPhamChiTiet sanPhamChiTiet){
+        if(!sanPhamChiTietDAO.existsById(idSanPhamChiTiet)){
             return ResponseEntity.notFound().build();
         }
-        SanPhamChiTietDAO.save(SanPhamChiTiet);
-         return ResponseEntity.ok(SanPhamChiTiet);
+        sanPhamChiTietDAO.save(sanPhamChiTiet);
+         return ResponseEntity.ok(sanPhamChiTiet);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer idSanPhamChiTiet){
-       if(!SanPhamChiTietDAO.existsById(idSanPhamChiTiet)){
+       if(!sanPhamChiTietDAO.existsById(idSanPhamChiTiet)){
             return ResponseEntity.notFound().build();
         }
-        SanPhamChiTietDAO.deleteById(idSanPhamChiTiet);
+        sanPhamChiTietDAO.deleteById(idSanPhamChiTiet);
         return ResponseEntity.ok().build();
     }
 }

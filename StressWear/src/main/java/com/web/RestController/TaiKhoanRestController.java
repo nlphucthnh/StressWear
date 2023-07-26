@@ -24,16 +24,16 @@ import com.web.Entity.TaiKhoan;
 public class TaiKhoanRestController {
 
     @Autowired
-    TaiKhoanDAO TaiKhoanDAO;
+    TaiKhoanDAO taiKhoanDAO;
 
     @GetMapping
     public ResponseEntity<List<TaiKhoan>> findAll(){
-        return ResponseEntity.ok(TaiKhoanDAO.findAll());
+        return ResponseEntity.ok(taiKhoanDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<TaiKhoan> findById(@PathVariable("id") String idTaiKhoan){
-       Optional<TaiKhoan> optional = TaiKhoanDAO.findById(idTaiKhoan);
+       Optional<TaiKhoan> optional = taiKhoanDAO.findById(idTaiKhoan);
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class TaiKhoanRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<TaiKhoan> post(@RequestBody TaiKhoan TaiKhoan){
-        if(TaiKhoanDAO.existsById(TaiKhoan.getTenDangNhap())){
+    public ResponseEntity<TaiKhoan> post(@RequestBody TaiKhoan taiKhoan){
+        if(taiKhoanDAO.existsById(taiKhoan.getTenDangNhap())){
             return ResponseEntity.badRequest().build();
         }
-        TaiKhoanDAO.save(TaiKhoan);
-        return ResponseEntity.ok(TaiKhoan);
+        taiKhoanDAO.save(taiKhoan);
+        return ResponseEntity.ok(taiKhoan);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<TaiKhoan> put(@PathVariable("id") String tenDangNhap, @RequestBody TaiKhoan TaiKhoan){
-        if(!TaiKhoanDAO.existsById(tenDangNhap)){
+    public ResponseEntity<TaiKhoan> put(@PathVariable("id") String tenDangNhap, @RequestBody TaiKhoan taiKhoan){
+        if(!taiKhoanDAO.existsById(tenDangNhap)){
             return ResponseEntity.notFound().build();
         }
-        TaiKhoanDAO.save(TaiKhoan);
-         return ResponseEntity.ok(TaiKhoan);
+        taiKhoanDAO.save(taiKhoan);
+         return ResponseEntity.ok(taiKhoan);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String tenDangNhap){
-       if(!TaiKhoanDAO.existsById(tenDangNhap)){
+       if(!taiKhoanDAO.existsById(tenDangNhap)){
             return ResponseEntity.notFound().build();
         }
-        TaiKhoanDAO.deleteById(tenDangNhap);
+        taiKhoanDAO.deleteById(tenDangNhap);
         return ResponseEntity.ok().build();
     }
 }

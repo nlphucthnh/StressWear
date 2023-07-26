@@ -24,16 +24,16 @@ import com.web.Entity.NhomLoai;
 public class NhomLoaiRestController {
 
     @Autowired
-    NhomLoaiDAO NhomLoaiDAO;
+    NhomLoaiDAO nhomLoaiDAO;
 
     @GetMapping
     public ResponseEntity<List<NhomLoai>> findAll(){
-        return ResponseEntity.ok(NhomLoaiDAO.findAll());
+        return ResponseEntity.ok(nhomLoaiDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<NhomLoai> findById(@PathVariable("id") String idNhomLoai){
-       Optional<NhomLoai> optional = NhomLoaiDAO.findById(Integer.valueOf(idNhomLoai));
+       Optional<NhomLoai> optional = nhomLoaiDAO.findById(Integer.valueOf(idNhomLoai));
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class NhomLoaiRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<NhomLoai> post(@RequestBody NhomLoai NhomLoai){
-        if(NhomLoaiDAO.existsById(NhomLoai.getIdNhomLoai())){
+    public ResponseEntity<NhomLoai> post(@RequestBody NhomLoai nhomLoai){
+        if(nhomLoaiDAO.existsById(nhomLoai.getIdNhomLoai())){
             return ResponseEntity.badRequest().build();
         }
-        NhomLoaiDAO.save(NhomLoai);
-        return ResponseEntity.ok(NhomLoai);
+        nhomLoaiDAO.save(nhomLoai);
+        return ResponseEntity.ok(nhomLoai);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<NhomLoai> put(@PathVariable("id") Integer idNhomLoai, @RequestBody NhomLoai NhomLoai){
-        if(!NhomLoaiDAO.existsById(idNhomLoai)){
+    public ResponseEntity<NhomLoai> put(@PathVariable("id") Integer idNhomLoai, @RequestBody NhomLoai nhomLoai){
+        if(!nhomLoaiDAO.existsById(idNhomLoai)){
             return ResponseEntity.notFound().build();
         }
-        NhomLoaiDAO.save(NhomLoai);
-         return ResponseEntity.ok(NhomLoai);
+        nhomLoaiDAO.save(nhomLoai);
+         return ResponseEntity.ok(nhomLoai);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer idNhomLoai){
-       if(!NhomLoaiDAO.existsById(idNhomLoai)){
+       if(!nhomLoaiDAO.existsById(idNhomLoai)){
             return ResponseEntity.notFound().build();
         }
-        NhomLoaiDAO.deleteById(idNhomLoai);
+        nhomLoaiDAO.deleteById(idNhomLoai);
         return ResponseEntity.ok().build();
     }
 }

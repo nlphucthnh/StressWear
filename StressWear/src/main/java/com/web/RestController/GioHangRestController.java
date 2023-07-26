@@ -24,16 +24,16 @@ import com.web.Entity.GioHang;
 public class GioHangRestController {
 
     @Autowired
-    GioHangDAO GioHangDAO;
+    GioHangDAO gioHangDAO;
 
     @GetMapping
     public ResponseEntity<List<GioHang>> findAll(){
-        return ResponseEntity.ok(GioHangDAO.findAll());
+        return ResponseEntity.ok(gioHangDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<GioHang> findById(@PathVariable("id") String idGioHang){
-       Optional<GioHang> optional = GioHangDAO.findById(Integer.valueOf(idGioHang));
+       Optional<GioHang> optional = gioHangDAO.findById(Integer.valueOf(idGioHang));
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class GioHangRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<GioHang> post(@RequestBody GioHang GioHang){
-        if(GioHangDAO.existsById(GioHang.getIdGioHang())){
+    public ResponseEntity<GioHang> post(@RequestBody GioHang gioHang){
+        if(gioHangDAO.existsById(gioHang.getIdGioHang())){
             return ResponseEntity.badRequest().build();
         }
-        GioHangDAO.save(GioHang);
-        return ResponseEntity.ok(GioHang);
+        gioHangDAO.save(gioHang);
+        return ResponseEntity.ok(gioHang);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<GioHang> put(@PathVariable("id") Integer idGioHang, @RequestBody GioHang GioHang){
-        if(!GioHangDAO.existsById(idGioHang)){
+    public ResponseEntity<GioHang> put(@PathVariable("id") Integer idGioHang, @RequestBody GioHang gioHang){
+        if(!gioHangDAO.existsById(idGioHang)){
             return ResponseEntity.notFound().build();
         }
-        GioHangDAO.save(GioHang);
-         return ResponseEntity.ok(GioHang);
+        gioHangDAO.save(gioHang);
+         return ResponseEntity.ok(gioHang);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer idGioHang){
-       if(!GioHangDAO.existsById(idGioHang)){
+       if(!gioHangDAO.existsById(idGioHang)){
             return ResponseEntity.notFound().build();
         }
-        GioHangDAO.deleteById(idGioHang);
+        gioHangDAO.deleteById(idGioHang);
         return ResponseEntity.ok().build();
     }
 }

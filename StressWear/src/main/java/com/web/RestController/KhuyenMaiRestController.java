@@ -24,16 +24,16 @@ import com.web.Entity.KhuyenMai;
 public class KhuyenMaiRestController {
 
     @Autowired
-    KhuyenMaiDAO KhuyenMaiDAO;
+    KhuyenMaiDAO khuyenMaiDAO;
 
     @GetMapping
     public ResponseEntity<List<KhuyenMai>> findAll(){
-        return ResponseEntity.ok(KhuyenMaiDAO.findAll());
+        return ResponseEntity.ok(khuyenMaiDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<KhuyenMai> findById(@PathVariable("id") String idKhuyenMai){
-       Optional<KhuyenMai> optional = KhuyenMaiDAO.findById(idKhuyenMai);
+       Optional<KhuyenMai> optional = khuyenMaiDAO.findById(idKhuyenMai);
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class KhuyenMaiRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<KhuyenMai> post(@RequestBody KhuyenMai KhuyenMai){
-        if(KhuyenMaiDAO.existsById(KhuyenMai.getIdKhuyenMai())){
+    public ResponseEntity<KhuyenMai> post(@RequestBody KhuyenMai khuyenMai){
+        if(khuyenMaiDAO.existsById(khuyenMai.getIdKhuyenMai())){
             return ResponseEntity.badRequest().build();
         }
-        KhuyenMaiDAO.save(KhuyenMai);
-        return ResponseEntity.ok(KhuyenMai);
+        khuyenMaiDAO.save(khuyenMai);
+        return ResponseEntity.ok(khuyenMai);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<KhuyenMai> put(@PathVariable("id") String idKhuyenMai, @RequestBody KhuyenMai KhuyenMai){
-        if(!KhuyenMaiDAO.existsById(idKhuyenMai)){
+    public ResponseEntity<KhuyenMai> put(@PathVariable("id") String idKhuyenMai, @RequestBody KhuyenMai khuyenMai){
+        if(!khuyenMaiDAO.existsById(idKhuyenMai)){
             return ResponseEntity.notFound().build();
         }
-        KhuyenMaiDAO.save(KhuyenMai);
-         return ResponseEntity.ok(KhuyenMai);
+        khuyenMaiDAO.save(khuyenMai);
+         return ResponseEntity.ok(khuyenMai);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String idKhuyenMai){
-       if(!KhuyenMaiDAO.existsById(idKhuyenMai)){
+       if(!khuyenMaiDAO.existsById(idKhuyenMai)){
             return ResponseEntity.notFound().build();
         }
-        KhuyenMaiDAO.deleteById(idKhuyenMai);
+        khuyenMaiDAO.deleteById(idKhuyenMai);
         return ResponseEntity.ok().build();
     }
 }
