@@ -24,16 +24,16 @@ import com.web.Entity.SanPham;
 public class SanPhamRestController {
 
     @Autowired
-    SanPhamDAO SanPhamDAO;
+    SanPhamDAO sanPhamDAO;
 
     @GetMapping
     public ResponseEntity<List<SanPham>> findAll(){
-        return ResponseEntity.ok(SanPhamDAO.findAll());
+        return ResponseEntity.ok(sanPhamDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<SanPham> findById(@PathVariable("id") String idSanPham){
-       Optional<SanPham> optional = SanPhamDAO.findById(Integer.valueOf(idSanPham));
+       Optional<SanPham> optional = sanPhamDAO.findById(Integer.valueOf(idSanPham));
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class SanPhamRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<SanPham> post(@RequestBody SanPham SanPham){
-        if(SanPhamDAO.existsById(SanPham.getIdSanPham())){
+    public ResponseEntity<SanPham> post(@RequestBody SanPham sanPham){
+        if(sanPhamDAO.existsById(sanPham.getIdSanPham())){
             return ResponseEntity.badRequest().build();
         }
-        SanPhamDAO.save(SanPham);
-        return ResponseEntity.ok(SanPham);
+        sanPhamDAO.save(sanPham);
+        return ResponseEntity.ok(sanPham);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<SanPham> put(@PathVariable("id") Integer idSanPham, @RequestBody SanPham SanPham){
-        if(!SanPhamDAO.existsById(idSanPham)){
+    public ResponseEntity<SanPham> put(@PathVariable("id") Integer idSanPham, @RequestBody SanPham sanPham){
+        if(!sanPhamDAO.existsById(idSanPham)){
             return ResponseEntity.notFound().build();
         }
-        SanPhamDAO.save(SanPham);
-         return ResponseEntity.ok(SanPham);
+        sanPhamDAO.save(sanPham);
+        return ResponseEntity.ok(sanPham);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer idSanPham){
-       if(!SanPhamDAO.existsById(idSanPham)){
+       if(!sanPhamDAO.existsById(idSanPham)){
             return ResponseEntity.notFound().build();
         }
-        SanPhamDAO.deleteById(idSanPham);
+        sanPhamDAO.deleteById(idSanPham);
         return ResponseEntity.ok().build();
     }
 }

@@ -24,16 +24,16 @@ import com.web.Entity.KichThuoc;
 public class KichThuocRestController {
 
     @Autowired
-    KichThuocDAO KichThuocDAO;
+    KichThuocDAO kichThuocDAO;
 
     @GetMapping
     public ResponseEntity<List<KichThuoc>> findAll(){
-        return ResponseEntity.ok(KichThuocDAO.findAll());
+        return ResponseEntity.ok(kichThuocDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<KichThuoc> findById(@PathVariable("id") String idKichThuoc){
-       Optional<KichThuoc> optional = KichThuocDAO.findById(Integer.valueOf(idKichThuoc));
+       Optional<KichThuoc> optional = kichThuocDAO.findById(Integer.valueOf(idKichThuoc));
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class KichThuocRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<KichThuoc> post(@RequestBody KichThuoc KichThuoc){
-        if(KichThuocDAO.existsById(KichThuoc.getIdKichThuoc())){
+    public ResponseEntity<KichThuoc> post(@RequestBody KichThuoc kichThuoc){
+        if(kichThuocDAO.existsById(kichThuoc.getIdKichThuoc())){
             return ResponseEntity.badRequest().build();
         }
-        KichThuocDAO.save(KichThuoc);
-        return ResponseEntity.ok(KichThuoc);
+        kichThuocDAO.save(kichThuoc);
+        return ResponseEntity.ok(kichThuoc);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<KichThuoc> put(@PathVariable("id") Integer idKichThuoc, @RequestBody KichThuoc KichThuoc){
-        if(!KichThuocDAO.existsById(idKichThuoc)){
+    public ResponseEntity<KichThuoc> put(@PathVariable("id") Integer idKichThuoc, @RequestBody KichThuoc kichThuoc){
+        if(!kichThuocDAO.existsById(idKichThuoc)){
             return ResponseEntity.notFound().build();
         }
-        KichThuocDAO.save(KichThuoc);
-         return ResponseEntity.ok(KichThuoc);
+        kichThuocDAO.save(kichThuoc);
+         return ResponseEntity.ok(kichThuoc);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer idKichThuoc){
-       if(!KichThuocDAO.existsById(idKichThuoc)){
+       if(!kichThuocDAO.existsById(idKichThuoc)){
             return ResponseEntity.notFound().build();
         }
-        KichThuocDAO.deleteById(idKichThuoc);
+        kichThuocDAO.deleteById(idKichThuoc);
         return ResponseEntity.ok().build();
     }
 }

@@ -24,16 +24,16 @@ import com.web.Entity.ThanhToan;
 public class ThanhToanRestController {
 
     @Autowired
-    ThanhToanDAO ThanhToanDAO;
+    ThanhToanDAO thanhToanDAO;
 
     @GetMapping
     public ResponseEntity<List<ThanhToan>> findAll(){
-        return ResponseEntity.ok(ThanhToanDAO.findAll());
+        return ResponseEntity.ok(thanhToanDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<ThanhToan> findById(@PathVariable("id") String idThanhToan){
-       Optional<ThanhToan> optional = ThanhToanDAO.findById(Integer.valueOf(idThanhToan));
+       Optional<ThanhToan> optional = thanhToanDAO.findById(Integer.valueOf(idThanhToan));
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class ThanhToanRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<ThanhToan> post(@RequestBody ThanhToan ThanhToan){
-        if(ThanhToanDAO.existsById(ThanhToan.getIdThanhToan())){
+    public ResponseEntity<ThanhToan> post(@RequestBody ThanhToan thanhToan){
+        if(thanhToanDAO.existsById(thanhToan.getIdThanhToan())){
             return ResponseEntity.badRequest().build();
         }
-        ThanhToanDAO.save(ThanhToan);
-        return ResponseEntity.ok(ThanhToan);
+        thanhToanDAO.save(thanhToan);
+        return ResponseEntity.ok(thanhToan);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ThanhToan> put(@PathVariable("id") Integer idThanhToan, @RequestBody ThanhToan ThanhToan){
-        if(!ThanhToanDAO.existsById(idThanhToan)){
+    public ResponseEntity<ThanhToan> put(@PathVariable("id") Integer idThanhToan, @RequestBody ThanhToan thanhToan){
+        if(!thanhToanDAO.existsById(idThanhToan)){
             return ResponseEntity.notFound().build();
         }
-        ThanhToanDAO.save(ThanhToan);
-         return ResponseEntity.ok(ThanhToan);
+        thanhToanDAO.save(thanhToan);
+         return ResponseEntity.ok(thanhToan);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer idThanhToan){
-       if(!ThanhToanDAO.existsById(idThanhToan)){
+       if(!thanhToanDAO.existsById(idThanhToan)){
             return ResponseEntity.notFound().build();
         }
-        ThanhToanDAO.deleteById(idThanhToan);
+        thanhToanDAO.deleteById(idThanhToan);
         return ResponseEntity.ok().build();
     }
 }

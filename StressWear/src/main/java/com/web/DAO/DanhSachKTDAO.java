@@ -8,5 +8,5 @@ import com.web.Entity.DanhSachKT;
 import com.web.Entity.DanhSachKTKey;
 
 public interface DanhSachKTDAO extends JpaRepository<DanhSachKT,DanhSachKTKey>{
-    Optional<DanhSachKT>  findById(int idKichThuoc, int idSanPhamChiTiet);
+    // Optional<DanhSachKT>  findById(int idKichThuoc, int idSanPhamChiTiet);
 }

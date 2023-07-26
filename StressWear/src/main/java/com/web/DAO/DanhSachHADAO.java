@@ -8,7 +8,6 @@ import java.util.Optional;
 
 
 public interface DanhSachHADAO extends JpaRepository<DanhSachHA,DanhSachHAKey>{
-    Optional<DanhSachHA>  findById(String idHinhAnh, int idSanPhamChiTiet);
 
   
 }

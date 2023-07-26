@@ -42,21 +42,21 @@ public class ThongTinTaiKhoanRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<ThongTinTaiKhoan> post(@RequestBody ThongTinTaiKhoan ThongTinTaiKhoan){
-        if(thongTinTaiKhoanDAO.existsById(ThongTinTaiKhoan.getIdThongTinTaiKhoan())){
+    public ResponseEntity<ThongTinTaiKhoan> post(@RequestBody ThongTinTaiKhoan thongTinTaiKhoan){
+        if(thongTinTaiKhoanDAO.existsById(thongTinTaiKhoan.getIdThongTinTaiKhoan())){
             return ResponseEntity.badRequest().build();
         }
-        thongTinTaiKhoanDAO.save(ThongTinTaiKhoan);
-        return ResponseEntity.ok(ThongTinTaiKhoan);
+        thongTinTaiKhoanDAO.save(thongTinTaiKhoan);
+        return ResponseEntity.ok(thongTinTaiKhoan);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ThongTinTaiKhoan> put(@PathVariable("id") Integer idThongTinTaiKhoan, @RequestBody ThongTinTaiKhoan ThongTinTaiKhoan){
+    public ResponseEntity<ThongTinTaiKhoan> put(@PathVariable("id") Integer idThongTinTaiKhoan, @RequestBody ThongTinTaiKhoan thongTinTaiKhoan){
         if(!thongTinTaiKhoanDAO.existsById(idThongTinTaiKhoan)){
             return ResponseEntity.notFound().build();
         }
-        thongTinTaiKhoanDAO.save(ThongTinTaiKhoan);
-         return ResponseEntity.ok(ThongTinTaiKhoan);
+        thongTinTaiKhoanDAO.save(thongTinTaiKhoan);
+        return ResponseEntity.ok(thongTinTaiKhoan);
     }
 
     @DeleteMapping("{id}")

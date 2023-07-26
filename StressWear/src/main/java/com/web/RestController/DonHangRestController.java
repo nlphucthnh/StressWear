@@ -24,16 +24,16 @@ import com.web.Entity.DonHang;
 public class DonHangRestController {
 
     @Autowired
-    DonHangDAO DonHangDAO;
+    DonHangDAO donHangDAO;
 
     @GetMapping
     public ResponseEntity<List<DonHang>> findAll(){
-        return ResponseEntity.ok(DonHangDAO.findAll());
+        return ResponseEntity.ok(donHangDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<DonHang> findById(@PathVariable("id") String idDonHang){
-       Optional<DonHang> optional = DonHangDAO.findById(Integer.valueOf(idDonHang));
+       Optional<DonHang> optional = donHangDAO.findById(Integer.valueOf(idDonHang));
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class DonHangRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<DonHang> post(@RequestBody DonHang DonHang){
-        if(DonHangDAO.existsById(DonHang.getIdDonHang())){
+    public ResponseEntity<DonHang> post(@RequestBody DonHang donHang){
+        if(donHangDAO.existsById(donHang.getIdDonHang())){
             return ResponseEntity.badRequest().build();
         }
-        DonHangDAO.save(DonHang);
-        return ResponseEntity.ok(DonHang);
+        donHangDAO.save(donHang);
+        return ResponseEntity.ok(donHang);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<DonHang> put(@PathVariable("id") Integer idDonHang, @RequestBody DonHang DonHang){
-        if(!DonHangDAO.existsById(idDonHang)){
+    public ResponseEntity<DonHang> put(@PathVariable("id") Integer idDonHang, @RequestBody DonHang donHang){
+        if(!donHangDAO.existsById(idDonHang)){
             return ResponseEntity.notFound().build();
         }
-        DonHangDAO.save(DonHang);
-         return ResponseEntity.ok(DonHang);
+        donHangDAO.save(donHang);
+         return ResponseEntity.ok(donHang);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer idDonHang){
-       if(!DonHangDAO.existsById(idDonHang)){
+       if(!donHangDAO.existsById(idDonHang)){
             return ResponseEntity.notFound().build();
         }
-        DonHangDAO.deleteById(idDonHang);
+        donHangDAO.deleteById(idDonHang);
         return ResponseEntity.ok().build();
     }
 }

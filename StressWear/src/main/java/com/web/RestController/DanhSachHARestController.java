@@ -25,16 +25,16 @@ import com.web.Entity.DanhSachHAKey;
 public class DanhSachHARestController {
 
     @Autowired
-    DanhSachHADAO DanhSachHADAO;
+    DanhSachHADAO danhSachHADAO;
 
     @GetMapping
     public ResponseEntity<List<DanhSachHA>> findAll(){
-        return ResponseEntity.ok(DanhSachHADAO.findAll());
+        return ResponseEntity.ok(danhSachHADAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<DanhSachHA> findById(@PathVariable("id") DanhSachHAKey idDanhSachHA){
-       Optional<DanhSachHA> optional = DanhSachHADAO.findById(idDanhSachHA.getIdHinhAnh(),idDanhSachHA.getIdSanPhamChiTiet());
+       Optional<DanhSachHA> optional = danhSachHADAO.findById(idDanhSachHA);
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -43,30 +43,30 @@ public class DanhSachHARestController {
     }
 
     @PostMapping()
-    public ResponseEntity<DanhSachHA> post(@RequestBody DanhSachHA DanhSachHA){
-        DanhSachHAKey danhSachHAKey = new DanhSachHAKey(DanhSachHA.getIdHinhAnh(), DanhSachHA.getIdSanPhamChiTiet());
-        if(DanhSachHADAO.existsById(danhSachHAKey)){
+    public ResponseEntity<DanhSachHA> post(@RequestBody DanhSachHA danhSachHA){
+        DanhSachHAKey danhSachHAKey = new DanhSachHAKey(danhSachHA.getIdHinhAnh(), danhSachHA.getIdSanPhamChiTiet());
+        if(danhSachHADAO.existsById(danhSachHAKey)){
             return ResponseEntity.badRequest().build();
         }
-        DanhSachHADAO.save(DanhSachHA);
-        return ResponseEntity.ok(DanhSachHA);
+        danhSachHADAO.save(danhSachHA);
+        return ResponseEntity.ok(danhSachHA);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<DanhSachHA> put(@PathVariable("id") DanhSachHAKey idDanhSachHA, @RequestBody DanhSachHA DanhSachHA){
-        if(!DanhSachHADAO.existsById(idDanhSachHA)){
+    public ResponseEntity<DanhSachHA> put(@PathVariable("id") DanhSachHAKey idDanhSachHA, @RequestBody DanhSachHA danhSachHA){
+        if(!danhSachHADAO.existsById(idDanhSachHA)){
             return ResponseEntity.notFound().build();
         }
-        DanhSachHADAO.save(DanhSachHA);
-         return ResponseEntity.ok(DanhSachHA);
+        danhSachHADAO.save(danhSachHA);
+         return ResponseEntity.ok(danhSachHA);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") DanhSachHAKey idDanhSachHA){
-       if(!DanhSachHADAO.existsById(idDanhSachHA)){
+       if(!danhSachHADAO.existsById(idDanhSachHA)){
             return ResponseEntity.notFound().build();
         }
-        DanhSachHADAO.deleteById(idDanhSachHA);
+        danhSachHADAO.deleteById(idDanhSachHA);
         return ResponseEntity.ok().build();
     }
 }
