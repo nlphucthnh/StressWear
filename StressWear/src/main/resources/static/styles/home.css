@@ -213,6 +213,137 @@ aside {
 }
 
 .zoom_color img:hover {
+<<<<<<< Updated upstream
     /* filter: grayscale(0); */
     transform: scale(1.1);
+=======
+  /* filter: grayscale(0); */
+  transform: scale(1.1);
+}
+
+/* Bg giữa trang */
+.text-content-bg {
+  overflow: hidden;
+  position: relative;
+}
+
+.text-content-bg img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.text-content-item {
+  position: absolute;
+  text-align: center;
+  left: 430px;
+  top: 25%;
+  color: var(--gray_25);
+}
+
+.text-content-item h1 {
+  color: var(--white, #fff);
+  font-family: Inter;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 60px */
+}
+
+.text-content-item p {
+  color: var(--white, #fff);
+  text-align: center;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 25.2px */
+}
+
+.text-content-item .text-content-item-btn{
+    border: 2px solid #ccc;
+    color: #fff;
+}
+/* --------------------- */
+.modal-dialog .modal-content .modal-body .map1-1 {
+  background-color: #4f8dcf;
+  border-radius: 4px;
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+
+.modal-dialog .modal-content .modal-body .map1-1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.modal-content .modal-body .map1-1 .modal-body-map1-btnEdit {
+  position: relative;
+  bottom: 60px;
+  left: 88%;
+  width: fit-content;
+  height: fit-content;
+  background-color: #ccc;
+  border-radius: 18px;
+  font-size: 22px;
+  padding: 3px 7px;
+}
+
+.modal-dialog .modal-content .modal-body .map1-2 {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: -40px;
+}
+
+.modal-content .modal-body .map1-2 .modal-body-map1-btnEdit {
+  position: absolute;
+  bottom: 0;
+  right: 174px;
+  border-radius: 18px;
+  font-size: 22px;
+  background-color: #F4F4F4;
+  border: none;
+  font-size: 24px;
+  padding: 3px 7px;
+}
+
+td,
+tfoot,
+th,
+thead,
+tr {
+  vertical-align: middle;
+}
+
+.badge {
+  background-color: #ECFDF3;
+  color: #027A48;
+}
+
+.table-body-first-col-content-product .text-name-product {
+  color: var(--gray-900, #101828);
+  /* Text sm/Medium */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 142.857% */
+}
+
+.table-body-first-col-content-product .text-price-product {
+  color: var(--gray-500, #667085);
+  /* Text sm/Regular */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  /* 142.857% */
+>>>>>>> Stashed changes
 }

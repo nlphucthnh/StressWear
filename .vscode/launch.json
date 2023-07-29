@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-StressWearApplication<StressWear>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.web.StressWearApplication",
+            "projectName": "StressWear",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
