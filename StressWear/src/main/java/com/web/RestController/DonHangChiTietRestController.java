@@ -20,20 +20,20 @@ import com.web.Entity.DonHangChiTiet;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/DonHangChiTiet")
+@RequestMapping("/api/donhangchitiet")
 public class DonHangChiTietRestController {
 
     @Autowired
-    DonHangChiTietDAO DonHangChiTietDAO;
+    DonHangChiTietDAO donHangChiTietDAO;
 
     @GetMapping
     public ResponseEntity<List<DonHangChiTiet>> findAll(){
-        return ResponseEntity.ok(DonHangChiTietDAO.findAll());
+        return ResponseEntity.ok(donHangChiTietDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<DonHangChiTiet> findById(@PathVariable("id") String idDonHangChiTiet){
-       Optional<DonHangChiTiet> optional = DonHangChiTietDAO.findById(Integer.valueOf(idDonHangChiTiet));
+       Optional<DonHangChiTiet> optional = donHangChiTietDAO.findById(Integer.valueOf(idDonHangChiTiet));
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class DonHangChiTietRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<DonHangChiTiet> post(@RequestBody DonHangChiTiet DonHangChiTiet){
-        if(DonHangChiTietDAO.existsById(DonHangChiTiet.getIdDonHangChiTiet())){
+    public ResponseEntity<DonHangChiTiet> post(@RequestBody DonHangChiTiet donHangChiTiet){
+        if(donHangChiTietDAO.existsById(donHangChiTiet.getIdDonHangChiTiet())){
             return ResponseEntity.badRequest().build();
         }
-        DonHangChiTietDAO.save(DonHangChiTiet);
-        return ResponseEntity.ok(DonHangChiTiet);
+        donHangChiTietDAO.save(donHangChiTiet);
+        return ResponseEntity.ok(donHangChiTiet);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<DonHangChiTiet> put(@PathVariable("id") Integer idDonHangChiTiet, @RequestBody DonHangChiTiet DonHangChiTiet){
-        if(!DonHangChiTietDAO.existsById(idDonHangChiTiet)){
+    public ResponseEntity<DonHangChiTiet> put(@PathVariable("id") Integer idDonHangChiTiet, @RequestBody DonHangChiTiet donHangChiTiet){
+        if(!donHangChiTietDAO.existsById(idDonHangChiTiet)){
             return ResponseEntity.notFound().build();
         }
-        DonHangChiTietDAO.save(DonHangChiTiet);
-         return ResponseEntity.ok(DonHangChiTiet);
+        donHangChiTietDAO.save(donHangChiTiet);
+         return ResponseEntity.ok(donHangChiTiet);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer idDonHangChiTiet){
-       if(!DonHangChiTietDAO.existsById(idDonHangChiTiet)){
+       if(!donHangChiTietDAO.existsById(idDonHangChiTiet)){
             return ResponseEntity.notFound().build();
         }
-        DonHangChiTietDAO.deleteById(idDonHangChiTiet);
+        donHangChiTietDAO.deleteById(idDonHangChiTiet);
         return ResponseEntity.ok().build();
     }
 }

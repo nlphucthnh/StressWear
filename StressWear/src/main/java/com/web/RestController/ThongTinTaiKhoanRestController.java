@@ -20,20 +20,20 @@ import com.web.Entity.ThongTinTaiKhoan;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/ThongTinTaiKhoan")
+@RequestMapping("/api/thongtintaikhoan")
 public class ThongTinTaiKhoanRestController {
 
     @Autowired
-    ThongTinTaiKhoanDAO ThongTinTaiKhoanDAO;
+    ThongTinTaiKhoanDAO thongTinTaiKhoanDAO;
 
     @GetMapping
     public ResponseEntity<List<ThongTinTaiKhoan>> findAll(){
-        return ResponseEntity.ok(ThongTinTaiKhoanDAO.findAll());
+        return ResponseEntity.ok(thongTinTaiKhoanDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<ThongTinTaiKhoan> findById(@PathVariable("id") String idThongTinTaiKhoan){
-       Optional<ThongTinTaiKhoan> optional = ThongTinTaiKhoanDAO.findById(Integer.valueOf(idThongTinTaiKhoan));
+       Optional<ThongTinTaiKhoan> optional = thongTinTaiKhoanDAO.findById(Integer.valueOf(idThongTinTaiKhoan));
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class ThongTinTaiKhoanRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<ThongTinTaiKhoan> post(@RequestBody ThongTinTaiKhoan ThongTinTaiKhoan){
-        if(ThongTinTaiKhoanDAO.existsById(ThongTinTaiKhoan.getIdThongTinTaiKhoan())){
+    public ResponseEntity<ThongTinTaiKhoan> post(@RequestBody ThongTinTaiKhoan thongTinTaiKhoan){
+        if(thongTinTaiKhoanDAO.existsById(thongTinTaiKhoan.getIdThongTinTaiKhoan())){
             return ResponseEntity.badRequest().build();
         }
-        ThongTinTaiKhoanDAO.save(ThongTinTaiKhoan);
-        return ResponseEntity.ok(ThongTinTaiKhoan);
+        thongTinTaiKhoanDAO.save(thongTinTaiKhoan);
+        return ResponseEntity.ok(thongTinTaiKhoan);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ThongTinTaiKhoan> put(@PathVariable("id") Integer idThongTinTaiKhoan, @RequestBody ThongTinTaiKhoan ThongTinTaiKhoan){
-        if(!ThongTinTaiKhoanDAO.existsById(idThongTinTaiKhoan)){
+    public ResponseEntity<ThongTinTaiKhoan> put(@PathVariable("id") Integer idThongTinTaiKhoan, @RequestBody ThongTinTaiKhoan thongTinTaiKhoan){
+        if(!thongTinTaiKhoanDAO.existsById(idThongTinTaiKhoan)){
             return ResponseEntity.notFound().build();
         }
-        ThongTinTaiKhoanDAO.save(ThongTinTaiKhoan);
-         return ResponseEntity.ok(ThongTinTaiKhoan);
+        thongTinTaiKhoanDAO.save(thongTinTaiKhoan);
+        return ResponseEntity.ok(thongTinTaiKhoan);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer idThongTinTaiKhoan){
-       if(!ThongTinTaiKhoanDAO.existsById(idThongTinTaiKhoan)){
+       if(!thongTinTaiKhoanDAO.existsById(idThongTinTaiKhoan)){
             return ResponseEntity.notFound().build();
         }
-        ThongTinTaiKhoanDAO.deleteById(idThongTinTaiKhoan);
+        thongTinTaiKhoanDAO.deleteById(idThongTinTaiKhoan);
         return ResponseEntity.ok().build();
     }
 }

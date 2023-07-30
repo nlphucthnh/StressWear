@@ -20,20 +20,20 @@ import com.web.Entity.MauSac;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/MauSac")
+@RequestMapping("/api/mausac")
 public class MauSacRestController {
 
     @Autowired
-    MauSacDAO MauSacDAO;
+    MauSacDAO mauSacDAO;
 
     @GetMapping
     public ResponseEntity<List<MauSac>> findAll(){
-        return ResponseEntity.ok(MauSacDAO.findAll());
+        return ResponseEntity.ok(mauSacDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<MauSac> findById(@PathVariable("id") String idMauSac){
-       Optional<MauSac> optional = MauSacDAO.findById(Integer.valueOf(idMauSac));
+       Optional<MauSac> optional = mauSacDAO.findById(Integer.valueOf(idMauSac));
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class MauSacRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<MauSac> post(@RequestBody MauSac MauSac){
-        if(MauSacDAO.existsById(MauSac.getIdMauSac())){
+    public ResponseEntity<MauSac> post(@RequestBody MauSac mauSac){
+        if(mauSacDAO.existsById(mauSac.getIdMauSac())){
             return ResponseEntity.badRequest().build();
         }
-        MauSacDAO.save(MauSac);
-        return ResponseEntity.ok(MauSac);
+        mauSacDAO.save(mauSac);
+        return ResponseEntity.ok(mauSac);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<MauSac> put(@PathVariable("id") Integer idMauSac, @RequestBody MauSac MauSac){
-        if(!MauSacDAO.existsById(idMauSac)){
+    public ResponseEntity<MauSac> put(@PathVariable("id") Integer idMauSac, @RequestBody MauSac mauSac){
+        if(!mauSacDAO.existsById(idMauSac)){
             return ResponseEntity.notFound().build();
         }
-        MauSacDAO.save(MauSac);
-         return ResponseEntity.ok(MauSac);
+        mauSacDAO.save(mauSac);
+         return ResponseEntity.ok(mauSac);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer idMauSac){
-       if(!MauSacDAO.existsById(idMauSac)){
+       if(!mauSacDAO.existsById(idMauSac)){
             return ResponseEntity.notFound().build();
         }
-        MauSacDAO.deleteById(idMauSac);
+        mauSacDAO.deleteById(idMauSac);
         return ResponseEntity.ok().build();
     }
 }

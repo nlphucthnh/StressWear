@@ -20,20 +20,20 @@ import com.web.Entity.PhuongThucThanhToan;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/PhuongThucThanhToan")
+@RequestMapping("/api/phuongthucthanhtoan")
 public class PhuongThucThanhToanRestController {
 
     @Autowired
-    PhuongThucThanhToanDAO PhuongThucThanhToanDAO;
+    PhuongThucThanhToanDAO phuongThucThanhToanDAO;
 
     @GetMapping
     public ResponseEntity<List<PhuongThucThanhToan>> findAll(){
-        return ResponseEntity.ok(PhuongThucThanhToanDAO.findAll());
+        return ResponseEntity.ok(phuongThucThanhToanDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<PhuongThucThanhToan> findById(@PathVariable("id") String idPhuongThucThanhToan){
-       Optional<PhuongThucThanhToan> optional = PhuongThucThanhToanDAO.findById(Integer.valueOf(idPhuongThucThanhToan));
+       Optional<PhuongThucThanhToan> optional = phuongThucThanhToanDAO.findById(Integer.valueOf(idPhuongThucThanhToan));
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class PhuongThucThanhToanRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<PhuongThucThanhToan> post(@RequestBody PhuongThucThanhToan PhuongThucThanhToan){
-        if(PhuongThucThanhToanDAO.existsById(PhuongThucThanhToan.getIdPhuongThuc())){
+    public ResponseEntity<PhuongThucThanhToan> post(@RequestBody PhuongThucThanhToan phuongThucThanhToan){
+        if(phuongThucThanhToanDAO.existsById(phuongThucThanhToan.getIdPhuongThuc())){
             return ResponseEntity.badRequest().build();
         }
-        PhuongThucThanhToanDAO.save(PhuongThucThanhToan);
-        return ResponseEntity.ok(PhuongThucThanhToan);
+        phuongThucThanhToanDAO.save(phuongThucThanhToan);
+        return ResponseEntity.ok(phuongThucThanhToan);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<PhuongThucThanhToan> put(@PathVariable("id") Integer idPhuongThucThanhToan, @RequestBody PhuongThucThanhToan PhuongThucThanhToan){
-        if(!PhuongThucThanhToanDAO.existsById(idPhuongThucThanhToan)){
+    public ResponseEntity<PhuongThucThanhToan> put(@PathVariable("id") Integer idPhuongThucThanhToan, @RequestBody PhuongThucThanhToan phuongThucThanhToan){
+        if(!phuongThucThanhToanDAO.existsById(idPhuongThucThanhToan)){
             return ResponseEntity.notFound().build();
         }
-        PhuongThucThanhToanDAO.save(PhuongThucThanhToan);
-         return ResponseEntity.ok(PhuongThucThanhToan);
+        phuongThucThanhToanDAO.save(phuongThucThanhToan);
+         return ResponseEntity.ok(phuongThucThanhToan);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer idPhuongThucThanhToan){
-       if(!PhuongThucThanhToanDAO.existsById(idPhuongThucThanhToan)){
+       if(!phuongThucThanhToanDAO.existsById(idPhuongThucThanhToan)){
             return ResponseEntity.notFound().build();
         }
-        PhuongThucThanhToanDAO.deleteById(idPhuongThucThanhToan);
+        phuongThucThanhToanDAO.deleteById(idPhuongThucThanhToan);
         return ResponseEntity.ok().build();
     }
 }

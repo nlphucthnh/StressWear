@@ -20,20 +20,20 @@ import com.web.Entity.HinhAnh;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/HinhAnh")
+@RequestMapping("/api/hinhanh")
 public class HinhAnhRestController {
 
     @Autowired
-    HinhAnhDAO HinhAnhDAO;
+    HinhAnhDAO hinhAnhDAO;
 
     @GetMapping
     public ResponseEntity<List<HinhAnh>> findAll(){
-        return ResponseEntity.ok(HinhAnhDAO.findAll());
+        return ResponseEntity.ok(hinhAnhDAO.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<HinhAnh> findById(@PathVariable("id") String idHinhAnh){
-       Optional<HinhAnh> optional = HinhAnhDAO.findById(idHinhAnh);
+       Optional<HinhAnh> optional = hinhAnhDAO.findById(idHinhAnh);
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,29 +42,29 @@ public class HinhAnhRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<HinhAnh> post(@RequestBody HinhAnh HinhAnh){
-        if(HinhAnhDAO.existsById(HinhAnh.getIdHinhAnh())){
+    public ResponseEntity<HinhAnh> post(@RequestBody HinhAnh hinhAnh){
+        if(hinhAnhDAO.existsById(hinhAnh.getIdHinhAnh())){
             return ResponseEntity.badRequest().build();
         }
-        HinhAnhDAO.save(HinhAnh);
-        return ResponseEntity.ok(HinhAnh);
+        hinhAnhDAO.save(hinhAnh);
+        return ResponseEntity.ok(hinhAnh);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<HinhAnh> put(@PathVariable("id") String idHinhAnh, @RequestBody HinhAnh HinhAnh){
-        if(!HinhAnhDAO.existsById(idHinhAnh)){
+    public ResponseEntity<HinhAnh> put(@PathVariable("id") String idHinhAnh, @RequestBody HinhAnh hinhAnh){
+        if(!hinhAnhDAO.existsById(idHinhAnh)){
             return ResponseEntity.notFound().build();
         }
-        HinhAnhDAO.save(HinhAnh);
-         return ResponseEntity.ok(HinhAnh);
+        hinhAnhDAO.save(hinhAnh);
+         return ResponseEntity.ok(hinhAnh);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String idHinhAnh){
-       if(!HinhAnhDAO.existsById(idHinhAnh)){
+       if(!hinhAnhDAO.existsById(idHinhAnh)){
             return ResponseEntity.notFound().build();
         }
-        HinhAnhDAO.deleteById(idHinhAnh);
+        hinhAnhDAO.deleteById(idHinhAnh);
         return ResponseEntity.ok().build();
     }
 }

@@ -1,7 +1,5 @@
 package com.web.Entity;
 
-import java.io.Serializable;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @IdClass(DanhSachKTKey.class)
 @Table(name = "danh_sach_kt")
-public class DanhSachKT implements Serializable  {
+public class DanhSachKT {
     @Id
     @Column(name = "id_kich_thuoc")
     private int idKichThuoc;
@@ -37,6 +35,5 @@ public class DanhSachKT implements Serializable  {
     @ManyToOne
     @JoinColumn(name = "id_san_pham_chi_tiet", insertable = false, updatable = false)
     private SanPhamChiTiet sanPhamChiTiet;
-
 
 }

@@ -4,7 +4,8 @@
 
 <head>
     <!-- icon web  -->
-    <link rel="website icon" type="png" href="img/logo--noname.png">
+    <link rel="website icon" type="png"
+        href="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/Logo%20website.png?alt=media&token=e446c505-b0a6-44a8-aad5-f7caccb1c28b">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,11 +31,11 @@
     <link rel="stylesheet" href="/styles/navbar.css">
     <link rel="stylesheet" href="/styles/product.css">
     <link rel="stylesheet" href="/styles/footer.css">
-    <title>Product</title>
+    <title>Sản phẩm</title>
 
 </head>
 
-<body ng-app="myApp" ng-controller="nameCtrl">
+<body>
 
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
@@ -236,41 +237,34 @@
                 <h2>Sản phẩn khuyến mãi</h2>
             </div>
             <div class="product row">
-                <div class="product-list col-3 my-3" ng-repeat="product in products"
-                    ng-if="product.khuyenMaiSP !== null">
-                    <a href=product-item-page>
+                <div class="product-list col-3 my-3" th:each="product : ${products}" th:if="${product.khuyenMaiSP != null}">
+                    <a th:href="@{'/User/product/edit/' + ${product.idSanPham}}">
                         <div class="zoom_color sale">
-                            <span class="product-list-onsale">{{product.khuyenMaiSP.phanTramKhuyenMai}}%</span>
-                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1"
-                                alt="Sản phẩm 1">
-
+                            <span class="product-list-onsale"
+                                  th:text="${#numbers.formatDecimal(product.khuyenMaiSP.phanTramKhuyenMai, 0, 0)} + '%'"></span>
+                            <!-- <img th:if="${product.ListSPCT_SP.size() > 0}"
+                                 th:src="@{'/img/' + ${product.ListSPCT_SP[0].ListDSHA_SPCT[0].idHinhAnh} + '.png'}"
+                                 alt="Hình ảnh"> -->
                         </div>
-                        <h3 class="product-list-title">{{product.tenSanPham}}</h3>
+                        <h3 class="product-list-title" th:text="${product.tenSanPham}"></h3>
                     </a>
-                    <p class="product-list-description">{{product.moTaSanPham}}</p>
-
-                    <p class="product-list-price" ng-if="product.khuyenMaiSP !== null">{{ product.giaSanPham | number
-                        }}đ
-                        <span>5.250,000₫</span>
-                    </p>
-
-                    <!-- <div class="product-price-main">
-                        <p th:unless="${pro.khuyenMai != null}" class="product-price"
-                            th:text="${#numbers.formatDecimal(pro.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></p>
-                        <p th:if="${pro.khuyenMai != null}" class="product-price">
-                            <span
-                                th:text="${#numbers.formatDecimal(pro.giaSanPham * (1 - pro.khuyenMai.phamTramKhuyenMai / 100), 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
-                            <del class="old-price mx-3"
-                                th:text="${#numbers.formatDecimal(pro.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></del>
+                    <p class="product-list-description" th:text="${product.moTaSanPham}"></p>
+                    <div>
+                        <p th:if="${product.khuyenMaiSP == null}" class="product-list-price"
+                           th:text="${#numbers.formatDecimal(product.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></p>
+                        <p class="product-list-price-new" th:if="${product.khuyenMaiSP != null}">
+                            <span th:text="${#numbers.formatDecimal(product.giaSanPham * (1 - product.khuyenMaiSP.phanTramKhuyenMai / 100), 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                            <del class="old-price mx-3" th:text="${#numbers.formatDecimal(product.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></del>
                         </p>
-                    </div> -->
+                    </div>
                 </div>
-
+                
 
 
             </div>
         </div>
     </aside>
+
 
     <article>
         <div class="container">
@@ -278,45 +272,46 @@
                 <h2>Tất cả sản phẩm</h2>
             </div>
             <div class="product row">
-                <div class="product-list col-3 my-3" ng-repeat="product in products">
-                    <a href=product-item-page>
+                <div class="product-list col-3 my-3" th:each="product : ${products}">
+                    <a th:href="@{'/User/product/edit/' + ${product.idSanPham}}">
                         <div class="zoom_color sale">
-
-
-                            <span class="product-list-onsale"
-                                ng-if="product.khuyenMaiSP !== null">{{product.khuyenMaiSP.phanTramKhuyenMai}}%</span>
-
-                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fsp1.jfif?alt=media&token=7dab4351-cd3f-4bb4-b053-dea6931d88f1"
-                                alt="Sản phẩm 1">
-
+                            <span class="product-list-onsale" th:if="${product.khuyenMaiSP != null}"
+                            th:text="${#numbers.formatDecimal(product.khuyenMaiSP.phanTramKhuyenMai, 0, 0)} + '%'">
+                        </span>
+                            <!-- <th:block th:each="product_hinhanh : ${product.ListSPCT_SP}">
+                                <img th:src="@{'/img/' + ${product_hinhanh.ListDSHA_SPCT[0].idHinhAnh} + '.png'}"
+                                    alt="Hình ảnh">
+                            </th:block> -->
                         </div>
-                        <h3 class="product-list-title">{{product.tenSanPham}}</h3>
+                        <h3 class="product-list-title" th:text="${product.tenSanPham}"></h3>
                     </a>
-                    <p class="product-list-description">{{product.moTaSanPham}}</p>
-                    <p class="product-list-price" ng-if="product.khuyenMaiSP == null" >{{ product.giaSanPham | number }}đ
-                    </p>
-                    <p class="product-list-price" ng-if="product.khuyenMaiSP !== null">{{ product.giaSanPham | number
-                        }}đ
-                        <span>5.250,000₫</span>
-                    </p>
+                    
+                    <p class="product-list-description" th:text="${product.moTaSanPham}"></p>
+                    <div>
+                        <p th:if="${product.khuyenMaiSP == null}" class="product-list-price"
+                            th:text="${#numbers.formatDecimal(product.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></p>
+                            <p class="product-list-price-new" th:if="${product.khuyenMaiSP != null}">
+                                <span th:text="${#numbers.formatDecimal(product.giaSanPham * (1 - product.khuyenMaiSP.phanTramKhuyenMai / 100), 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                <del class="old-price mx-3" th:text="${#numbers.formatDecimal(product.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></del>
+                            </p>
+                            
+                    </div>
 
                 </div>
 
             </div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item "><a class="page-link bg-dark text-white" href=product-item-page>
-                            << Pre</a>
-                    </li>
-                    <li class="page-item"><a class="page-link text-dark" href=product-item-page>1</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href=product-item-page>2</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href=product-item-page>3</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href=product-item-page>..</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href=product-item-page>8</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href=product-item-page>9</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href=product-item-page>10</a></li>
-                    <li class="page-item "><a class="page-link bg-dark text-white" href=product-item-page>Next
-                            >></a>
+                    <li class="page-item" th:if="${currIndex}>0"><a class="page-link text-white bg-dark "
+                            th:href="@{/Product/User-product/page?p=__${currIndex-1}__}" href="#">Previous</a></li>
+                    <tr th:each="i: ${#numbers.sequence(0, numberOfPages - 1)}">
+                        <li class="page-item"><a th:style="${'background-color:' + (i==currIndex?'lightgrey':'white')}"
+                                th:href="@{/Product/User-product/page?p=__${i}__}" class="page-link text-dark" href="#"
+                                th:text="${i+1}"></a></li>
+                    </tr>
+                    <li class="page-item " th:if="(${currIndex}>-1 and (${currIndex})<${numberOfPages-1})"><a
+                            class="page-link text-white bg-dark " th:href="@{/Product/User-product/page?p=__${currIndex+1}__}"
+                            href="#">Next</a>
                     </li>
                 </ul>
             </nav>
@@ -398,30 +393,6 @@
         </div>
     </footer>
 </body>
-<script>
-    let host = "http://localhost:8080/api";
-    const app = angular.module("myApp", []);
-    app.controller("nameCtrl", function ($scope, $http) {
-        $scope.form = {};
-        $scope.items = [];
 
-        //   $scope.reset = function () {};
-
-        $scope.load_all = function () {
-            var url = `${host}/SanPham`;
-            $http
-                .get(url)
-                .then((resp) => {
-                    $scope.products = resp.data;
-                    console.log("Success", resp);
-                })
-                .catch((err) => {
-                    console.log("Error", err);
-                });
-        };
-        $scope.load_all();
-    });
-
-</script>
 
 </html>

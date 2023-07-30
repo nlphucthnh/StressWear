@@ -28,7 +28,7 @@ public class KichThuoc implements Serializable {
     private int idKichThuoc;
 
     @Column(name = "ten_kich_thuoc")
-    private int tenKichThuoc;
+    private char tenKichThuoc;
 
     @JsonIgnore
     @OneToMany(mappedBy = "kichThuoc")

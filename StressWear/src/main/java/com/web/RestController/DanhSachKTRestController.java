@@ -21,20 +21,20 @@
 
 // @RestController
 // @CrossOrigin(origins = "*")
-// @RequestMapping("/api/DanhSachKT")
+// @RequestMapping("/api/danhsachkt")
 // public class DanhSachKTRestController {
 
 //     @Autowired
-//     DanhSachKTDAO DanhSachKTDAO;
+//     DanhSachKTDAO danhSachKTDAO;
 
 //     @GetMapping
 //     public ResponseEntity<List<DanhSachKT>> findAll(){
-//         return ResponseEntity.ok(DanhSachKTDAO.findAll());
+//         return ResponseEntity.ok(danhSachKTDAO.findAll());
 //     }
 
 //     @GetMapping("{id}")
 //     public ResponseEntity<DanhSachKT> findById(@PathVariable("id") DanhSachKTKey idDanhSachKT){
-//        Optional<DanhSachKT> optional = DanhSachKTDAO.findById(idDanhSachKT.getIdKichThuoc(),idDanhSachKT.getIdSanPhamChiTiet());
+//        Optional<DanhSachKT> optional = danhSachKTDAO.findById(idDanhSachKT);
 //         if(!optional.isPresent()){
 //             return ResponseEntity.notFound().build();
 //         }
@@ -43,30 +43,30 @@
 //     }
 
 //     @PostMapping()
-//     public ResponseEntity<DanhSachKT> post(@RequestBody DanhSachKT DanhSachKT){
-//         DanhSachKTKey DanhSachKTKey = new DanhSachKTKey(DanhSachKT.getIdKichThuoc(), DanhSachKT.getIdSanPhamChiTiet());
-//         if(DanhSachKTDAO.existsById(DanhSachKTKey)){
+//     public ResponseEntity<DanhSachKT> post(@RequestBody DanhSachKT danhSachKT){
+//         DanhSachKTKey DanhSachKTKey = new DanhSachKTKey(danhSachKT.getIdKichThuoc(), danhSachKT.getIdSanPhamChiTiet());
+//         if(danhSachKTDAO.existsById(DanhSachKTKey)){
 //             return ResponseEntity.badRequest().build();
 //         }
-//         DanhSachKTDAO.save(DanhSachKT);
-//         return ResponseEntity.ok(DanhSachKT);
+//         danhSachKTDAO.save(danhSachKT);
+//         return ResponseEntity.ok(danhSachKT);
 //     }
 
 //     @PutMapping("{id}")
-//     public ResponseEntity<DanhSachKT> put(@PathVariable("id") DanhSachKTKey idDanhSachKT, @RequestBody DanhSachKT DanhSachKT){
-//         if(!DanhSachKTDAO.existsById(idDanhSachKT)){
+//     public ResponseEntity<DanhSachKT> put(@PathVariable("id") DanhSachKTKey idDanhSachKT, @RequestBody DanhSachKT danhSachKT){
+//         if(!danhSachKTDAO.existsById(idDanhSachKT)){
 //             return ResponseEntity.notFound().build();
 //         }
-//         DanhSachKTDAO.save(DanhSachKT);
-//          return ResponseEntity.ok(DanhSachKT);
+//         danhSachKTDAO.save(danhSachKT);
+//          return ResponseEntity.ok(danhSachKT);
 //     }
 
 //     @DeleteMapping("{id}")
 //     public ResponseEntity<Void> delete(@PathVariable("id") DanhSachKTKey idDanhSachKT){
-//        if(!DanhSachKTDAO.existsById(idDanhSachKT)){
+//        if(!danhSachKTDAO.existsById(idDanhSachKT)){
 //             return ResponseEntity.notFound().build();
 //         }
-//         DanhSachKTDAO.deleteById(idDanhSachKT);
+//         danhSachKTDAO.deleteById(idDanhSachKT);
 //         return ResponseEntity.ok().build();
 //     }
 // }

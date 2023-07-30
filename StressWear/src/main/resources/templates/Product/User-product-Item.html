@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <!-- icon web  -->
-    <link rel="website icon" type="png" href="img/logo--noname.png">
+    <link rel="website icon" type="png"
+        href="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/Logo%20website.png?alt=media&token=e446c505-b0a6-44a8-aad5-f7caccb1c28b">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,11 +30,11 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="styles/root.css">
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/product-item.css">
-    <title>Product Item</title>
+    <link rel="stylesheet" href="/styles/root.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <link rel="stylesheet" href="/styles/product-item.css">
+    <title>Chi tiết sản phẩm</title>
 
 </head>
 
@@ -191,78 +193,108 @@
     </header>
 
 
+
+
     <div class="container">
         <div class="container-fluid">
             <div class="wrapper row">
                 <div class="col-md-2">
-                    <ul class="nav">
-                        <li class="nav-item"><a class="nav-link active img-item" data-bs-toggle="tab" href="#pic-1"><img
-                                    src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fctsp1.jfif?alt=media&token=2c754cda-d6e8-4e43-9794-bc70ad661627" /></a>
+                    <ul class="nav" th:each="spcl : ${productitem}">
+                        <li class="nav-item">
+                            <a class="nav-link active img-item" data-bs-toggle="tab" href="#pic-1">
+                                <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
+                                    th:src="@{${spcl.ListDSHA_SPCT[0].idHinhAnh}}" alt="Hình ảnh">
+                            </a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#pic-2"><img
-                                    src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fctsp2.jfif?alt=media&token=56f64448-5bb5-4e60-93d3-2657444a1bed" /></a>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#pic-2">
+                                <img th:if="${spcl.ListDSHA_SPCT.size() > 1}"
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[1].idHinhAnh} }" alt="Hình ảnh">
+                            </a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#pic-3"><img
-                                    src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fctsp3.jfif?alt=media&token=7eff4676-3533-4501-9677-8da3dfe812fd" /></a>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#pic-3">
+                                <img th:if="${spcl.ListDSHA_SPCT.size() > 2}"
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[2].idHinhAnh} }" alt="Hình ảnh">
+                            </a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#pic-4"><img
-                                    src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fctsp4.jfif?alt=media&token=6a358700-b669-4552-ae91-4422531d2a69" /></a>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#pic-4">
+                                <img th:if="${spcl.ListDSHA_SPCT.size() > 3}"
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[3].idHinhAnh} }" alt="Hình ảnh">
+                            </a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#pic-5"><img
-                                    src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fctsp5.jfif?alt=media&token=86b91f67-e36d-4e04-8885-597fa3e3ce4d" /></a>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#pic-5">
+                                <img th:if="${spcl.ListDSHA_SPCT.size() > 4}"
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[4].idHinhAnh} }" alt="Hình ảnh">
+                            </a>
                         </li>
                     </ul>
                 </div>
+
                 <div class="preview col-md-6">
-                    <div class="preview-pic tab-content img-tabcontent">
-                        <div class="tab-pane active" id="pic-1"><img
-                                src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fctsp1.jfif?alt=media&token=2c754cda-d6e8-4e43-9794-bc70ad661627" />
+                    <div class="preview-pic tab-content img-tabcontent" th:each="spcl : ${productitem}">
+                        <div class="tab-pane active" id="pic-1">
+                            <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
+                                th:src="@{ ${spcl.ListDSHA_SPCT[0].idHinhAnh} }" alt="Hình ảnh">
                         </div>
-                        <div class="tab-pane" id="pic-2"><img
-                                src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fctsp2.jfif?alt=media&token=56f64448-5bb5-4e60-93d3-2657444a1bed" />
+                        <div class="tab-pane" id="pic-2">
+                            <img th:if="${spcl.ListDSHA_SPCT.size() > 1}"
+                                th:src="@{ ${spcl.ListDSHA_SPCT[1].idHinhAnh} }" alt="Hình ảnh">
                         </div>
-                        <div class="tab-pane" id="pic-3"><img
-                                src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fctsp3.jfif?alt=media&token=7eff4676-3533-4501-9677-8da3dfe812fd" />
+                        <div class="tab-pane" id="pic-3">
+                            <img th:if="${spcl.ListDSHA_SPCT.size() > 2}"
+                                th:src="@{ ${spcl.ListDSHA_SPCT[2].idHinhAnh} }" alt="Hình ảnh">
                         </div>
-                        <div class="tab-pane" id="pic-4"><img
-                                src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fctsp4.jfif?alt=media&token=6a358700-b669-4552-ae91-4422531d2a69" />
+                        <div class="tab-pane" id="pic-4">
+                            <img th:if="${spcl.ListDSHA_SPCT.size() > 3}"
+                                th:src="@{ ${spcl.ListDSHA_SPCT[3].idHinhAnh} }" alt="Hình ảnh">
                         </div>
-                        <div class="tab-pane" id="pic-5"><img
-                                src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fctsp5.jfif?alt=media&token=86b91f67-e36d-4e04-8885-597fa3e3ce4d" />
+                        <div class="tab-pane" id="pic-5">
+                            <img th:if="${spcl.ListDSHA_SPCT.size() > 4}"
+                                th:src="@{ ${spcl.ListDSHA_SPCT[4].idHinhAnh} }" alt="Hình ảnh">
                         </div>
                     </div>
 
                 </div>
 
-                <div class="col-md-4 product-item my-4">
+                <form class="col-md-4 product-item my-4">
                     <div class="product-item-name">
-                        <h3>Áo thun ztreet zear</h3>
-                        <h5>4,700,000đ</h5>
-                        <h2>Loại: <span>Áo thun</span></h2>
-                        <h2>Chất liệu: <span>MFC phủ Melamine</span></h2>
-
+                        <h3 th:text="${products.tenSanPham}"></h3>
+                        <h5 th:text="${#numbers.formatDecimal(products.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'">
+                        </h5>
+                        <h2>Loại: <span th:text="${products.nhomLoaiSP.tenNhomLoai}"></span></h2>
                         <div class='my-4 options pricing-section' id='pricing'>
                             <div class='color-options'>
                                 <span>Màu sắc</span>
                                 <div class='color-picker'>
-                                    <div class='color overlay' id='color-overlay'>
-                                        <div class='check'></div>
-                                    </div>
-                                    <div class='color color-a' id='color-a'></div>
+                                    <!-- <div class='color overlay' id='color-overlay'> -->
+                                    <!-- Đoạn mã HTML để hiển thị danh sách sản phẩm và các input màu sắc -->
+                                    <th:block th:each="pro : ${productitem}">
+                                        <div class="color-option">
+                                            <input type="color" class="color-picker mx-2" id="hexColor" name="hexColor"
+                                                th:value="'#' + ${pro.mauSacSPCT.maHex}" disabled />
+
+                                            <input class="mx-2" type="radio" value="color" name="color"> <span
+                                                th:text="${pro.mauSacSPCT.tenMauSac}"></span>
+                                        </div>
+                                    </th:block>
+                                    <!-- <div class='color color-a' id='color-a' name="color-a"></div>
                                     <div class='color color-b' id='color-b'></div>
                                     <div class='color color-c' id='color-c'></div>
-                                    <div class='color color-d' id='color-d'></div>
+                                    <div class='color color-d' id='color-d'></div>  -->
                                 </div>
                                 <!-- <span class='small'>Color : <span id='color-name'>Rosegold</span></span> -->
                             </div>
-                            <div class='size-picker'>
-                                <!-- Size: -->
+                            <div class=''>
                                 <span>Kích thước</span>
-                                <div class='range-picker' id='range-picker'>
-                                    <div>M</div>
-                                    <div class='active'>L</div>
-                                    <div>XL</div>
-                                    <div>XXL</div>
+                                <div class='range-picker' th:each="spcl : ${productitem}">
+                                    <th:block th:each="spsize : ${spcl.ListDSKT_SPCT}">
+                                        <span th:text="${spsize.kichThuoc.tenKichThuoc}"></span>
+                                    </th:block>
+
                                 </div>
                             </div>
                         </div>
@@ -270,41 +302,56 @@
 
                     <div class="row">
                         <div class="col-6 button-sell d-flex">
-                            <button class="btn-sell"><a class="nav-link " href="adreess-page"> Mua ngay </a></button>
+                            <button class="btn-sell"> Mua ngay </a></button>
                         </div>
                         <div class="col-6 button-sell d-flex">
-                            <button class="btn-base"><a class="nav-link " href="adreess-page"> Thêm vào giỏ </a></button>
+                            <button class="btn-base"> Thêm vào giỏ
+                                </a></button>
                         </div>
                     </div>
 
-                </div>
+                </form>
+                <!-- <div class=''> -->
 
+
+
+                <!-- </div> -->
+                <!-- <th:block th:each="list : ${spcl.ListDSKT_SPCT}">
+                        <h3 th:text="${list.idKichThuoc.tenKichThuoc}"></h3>
+                    </th:block> -->
             </div>
         </div>
     </div>
 
     <article class="container description my-5">
         <p>Bảo quản: <br>
-            &nbsp &nbsp &nbsp &#8226; &nbsp Dùng khăn ẩm với nước sạch hoặc dung dịch tẩy rửa nhẹ để làm sạch sản phẩm.
+            &nbsp &nbsp &nbsp &#8226; &nbsp Dùng khăn ẩm với nước sạch hoặc dung dịch tẩy rửa nhẹ để
+            làm sạch sản phẩm.
             Sau đó, lau khô sản &nbsp &nbsp &nbsp &nbsp phẩm bằng
             khăn mềm. <br>
-            &nbsp &nbsp &nbsp &#8226; &nbsp Không để sản phẩm tiếp xúc với nước hoặc nguồn nhiệt độ cao trong thời gian
+            &nbsp &nbsp &nbsp &#8226; &nbsp Không để sản phẩm tiếp xúc với nước hoặc nguồn nhiệt độ
+            cao trong thời gian
             dài.
             <br>
-            &nbsp &nbsp &nbsp &#8226; &nbsp Không dùng các vật sắc nhọn, thô cứng, sần sùi chà xát sản phẩm.
+            &nbsp &nbsp &nbsp &#8226; &nbsp Không dùng các vật sắc nhọn, thô cứng, sần sùi chà xát
+            sản phẩm.
         </p>
         <br>
         <p> Bảo hành: <br>
             &nbsp &nbsp &nbsp &#8226; &nbsp Thời hạn bảo hành: 12 tháng <br>
-            &nbsp &nbsp &nbsp &#8226; &nbsp Bảo hành cho các sản phẩm có lỗi nguyên vật liệu hay lỗi từ nhà sản xuất
+            &nbsp &nbsp &nbsp &#8226; &nbsp Bảo hành cho các sản phẩm có lỗi nguyên vật liệu hay lỗi
+            từ nhà sản xuất
             (như móp, méo, cong vênh &nbsp &nbsp &nbsp &nbsp các chi
-            tiết sản phẩm, bong tróc sơn,...). Hoặc các sản phẩm bị bể vỡ/trầy/xước biến dạng trong quá &nbsp &nbsp
+            tiết sản phẩm, bong tróc sơn,...). Hoặc các sản phẩm bị bể vỡ/trầy/xước biến dạng trong
+            quá &nbsp &nbsp
             &nbsp &nbsp &nbsp &nbsp &nbsp trình
             vận
             chuyển. <br>
-            &nbsp &nbsp &nbsp &#8226; &nbsp Không bảo hành cho các sản phẩm hư hỏng trong quá trình quý khách sử dụng do
+            &nbsp &nbsp &nbsp &#8226; &nbsp Không bảo hành cho các sản phẩm hư hỏng trong quá trình
+            quý khách sử dụng do
             sử dụng không cẩn &nbsp &nbsp &nbsp thận, bảo
-            quản và vệ sinh không đúng cách. Cũng như sản phẩm bị các hao mòn thông thường (như &nbsp &nbsp &nbsp &nbsp
+            quản và vệ sinh không đúng cách. Cũng như sản phẩm bị các hao mòn thông thường (như
+            &nbsp &nbsp &nbsp &nbsp
             &nbsp &nbsp &nbsp phai
             mờ, rỉ sét do trầy
             xước, lỏng ốc vít sau một khoảng thời gian...).</p>
@@ -317,43 +364,65 @@
                 <div class="col-6 col-md-3 mb-3">
                     <h5>Sản phẩm</h5>
                     <ul class="nav flex-column footer-link">
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">BÀN - tables</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">SOFA - sofas</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">TỦ - cabinets</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GHẾ - chairs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">ĐÈN - lamps</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">KỆ - shelf units</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">BÀN -
+                                tables</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">SOFA -
+                                sofas</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">TỦ -
+                                cabinets</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GHẾ -
+                                chairs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">ĐÈN -
+                                lamps</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">KỆ - shelf
+                                units</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-3 mb-3">
                     <h5>Phòng</h5>
                     <ul class="nav flex-column footer-link">
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG KHÁCH -Living room</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG NGỦ - Bedroom</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG BẾP - Kitchen room</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG TẮM - Bathroom</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG LÀM VIỆC - Office</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG KHÁCH
+                                -Living room</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG NGỦ -
+                                Bedroom</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG BẾP -
+                                Kitchen room</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG TẮM -
+                                Bathroom</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG LÀM
+                                VIỆC - Office</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-3 mb-3">
                     <h5>Trang khác</h5>
                     <ul class="nav flex-column footer-link">
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang giới thiệu</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang liên hệ</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang bài viết</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cá nhân</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cài đặt</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang giới
+                                thiệu</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang liên
+                                hệ</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang bài
+                                viết</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cá
+                                nhân</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cài
+                                đặt</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-3 mb-3">
                     <h5>Mạng xã hội</h5>
                     <ul class="nav flex-column footer-link">
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Twitter</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Linkedln</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Facebook</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GitHub</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">AngelList</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Dribble</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Twitter</a>
+                        </li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Linkedln</a>
+                        </li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Facebook</a>
+                        </li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GitHub</a>
+                        </li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">AngelList</a>
+                        </li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Dribble</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -367,8 +436,7 @@
         </div>
     </footer>
 </body>
-<script src="/js/quatity.js"></script>
-<script>
+<!-- <script>
     document.getElementById('range-picker').addEventListener('click', function (e) {
         var sizeList = document.getElementById('range-picker').children;
         for (var i = 0; i <= sizeList.length - 1; i++) {
@@ -384,28 +452,29 @@
         document.getElementById('color-overlay').style.transform = 'translateX(-0px)';
         document.getElementById('color-name').innerHTML = "Silver";
         document.getElementById('color-input').value = 'Silver';
-        document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/r/ef/refurb/iphone6s/refurb-iphone6s-plus-silver?wid=1000&hei=1000&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1476121780367')";
+        // document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/r/ef/refurb/iphone6s/refurb-iphone6s-plus-silver?wid=1000&hei=1000&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1476121780367')";
 
     })
     document.getElementById('color-b').addEventListener('click', function () {
         document.getElementById('color-overlay').style.transform = 'translateX(45px)';
         document.getElementById('color-name').innerHTML = "Rosegold";
         document.getElementById('color-input').value = 'Rosegold';
-        document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/rosegold/iphone6s-rosegold-select-2015?wid=470&hei=556&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=km8l12')";
+        // document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/rosegold/iphone6s-rosegold-select-2015?wid=470&hei=556&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=km8l12')";
     })
 
     document.getElementById('color-c').addEventListener('click', function () {
         document.getElementById('color-overlay').style.transform = 'translateX(90px)';
         document.getElementById('color-name').innerHTML = "Gold";
         document.getElementById('color-input').value = 'Gold';
-        document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/gold/iphone6s-gold-select-2015?wid=470&hei=556&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=rAEkZ2')";
+        // document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/gold/iphone6s-gold-select-2015?wid=470&hei=556&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=rAEkZ2')";
     })
     document.getElementById('color-d').addEventListener('click', function () {
         document.getElementById('color-overlay').style.transform = 'translateX(134px)';
         document.getElementById('color-name').innerHTML = "Spacegray";
         document.getElementById('color-input').value = 'Spacegray';
-        document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/gray/iphone6s-gray-select-2015?wid=1200&hei=630&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=kqNjH3')";
+        // document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/gray/iphone6s-gray-select-2015?wid=1200&hei=630&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=kqNjH3')";
     })
-</script>
+</script> -->
+
 
 </html>
