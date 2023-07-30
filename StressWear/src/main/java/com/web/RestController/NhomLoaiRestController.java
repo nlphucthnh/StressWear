@@ -46,8 +46,8 @@ public class NhomLoaiRestController {
         if(nhomLoaiDAO.existsById(nhomLoai.getIdNhomLoai())){
             return ResponseEntity.badRequest().build();
         }
-        nhomLoaiDAO.save(nhomLoai);
-        return ResponseEntity.ok(nhomLoai);
+        NhomLoai nhomLoai2 = nhomLoaiDAO.save(nhomLoai);
+        return ResponseEntity.ok(nhomLoai2);
     }
 
     @PutMapping("{id}")

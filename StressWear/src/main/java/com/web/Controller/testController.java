@@ -8,7 +8,7 @@ public class testController {
 
     @GetMapping("hello")
     public String getPage(){
-        return "Manager/Manager-login-page.html";
+        return "Manager/Manager-filter-page.html";
     }
 
     @GetMapping("index")
@@ -21,11 +21,12 @@ public class testController {
         return "User/User-about";
     }
 
-       @GetMapping("product")
+    @GetMapping("product")
     public String product(){
         return "User/User-product";
     }
-  @GetMapping("product-list")
+
+    @GetMapping("product-list")
     public String productlist(){
         return "User/User-product-List";
     }
@@ -33,5 +34,11 @@ public class testController {
     @GetMapping("product-item")
     public String productItem(){
         return "User/User-product-Item";
+    }
+
+
+    @GetMapping("/manager/filter")
+    public String ManagerFilter(){
+        return "Manager/Manager-filter-page";
     }
 }

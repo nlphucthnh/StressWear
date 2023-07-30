@@ -46,8 +46,8 @@ public class KhuyenMaiRestController {
         if(khuyenMaiDAO.existsById(khuyenMai.getIdKhuyenMai())){
             return ResponseEntity.badRequest().build();
         }
-        khuyenMaiDAO.save(khuyenMai);
-        return ResponseEntity.ok(khuyenMai);
+        KhuyenMai khuyenMai2 = khuyenMaiDAO.save(khuyenMai);
+        return ResponseEntity.ok(khuyenMai2);
     }
 
     @PutMapping("{id}")
