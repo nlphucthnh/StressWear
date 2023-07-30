@@ -41,4 +41,26 @@ public class testController {
     public String ManagerFilter(){
         return "Manager/Manager-filter-page";
     }
+
+    @GetMapping("login-page2")
+    public String loginPage(){
+        return "User/User-login-page";
+    }
+
+    @GetMapping("sign-up-page")
+    public String signUpPage(){
+        return "User/User-register-page";
+    }
+
+     @GetMapping("user-person-edit")
+    public String personEdit(){
+        return "User/User-person";
+    }
+
+    @GetMapping("forgot-pass")
+    public String forgotPass(){
+        return "User/User-forgot-pass";
+    }
+
+
 }

@@ -7,25 +7,23 @@ body {
     /* font-family: 'Open Sans', sans-serif; */
     font-size: 14px;
     /* display: flex; */
-    background-image: url(https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Flog-in-main.png?alt=media&token=a6b73c92-2305-4897-a995-4abb0785e1e9);
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fconfirmpass.png?alt=media&token=4812dde9-8440-4037-bdf5-a0f2ec897694);
     background-size: cover;
 }
 
-.login-container {
+.conFirmAcc-container {
     width: 34%;
-    height: 80vh;
+    height: 60vh;
     margin: calc((100vh - 80vh)/2) auto;
     background: #fff;
     border-radius: 15px;
     box-shadow: 1px 2px 8px 8px #ccc3;
     display: flex;
-    /* margin-top: 4rem; */
+    margin-top: 12rem;
     overflow: hidden;
-
-
 }
 
-.login-container-ctent {
+.conFirmAcc-container-ctent {
     width: 100%;
     height: 90%;
     display: flex;
@@ -35,29 +33,31 @@ body {
 
 }
 
-.login-content-center {
+.conFirmAcc-content-center {
     width: 80%;
     height: 100%;
-
 }
 
-#LoginContainer .login-ct-left-form {
+#conFirmAccContainer .conFirmAcc-ct-left-form {
     width: 100%;
     margin: auto;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
-#LoginContainer .login-ct-left-form .login-content-top-form {
+.conFirmAcc-ct-left-form form {
+    width: 100%;
+}
+
+#conFirmAccContainer .conFirmAcc-ct-left-form .conFirmAcc-content-top-form {
     text-align: center;
     margin-bottom: 20px;
 
 }
 
-#LoginContainer .login-ct-left-form .login-content-top-form .login-ct-title {
+#conFirmAccContainer .conFirmAcc-ct-left-form .conFirmAcc-content-top-form .conFirmAcc-ct-title {
     font-family: 'Open Sans', sans-serif;
     width: 70%;
     margin: 0 auto;
@@ -65,13 +65,14 @@ body {
     font-size: 24px;
 }
 
-#LoginContainer .login-ct-left-form .form-group {
-    width: 100% !important;
 
+
+#conFirmAccContainer .conFirmAcc-ct-left-form .form-group {
+    width: 100% !important;
 }
 
 
-#LoginContainer .login-ct-left-form .form-group label {
+#conFirmAccContainer .conFirmAcc-ct-left-form .form-group label {
     width: 100%;
     height: 20px;
     font-family: 'Inter';
@@ -82,7 +83,28 @@ body {
     color: #344054;
 }
 
-#LoginContainer .login-ct-left-form .form-group .form-control {
+#conFirmAccContainer .conFirmAcc-ct-left-form .form-group .form-control {
+    width: 100%;
+    height: 45px;
+    background: #FFFFFF;
+    padding: 10px 14px;
+    border: 1px solid #EAECF0;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 3px;
+}
+
+#conFirmAccContainer .conFirmAcc-ct-left-form .row .col label {
+    width: 100%;
+    height: 20px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #344054;
+}
+
+#conFirmAccContainer .conFirmAcc-ct-left-form .row .form-control {
     width: 100%;
     height: 45px;
     background: #FFFFFF;
@@ -93,30 +115,7 @@ body {
 }
 
 
-#LoginContainer .login-ct-left-form .form-check {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-}
-
-#LoginContainer .login-ct-left-form .form-check .input-groups {
-    display: flex;
-    align-items: center !important;
-}
-
-
-#LoginContainer .login-ct-left-form .form-check .input-groups-01 {
-    margin-left: 22px;
-}
-
-#LoginContainer .login-ct-left-form .form-check .input-groups-01 label {
-    margin-left: 5px;
-}
-
-
-#LoginContainer .login-ct-left-form .btn-login {
+#conFirmAccContainer .conFirmAcc-ct-left-form .btn-conFirmAcc {
     width: 100%;
     border-radius: 3px;
     background: #293056;
@@ -130,31 +129,9 @@ body {
     color: #FFFFFF;
 }
 
-#LoginContainer .login-ct-left-form .login-ct-end {
-    display: flex;
-    justify-content: center;
-    margin: 20px auto;
-    width: 100%;
-    height: 24px;
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
 
 
-}
 
-#LoginContainer .login-ct-left-form .login-ct-end p {
-    color: #000000;
-}
-
-#LoginContainer .login-ct-left-form .login-ct-end a {
-    margin-left: 5px;
-    color: #101828;
-    text-decoration: none;
-    font-weight: 600;
-}
 
 /* -------------------------------- */
 
