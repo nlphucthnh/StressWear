@@ -3,6 +3,7 @@ package com.web.Controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,7 +44,7 @@ public class ProductController {
         model.addAttribute("numberOfPages", numberOfPages);
         model.addAttribute("products", products);
         model.addAttribute("currIndex", p.orElse(0));
-        return "Product/User-product";
+        return "User/User-product";
     }
 
     @GetMapping("/User/product/edit/{idSanPham}")
@@ -51,7 +53,17 @@ public class ProductController {
         List<SanPhamChiTiet> productItem = spctdao.findByidsanpham(id);
         model.addAttribute("products", products);
         model.addAttribute("productitem", productItem);
-        return "Product/User-product-Item";
+        return "User/User-product-Item";
     }
 
+    @PostMapping("/User/product/sale")
+    public String product_sale(Model model, @RequestParam("idSanPham") Integer idSanPham) {
+    
+        return "User/User-cart";
+    }
+       @GetMapping("/User/product/sale")
+    public String demo(Model model) {
+    
+        return "User/User-cart";
+    }
 }

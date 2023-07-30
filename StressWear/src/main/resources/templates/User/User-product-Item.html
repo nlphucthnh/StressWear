@@ -260,39 +260,33 @@
 
                 </div>
 
-                <form class="col-md-4 product-item my-4">
+                <form class="col-md-4 product-item my-4" action="/User/product/sale" method="post">
                     <div class="product-item-name">
                         <h3 th:text="${products.tenSanPham}"></h3>
                         <h5 th:text="${#numbers.formatDecimal(products.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'">
                         </h5>
+                        <input hidden type="text" name="idSanPham" id="idSanPham" th:value="${products.idSanPham}"> 
                         <h2>Loại: <span th:text="${products.nhomLoaiSP.tenNhomLoai}"></span></h2>
                         <div class='my-4 options pricing-section' id='pricing'>
                             <div class='color-options'>
                                 <span>Màu sắc</span>
                                 <div class='color-picker'>
-                                    <!-- <div class='color overlay' id='color-overlay'> -->
-                                    <!-- Đoạn mã HTML để hiển thị danh sách sản phẩm và các input màu sắc -->
                                     <th:block th:each="pro : ${productitem}">
                                         <div class="color-option">
-                                            <input type="color" class="color-picker mx-2" id="hexColor" name="hexColor"
+                                            <input type="color" class="color-picker" id="hexColor" name="hexColor"
                                                 th:value="'#' + ${pro.mauSacSPCT.maHex}" disabled />
-
-                                            <input class="mx-2" type="radio" value="color" name="color"> <span
+                                            <input type="radio" value="color" name="color"> <span
                                                 th:text="${pro.mauSacSPCT.tenMauSac}"></span>
                                         </div>
                                     </th:block>
-                                    <!-- <div class='color color-a' id='color-a' name="color-a"></div>
-                                    <div class='color color-b' id='color-b'></div>
-                                    <div class='color color-c' id='color-c'></div>
-                                    <div class='color color-d' id='color-d'></div>  -->
                                 </div>
-                                <!-- <span class='small'>Color : <span id='color-name'>Rosegold</span></span> -->
                             </div>
-                            <div class=''>
+                            <div class='product-item-size-title my-3'>
                                 <span>Kích thước</span>
                                 <div class='range-picker' th:each="spcl : ${productitem}">
                                     <th:block th:each="spsize : ${spcl.ListDSKT_SPCT}">
                                         <span th:text="${spsize.kichThuoc.tenKichThuoc}"></span>
+                                        <input type="radio" value="size" name="size">
                                     </th:block>
 
                                 </div>
