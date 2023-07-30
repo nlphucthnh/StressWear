@@ -396,7 +396,7 @@
 
             <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
                 <div class="logo-footer">
-                    <a href="#"><img src="img/Logowebsite.png" alt=""></a>
+                    <!-- <a href="#"><img src="../img/Logowebsite.png" alt=""></a> -->
                 </div>
                 <p class="text-white-50">© 2023 Company, Inc. All rights reserved.</p>
             </div>
@@ -429,7 +429,7 @@
                         <div class="map2">
                             <div class="mb-3">
                                 <label for="fullName" class="form-label profile-title">Họ tên</label>
-                                <input id="fullName" th:value="${TaiKhoanUser.thongTinTaiKhoan.hoTen}" name="fullName"
+                                <input id="fullName" 
                                     class="form-control profile-input box-shadow-none" type="text" required />
                                 <div class="invalid-feedback">Không được bỏ trống.</div>
                             </div>
@@ -445,7 +445,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="phoneNumber" class="form-label profile-title">Số điện thoại:</label>
-                                <input id="phoneNumber" th:value="${TaiKhoanUser.thongTinTaiKhoan.soDienThoai}"
+                                <input id="phoneNumber" 
                                     name="sdt" class="form-control profile-input box-shadow-none" type="text" required
                                     maxlength="10" minlength="10" pattern="^\d+$" />
                                 <div class="invalid-feedback">
@@ -461,8 +461,6 @@
             </div>
         </div>
     </div>
-
-    <div th:replace="footer :: footer"></div>
     <script>
         $(".input-file").hide();
         $(".modal-body-map1-btnEdit1").click(function(){

@@ -21,7 +21,7 @@ public class testController {
         return "User/User-register-page";
     }
 
-    @GetMapping("login-page")
+    @GetMapping("login-page2")
     public String loginPage(){
         return "User/User-login-page";
     }
