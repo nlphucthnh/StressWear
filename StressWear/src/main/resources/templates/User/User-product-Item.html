@@ -29,6 +29,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 
+    <!-- angularjs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 
     <link rel="stylesheet" href="/styles/root.css">
     <link rel="stylesheet" href="/styles/navbar.css">
@@ -38,153 +40,181 @@
 
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-            <a href="/home-page"><img
-                    src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/Logo%20website.png?alt=media&token=e446c505-b0a6-44a8-aad5-f7caccb1c28b"
-                    style="background-color: var(--gray_25);" alt=""></a>
-            <div class="navbar-collapse">
-                <ul class="navbar-nav item-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about-page">Giới thiệu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contact-page">Liên hệ</a>
-                    </li>
-                    <li class="nav-item dropdown dropdown-hover has-megamenu">
-                        <a class="nav-link " href="/product-page"> Sản phẩm <i class="bi bi-chevron-down"></i></a>
-                        <div class="dropdown-menu megamenu" role="menu">
-                            <div class="row g-3">
-                                <div class="col-lg-4 col-6 item-group">
-                                    <div class="col-megamenu">
-                                        <h6 class="title ">Loại quần áo</h6>
-                                        <ul class="list-unstyled ">
-                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo thun -
-                                                    T-shirt</a>
-                                                <p>Find the best solution for you.</p>
-                                            </li>
-                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo tay dài
-                                                    - Long Sleeves</a>
-                                                <p>Monitor your metrics.</p>
-                                            </li>
-                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo len -
-                                                    Sweaters</a>
-                                                <p>Surface hidden trends.</p>
-                                            </li>
-                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo hoodie
-                                                    - Hoodie</a>
-                                                <p>Measure B2B account health.</p>
-                                            </li>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a href="/home-page"><img
+          src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/Logo%20website.png?alt=media&token=e446c505-b0a6-44a8-aad5-f7caccb1c28b"
+          style="background-color: var(--gray_25);" alt=""></a>
+      <div class="navbar-collapse">
+        <ul class="navbar-nav item-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="/about-page">Giới thiệu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact-page">Liên hệ</a>
+          </li>
+          <li class="nav-item dropdown dropdown-hover has-megamenu">
+            <a class="nav-link " href="/product-page"> Sản phẩm <i class="bi bi-chevron-down"></i></a>
+            <div class="dropdown-menu megamenu" role="menu">
+              <div class="row g-3">
+                <div class="col-lg-4 col-6 item-group">
+                  <div class="col-megamenu">
+                    <h6 class="title ">Loại quần áo</h6>
+                    <ul class="list-unstyled ">
+                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo thun -
+                          T-shirt</a>
+                        <p>Find the best solution for you.</p>
+                      </li>
+                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo tay dài
+                          - Long Sleeves</a>
+                        <p>Monitor your metrics.</p>
+                      </li>
+                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo len -
+                          Sweaters</a>
+                        <p>Surface hidden trends.</p>
+                      </li>
+                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo hoodie
+                          - Hoodie</a>
+                        <p>Measure B2B account health.</p>
+                      </li>
 
-                                        </ul>
-                                    </div> <!-- col-megamenu.// -->
-                                </div><!-- end col-3 -->
-                                <div class="col-lg-4 col-6 item-group">
-                                    <div class="col-megamenu">
-                                        <h6 class="title">&#160;</h6>
-                                        <ul class="list-unstyled">
+                    </ul>
+                  </div> <!-- col-megamenu.// -->
+                </div><!-- end col-3 -->
+                <div class="col-lg-4 col-6 item-group">
+                  <div class="col-megamenu">
+                    <h6 class="title">&#160;</h6>
+                    <ul class="list-unstyled">
 
-                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Quần dài -
-                                                    Pants
-                                                </a>
-                                                <p>Analyze conversion rates.</p>
-                                            </li>
-                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Quần ngắn
-                                                    - ShortShort</a>
-                                                <p>Measure active usage.</p>
-                                            </li>
-                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Váy -
-                                                    Skirt</a>
-                                                <p>Find retention drivers./p>
-                                            </li>
-                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Phụ kiện -
-                                                    Accessory
-                                                    goods</a>
-                                                <p>Grow your user base faster.</p>
-                                            </li>
-                                        </ul>
-                                    </div> <!-- col-megamenu.// -->
-                                </div><!-- end col-3 -->
-                                <div class="col-lg-4 col-6 room-group">
-                                    <div class="col-megamenu">
-                                        <h6 class="title">Danh mục sản phẩm</h6>
-                                        <ul class="list-unstyled ">
-                                            <li class="item-opsition-menu pb-2 ">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="material-symbols-sharp me-3">
-                                                        laundry
-                                                    </span>
-                                                    <div class="nav-icon">
-                                                        <a href="product-item-page">Danh mục áo - Tops</a>
-                                                        <p>Analyze conversion rates.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="item-opsition-menu pb-2 ">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="material-symbols-sharp me-3">
-                                                        taunt
-                                                    </span>
-                                                    <div class="nav-icon">
-                                                        <a href="#">Danh mục quần - Bottoms</a>
-                                                        <p>Measure active usage.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="item-opsition-menu pb-2 ">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="material-symbols-sharp me-3">
-                                                        man_2
-                                                    </span>
-                                                    <div class="nav-icon">
-                                                        <a href="product-item-page">Quần áo nam - Male</a>
-                                                        <p>Find retention drivers.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="item-opsition-menu pb-2 ">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="material-symbols-sharp me-3">
-                                                        woman_2
-                                                    </span>
-                                                    <div class="nav-icon">
-                                                        <a href="product-item-page">Quần áo nữ - Female</a>
-                                                        <p>Grow your user base faster.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div> <!-- col-megamenu.// -->
-                                </div>
-                            </div><!-- end row -->
-                        </div> <!-- dropdown-mega-menu.// -->
-                    </li>
-                    <li class="nav-item">
-                        <form class="d-flex mx-5 w-100">
-                            <div class="input-group">
-                                <input class="form-control me-2" type="search" placeholder="        Tìm kiếm"
-                                    aria-label="Search">
-                                <span class="input-group-icon material-symbols-outlined">
-                                    search
-                                </span>
-                            </div>
+                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Quần dài -
+                          Pants
+                        </a>
+                        <p>Analyze conversion rates.</p>
+                      </li>
+                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Quần ngắn
+                          - ShortShort</a>
+                        <p>Measure active usage.</p>
+                      </li>
+                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Váy -
+                          Skirt</a>
+                        <p>Find retention drivers./p>
+                      </li>
+                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Phụ kiện -
+                          Accessory
+                          goods</a>
+                        <p>Grow your user base faster.</p>
+                      </li>
+                    </ul>
+                  </div> <!-- col-megamenu.// -->
+                </div><!-- end col-3 -->
+                <div class="col-lg-4 col-6 room-group">
+                  <div class="col-megamenu">
+                    <h6 class="title">Danh mục sản phẩm</h6>
+                    <ul class="list-unstyled ">
+                      <li class="item-opsition-menu pb-2 ">
+                        <div class="d-flex align-items-center">
+                          <span class="material-symbols-sharp me-3">
+                            laundry
+                          </span>
+                          <div class="nav-icon">
+                            <a href="product-item-page">Danh mục áo - Tops</a>
+                            <p>Analyze conversion rates.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item-opsition-menu pb-2 ">
+                        <div class="d-flex align-items-center">
+                          <span class="material-symbols-sharp me-3">
+                            taunt
+                          </span>
+                          <div class="nav-icon">
+                            <a href="#">Danh mục quần - Bottoms</a>
+                            <p>Measure active usage.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item-opsition-menu pb-2 ">
+                        <div class="d-flex align-items-center">
+                          <span class="material-symbols-sharp me-3">
+                            man_2
+                          </span>
+                          <div class="nav-icon">
+                            <a href="product-item-page">Quần áo nam - Male</a>
+                            <p>Find retention drivers.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item-opsition-menu pb-2 ">
+                        <div class="d-flex align-items-center">
+                          <span class="material-symbols-sharp me-3">
+                            woman_2
+                          </span>
+                          <div class="nav-icon">
+                            <a href="product-item-page">Quần áo nữ - Female</a>
+                            <p>Grow your user base faster.</p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div> <!-- col-megamenu.// -->
+                </div>
+              </div><!-- end row -->
+            </div> <!-- dropdown-mega-menu.// -->
+          </li>
+          <li class="nav-item">
+            <form class="d-flex mx-5 w-100">
+              <div class="input-group">
+                <input class="form-control me-2" type="search" placeholder="        Tìm kiếm" aria-label="Search">
+                <span class="input-group-icon material-symbols-outlined">
+                  search
+                </span>
+              </div>
 
-                        </form>
-                    </li>
-                </ul>
+            </form>
+          </li>
+        </ul>
 
-            </div>
-            <ul class="navbar-nav item-menu ms-auto signin-group">
-                <li class="nav-item">
-                    <a class="nav-link login" href="login-page">Đăng nhập</a>
-                </li>
-                <li class="nav-item sign-navbar ">
-                    <a class="nav-link sigin" href="sign-up-page">Đăng ký</a>
-                </li>
-            </ul>
+      </div>
+      <!-- <ul class="navbar-nav item-menu ms-auto signin-group">
+            <li class="nav-item">
+                <a class="nav-link login" href="login-page">Đăng nhập</a>
+            </li>
+            <li class="nav-item sign-navbar ">
+                <a class="nav-link sigin" href="sign-up-page">Đăng ký</a>
+            </li>
+        </ul> -->
+
+      <div class="registered-group">
+        <!-- <div class="registered-group-search registered-item">
+              <i class="bi bi-search"></i>
+          </div> -->
+        <div class="registered-group-cart registered-item">
+            <a class="bi bi-bag" ></a>
+            <!-- {{cart.count}} items x {{cart.amount | number : 2}} -->
+          <span class="number-item">{{cart.count}}</span>
         </div>
-    </nav>
+        <div class="registered-group-account registered-item">
+          <div class="registered-group-account-text">
+            <div class="registered-group-account-name-text">Thiện LC</div>
+            <div class="registered-group-account-email-text">Lethien@gmail.com</div>
+          </div>
+          <div class="registered-group-account-img dropdown">
+            <img class="img-avata-registered"
+              src="https://firebasestorage.googleapis.com/v0/b/future-interior.appspot.com/o/Null.png?alt=media"
+              alt="Avatar" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+              style="right: 50%; left: auto;  transform: translateX(50%); ">
+              <li><a class="dropdown-item" th:href="@{/person}">Hồ sơ cá nhân</a></li>
+              <li><a class="dropdown-item" th:href="@{/changePassword}">Đổi mật khẩu</a></li>
+
+              <li><a class="dropdown-item" th:href="@{/dangxuat}">Đăng xuất</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 
     <header class="container product-item-title my-5">
         <h3>Chi tiết sản phẩm</h3>
@@ -260,12 +290,12 @@
 
                 </div>
 
-                <form class="col-md-4 product-item my-4" action="/User/product/sale" method="post">
+                <div class="col-md-4 product-item my-4" action="/User/product/sale" method="post">
                     <div class="product-item-name">
                         <h3 th:text="${products.tenSanPham}"></h3>
                         <h5 th:text="${#numbers.formatDecimal(products.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'">
                         </h5>
-                        <input hidden type="text" name="idSanPham" id="idSanPham" th:value="${products.idSanPham}"> 
+                        <input hidden type="text" name="idSanPham" id="idSanPham" th:value="${products.idSanPham}">
                         <h2>Loại: <span th:text="${products.nhomLoaiSP.tenNhomLoai}"></span></h2>
                         <div class='my-4 options pricing-section' id='pricing'>
                             <div class='color-options'>
@@ -296,179 +326,143 @@
 
                     <div class="row">
                         <div class="col-6 button-sell d-flex">
-                            <button class="btn-sell"> Mua ngay </a></button>
+                            <button th:attr="ng-click=@{|cart.add(${products.idSanPham})|}" class="btn-sell"> Mua ngay
+                            </button>
                         </div>
                         <div class="col-6 button-sell d-flex">
-                            <button class="btn-base"> Thêm vào giỏ
-                                </a></button>
+                            <button th:attr="ng-click=@{|cart.add(${products.idSanPham})|}" class="btn-base"> Thêm vào
+                                giỏ
+                            </button>
                         </div>
                     </div>
 
-                </form>
-                <!-- <div class=''> -->
+                    </form>
+                    <!-- <div class=''> -->
 
 
 
-                <!-- </div> -->
-                <!-- <th:block th:each="list : ${spcl.ListDSKT_SPCT}">
+                    <!-- </div> -->
+                    <!-- <th:block th:each="list : ${spcl.ListDSKT_SPCT}">
                         <h3 th:text="${list.idKichThuoc.tenKichThuoc}"></h3>
                     </th:block> -->
+                </div>
             </div>
         </div>
-    </div>
 
-    <article class="container description my-5">
-        <p>Bảo quản: <br>
-            &nbsp &nbsp &nbsp &#8226; &nbsp Dùng khăn ẩm với nước sạch hoặc dung dịch tẩy rửa nhẹ để
-            làm sạch sản phẩm.
-            Sau đó, lau khô sản &nbsp &nbsp &nbsp &nbsp phẩm bằng
-            khăn mềm. <br>
-            &nbsp &nbsp &nbsp &#8226; &nbsp Không để sản phẩm tiếp xúc với nước hoặc nguồn nhiệt độ
-            cao trong thời gian
-            dài.
+        <article class="container description my-5">
+            <p>Bảo quản: <br>
+                &nbsp &nbsp &nbsp &#8226; &nbsp Dùng khăn ẩm với nước sạch hoặc dung dịch tẩy rửa nhẹ để
+                làm sạch sản phẩm.
+                Sau đó, lau khô sản &nbsp &nbsp &nbsp &nbsp phẩm bằng
+                khăn mềm. <br>
+                &nbsp &nbsp &nbsp &#8226; &nbsp Không để sản phẩm tiếp xúc với nước hoặc nguồn nhiệt độ
+                cao trong thời gian
+                dài.
+                <br>
+                &nbsp &nbsp &nbsp &#8226; &nbsp Không dùng các vật sắc nhọn, thô cứng, sần sùi chà xát
+                sản phẩm.
+            </p>
             <br>
-            &nbsp &nbsp &nbsp &#8226; &nbsp Không dùng các vật sắc nhọn, thô cứng, sần sùi chà xát
-            sản phẩm.
-        </p>
-        <br>
-        <p> Bảo hành: <br>
-            &nbsp &nbsp &nbsp &#8226; &nbsp Thời hạn bảo hành: 12 tháng <br>
-            &nbsp &nbsp &nbsp &#8226; &nbsp Bảo hành cho các sản phẩm có lỗi nguyên vật liệu hay lỗi
-            từ nhà sản xuất
-            (như móp, méo, cong vênh &nbsp &nbsp &nbsp &nbsp các chi
-            tiết sản phẩm, bong tróc sơn,...). Hoặc các sản phẩm bị bể vỡ/trầy/xước biến dạng trong
-            quá &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp trình
-            vận
-            chuyển. <br>
-            &nbsp &nbsp &nbsp &#8226; &nbsp Không bảo hành cho các sản phẩm hư hỏng trong quá trình
-            quý khách sử dụng do
-            sử dụng không cẩn &nbsp &nbsp &nbsp thận, bảo
-            quản và vệ sinh không đúng cách. Cũng như sản phẩm bị các hao mòn thông thường (như
-            &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp phai
-            mờ, rỉ sét do trầy
-            xước, lỏng ốc vít sau một khoảng thời gian...).</p>
-    </article>
+            <p> Bảo hành: <br>
+                &nbsp &nbsp &nbsp &#8226; &nbsp Thời hạn bảo hành: 12 tháng <br>
+                &nbsp &nbsp &nbsp &#8226; &nbsp Bảo hành cho các sản phẩm có lỗi nguyên vật liệu hay lỗi
+                từ nhà sản xuất
+                (như móp, méo, cong vênh &nbsp &nbsp &nbsp &nbsp các chi
+                tiết sản phẩm, bong tróc sơn,...). Hoặc các sản phẩm bị bể vỡ/trầy/xước biến dạng trong
+                quá &nbsp &nbsp
+                &nbsp &nbsp &nbsp &nbsp &nbsp trình
+                vận
+                chuyển. <br>
+                &nbsp &nbsp &nbsp &#8226; &nbsp Không bảo hành cho các sản phẩm hư hỏng trong quá trình
+                quý khách sử dụng do
+                sử dụng không cẩn &nbsp &nbsp &nbsp thận, bảo
+                quản và vệ sinh không đúng cách. Cũng như sản phẩm bị các hao mòn thông thường (như
+                &nbsp &nbsp &nbsp &nbsp
+                &nbsp &nbsp &nbsp phai
+                mờ, rỉ sét do trầy
+                xước, lỏng ốc vít sau một khoảng thời gian...).</p>
+        </article>
 
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-6 col-md-3 mb-3">
-                    <h5>Sản phẩm</h5>
-                    <ul class="nav flex-column footer-link">
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">BÀN -
-                                tables</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">SOFA -
-                                sofas</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">TỦ -
-                                cabinets</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GHẾ -
-                                chairs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">ĐÈN -
-                                lamps</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">KỆ - shelf
-                                units</a></li>
-                    </ul>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-md-3 mb-3">
+                        <h5>Sản phẩm</h5>
+                        <ul class="nav flex-column footer-link">
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">BÀN -
+                                    tables</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">SOFA -
+                                    sofas</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">TỦ -
+                                    cabinets</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GHẾ -
+                                    chairs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">ĐÈN -
+                                    lamps</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">KỆ - shelf
+                                    units</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <h5>Phòng</h5>
+                        <ul class="nav flex-column footer-link">
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG KHÁCH
+                                    -Living room</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG NGỦ -
+                                    Bedroom</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG BẾP -
+                                    Kitchen room</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG TẮM -
+                                    Bathroom</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG LÀM
+                                    VIỆC - Office</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <h5>Trang khác</h5>
+                        <ul class="nav flex-column footer-link">
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang giới
+                                    thiệu</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang liên
+                                    hệ</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang bài
+                                    viết</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cá
+                                    nhân</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cài
+                                    đặt</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <h5>Mạng xã hội</h5>
+                        <ul class="nav flex-column footer-link">
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Twitter</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Linkedln</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Facebook</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GitHub</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">AngelList</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Dribble</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <h5>Phòng</h5>
-                    <ul class="nav flex-column footer-link">
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG KHÁCH
-                                -Living room</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG NGỦ -
-                                Bedroom</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG BẾP -
-                                Kitchen room</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG TẮM -
-                                Bathroom</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG LÀM
-                                VIỆC - Office</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <h5>Trang khác</h5>
-                    <ul class="nav flex-column footer-link">
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang giới
-                                thiệu</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang liên
-                                hệ</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang bài
-                                viết</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cá
-                                nhân</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cài
-                                đặt</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <h5>Mạng xã hội</h5>
-                    <ul class="nav flex-column footer-link">
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Twitter</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Linkedln</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Facebook</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GitHub</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">AngelList</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Dribble</a>
-                        </li>
-                    </ul>
+
+                <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                    <div class="logo-footer">
+                        <a href="#"><img src="img/Logowebsite.png" alt=""></a>
+                    </div>
+                    <p class="text-white-50">© 2023 Company, Inc. All rights reserved.</p>
                 </div>
             </div>
-
-            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-                <div class="logo-footer">
-                    <a href="#"><img src="img/Logowebsite.png" alt=""></a>
-                </div>
-                <p class="text-white-50">© 2023 Company, Inc. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
 </body>
-<!-- <script>
-    document.getElementById('range-picker').addEventListener('click', function (e) {
-        var sizeList = document.getElementById('range-picker').children;
-        for (var i = 0; i <= sizeList.length - 1; i++) {
-            console.log(sizeList[i].classList);
-            if (sizeList[i].classList.contains('active')) {
-                sizeList[i].classList.remove('active');
-            }
-        }
-        e.target.classList.add('active');
-    })
 
-    document.getElementById('color-a').addEventListener('click', function () {
-        document.getElementById('color-overlay').style.transform = 'translateX(-0px)';
-        document.getElementById('color-name').innerHTML = "Silver";
-        document.getElementById('color-input').value = 'Silver';
-        // document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/r/ef/refurb/iphone6s/refurb-iphone6s-plus-silver?wid=1000&hei=1000&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1476121780367')";
-
-    })
-    document.getElementById('color-b').addEventListener('click', function () {
-        document.getElementById('color-overlay').style.transform = 'translateX(45px)';
-        document.getElementById('color-name').innerHTML = "Rosegold";
-        document.getElementById('color-input').value = 'Rosegold';
-        // document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/rosegold/iphone6s-rosegold-select-2015?wid=470&hei=556&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=km8l12')";
-    })
-
-    document.getElementById('color-c').addEventListener('click', function () {
-        document.getElementById('color-overlay').style.transform = 'translateX(90px)';
-        document.getElementById('color-name').innerHTML = "Gold";
-        document.getElementById('color-input').value = 'Gold';
-        // document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/gold/iphone6s-gold-select-2015?wid=470&hei=556&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=rAEkZ2')";
-    })
-    document.getElementById('color-d').addEventListener('click', function () {
-        document.getElementById('color-overlay').style.transform = 'translateX(134px)';
-        document.getElementById('color-name').innerHTML = "Spacegray";
-        document.getElementById('color-input').value = 'Spacegray';
-        // document.getElementById("product-img").style.backgroundImage = "url('https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/gray/iphone6s-gray-select-2015?wid=1200&hei=630&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=kqNjH3')";
-    })
-</script> -->
-
+<script src="/javascripts/shopping-cart-app.js"></script>
 
 </html>

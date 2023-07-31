@@ -28,6 +28,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 
+  <!-- Angularjs -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
   <link rel="stylesheet" href="/styles/root.css">
   <link rel="stylesheet" href="/styles/cart.css">
   <link rel="stylesheet" href="/styles/navbar.css">
@@ -36,10 +39,7 @@
   <title>Giỏ hàng</title>
 </head>
 
-
-<body>
-
-
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <a href="/home-page"><img
@@ -189,21 +189,25 @@
               <i class="bi bi-search"></i>
           </div> -->
         <div class="registered-group-cart registered-item">
-          <a href="/User/cart" style="text-decoration: none; color: black;"><i class="bi bi-bag"></i></a>
-          <span class="number-item"></span>
+          <a class="bi bi-bag"></a>
+          <!-- {{cart.count}} items x {{cart.amount | number : 2}} -->
+          <span class="number-item">{{cart.count}}</span>
         </div>
         <div class="registered-group-account registered-item">
           <div class="registered-group-account-text">
             <div class="registered-group-account-name-text">Thiện LC</div>
-            <div class="registered-group-account-email-text">Thien@gmail.com</div>
+            <div class="registered-group-account-email-text">Lethien@gmail.com</div>
           </div>
           <div class="registered-group-account-img dropdown">
-            <!-- <img class="img-avata-registered"  alt="Avatar" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"> -->
+            <img class="img-avata-registered"
+              src="https://firebasestorage.googleapis.com/v0/b/future-interior.appspot.com/o/Null.png?alt=media"
+              alt="Avatar" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
               style="right: 50%; left: auto;  transform: translateX(50%); ">
-              <li><a class="dropdown-item" th:href="@{/User/person}">Hồ sơ cá nhân</a></li>
-              <li><a class="dropdown-item" th:href="@{/User/changePassword}">Đổi mật khẩu</a></li>
-              <li><a class="dropdown-item" th:href="@{/User/logout}">Đăng xuất</a></li>
+              <li><a class="dropdown-item" th:href="@{/person}">Hồ sơ cá nhân</a></li>
+              <li><a class="dropdown-item" th:href="@{/changePassword}">Đổi mật khẩu</a></li>
+
+              <li><a class="dropdown-item" th:href="@{/dangxuat}">Đăng xuất</a></li>
             </ul>
           </div>
         </div>
@@ -218,66 +222,42 @@
       <div class="title-cart-main">
         <h1>Giỏ hàng</h1>
       </div>
-      <div class="col-8">
+      <div class="col-8 my-3">
         <table class="table">
           <thead>
             <tr class="title-cart">
-              <th scope="col"><input type="checkbox" name="" id=""> </th>
-              <th scope="col">Sản phẩm</th>
+              <!-- <th scope="col"><input type="checkbox" name="" id=""> </th> -->
+              <th scope="col">Tên sản phẩm</th>
+              <th scope="col">Giá sản phẩm</th>
               <th scope="col">Số lượng</th>
               <th scope="col">Giá tiền</th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input class="checkbox-cart" type="checkbox"></td>
-              <td>
-                <div class="d-lg-flex name-cart pt-3 pb-3">
-                  <img src="img/Ban.png" alt="Product 2" width="50" height="50">
-                  <h5>Tủ giày QUADA <br><span>Tủ giày</span> </h5>
-
-                </div>
+            <tr ng-repeat="item in cart.items">
+              <!-- <td><input class="checkbox-cart" type="checkbox"></td> -->
+              <td>{{item.tenSanPham}}</td>
+              <td>{{item.giaSanPham | number}}
+                <!-- <img src="img/Ban.png" alt="Product 2" width="50" height="50"> -->
               </td>
               <td>
-                <div class="counter">
-                  <span class="down" onClick='decreaseCount(event, this)'>-</span>
-                  <input type="text" value="1">
-                  <span class="up" onClick='increaseCount(event, this)'>+</span>
-                </div>
+                <input ng-change="cart.saveToLocalStorage()" type="number" ng-model="item.qty" min="1"
+                  style="width: 60px;">
               </td>
               <td>
-                <h5 class="price-cart"> 4,250,000₫</h5>
+                {{item.qty * item.giaSanPham | number}}đ
               </td>
-              <td><button class="delete-btn" onclick="deleteRow(this)"><span class="material-symbols-outlined">
-                    delete
-                  </span></button></td>
-            </tr>
-            <tr>
-              <td><input class="checkbox-cart" type="checkbox"></td>
-              <td>
-                <div class="d-lg-flex name-cart pt-3 pb-3">
-                  <img src="img/Ban.png" alt="Product 2" width="50" height="50">
-                  <h5>Tủ giày QUADA <br><span>Tủ giày</span> </h5>
-
-                </div>
-              </td>
-              <td>
-                <div class="counter">
-                  <span class="down" onClick='decreaseCount(event, this)'>-</span>
-                  <input type="text" value="1">
-                  <span class="up" onClick='increaseCount(event, this)'>+</span>
-                </div>
-              </td>
-              <td>
-                <h5 class="price-cart"> 4,250,000₫</h5>
-              </td>
-              <td><button class="delete-btn" onclick="deleteRow(this)"><span class="material-symbols-outlined">
+              <td><button class="delete-btn" ng-click="cart.remove(item.idSanPham)"><span
+                    class="material-symbols-outlined">
                     delete
                   </span></button></td>
             </tr>
           </tbody>
         </table>
+        <div>
+          <button class="btn btn-dark">Clear</button>
+        </div>
       </div>
       <div class="col-4">
         <div class="bill">
@@ -397,6 +377,29 @@
     </div>
   </footer>
 </body>
-<script src="js/cart.js"></script>
+<script src="/javascripts/shopping-cart-app.js"></script>
+
+
+<script>
+  function increaseCount(event, element) {
+    var input = element.parentElement.querySelector('input');
+    var value = parseInt(input.getAttribute('data-quantity'), 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    input.setAttribute('data-quantity', value);
+    input.value = value;
+  }
+
+  function decreaseCount(event, element) {
+    var input = element.parentElement.querySelector('input');
+    var value = parseInt(input.getAttribute('data-quantity'), 10);
+    if (value > 1) {
+      value = isNaN(value) ? 0 : value;
+      value--;
+      input.setAttribute('data-quantity', value);
+      input.value = value;
+    }
+  }
+</script>
 
 </html>

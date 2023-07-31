@@ -56,14 +56,15 @@ public class ProductController {
         return "User/User-product-Item";
     }
 
-    @PostMapping("/User/product/sale")
-    public String product_sale(Model model, @RequestParam("idSanPham") Integer idSanPham) {
-    
-        return "User/User-cart";
-    }
-       @GetMapping("/User/product/sale")
+    // @PostMapping("/User/product/sale")
+    // public String product_sale(Model model, @RequestParam("idSanPham") Integer idSanPham) {
+
+    //     return "User/User-cart";
+    // }
+
+    @GetMapping("/User/product/sale")
     public String demo(Model model) {
-    
+
         return "User/User-cart";
     }
 }

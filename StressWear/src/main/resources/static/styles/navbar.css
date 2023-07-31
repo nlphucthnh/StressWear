@@ -332,3 +332,72 @@
   top: 8px;
   color: #7f8692;
 }
+
+
+/* nav User */
+
+.registered-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.registered-group .registered-group-search {
+  
+  margin: 20px;
+}
+
+.registered-group .registered-group-search i{
+  font-size: 22px;
+}
+
+
+.registered-group .registered-group-cart  {
+  position: relative;
+  margin-right: 40px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.registered-group .registered-group-cart:hover {
+  transform: translateY(-5px);
+}
+
+.registered-group .registered-group-cart a{
+  color: #000000;
+  font-size: 22px;
+}
+
+.registered-group .registered-group-cart .number-item {
+  position: absolute;
+  right: -20px;
+}
+
+.registered-group  .registered-group-account {
+  text-align: right;
+  display: flex;
+  align-items: center;
+}
+
+.registered-group  .registered-group-account .registered-group-account-name-text{
+  font-family: var(--font_tertiary);
+  font-weight: 500;
+}
+
+.registered-group  .registered-group-account .registered-group-account-email-text {
+ font-size: 15px;
+  color: var(--gray_600);
+}
+
+.registered-group  .registered-group-account .registered-group-account-img {
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+}
+
+.registered-group  .registered-group-account .registered-group-account-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
