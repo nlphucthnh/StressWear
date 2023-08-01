@@ -51,7 +51,8 @@ public class TaiKhoan implements Serializable {
     @OneToOne(mappedBy = "taiKhoanGH")
     GioHang gioHangTK;
 
-   
+    @OneToMany(mappedBy = "taiKhoan")
+    List<VaiTroTaiKhoan> List_VTTK;
 
 
 }
