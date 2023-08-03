@@ -40,189 +40,13 @@
 </head>
 
 <body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-      <a href="/home-page"><img
-          src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/Logo%20website.png?alt=media&token=e446c505-b0a6-44a8-aad5-f7caccb1c28b"
-          style="background-color: var(--gray_25);" alt=""></a>
-      <div class="navbar-collapse">
-        <ul class="navbar-nav item-menu">
-          <li class="nav-item">
-            <a class="nav-link" href="/about-page">Giới thiệu</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/contact-page">Liên hệ</a>
-          </li>
-          <li class="nav-item dropdown dropdown-hover has-megamenu">
-            <a class="nav-link " href="/product-page"> Sản phẩm <i class="bi bi-chevron-down"></i></a>
-            <div class="dropdown-menu megamenu" role="menu">
-              <div class="row g-3">
-                <div class="col-lg-4 col-6 item-group">
-                  <div class="col-megamenu">
-                    <h6 class="title ">Loại quần áo</h6>
-                    <ul class="list-unstyled ">
-                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo thun -
-                          T-shirt</a>
-                        <p>Find the best solution for you.</p>
-                      </li>
-                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo tay dài
-                          - Long Sleeves</a>
-                        <p>Monitor your metrics.</p>
-                      </li>
-                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo len -
-                          Sweaters</a>
-                        <p>Surface hidden trends.</p>
-                      </li>
-                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo hoodie
-                          - Hoodie</a>
-                        <p>Measure B2B account health.</p>
-                      </li>
-
-                    </ul>
-                  </div> <!-- col-megamenu.// -->
-                </div><!-- end col-3 -->
-                <div class="col-lg-4 col-6 item-group">
-                  <div class="col-megamenu">
-                    <h6 class="title">&#160;</h6>
-                    <ul class="list-unstyled">
-
-                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Quần dài -
-                          Pants
-                        </a>
-                        <p>Analyze conversion rates.</p>
-                      </li>
-                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Quần ngắn
-                          - ShortShort</a>
-                        <p>Measure active usage.</p>
-                      </li>
-                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Váy -
-                          Skirt</a>
-                        <p>Find retention drivers./p>
-                      </li>
-                      <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Phụ kiện -
-                          Accessory
-                          goods</a>
-                        <p>Grow your user base faster.</p>
-                      </li>
-                    </ul>
-                  </div> <!-- col-megamenu.// -->
-                </div><!-- end col-3 -->
-                <div class="col-lg-4 col-6 room-group">
-                  <div class="col-megamenu">
-                    <h6 class="title">Danh mục sản phẩm</h6>
-                    <ul class="list-unstyled ">
-                      <li class="item-opsition-menu pb-2 ">
-                        <div class="d-flex align-items-center">
-                          <span class="material-symbols-sharp me-3">
-                            laundry
-                          </span>
-                          <div class="nav-icon">
-                            <a href="product-item-page">Danh mục áo - Tops</a>
-                            <p>Analyze conversion rates.</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="item-opsition-menu pb-2 ">
-                        <div class="d-flex align-items-center">
-                          <span class="material-symbols-sharp me-3">
-                            taunt
-                          </span>
-                          <div class="nav-icon">
-                            <a href="#">Danh mục quần - Bottoms</a>
-                            <p>Measure active usage.</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="item-opsition-menu pb-2 ">
-                        <div class="d-flex align-items-center">
-                          <span class="material-symbols-sharp me-3">
-                            man_2
-                          </span>
-                          <div class="nav-icon">
-                            <a href="product-item-page">Quần áo nam - Male</a>
-                            <p>Find retention drivers.</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="item-opsition-menu pb-2 ">
-                        <div class="d-flex align-items-center">
-                          <span class="material-symbols-sharp me-3">
-                            woman_2
-                          </span>
-                          <div class="nav-icon">
-                            <a href="product-item-page">Quần áo nữ - Female</a>
-                            <p>Grow your user base faster.</p>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div> <!-- col-megamenu.// -->
-                </div>
-              </div><!-- end row -->
-            </div> <!-- dropdown-mega-menu.// -->
-          </li>
-          <li class="nav-item">
-            <form class="d-flex mx-5 w-100">
-              <div class="input-group">
-                <input class="form-control me-2" type="search" placeholder="        Tìm kiếm" aria-label="Search">
-                <span class="input-group-icon material-symbols-outlined">
-                  search
-                </span>
-              </div>
-
-            </form>
-          </li>
-        </ul>
-
-      </div>
-      <!-- <ul class="navbar-nav item-menu ms-auto signin-group">
-            <li class="nav-item">
-                <a class="nav-link login" href="login-page">Đăng nhập</a>
-            </li>
-            <li class="nav-item sign-navbar ">
-                <a class="nav-link sigin" href="sign-up-page">Đăng ký</a>
-            </li>
-        </ul> -->
-
-      <div class="registered-group">
-        <!-- <div class="registered-group-search registered-item">
-              <i class="bi bi-search"></i>
-          </div> -->
-        <div class="registered-group-cart registered-item">
-          <a class="bi bi-bag"></a>
-          <!-- {{cart.count}} items x {{cart.amount | number : 2}} -->
-          <span class="number-item">{{cart.count}}</span>
-        </div>
-        <div class="registered-group-account registered-item">
-          <div class="registered-group-account-text">
-            <div class="registered-group-account-name-text">Thiện LC</div>
-            <div class="registered-group-account-email-text">Lethien@gmail.com</div>
-          </div>
-          <div class="registered-group-account-img dropdown">
-            <img class="img-avata-registered"
-              src="https://firebasestorage.googleapis.com/v0/b/future-interior.appspot.com/o/Null.png?alt=media"
-              alt="Avatar" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-              style="right: 50%; left: auto;  transform: translateX(50%); ">
-              <li><a class="dropdown-item" th:href="@{/person}">Hồ sơ cá nhân</a></li>
-              <li><a class="dropdown-item" th:href="@{/changePassword}">Đổi mật khẩu</a></li>
-
-              <li><a class="dropdown-item" th:href="@{/dangxuat}">Đăng xuất</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-
-
+  <nav th:replace="~{/layout/user-nav.html :: nav}"></nav>
   <div class="container mt-5">
     <div class="row">
       <div class="title-cart-main">
         <h1>Giỏ hàng</h1>
       </div>
-      <div class="col-8 my-3">
+      <div class="col-9 my-3">
         <table class="table">
           <thead>
             <tr class="title-cart">
@@ -236,17 +60,22 @@
           </thead>
           <tbody>
             <tr ng-repeat="item in cart.items">
-              <!-- <td><input class="checkbox-cart" type="checkbox"></td> -->
-              <td>{{item.tenSanPham}}</td>
-              <td>{{item.giaSanPham | number}}
-                <!-- <img src="img/Ban.png" alt="Product 2" width="50" height="50"> -->
+              <td>{{item.tenSanPham}}
+                
+              </td>
+              <td>
+                <span ng-if="item.khuyenMaiSP">{{item.giaSanPham * (1 - item.khuyenMaiSP.phanTramKhuyenMai/100) |
+                  number}}</span>
+                <span ng-if="!item.khuyenMaiSP">{{item.giaSanPham | number}}</span>
               </td>
               <td>
                 <input ng-change="cart.saveToLocalStorage()" type="number" ng-model="item.qty" min="1"
                   style="width: 60px;">
               </td>
-              <td>
-                {{item.qty * item.giaSanPham | number}}đ
+              <td class="table_cart">
+                <span ng-if="item.khuyenMaiSP">{{item.qty * item.giaSanPham * (1 -
+                  item.khuyenMaiSP.phanTramKhuyenMai/100) | number}}</span>
+                <span ng-if="!item.khuyenMaiSP">{{item.qty * item.giaSanPham | number}}</span>
               </td>
               <td><button class="delete-btn" ng-click="cart.remove(item.idSanPham)"><span
                     class="material-symbols-outlined">
@@ -256,10 +85,10 @@
           </tbody>
         </table>
         <div>
-          <button class="btn btn-dark">Clear</button>
+          <button class="btn btn-dark" ng-click="cart.clear()">Clear</button>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3" th:fragment="shopping-cart">
         <div class="bill">
 
 
@@ -268,35 +97,35 @@
               <label for="subtotal" class="form-label bill-text">Tổng phụ</label>
             </div>
             <div class="col-6">
-              <label for="discount" class="form-label bill-number ">4,250,000₫</label>
+              <label for="discount" class="form-label bill-number ">{{cart.amount | number}}</label>
             </div>
           </div>
 
           <div class="row mb-3">
             <div class="col-6">
-              <label for="subtotal" class="form-label bill-text">Giảm giá</label>
+              <label for="subtotal" class="form-label bill-text">Tổng số lượng</label>
             </div>
             <div class="col-6">
-              <label for="discount" class="form-label bill-number ">10%</label>
+              <label for="discount" class="form-label bill-number ">{{cart.count}}</label>
             </div>
           </div>
 
 
-          <div class="row mb-3">
+          <!-- <div class="row mb-3">
             <div class="col-6">
               <label for="subtotal" class="form-label bill-text">Phụ thu</label>
             </div>
             <div class="col-6">
-              <label for="discount" class="form-label bill-number ">50,000₫</label>
+              <label for="discount" class="form-label bill-number ">Không có</label>
             </div>
-          </div>
+          </div> -->
 
           <div class="row mb-3">
             <div class="col-6">
               <label for="subtotal" class="form-label bill-text">Phí vận chuyển</label>
             </div>
             <div class="col-6">
-              <label for="discount" class="form-label bill-number ">20,000₫</label>
+              <label for="discount" class="form-label bill-number ">Miễn phí</label>
             </div>
           </div>
           <hr class="my-4">
@@ -305,13 +134,13 @@
               <label for="subtotal" class="form-label bill-text">Tổng cộng:</label>
             </div>
             <div class="col-6">
-              <label for="discount" class="form-label bill-number ">3,890,000₫</label>
+              <label for="discount" class="form-label bill-number ">{{cart.amount | number}}</label>
             </div>
           </div>
           <div class="row mb-3">
             <div class="pay-bill">
-              <a href="adreess-page">
-                <button class="btn-pay">Thanh toán </button></a>
+              <a th:href="@{/User/address}">
+                <button class="btn-pay">Tiếp tục thanh toán</button></a>
             </div>
           </div>
 

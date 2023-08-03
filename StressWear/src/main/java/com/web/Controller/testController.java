@@ -7,38 +7,42 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class testController {
 
     @GetMapping("hello")
-    public String getPage(){
+    public String getPage() {
         return "Manager/Manager-filter-page.html";
     }
 
-    @GetMapping("index")
-    public String index(){
-        return "User/User-index";
+    @GetMapping("login")
+    public String getLogin() {
+        return "User-login-page";
     }
 
-       @GetMapping("about")
-    public String about(){
+    // @GetMapping("index")
+    // public String index() {
+    //     return "User/User-index";
+    // }
+
+    @GetMapping("about")
+    public String about() {
         return "User/User-about";
     }
 
     @GetMapping("product")
-    public String product(){
+    public String product() {
         return "User/User-product";
     }
 
     @GetMapping("product-list")
-    public String productlist(){
+    public String productlist() {
         return "User/User-product-List";
     }
-    
+
     @GetMapping("product-item")
-    public String productItem(){
+    public String productItem() {
         return "User/User-product-Item";
     }
 
-
     @GetMapping("/manager/filter")
-    public String ManagerFilter(){
+    public String ManagerFilter() {
         return "Manager/Manager-filter-page";
     }
 }
