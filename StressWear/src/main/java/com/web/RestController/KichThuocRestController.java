@@ -33,7 +33,7 @@ public class KichThuocRestController {
 
     @GetMapping("{id}")
     public ResponseEntity<KichThuoc> findById(@PathVariable("id") String idKichThuoc){
-       Optional<KichThuoc> optional = kichThuocDAO.findById(Integer.valueOf(idKichThuoc));
+       Optional<KichThuoc> optional = kichThuocDAO.findById(idKichThuoc);
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -51,7 +51,7 @@ public class KichThuocRestController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<KichThuoc> put(@PathVariable("id") Integer idKichThuoc, @RequestBody KichThuoc kichThuoc){
+    public ResponseEntity<KichThuoc> put(@PathVariable("id") String idKichThuoc, @RequestBody KichThuoc kichThuoc){
         if(!kichThuocDAO.existsById(idKichThuoc)){
             return ResponseEntity.notFound().build();
         }
@@ -60,7 +60,7 @@ public class KichThuocRestController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer idKichThuoc){
+    public ResponseEntity<Void> delete(@PathVariable("id") String idKichThuoc){
        if(!kichThuocDAO.existsById(idKichThuoc)){
             return ResponseEntity.notFound().build();
         }

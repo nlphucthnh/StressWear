@@ -2,15 +2,10 @@ package com.web.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class testController {
 
-    @GetMapping("hello")
-    public String getPage() {
-        return "Manager/Manager-filter-page.html";
-    }
 
     @GetMapping("index")
     public String index() {
@@ -35,11 +30,6 @@ public class testController {
     @GetMapping("product-item")
     public String productItem() {
         return "User/User-product-Item";
-    }
-
-    @GetMapping("/manager/filter")
-    public String ManagerFilter() {
-        return "Manager/Manager-filter-page";
     }
 
     // @RequestMapping("login-page")

@@ -1,10 +1,11 @@
 package com.web.DAO;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.web.Entity.NhomLoai;
 import com.web.Entity.SanPham;
 import java.util.List;
 
@@ -17,6 +18,8 @@ public interface SanPhamDAO extends JpaRepository<SanPham, Integer> {
 
     @Query("SELECT p FROM SanPham p WHERE p.nhomLoaiSP.idNhomLoai = ?1 AND p.giaSanPham BETWEEN ?2 AND ?3")
     List<SanPham> findByLoaiSanphamPrice(Integer idNhomLoai, Sort sort, int min, int max);
+
+    Page<SanPham> findByTenSanPham(String nameproduct, Pageable pageableSP);
 
 
 }

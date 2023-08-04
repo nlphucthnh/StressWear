@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.web.DAO.PhuongThucThanhToanDAO;
 import com.web.DAO.TaiKhoanDAO;
-import com.web.DAO.ThanhToanDAO;
 import com.web.DAO.ThongTinGiaoHangDAO;
 import com.web.Entity.PhuongThucThanhToan;
 import com.web.Entity.TaiKhoan;
-import com.web.Entity.ThanhToan;
 import com.web.Entity.ThongTinGiaoHang;
 
 @Controller

@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -17,16 +16,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@IdClass(DanhSachKTKey.class)
 @Table(name = "danh_sach_kt")
 public class DanhSachKT {
     @Id
-    @Column(name = "id_kich_thuoc")
-    private int idKichThuoc;
-    @Id
-    @Column(name = "id_san_pham_chi_tiet")
+    @Column(name = "id_danh_sach_kt")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idSanPhamChiTiet;
+    private int idDanhSachKT;
 
     @ManyToOne
     @JoinColumn(name = "id_kich_thuoc", insertable = false, updatable = false)

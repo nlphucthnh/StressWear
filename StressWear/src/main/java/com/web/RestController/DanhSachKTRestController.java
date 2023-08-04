@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.web.DAO.DanhSachKTDAO;
 import com.web.Entity.DanhSachKT;
-import com.web.Entity.DanhSachKTKey;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -33,12 +31,12 @@ public class DanhSachKTRestController {
     }
 
     @GetMapping("sanphamchitiet/{id}")
-    public ResponseEntity<List<DanhSachKT>> findById(@PathVariable("id") Integer idSanPhamChiTiet){
+    public ResponseEntity<List<DanhSachKT>> findByListSPCTById(@PathVariable("id") Integer idSanPhamChiTiet){
         return ResponseEntity.ok(danhSachKTDAO.findByIdSanPhamChiTiet(idSanPhamChiTiet));        
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<DanhSachKT> findById(@PathVariable("id") DanhSachKTKey idDanhSachKT){
+    public ResponseEntity<DanhSachKT> findById(@PathVariable("id") Integer idDanhSachKT){
        Optional<DanhSachKT> optional = danhSachKTDAO.findById(idDanhSachKT);
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
@@ -49,8 +47,7 @@ public class DanhSachKTRestController {
 
     @PostMapping()
     public ResponseEntity<DanhSachKT> post(@RequestBody DanhSachKT danhSachKT){
-        DanhSachKTKey DanhSachKTKey = new DanhSachKTKey(danhSachKT.getIdKichThuoc(), danhSachKT.getIdSanPhamChiTiet());
-        if(danhSachKTDAO.existsById(DanhSachKTKey)){
+        if(danhSachKTDAO.existsById(danhSachKT.getIdDanhSachKT())){
             return ResponseEntity.badRequest().build();
         }
         danhSachKTDAO.save(danhSachKT);
@@ -58,7 +55,7 @@ public class DanhSachKTRestController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<DanhSachKT> put(@PathVariable("id") DanhSachKTKey idDanhSachKT, @RequestBody DanhSachKT danhSachKT){
+    public ResponseEntity<DanhSachKT> put(@PathVariable("id") Integer idDanhSachKT, @RequestBody DanhSachKT danhSachKT){
         if(!danhSachKTDAO.existsById(idDanhSachKT)){
             return ResponseEntity.notFound().build();
         }
@@ -67,7 +64,7 @@ public class DanhSachKTRestController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") DanhSachKTKey idDanhSachKT){
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer idDanhSachKT){
        if(!danhSachKTDAO.existsById(idDanhSachKT)){
             return ResponseEntity.notFound().build();
         }
