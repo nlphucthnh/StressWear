@@ -16,7 +16,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="/javascripts/library-js/angular.min.js"></script>
+    <script src="/javascripts/library-js/angular-route.js"></script>
     <!-- Bootstrap JavaScript: -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -33,7 +34,7 @@
 <body>
     <div class="background-manager">
         <nav id="Manager_Navigation" th:include="components/Manager-navigation"></nav>
-        <div id="Manager_Content">
+        <div id="Manager_Content" ng-app="app" ng-controller="ctrl-sp">
             <div class="header_content">
                 <div class="header_content_text-group">
                     <h3 class="header_content_main-text text-title">Quản lý sản phẩm</h3>
@@ -64,37 +65,33 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="list_product" role="tabpanel" aria-labelledby="list-product-tab">
                         <div class="list_product-header">
-                            <div class="list_product-header-seletion-group">
-                                <form action="/Manager/product/sort" method="post">
-                                    <div class="mb-3" style="margin-right: 10px;">
-                                        <a class="btn btn-style filte-sort" id="sort-down-id" style="height: 100%;"><i
-                                                class="bi bi-sort-up"></i></a>
-                                        <a class="btn btn-style filte-sort" id="sort-up-id"
-                                            style="height: 100%;display: none;"><i class="bi bi-sort-down-alt"></i></a>
-                                    </div>
-                                    <div class="mb-3" style="margin-right: 20px;">
-                                        <select class="form-select form-select-lg" name="sortField" id="sortField">
-                                            <option selected>Nhóm loại</option>
-                                            <option value="giaSanPham">Đơn
-                                                giá sản phẩm</option>
-                                            <option value="ngayTaoSanPham">Ngày tạo</option>
-                                            <option value="soLuong">Số lượng
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <button style="display: none;" id="Sort">Sắp sếp</button>
-                                </form>
+                            <div class="list_product-header-seletion-group d-flex">
+                                <div class="mb-3" style="margin-right: 10px;">
+                                    <button ng-click="sort_list_sp(false)" class="btn btn-style filte-sort"
+                                        id="sort-down-id" style="height: 100%;"><i class="bi bi-sort-up"></i></button>
+                                    <button ng-click="sort_list_sp(true)" class="btn btn-style filte-sort"
+                                        id="sort-up-id" style="height: 100%;display: none;"><i
+                                            class="bi bi-sort-down-alt"></i></button>
+                                </div>
+                                <div class="mb-3" style="margin-right: 20px;">
+                                    <select class="form-select form-select-lg" name="sortField" id="sortField">
+                                        <option value="tenSanPham" selected>Tên sản phẩm</option>
+                                        <option value="giaSanPham">Giá sản phẩm</option>
+                                        <option value="ngayTaoSanPham">Ngày tạo sản phẩm</option>
+                                        <option value="soLuongSP">Số lượng sản phẩm</option>
+                                    </select>
+                                </div>
+                                <button style="display: none;" id="Sort">Sắp sếp</button>
                             </div>
                             <div class="list_product-header-search-group">
-                                <form action="/Manager/product/search" method="post">
-                                    <div class="input-group mb-3">
-                                        <button class="btn btn-outline-secondary box-shadow-none" type="button"
-                                            id="button-search"><i class="bi bi-search"></i></button>
-                                        <input type="text" class="form-control box-shadow-none" name="searchText"
-                                            placeholder="Tìm kiếm" aria-label="Example text with button addon"
-                                            aria-describedby="button-search">
-                                    </div>
-                                </form>
+                                <div class="input-group mb-3">
+                                    <button ng-click="paging_data_sp(text_search,0)"
+                                        class="btn btn-outline-secondary box-shadow-none" type="button"
+                                        id="button-search"><i class="bi bi-search"></i></button>
+                                    <input ng-model="text_search" type="text" class="form-control box-shadow-none"
+                                        name="searchText" placeholder="Tìm kiếm"
+                                        aria-label="Example text with button addon" aria-describedby="button-search">
+                                </div>
                             </div>
                         </div>
                         <div class="list_product-body">
@@ -113,50 +110,45 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <!-- <form action=""> -->
+                                        <tr ng-repeat="sp in list_sp | orderBy : sort_list">
                                             <td scope="row" class="td-first-table">
                                                 <div class="text-product-group m-0">
-                                                    <h4 class="text-title-product text-title">Bàn QUADA</h4>
-                                                    <h6 class="text-id-product text-title">SP212
-                                                    </h6>
+                                                    <h4 class="text-title-product text-title">{{sp.tenSanPham}}</h4>
+                                                    <h6 class="text-id-product text-title">{{sp.idSanPham}}</h6>
                                                 </div>
                                             </td>
-                                            <td>...</td>
-                                            <td>...</td>
+                                            <td>{{sp.soLuongSP}}</td>
+                                            <td>{{sp.giaSanPham}}</td>
+                                            <td>{{convert_date(sp.ngayTaoSanPham)}}</td>
                                             <td>
-                                                13/03/2023</td>
-                                            <td>
-                                                <button class="btn" style="color: var(--gray_600);"><i
-                                                        class="bi bi-trash-fill"></i></button>
-                                                <button class="btn" style="color: var(--gray_600);"><i
+                                                <button ng-click="edit_sp(sp)" class="btn"
+                                                    style="color: var(--gray_600);"><i
                                                         class="bi bi-pen-fill"></i></button>
+                                                <button ng-click="delete_sp(sp.idSanPham)" class="btn"
+                                                    style="color: var(--gray_600);"><i
+                                                        class="bi bi-trash-fill"></i></button>
                                             </td>
-                                            <!-- </form> -->
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td style="text-align: left;">
-                                                <!-- <a class="btn-style btn-prev disnable"
-                                                    th:if="${pageSP.number == 0}">Trước đó</a>
-                                                <a class="btn-style btn-prev" th:if="${pageSP.number > 0}"
-                                                    th:href="@{/Manager/product?page=__${pageSP.number-1}__}">Trước
-                                                    đó</a>
-                                                <a class="btn-style btn-next"
-                                                    th:if="${pageSP.number < pageSP.totalPages - 1}"
-                                                    th:href="@{/Manager/product?page=__${pageSP.number+1}__}">Kế
-                                                    tiếp</a>
-                                                <a class="btn-style btn-next disnable"
-                                                    th:if="${pageSP.number == pageSP.totalPages - 1}">Kế tiếp</a> -->
-                                                <button class="btn-style btn-prev m-0">Trước đó</button>
-                                                <button class="btn-style btn-next m-0">Kế tiếp</button>
+                                                <button ng-if="infor_sp.number == 0"
+                                                    class="btn-style btn-prev m-0 disnable">Trước đó</button>
+                                                <button ng-if="infor_sp.number > 0"
+                                                    ng-click="paging_data_sp(text_search,infor_sp.number - 1)"
+                                                    class="btn-style btn-prev m-0">Trước đó</button>
+                                                <button ng-if="infor_sp.number < infor_sp.totalPages - 1"
+                                                    ng-click="paging_data_sp(text_search,infor_sp.number + 1)"
+                                                    class="btn-style btn-next m-0">Kế tiếp</button>
+                                                <button ng-if="infor_sp.number == infor_sp.totalPages - 1"
+                                                    class="btn-style btn-next m-0 disnable">Kế tiếp</button>
                                             </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                             <td>
-                                                Trang 1 của 10
+                                                Trang {{infor_sp.number + 1}} của {{infor_sp.totalPages}}
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -167,26 +159,29 @@
                     </div>
                     <div class="tab-pane" id="form_product" role="tabpanel" aria-labelledby="form-product-tab">
                         <div class="form_product-pane">
-                            <form action="/Manager/product/create" method="post">
+                           
                                 <div class="group-fleld group-fleld-01">
                                     <div class="mb-3 form-group">
                                         <label for="id_product" class="form-label">Mã sản phẩm</label>
-                                        <input type="text" name="id-product" id="id_product"
-                                            class="form-control box-shadow-none input-form" placeholder="">
+                                        <input ng-model="form_sp.idSanPham" type="text" name="id-product"
+                                            id="id_product" class="form-control box-shadow-none input-form"
+                                            placeholder="">
                                         <small id="id_product-text" class="text-muted" style="display: none;">Vui lòng
                                             nhập mã sản phẩm</small>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="name_product" class="form-label">Tên sản phẩm</label>
-                                        <input type="text" name="name-product" id="name_product"
-                                            class="form-control box-shadow-none  input-form" placeholder="">
+                                        <input ng-model="form_sp.tenSanPham" type="text" name="name-product"
+                                            id="name_product" class="form-control box-shadow-none  input-form"
+                                            placeholder="">
                                         <small id="name_product-text" class="text-muted" style="display: none;">Vui lòng
                                             nhập tên sản phẩm</small>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="price_product" class="form-label">Đơn giá</label>
                                         <div class="input-group">
-                                            <input type="text" data-type="currency" name="price-product" id="price_product"
+                                            <input ng-model="form_sp.giaSanPham" type="text" data-type="currency"
+                                                name="price-product" id="price_product"
                                                 class="form-control box-shadow-none input-form" placeholder=""
                                                 aria-describedby="price_product-span">
                                             <span class="input-group-text" id="price_product-span">VND</span>
@@ -201,10 +196,14 @@
                                         <div class="input-group">
                                             <span class="input-group-text" id="card-credit"><i class="bi-layers-fill"
                                                     style="color: var(--gray_700);"></i></span>
-                                            <select class="form-control form-select box-shadow-none"
+                                            <select ng-model="form_sp.nhomLoaiSP"
+                                                class="form-control form-select box-shadow-none"
                                                 name="type-group-product" id="type-group_product"
                                                 aria-describedby="card-credit">
-                                                <option>...</option>
+                                                <option selected>{{form_sp.nhomLoaiSP.tenNhomLoai}}</option>
+                                                <option ng-repeat="nl in list_nl" value="nl.idNhomLoai">
+                                                    {{nl.tenNhomLoai}}
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -221,15 +220,17 @@
                                 <div class="group-fleld group-fleld-03">
                                     <div class="mb-3 form-group">
                                         <label for="quatity_product" class="form-label">Số lượng sản phẩm</label>
-                                        <input type="text" name="quatity-product" id="quatity_product"
-                                            class="form-control box-shadow-none input-form" placeholder="">
+                                        <input ng-model="form_sp.soLuongSP" type="number" name="quatity-product"
+                                            id="quatity_product" class="form-control box-shadow-none input-form"
+                                            placeholder="">
                                         <small id="quatity_product-text" class="text-muted" style="display: none;">Vui
                                             lòng nhập số lượng sản phẩm</small>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="date_product" class="form-label">Ngày đăng</label>
-                                        <input type="date" name="date-product" id="date_product"
-                                            class="form-control box-shadow-none input-form" placeholder="">
+                                        <input ng-model="form_sp.ngayTaoSanPham" type="date" name="date-product"
+                                            id="date_product" class="form-control box-shadow-none input-form"
+                                            placeholder="">
                                         <small id="date_product-text" class="text-muted" style="display: none;">Vui lòng
                                             nhập ngày đăng sản phẩm</small>
                                     </div>
@@ -237,8 +238,8 @@
                                 <div class="group-fleld group-fleld-011">
                                     <div class="mb-3 form-group">
                                         <label for="" class="form-label">Mô tả sản phẩm</label>
-                                        <textarea class="form-control input-form" name="" id="description_product"
-                                            rows="9"></textarea>
+                                        <textarea ng-model="form_sp.moTaSanPham" class="form-control input-form" name=""
+                                            id="description_product" rows="9"></textarea>
                                         <small id="description_product-text" class="text-muted"
                                             style="display: none;">Vui lòng nhập mô tả sản phẩm</small>
                                     </div>
@@ -256,56 +257,53 @@
                                             <thead>
                                                 <tr class="table-active">
                                                     <th scope="col" style="text-align: left;">
-                                                        <form action="" method="post">
+                                                       
                                                             <input class="form-check-input box-shadow-none"
                                                                 style="margin-right: 10px;" name="" id=""
                                                                 type="checkbox" value="checkedValue"
                                                                 aria-label="Text for screen reader">
                                                             Mẫu sản phẩm
                                                             <i class="bi bi-arrow-down"></i>
-                                                        </form>
+                                                     
                                                     </th>
-                                                    <th scope="col">Mã hex</th>
+                                                    <th scope="col">Thuộc sản phẩm</th>
+                                                    <th scope="col">Tên màu sắc</th>
                                                     <th scope="col">Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="body-table-chatlieu">
-                                                <tr>
-                                                    <!-- <form action=""> -->
+                                                <tr ng-repeat="spct in list_spct">
                                                     <td scope="row" class="td-first-table">
                                                         <div class="text-product-group">
-                                                            <h4 class="text-title-product text-title">
-                                                                Tên mẫu sản phẩm
+                                                            <h4 class="text-title-product text-title">{{spct.tenMau}}
                                                             </h4>
                                                             <h6 class="text-id-product text-title">
-                                                                Mã mẫu sản phẩm</h6>
+                                                                {{spct.idSanPhamChiTiet}}</h6>
                                                         </div>
                                                     </td>
-                                                    <td>#102123
-                                                    </td>
+                                                    <td>{{spct.sanPhamSPCT.tenSanPham}}</td>
+                                                    <td>{{spct.mauSacSPCT.tenMauSac}}</td>
                                                     <td>
+                                                        <button ng-click="edit_spct(spct)" data-bs-toggle="modal" data-bs-target="#product-samples"
+                                                            class="btn" style="color: var(--gray_600);"><i
+                                                                class="bi bi-pen-fill"></i></button>
+                                                                
                                                         <button class="btn" style="color: var(--gray_600);"><i
                                                                 class="bi bi-trash-fill"></i></button>
-                                                        <button class="btn" style="color: var(--gray_600);"><i
-                                                                class="bi bi-pen-fill"></i></button>
                                                     </td>
-                                                    <!-- </form> -->
                                                 </tr>
-
                                             </tbody>
-
                                         </table>
-
                                     </div>
                                 </div>
                                 <div class="group-fleld group-fleld-012">
                                     <a href="/Manager/product/clear" class="btn btn-style btn-clear">Làm mới</a>
-                                    <button class="btn btn-style btn-update">Cập
+                                    <button class="btn btn-style btn-update btn-update-sp">Cập
                                         nhật</button>
-                                    <button class="btn btn-style btn-add">Thêm
+                                    <button class="btn btn-style btn-add btn-update-sp">Thêm
                                         mới</button>
                                 </div>
-                            </form>
+                           
                         </div>
                     </div>
                 </div>
@@ -319,147 +317,134 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="">
-                                <div class="group-fleld group-fleld-01">
-                                    <div class="mb-3 form-group">
-                                        <label for="id_product" class="form-label">Tên mẫu sản phẩm</label>
-                                        <input type="text" name="name-product-samples" id="name_product-samples"
-                                            class="form-control box-shadow-none input-form" placeholder="">
-                                        <small id="id_product-text" class="text-muted" style="display: none;">Vui lòng
-                                            nhập tên mẫu</small>
-                                    </div>
-                                    <div class="mb-3 form-group">
-                                        <label for="name_product" class="form-label">Mã màu hex</label>
-                                        <div class="input-group">
-                                            <input type="color" style="height: inherit; width: 20%;"
-                                                name="code-hex-color" id="code_hex-color"
-                                                class="form-control box-shadow-none" placeholder=""
-                                                aria-describedby="price_product-span">
-                                            <input type="text" style="width: 80%;" name="" id="input-text-color"
-                                                class="form-control box-shadow-none  input-form" placeholder="">
-                                        </div>
-                                        <small id="name_product-text" class="text-muted" style="display: none;">Vui lòng
-                                            nhập mã hex</small>
-                                    </div>
-                                    <div class="mb-3 form-group">
-                                        <label for="price_product" class="form-label">Ngày tạo mẫu</label>
-                                        <input type="date" name="date-product-samples" id="date_product-samples"
-                                            class="form-control box-shadow-none input-form" placeholder=""
+                            <div class="group-fleld group-fleld-01">
+                                <div class="mb-3 form-group">
+                                    <label for="id_product" class="form-label">Tên mẫu sản phẩm</label>
+                                    <input ng-model="form_spct.tenMau" type="text" name="name-product-samples" id="name_product-samples"
+                                        class="form-control box-shadow-none input-form" placeholder="">
+                                    <small id="id_product-text" class="text-muted" style="display: none;">Vui lòng
+                                        nhập tên mẫu</small>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="id_product" class="form-label">Tên màu sản phẩm</label>
+                                    <input ng-model="form_spct.mauSacSPCT.tenMauSac" type="text" name="name-product-samples" id="name_product-samples"
+                                        class="form-control box-shadow-none input-form" placeholder="">
+                                    <small id="id_product-text" class="text-muted" style="display: none;">Vui lòng
+                                        nhập tên màu</small>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="name_product" class="form-label">Mã màu hex</label>
+                                    <div class="input-group">
+                                        <input type="color" style="height: inherit; width: 20%;" name="code-hex-color"
+                                            id="code_hex-color" class="form-control box-shadow-none" placeholder=""
                                             aria-describedby="price_product-span">
-                                        <small id="price_product-text" class="text-muted" style="display: none;">Vui
-                                            lòng nhập đơn giá sản phẩm</small>
+                                        <input ng-model="form_spct.mauSacSPCT.maHex" type="text" style="width: 80%;" name="" id="input-text-color"
+                                            class="form-control box-shadow-none input-form" placeholder="">
+                                    </div>
+                                    <small id="name_product-text" class="text-muted" style="display: none;">Vui lòng
+                                        nhập mã hex</small>
+                                </div>
+                            </div>
+                            <div class="group-fleld group-fleld-01">
+                                <div class="mb-3 form-group check-box-size">
+                                    <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                        <h6 class="text-title">Size S (Smail)</h6>
+                                        <input ng-model="list_size" class="form-check-input form-control box-shadow-none" type="checkbox"
+                                            value="S" id="sizeS" name="sizecheck">
                                     </div>
                                 </div>
-                                <div class="group-fleld group-fleld-01">
-                                    <div class="mb-3 form-group check-box-size">
-                                        <div
-                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
-                                            <h6 class="text-title">Size S (Smail)</h6>
-                                            <input class="form-check-input form-control box-shadow-none" type="checkbox"
-                                                value="S" id="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 form-group check-box-size">
-                                        <div
-                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
-                                            <h6 class="text-title">Size M (Medium)</h6>
-                                            <input class="form-check-input form-control box-shadow-none" type="checkbox"
-                                                value="M" id="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 form-group check-box-size">
-                                        <div
-                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
-                                            <h6 class="text-title">Size L (Large)</h6>
-                                            <input class="form-check-input form-control box-shadow-none" type="checkbox"
-                                                value="L" id="">
-                                        </div>
+                                <div class="mb-3 form-group check-box-size">
+                                    <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                        <h6 class="text-title">Size M (Medium)</h6>
+                                        <input  ng-model="list_size" class="form-check-input form-control box-shadow-none" type="checkbox"
+                                            value="M" id="sizeM" name="sizecheck">
                                     </div>
                                 </div>
-                                <div class="group-fleld group-fleld-02">
-                                    <div class="mb-3 form-group check-box-size">
-                                        <div
-                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
-                                            <h6 class="text-title">Size XL (Extra Large)</h6>
-                                            <input class="form-check-input form-control box-shadow-none" type="checkbox"
-                                                value="XL" id="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 form-group check-box-size">
-                                        <div
-                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
-                                            <h6 class="text-title">Size XXL (Double Extra Large)</h6>
-                                            <input class="form-check-input form-control box-shadow-none" type="checkbox"
-                                                value="XXL" id="">
-                                        </div>
+                                <div class="mb-3 form-group check-box-size">
+                                    <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                        <h6 class="text-title">Size L (Large)</h6>
+                                        <input  ng-model="list_size" class="form-check-input form-control box-shadow-none" type="checkbox"
+                                            value="L" id="sizeL" name="sizecheck">
                                     </div>
                                 </div>
-                                <div class="group-fleld group-fleld-07">
-                                    <div class="table-responsive" style="height: 400px; overflow: auto;">
-                                        <table class="table  m-0 table-hover ">
-                                            <div class="on-the-table">
-                                                <h6 class="on-the-table-title text-title">Hình ảnh sản phẩm</h6>
-                                                <div class="btn-group">
-                                                    <button id="btn-loading" class="btn on-the-table-button btn-style"
-                                                        style="background-color: var(--gray_900); display: none;"
-                                                        type="button" disabled>
-                                                        <span class="spinner-border spinner-border-sm" role="status"
-                                                            aria-hidden="true"></span>
-                                                        đăng tải ...
-                                                    </button>
-                                                    <a style="cursor: pointer;" onclick="UploadImg()" id="uploadImg"
-                                                        class="on-the-table-button btn-style"><i class="bi-upload"></i>
-                                                        Thêm ảnh lên</a>
-                                                    <input id="fileUpload" type="file" style="display: none;"
-                                                        accept="image/png, image/gif, image/jpeg">
-                                                </div>
+                            </div>
+                            <div class="group-fleld group-fleld-02">
+                                <div class="mb-3 form-group check-box-size">
+                                    <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                        <h6 class="text-title">Size XL (Extra Large)</h6>
+                                        <input  ng-model="list_size" class="form-check-input form-control box-shadow-none" type="checkbox"
+                                            value="XL" id="sizeXL" name="sizecheck">
+                                    </div>
+                                </div>
+                                <div class="mb-3 form-group check-box-size">
+                                    <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                        <h6 class="text-title">Size XXL (Double Extra Large)</h6>
+                                        <input  ng-model="list_size" class="form-check-input form-control box-shadow-none" type="checkbox"
+                                            value="XXL" id="sizeXXL" name="sizecheck">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group-fleld group-fleld-07">
+                                <div class="table-responsive" style="height: 400px; overflow: auto;">
+                                    <table class="table  m-0 table-hover ">
+                                        <div class="on-the-table">
+                                            <h6 class="on-the-table-title text-title">Hình ảnh sản phẩm</h6>
+                                            <div class="btn-group">
+                                                <button id="btn-loading" class="btn on-the-table-button btn-style"
+                                                    style="background-color: var(--gray_900); display: none;"
+                                                    type="button" disabled>
+                                                    <span class="spinner-border spinner-border-sm" role="status"
+                                                        aria-hidden="true"></span>
+                                                    đăng tải ...
+                                                </button>
+                                                <button ng-click="add_image()" style="cursor: pointer;" id="uploadImg"
+                                                    class="on-the-table-button btn-style"><i class="bi-upload"></i>
+                                                    Thêm ảnh lên</button>
+                                                <input id="fileUpload" type="file" style="display: none;"
+                                                    accept="image/png, image/gif, image/jpeg">
                                             </div>
-                                            <thead>
-                                                <tr class="table-active">
-                                                    <th scope="col" style="text-align: left;">
-                                                        <form action="" method="post">
-                                                            <input class="form-check-input box-shadow-none"
-                                                                style="margin-right: 10px;" name="" id=""
-                                                                type="checkbox" value="checkedValue"
-                                                                aria-label="Text for screen reader">
-                                                            File ảnh
-                                                            <i class="bi bi-arrow-down"></i>
-                                                        </form>
-                                                    </th>
-                                                    <th scope="col">Dung lượng</th>
-                                                    <th scope="col">Ngày đăng</th>
-                                                    <th scope="col">Thao tác</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="body-table-hinhanh">
-                                                <tr>
-                                                    <!-- <form action=""> -->
-                                                    <td scope="row" style="text-align: left;"></td>
-                                                    <td>...</td>
-                                                    <td>...</td>
-                                                    <td>
-                                                        <a class="btn btn-deleteHinhAnh"
-                                                            style="color: var(--gray_600);"><i
-                                                                class="bi bi-trash-fill"></i></a>
-                                                    </td>
-                                                    <!-- </form> -->
-                                                </tr>
+                                        </div>
+                                        <thead>
+                                            <tr class="table-active">
+                                                <th scope="col" style="text-align: left;">
+                                                    <form action="" method="post">
+                                                        <input class="form-check-input box-shadow-none"
+                                                            style="margin-right: 10px;" name="" id="" type="checkbox"
+                                                            value="checkedValue" aria-label="Text for screen reader">
+                                                        File ảnh
+                                                        <i class="bi bi-arrow-down"></i>
+                                                    </form>
+                                                </th>
+                                                <th scope="col">Dung lượng</th>
+                                                <th scope="col">Ngày đăng</th>
+                                                <th scope="col">Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="body-table-hinhanh">
+                                            <tr ng-repeat="ha in list_ha">
+                                                <td scope="row" style="text-align: left;">{{ha.hinhAnh.tenHinhAnh}}</td>
+                                                <td>{{ha.hinhAnh.dungLuongAnh}}</td>
+                                                <td>{{ha.hinhAnh.ngayDang}}</td>
+                                                <td>
+                                                    <a class="btn btn-deleteHinhAnh" style="color: var(--gray_600);"><i
+                                                            class="bi bi-trash-fill"></i></a>
+                                                </td>
+                                            </tr>
 
 
-                                            </tbody>
+                                        </tbody>
 
-                                        </table>
+                                    </table>
 
-                                    </div>
                                 </div>
-                                <div class="group-fleld group-fleld-012">
-                                    <a href="/Manager/product/clear" class="btn btn-style btn-clear">Làm mới</a>
-                                    <button class="btn btn-style btn-update">Cập
-                                        nhật</button>
-                                    <button class="btn btn-style btn-add">Thêm
-                                        mới</button>
-                                </div>
-                            </form>
+                            </div>
+                            <div class="group-fleld group-fleld-012">
+                                <a href="/Manager/product/clear" class="btn btn-style btn-clear">Làm mới</a>
+                                <button class="btn btn-style btn-update">Cập
+                                    nhật</button>
+                                <button class="btn btn-style btn-add">Thêm
+                                    mới</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -467,20 +452,19 @@
         </div>
     </div>
 </body>
+
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 <script>
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
-        apiKey: "AIzaSyCUZaW0hNyvWSRNVD5OQjeeZ0k5vocOmNI",
-        authDomain: "future-interior.firebaseapp.com",
-        projectId: "future-interior",
-        storageBucket: "future-interior.appspot.com",
-        messagingSenderId: "103193903702",
-        appId: "1:103193903702:web:ddd07a90bb6875d323b1f7",
-        measurementId: "G-66HZGSVJRJ"
+        apiKey: "AIzaSyDzk3CBG4Cc0EGApODvEXqv8c1fmMSiOCQ",
+        authDomain: "ztress-zear.firebaseapp.com",
+        projectId: "ztress-zear",
+        storageBucket: "ztress-zear.appspot.com",
+        messagingSenderId: "558307648015",
+        appId: "1:558307648015:web:5fbfe15cf8bdfa15ee397a"
     };
-
+    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 </script>
 

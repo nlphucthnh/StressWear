@@ -1,6 +1,5 @@
 package com.web.RestController;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.web.DAO.KhuyenMaiDAO;
 import com.web.DAO.NhomLoaiDAO;
+import com.web.DAO.SanPhamDAO;
 import com.web.Entity.*;
 
 @RestController
@@ -28,6 +28,9 @@ public class testRestController {
 
     @Autowired
     KhuyenMaiDAO khuyenMaiDAO;
+
+    @Autowired
+    SanPhamDAO sanPhamDAO;
     
     @GetMapping("nhomloai/paging")
     public ResponseEntity<Page<NhomLoai>> findAllPage(@RequestParam("page") Optional<Integer> numberpage){
@@ -41,5 +44,12 @@ public class testRestController {
         Pageable pageableKM = PageRequest.of(numberpage.orElse(0), 5);
         Page<KhuyenMai> pageKhuyenMai = (Page) khuyenMaiDAO.findAll(pageableKM);
         return ResponseEntity.ok(pageKhuyenMai);
+    }
+
+    @GetMapping("sanpham/paging")
+    public ResponseEntity<Page<SanPham>> findAllPage2(@RequestParam(name = "name", defaultValue = "") String nameproduct,@RequestParam("page") Optional<Integer> numberpage){
+        Pageable pageableSP = PageRequest.of(numberpage.orElse(0), 5);
+        Page<SanPham> pageSanPham = sanPhamDAO.findByTenSanPham(nameproduct, pageableSP);
+        return ResponseEntity.ok(pageSanPham);
     }
 }

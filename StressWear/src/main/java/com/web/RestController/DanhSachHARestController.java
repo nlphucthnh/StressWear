@@ -19,26 +19,6 @@ import com.web.DAO.DanhSachHADAO;
 import com.web.Entity.DanhSachHA;
 import com.web.Entity.DanhSachHAKey;
 
-// @RestController
-// @CrossOrigin(origins = "*")
-// @RequestMapping("/api/DanhSachHA")
-// public class DanhSachHARestController {
-
-//     @Autowired
-//     DanhSachHADAO DanhSachHADAO;
-
-//     @GetMapping
-//     public ResponseEntity<List<DanhSachHA>> findAll(){
-//         return ResponseEntity.ok(DanhSachHADAO.findAll());
-//     }
-
-//     @GetMapping("{id}")
-//     public ResponseEntity<DanhSachHA> findById(@PathVariable("id") DanhSachHAKey idDanhSachHA){
-//        Optional<DanhSachHA> optional = DanhSachHADAO.findById(idDanhSachHA.getIdHinhAnh(),idDanhSachHA.getIdSanPhamChiTiet());
-//         if(!optional.isPresent()){
-//             return ResponseEntity.notFound().build();
-//         }
-//         return ResponseEntity.ok(optional.get());
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/danhsachha")
@@ -52,6 +32,12 @@ public class DanhSachHARestController {
         return ResponseEntity.ok(danhSachHADAO.findAll());
     }
 
+    @GetMapping("sanphamchitiet/{id}")
+    public ResponseEntity<List<DanhSachHA>> findById(@PathVariable("id") Integer idSanPhamChiTiet){
+        return ResponseEntity.ok(danhSachHADAO.findByIdSanPhamChiTiet(idSanPhamChiTiet));        
+    }
+
+
     @GetMapping("{id}")
     public ResponseEntity<DanhSachHA> findById(@PathVariable("id") DanhSachHAKey idDanhSachHA){
        Optional<DanhSachHA> optional = danhSachHADAO.findById(idDanhSachHA);
@@ -60,6 +46,7 @@ public class DanhSachHARestController {
         }
         return ResponseEntity.ok(optional.get());
     }
+    
     @PostMapping()
     public ResponseEntity<DanhSachHA> post(@RequestBody DanhSachHA danhSachHA){
         DanhSachHAKey danhSachHAKey = new DanhSachHAKey(danhSachHA.getIdHinhAnh(), danhSachHA.getIdSanPhamChiTiet());

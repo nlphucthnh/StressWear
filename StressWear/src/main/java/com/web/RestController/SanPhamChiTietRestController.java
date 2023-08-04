@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.DAO.SanPhamChiTietDAO;
+import com.web.DAO.SanPhamDAO;
+import com.web.Entity.SanPham;
 import com.web.Entity.SanPhamChiTiet;
 
 @RestController
@@ -26,14 +28,23 @@ public class SanPhamChiTietRestController {
     @Autowired
     SanPhamChiTietDAO sanPhamChiTietDAO;
 
+    @Autowired
+    SanPhamDAO sanPhamDAO;
+
     @GetMapping
     public ResponseEntity<List<SanPhamChiTiet>> findAll(){
         return ResponseEntity.ok(sanPhamChiTietDAO.findAll());
     }
 
+    @GetMapping("sanpham/{id}")
+    public ResponseEntity<List<SanPhamChiTiet>> find_SPCT_by_SP(@PathVariable("id") Integer idSanPham){
+        Optional<SanPham> sanPham = sanPhamDAO.findById(idSanPham);
+        return ResponseEntity.ok(sanPhamChiTietDAO.findBySanPhamSPCT(sanPham));
+    }
+
     @GetMapping("{id}")
-    public ResponseEntity<SanPhamChiTiet> findById(@PathVariable("id") String idSanPhamChiTiet){
-       Optional<SanPhamChiTiet> optional = sanPhamChiTietDAO.findById(Integer.valueOf(idSanPhamChiTiet));
+    public ResponseEntity<SanPhamChiTiet> findById(@PathVariable("id") Integer idSanPhamChiTiet){
+       Optional<SanPhamChiTiet> optional = sanPhamChiTietDAO.findById(idSanPhamChiTiet);
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }

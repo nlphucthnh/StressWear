@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DanhSachHAKey implements Serializable {
     private String idHinhAnh;
-    private int idSanPhamChiTiet;
+    private Integer idSanPhamChiTiet;
     
 }
