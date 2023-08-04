@@ -8,8 +8,14 @@ public class testController {
 
     @GetMapping("hello")
     public String getPage(){
-        return "Manager/Manager-filter-page.html";
+        return "Manager/Manager-product-page.html";
     }
+
+    @GetMapping("hi")
+    public String getPage2(){
+        return "User/User-register-page.html";
+    }
+
 
     @GetMapping("index")
     public String index(){

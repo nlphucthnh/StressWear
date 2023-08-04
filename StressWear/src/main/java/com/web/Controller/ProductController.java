@@ -12,16 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import com.web.DAO.DanhSachKTDAO;
 import com.web.DAO.SanPhamChiTietDAO;
 import com.web.DAO.SanPhamDAO;
-import com.web.Entity.DanhSachKT;
-import com.web.Entity.DanhSachKTKey;
 import com.web.Entity.SanPham;
 import com.web.Entity.SanPhamChiTiet;
-import com.web.Entity.TaiKhoan;
 
 @Controller
 public class ProductController {

@@ -4,6 +4,8 @@ package com.web.Entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -26,6 +28,7 @@ public class VaiTro {
     @Column(name = "ten_vai_tro")
     private String tenVaiTro;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "vaiTro")
     List<VaiTroTaiKhoan> List_VTTK;
 }

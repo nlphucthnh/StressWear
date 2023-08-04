@@ -35,8 +35,6 @@ public class TaiKhoan implements Serializable {
     @Column(name = "trang_thai")
     private boolean trangThai;
 
-    @Column(name = "vai_tro")
-    private String vaiTro;
 
     // Relationship 1-1
     @JsonIgnore
@@ -51,6 +49,7 @@ public class TaiKhoan implements Serializable {
     @OneToOne(mappedBy = "taiKhoanGH")
     GioHang gioHangTK;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "taiKhoan")
     List<VaiTroTaiKhoan> List_VTTK;
 
