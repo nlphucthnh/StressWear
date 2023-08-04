@@ -1,9 +1,22 @@
 package com.web.DAO;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
+import com.web.Entity.NhomLoai;
 import com.web.Entity.SanPham;
+import java.util.List;
 
-public interface SanPhamDAO extends JpaRepository<SanPham,Integer> {
-    
+public interface SanPhamDAO extends JpaRepository<SanPham, Integer> {
+    @Query("SELECT p FROM SanPham p WHERE p.nhomLoaiSP.idNhomLoai = ?1")
+    List<SanPham> findByNhomLoai(Integer idNhomLoai);
+
+    @Query(value = "SELECT p FROM SanPham p where p.nhomLoaiSP.idNhomLoai LIKE %?1%")
+    List<SanPham> findByLoaiSanpham(String string, Sort by);
+
+    @Query("SELECT p FROM SanPham p WHERE p.nhomLoaiSP.idNhomLoai = ?1 AND p.giaSanPham BETWEEN ?2 AND ?3")
+    List<SanPham> findByLoaiSanphamPrice(Integer idNhomLoai, Sort sort, int min, int max);
+
+
 }

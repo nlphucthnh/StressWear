@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.web.DAO.SanPhamDAO;
 import com.web.Entity.SanPham;
+import com.web.Entity.SanPhamChiTiet;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -27,23 +28,29 @@ public class SanPhamRestController {
     SanPhamDAO sanPhamDAO;
 
     @GetMapping
-    public ResponseEntity<List<SanPham>> findAll(){
+    public ResponseEntity<List<SanPham>> findAll() {
         return ResponseEntity.ok(sanPhamDAO.findAll());
     }
 
+    // @GetMapping("{id}")
+    // public ResponseEntity<SanPham> findById(@PathVariable("id") String
+    // idSanPham){
+    // Optional<SanPham> optional = sanPhamDAO.findById(Integer.valueOf(idSanPham));
+    // if(!optional.isPresent()){
+    // return ResponseEntity.notFound().build();
+    // }
+    // return ResponseEntity.ok(optional.get());
+
+    // }
+    
     @GetMapping("{id}")
-    public ResponseEntity<SanPham> findById(@PathVariable("id") String idSanPham){
-       Optional<SanPham> optional = sanPhamDAO.findById(Integer.valueOf(idSanPham));
-        if(!optional.isPresent()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(optional.get());
-        
+    public Optional<SanPham> getOne(@PathVariable("id") Integer idSanPham) {
+        return sanPhamDAO.findById(idSanPham);
     }
 
     @PostMapping()
-    public ResponseEntity<SanPham> post(@RequestBody SanPham sanPham){
-        if(sanPhamDAO.existsById(sanPham.getIdSanPham())){
+    public ResponseEntity<SanPham> post(@RequestBody SanPham sanPham) {
+        if (sanPhamDAO.existsById(sanPham.getIdSanPham())) {
             return ResponseEntity.badRequest().build();
         }
         sanPhamDAO.save(sanPham);
@@ -51,8 +58,8 @@ public class SanPhamRestController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<SanPham> put(@PathVariable("id") Integer idSanPham, @RequestBody SanPham sanPham){
-        if(!sanPhamDAO.existsById(idSanPham)){
+    public ResponseEntity<SanPham> put(@PathVariable("id") Integer idSanPham, @RequestBody SanPham sanPham) {
+        if (!sanPhamDAO.existsById(idSanPham)) {
             return ResponseEntity.notFound().build();
         }
         sanPhamDAO.save(sanPham);
@@ -60,8 +67,8 @@ public class SanPhamRestController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer idSanPham){
-       if(!sanPhamDAO.existsById(idSanPham)){
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer idSanPham) {
+        if (!sanPhamDAO.existsById(idSanPham)) {
             return ResponseEntity.notFound().build();
         }
         sanPhamDAO.deleteById(idSanPham);
