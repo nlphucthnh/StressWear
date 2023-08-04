@@ -1,7 +1,5 @@
 package com.web.Entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,35 +8,35 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+@SuppressWarnings("serial")
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+// @AllArgsConstructor
+// @NoArgsConstructor
 @Entity
-@Table(name = "gio_hang")
-public class GioHang implements Serializable  {
+@Table(name = "vai_tro_tai_khoan", uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"ten_dang_nhap", "id_vai_tro"})
+})
+public class VaiTroTaiKhoan {
     @Id
-    @Column(name = "id_gio_hang")
+    @Column(name = "id_vai_tro_tai_khoan")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idGioHang;
-
-    @Column(name = "so_luong")   
-    private int soLuong;
-
-    @Column(name = "phi_van_chuyen")
-    private double phiVanChuyen;
+    private int idVaiTroTaiKhoan;
 
     @ManyToOne
-    @JoinColumn(name = "id_san_pham")
-    SanPham sanPhamGH;
-    
-    @OneToOne
-    @JoinColumn(name = "ten_dang_nhap")
-    TaiKhoan taiKhoanGH;
+    @JoinColumn(name = "id_vai_tro")
+    VaiTro vaiTro;
 
+    @ManyToOne
+    @JoinColumn(name = "ten_dang_nhap")
+    TaiKhoan taiKhoan;
 }

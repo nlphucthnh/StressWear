@@ -15,25 +15,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.web.DAO.TaiKhoanDAO;
-import com.web.Entity.TaiKhoan;
+
+import com.web.DAO.VaiTroTaiKhoanDAO;
+import com.web.Entity.VaiTroTaiKhoan;
+
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/taikhoan")
-public class TaiKhoanRestController {
+@RequestMapping("/api/vaitrotaikhoan")
+public class VaiTroTaiKhoanRestController {
 
     @Autowired
-    TaiKhoanDAO taiKhoanDAO;
+    VaiTroTaiKhoanDAO vaiTroTaiKhoanDAO;
 
     @GetMapping
-    public ResponseEntity<List<TaiKhoan>> findAll(){
-        return ResponseEntity.ok(taiKhoanDAO.findAll());
+    public ResponseEntity<List<VaiTroTaiKhoan>> findAll(){
+        return ResponseEntity.ok(vaiTroTaiKhoanDAO.findAll());
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<TaiKhoan> findById(@PathVariable("id") String idTaiKhoan){
-       Optional<TaiKhoan> optional = taiKhoanDAO.findById(idTaiKhoan);
+    public ResponseEntity<VaiTroTaiKhoan> findById(@PathVariable("id") Integer idVaiTro){
+       Optional<VaiTroTaiKhoan> optional = vaiTroTaiKhoanDAO.findById(idVaiTro);
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,30 +44,29 @@ public class TaiKhoanRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<TaiKhoan> post(@RequestBody TaiKhoan taiKhoan){
-        if(taiKhoanDAO.existsById(taiKhoan.getTenDangNhap())){
+    public ResponseEntity<VaiTroTaiKhoan> post(@RequestBody VaiTroTaiKhoan vaiTroTaiKhoan){
+        if(vaiTroTaiKhoanDAO.existsById(vaiTroTaiKhoan.getIdVaiTroTaiKhoan())){
             return ResponseEntity.badRequest().build();
-            // 400 Bad Request: Địa chỉ tồi
         }
-        taiKhoanDAO.save(taiKhoan);
-        return ResponseEntity.ok(taiKhoan);
+        vaiTroTaiKhoanDAO.save(vaiTroTaiKhoan);
+        return ResponseEntity.ok(vaiTroTaiKhoan);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<TaiKhoan> put(@PathVariable("id") String tenDangNhap, @RequestBody TaiKhoan taiKhoan){
-        if(!taiKhoanDAO.existsById(tenDangNhap)){
+    public ResponseEntity<VaiTroTaiKhoan> put(@PathVariable("id") Integer idVaiTro, @RequestBody VaiTroTaiKhoan vaiTro){
+        if(!vaiTroTaiKhoanDAO.existsById(idVaiTro)){
             return ResponseEntity.notFound().build();
         }
-        taiKhoanDAO.save(taiKhoan);
-         return ResponseEntity.ok(taiKhoan);
+        vaiTroTaiKhoanDAO.save(vaiTro);
+         return ResponseEntity.ok(vaiTro);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") String tenDangNhap){
-       if(!taiKhoanDAO.existsById(tenDangNhap)){
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer idVaiTro){
+       if(!vaiTroTaiKhoanDAO.existsById(idVaiTro)){
             return ResponseEntity.notFound().build();
         }
-        taiKhoanDAO.deleteById(tenDangNhap);
+        vaiTroTaiKhoanDAO.deleteById(idVaiTro);
         return ResponseEntity.ok().build();
     }
 }

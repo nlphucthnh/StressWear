@@ -15,25 +15,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.web.DAO.TaiKhoanDAO;
-import com.web.Entity.TaiKhoan;
+import com.web.DAO.VaiTroDAO;
+import com.web.Entity.VaiTro;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/taikhoan")
-public class TaiKhoanRestController {
+@RequestMapping("/api/vaitro")
+public class VaiTroRestController {
 
     @Autowired
-    TaiKhoanDAO taiKhoanDAO;
+    VaiTroDAO vaiTroDAO;
 
     @GetMapping
-    public ResponseEntity<List<TaiKhoan>> findAll(){
-        return ResponseEntity.ok(taiKhoanDAO.findAll());
+    public ResponseEntity<List<VaiTro>> findAll(){
+        return ResponseEntity.ok(vaiTroDAO.findAll());
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<TaiKhoan> findById(@PathVariable("id") String idTaiKhoan){
-       Optional<TaiKhoan> optional = taiKhoanDAO.findById(idTaiKhoan);
+    public ResponseEntity<VaiTro> findById(@PathVariable("id") String idVaiTro){
+       Optional<VaiTro> optional = vaiTroDAO.findById(idVaiTro);
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -42,30 +42,29 @@ public class TaiKhoanRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<TaiKhoan> post(@RequestBody TaiKhoan taiKhoan){
-        if(taiKhoanDAO.existsById(taiKhoan.getTenDangNhap())){
+    public ResponseEntity<VaiTro> post(@RequestBody VaiTro vaiTro){
+        if(vaiTroDAO.existsById(vaiTro.getIdVaiTro())){
             return ResponseEntity.badRequest().build();
-            // 400 Bad Request: Địa chỉ tồi
         }
-        taiKhoanDAO.save(taiKhoan);
-        return ResponseEntity.ok(taiKhoan);
+        vaiTroDAO.save(vaiTro);
+        return ResponseEntity.ok(vaiTro);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<TaiKhoan> put(@PathVariable("id") String tenDangNhap, @RequestBody TaiKhoan taiKhoan){
-        if(!taiKhoanDAO.existsById(tenDangNhap)){
+    public ResponseEntity<VaiTro> put(@PathVariable("id") String idVaiTro, @RequestBody VaiTro vaiTro){
+        if(!vaiTroDAO.existsById(idVaiTro)){
             return ResponseEntity.notFound().build();
         }
-        taiKhoanDAO.save(taiKhoan);
-         return ResponseEntity.ok(taiKhoan);
+        vaiTroDAO.save(vaiTro);
+         return ResponseEntity.ok(vaiTro);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") String tenDangNhap){
-       if(!taiKhoanDAO.existsById(tenDangNhap)){
+    public ResponseEntity<Void> delete(@PathVariable("id") String idVaiTro){
+       if(!vaiTroDAO.existsById(idVaiTro)){
             return ResponseEntity.notFound().build();
         }
-        taiKhoanDAO.deleteById(tenDangNhap);
+        vaiTroDAO.deleteById(idVaiTro);
         return ResponseEntity.ok().build();
     }
 }

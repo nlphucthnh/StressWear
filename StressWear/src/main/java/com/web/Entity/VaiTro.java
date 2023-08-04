@@ -1,6 +1,7 @@
 package com.web.Entity;
 
-import java.io.Serializable;
+
+
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,25 +21,22 @@ import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+@SuppressWarnings("serial")
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+// @AllArgsConstructor
+// @NoArgsConstructor
 @Entity
-@Table(name = "phuong_thuc_thanh_toan")
-public class PhuongThucThanhToan implements Serializable  {
+@Table(name = "vai_tro")
+public class VaiTro {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_phuong_thuc")
-    private int idPhuongThuc;
+    @Column(name = "id_vai_tro")
+    private String idVaiTro;
 
-    @Column(name = "ten_phuong_thuc")
-    private String tenPhuongThuc;
-
-    @Column(name = "mo_ta_phuong_thuc")
-    private String moTaPhuongThuc;
-
+    @Column(name = "ten_vai_tro")
+    private String tenVaiTro;
+    
     @JsonIgnore
-    @OneToMany(mappedBy = "phuongThucThanhToan")
-    List<ThanhToan> ListTT_PTTT;
+    @OneToMany(mappedBy = "vaiTro")
+    List<VaiTroTaiKhoan> List_VTTK;
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-
 <head>
     <!-- icon web  -->
     <link rel="website icon" type="png" href="img/logo--noname.png">
@@ -23,21 +22,208 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    <link rel="stylesheet" href="/styles/root.css">
-    <link rel="stylesheet" href="/styles/navbar.css">
-    <link rel="stylesheet" href="/styles/home.css">
-    <link rel="stylesheet" href="/styles/footer.css">
-    <link rel="stylesheet" href="/styles/product.css">
-    
+    <link rel="stylesheet" href="styles/root.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/footer.css">
     <title>Home</title>
 
 </head>
 
 <body>
-    <nav th:replace="~{/layout/nav.html :: nav}"></nav>
-    <header th:replace="~{/layout/header-banner.html :: header}"></header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a href="/home-page"><img
+                    src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/Logo%20website.png?alt=media&token=e446c505-b0a6-44a8-aad5-f7caccb1c28b"
+                    style="background-color: var(--gray_25);" alt=""></a>
+            <div class="navbar-collapse">
+                <ul class="navbar-nav item-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about-page">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact-page">Liên hệ</a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover has-megamenu">
+                        <a class="nav-link " href="/product-page"> Sản phẩm <i class="bi bi-chevron-down"></i></a>
+                        <div class="dropdown-menu megamenu" role="menu">
+                            <div class="row g-3">
+                                <div class="col-lg-4 col-6 item-group">
+                                    <div class="col-megamenu">
+                                        <h6 class="title ">Loại quần áo</h6>
+                                        <ul class="list-unstyled ">
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo thun -
+                                                    T-shirt</a>
+                                                <p>Find the best solution for you.</p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo tay dài
+                                                    - Long Sleeves</a>
+                                                <p>Monitor your metrics.</p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo len -
+                                                    Sweaters</a>
+                                                <p>Surface hidden trends.</p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo hoodie
+                                                    - Hoodie</a>
+                                                <p>Measure B2B account health.</p>
+                                            </li>
 
+                                        </ul>
+                                    </div> <!-- col-megamenu.// -->
+                                </div><!-- end col-3 -->
+                                <div class="col-lg-4 col-6 item-group">
+                                    <div class="col-megamenu">
+                                        <h6 class="title">&#160;</h6>
+                                        <ul class="list-unstyled">
 
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Quần dài -
+                                                    Pants
+                                                </a>
+                                                <p>Analyze conversion rates.</p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Quần ngắn
+                                                    - ShortShort</a>
+                                                <p>Measure active usage.</p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Váy -
+                                                    Skirt</a>
+                                                <p>Find retention drivers./p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Phụ kiện -
+                                                    Accessory
+                                                    goods</a>
+                                                <p>Grow your user base faster.</p>
+                                            </li>
+                                        </ul>
+                                    </div> <!-- col-megamenu.// -->
+                                </div><!-- end col-3 -->
+                                <div class="col-lg-4 col-6 room-group">
+                                    <div class="col-megamenu">
+                                        <h6 class="title">Danh mục sản phẩm</h6>
+                                        <ul class="list-unstyled ">
+                                            <li class="item-opsition-menu pb-2 ">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="material-symbols-sharp me-3">
+                                                        laundry
+                                                    </span>
+                                                    <div class="nav-icon">
+                                                        <a href="product-item-page">Danh mục áo - Tops</a>
+                                                        <p>Analyze conversion rates.</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 ">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="material-symbols-sharp me-3">
+                                                        taunt
+                                                    </span>
+                                                    <div class="nav-icon">
+                                                        <a href="#">Danh mục quần - Bottoms</a>
+                                                        <p>Measure active usage.</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 ">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="material-symbols-sharp me-3">
+                                                        man_2
+                                                    </span>
+                                                    <div class="nav-icon">
+                                                        <a href="product-item-page">Quần áo nam - Male</a>
+                                                        <p>Find retention drivers.</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 ">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="material-symbols-sharp me-3">
+                                                        woman_2
+                                                    </span>
+                                                    <div class="nav-icon">
+                                                        <a href="product-item-page">Quần áo nữ - Female</a>
+                                                        <p>Grow your user base faster.</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div> <!-- col-megamenu.// -->
+                                </div>
+                            </div><!-- end row -->
+                        </div> <!-- dropdown-mega-menu.// -->
+                    </li>
+                    <li class="nav-item">
+                        <form class="d-flex mx-5 w-100">
+                            <div class="input-group">
+                                <input class="form-control me-2" type="search" placeholder="        Tìm kiếm"
+                                    aria-label="Search">
+                                <span class="input-group-icon material-symbols-outlined">
+                                    search
+                                </span>
+                            </div>
+
+                        </form>
+                    </li>
+                </ul>
+
+            </div>
+            <ul class="navbar-nav item-menu ms-auto signin-group">
+                <li class="nav-item">
+                    <a class="nav-link login" href="auth/login/form">Đăng nhập</a>
+                </li>
+                <li class="nav-item sign-navbar ">
+                    <a class="nav-link sigin" href="sign-up-page">Đăng ký</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
+        data-bs-interval="3000" data-bs-delay="1000">
+        <ol class="carousel-indicators mb-4">
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner banner-slide">
+            <div class="carousel-item active">
+                <div class="banner-content my-5">
+                    <h2>Gen Z <br>
+                        Bộ sưu tập</h2><br>
+                    <p>Bộ sưu tập thời trang Gen Z là một sự kết hợp<br> độc đáo và sáng tạo của nhiều phong cách,
+                        <br>màu sắc và chất liệu.
+                    </p>
+                </div>
+                <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fbanner.jfif?alt=media&token=e30d0d81-6876-4f5e-97f8-33ca9f4fe3c4"
+                    class="d-block w-100 carousel-img" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <div class="banner-content">
+                    <h2>Staple Distraught <br> Baggy Jeans Black</h2><br>
+                    <span class="price">5,650,000₫</span><br><br>
+                    <p>
+                        If you are not 100% satisfied with your purchase, <br>you can return your item(s) to us for
+                        <br>an immediate exchange.
+                    </p>
+                </div>
+                <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fbanner2.jfif?alt=media&token=08f7239b-09e4-4ce6-a28a-0741c4dffc0f"
+                    class="d-block w-100 carousel-img" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <div class="banner-content">
+                    <h2>WNDRR Wild Hunt <br> Vintage Fit Tee <br>Washed </h2><br>
+                    <span class="price">5,650,000₫</span><br><br>
+                    <p>
+                        WNDRR is a modern take on classic streetwear <br>with a unique clever style without forgetting a
+                        <br>
+                        touch of fun and a nod to the '80-'90s.
+                    </p>
+                </div>
+                <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fbanenr3.jfif?alt=media&token=ec763a6b-260f-41c2-8088-20ed21e59565"
+                    class="d-block w-100 carousel-img" alt="Slide 3">
+            </div>
+        </div>
+    </header>
     <!-- title nội dụng chính  -->
     <section class="container-fluid">
 
@@ -51,23 +237,123 @@
             <div class="text-content-item">
                 <p>ztress zear</p>
                 <h1>Thể hiện phong cách Gen Z</h1>
-                <p class="my-3">Thế hệ Gen Z, những người không ngại thử nghiệm và tự biểu lộ bản thân. <br> Khác biệt
-                    và đầy năng
+                <p class="my-3">Thế hệ Gen Z, những người không ngại thử nghiệm và tự biểu lộ bản thân. <br> Khác biệt và đầy năng
                     lượng
                     của thế hệ trẻ hiện đại.</p>
-                <button class="btn text-content-item-btn my-4">XEM SẢN PHẨM</button>
+                <button class="btn text-content-item-btn my-4" >XEM SẢN PHẨM</button>
             </div>
             <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fbg-home.jfif?alt=media&token=d0047f3b-67e8-4448-b054-0e3863a26567"
                 alt="">
         </div>
-    </article>
-    <!-- nội dung chính-->
-    
+        </articlec>
+        <!-- nội dung chính-->
+        <aside>
+            <div class="container">
+                <div class="product-title">
+                    <h3 class="my-5">Sản phẩn bán chạy</h3>
+                </div>
+                <div class="product">
+                    <div class="product-item">
+                        <a href="product-item-page">
+                            <div class="zoom_color zoom_img">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c" alt="Sản phẩm 1">
+                            </div>
 
-    <aside th:replace="~{/layout/product-sale.html :: aside}"></aside>
+                            <h3 class="product-title my-3">Áo thun body nữ</h3>
+                        </a>
+                        <p class="product-description">Áo thun</p>
+                        <p class="product-price">880,000₫</p>
+                    </div>
+                    <div class="product-item">
+                        <a href="product-item-page">
+                            <div class="zoom_color zoom_img">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c" alt="Sản phẩm 2">
+                            </div>
+                            <h3 class="product-title my-3">Quần tây ống rộng</h3>
+                        </a>
+                        <p class="product-description">Quần tây</p>
+                        <p class="product-price">4,730,000₫</p>
+                    </div>
+                    <div class="product-item">
+                        <a href="product-item-page">
+                            <div class="zoom_color zoom_img">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c" alt="Sản phẩm 3">
+                            </div>
+                            <h3 class="product-title my-3">Áo khoác chống tia UV</h3>
+                        </a>
+                        <p class="product-description">Áo khoác</p>
+                        <p class="product-price">4,250,000₫</p>
+                    </div>
+                    <div class="product-item">
+                        <a href="product-item-page">
+                            <div class="zoom_color zoom_img">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c" alt="Sản phẩm 4">
+                            </div>
+                            <h3 class="product-title my-3">Áo PIXAR</h3>
+                        </a>
+                        <p class="product-description">Áo</p>
+                        <p class="product-price">450,000₫</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+         <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-3 mb-3 menu-footer">
+                    <h5>Sản phẩm</h5>
+                    <ul class="nav flex-column footer-link">
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">BÀN - tables</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">SOFA - sofas</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">TỦ - cabinets</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GHẾ - chairs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">ĐÈN - lamps</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">KỆ - shelf units</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <h5>Phòng</h5>
+                    <ul class="nav flex-column footer-link">
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG KHÁCH -Living room</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG NGỦ - Bedroom</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG BẾP - Kitchen room</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG TẮM - Bathroom</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG LÀM VIỆC - Office</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <h5>Trang khác</h5>
+                    <ul class="nav flex-column footer-link">
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang giới thiệu</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang liên hệ</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang bài viết</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cá nhân</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cài đặt</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <h5>Mạng xã hội</h5>
+                    <ul class="nav flex-column footer-link">
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Twitter</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Linkedln</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Facebook</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GitHub</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">AngelList</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Dribble</a></li>
+                    </ul>
+                </div>
+            </div>
 
-    <footer th:replace="~{/layout/footer.html :: footer}"></footer>
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                <div class="logo-footer">
+                    <a href="#"><img src="img/Logowebsite.png" alt=""></a>
+                </div>
 
+
+                <p class="text-white-50">© 2023 Company, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer> 
 </body>
 
 </html>
