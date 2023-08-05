@@ -45,6 +45,7 @@ public class TaiKhoanRestController {
     public ResponseEntity<TaiKhoan> post(@RequestBody TaiKhoan taiKhoan){
         if(taiKhoanDAO.existsById(taiKhoan.getTenDangNhap())){
             return ResponseEntity.badRequest().build();
+            // 400 Bad Request: Địa chỉ tồi
         }
         taiKhoanDAO.save(taiKhoan);
         return ResponseEntity.ok(taiKhoan);

@@ -17,28 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.web.DAO.DanhSachHADAO;
 import com.web.Entity.DanhSachHA;
-import com.web.Entity.DanhSachHAKey;
 
-// @RestController
-// @CrossOrigin(origins = "*")
-// @RequestMapping("/api/DanhSachHA")
-// public class DanhSachHARestController {
-
-//     @Autowired
-//     DanhSachHADAO DanhSachHADAO;
-
-//     @GetMapping
-//     public ResponseEntity<List<DanhSachHA>> findAll(){
-//         return ResponseEntity.ok(DanhSachHADAO.findAll());
-//     }
-
-//     @GetMapping("{id}")
-//     public ResponseEntity<DanhSachHA> findById(@PathVariable("id") DanhSachHAKey idDanhSachHA){
-//        Optional<DanhSachHA> optional = DanhSachHADAO.findById(idDanhSachHA.getIdHinhAnh(),idDanhSachHA.getIdSanPhamChiTiet());
-//         if(!optional.isPresent()){
-//             return ResponseEntity.notFound().build();
-//         }
-//         return ResponseEntity.ok(optional.get());
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/danhsachha")
@@ -52,18 +31,24 @@ public class DanhSachHARestController {
         return ResponseEntity.ok(danhSachHADAO.findAll());
     }
 
+    @GetMapping("sanphamchitiet/{id}")
+    public ResponseEntity<List<DanhSachHA>> findListSPCTById(@PathVariable("id") Integer idSanPhamChiTiet){
+        return ResponseEntity.ok(danhSachHADAO.findByIdSanPhamChiTiet(idSanPhamChiTiet));        
+    }
+
+
     @GetMapping("{id}")
-    public ResponseEntity<DanhSachHA> findById(@PathVariable("id") DanhSachHAKey idDanhSachHA){
+    public ResponseEntity<DanhSachHA> findById(@PathVariable("id") Integer idDanhSachHA){
        Optional<DanhSachHA> optional = danhSachHADAO.findById(idDanhSachHA);
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(optional.get());
     }
+    
     @PostMapping()
     public ResponseEntity<DanhSachHA> post(@RequestBody DanhSachHA danhSachHA){
-        DanhSachHAKey danhSachHAKey = new DanhSachHAKey(danhSachHA.getIdHinhAnh(), danhSachHA.getIdSanPhamChiTiet());
-        if(danhSachHADAO.existsById(danhSachHAKey)){
+        if(danhSachHADAO.existsById(danhSachHA.getIdDanhSachHA())){
             return ResponseEntity.badRequest().build();
         }
         danhSachHADAO.save(danhSachHA);
@@ -71,7 +56,7 @@ public class DanhSachHARestController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<DanhSachHA> put(@PathVariable("id") DanhSachHAKey idDanhSachHA, @RequestBody DanhSachHA danhSachHA){
+    public ResponseEntity<DanhSachHA> put(@PathVariable("id") Integer idDanhSachHA, @RequestBody DanhSachHA danhSachHA){
         if(!danhSachHADAO.existsById(idDanhSachHA)){
             return ResponseEntity.notFound().build();
         }
@@ -80,7 +65,7 @@ public class DanhSachHARestController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") DanhSachHAKey idDanhSachHA){
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer idDanhSachHA){
        if(!danhSachHADAO.existsById(idDanhSachHA)){
             return ResponseEntity.notFound().build();
         }

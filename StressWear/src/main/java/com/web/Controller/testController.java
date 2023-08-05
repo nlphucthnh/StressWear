@@ -31,10 +31,10 @@ public class testController {
         return "User/User-product-Item";
     }
 
-    @GetMapping("login-page2")
-    public String loginPage() {
-        return "User/User-login-page";
-    }
+    // @RequestMapping("login-page")
+    // public String loginPage() {
+    // return "User/User-login-page";
+    // }
 
     @GetMapping("sign-up-page")
     public String signUpPage() {
@@ -51,43 +51,4 @@ public class testController {
         return "User/User-forgot-pass";
     }
 
-    @GetMapping("/manager/account")
-    public String ManagerAccount() {
-        return "Manager/Manager-account-page.html";
-    }
-
-    @GetMapping("/manager/filter")
-    public String ManagerFilter() {
-        return "Manager/Manager-filter-page";
-    }
-
-    @GetMapping("hello")
-    public String getPage() {
-        return "Manager/Manager-filter-page.html";
-    }
-
-    @GetMapping("/manager/revenue")
-    public String ManagerRevenue() {
-        return "Manager/Manager-revenue-page";
-    }
-
-    @GetMapping("/manager/oder")
-    public String ManagerOder() {
-        return "Manager/Manager-oder-page";
-    }
-
-    @GetMapping("/manager/login")
-    public String ManagerLogin() {
-        return "Manager/Manager-login-page";
-    }
-
-    @GetMapping("/manager/product")
-    public String ManagerProduct() {
-        return "Manager/Manager-product-page";
-    }
-
-    @GetMapping("/manager/profile")
-    public String ManagerProfile() {
-        return "Manager/Manager-profile-page";
-    }
 }

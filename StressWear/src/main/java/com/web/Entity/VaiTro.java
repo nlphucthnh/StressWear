@@ -4,18 +4,17 @@ package com.web.Entity;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+@SuppressWarnings("serial")
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "vai_tro")
 public class VaiTro {
@@ -25,7 +24,8 @@ public class VaiTro {
 
     @Column(name = "ten_vai_tro")
     private String tenVaiTro;
-
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "vaiTro")
     List<VaiTroTaiKhoan> List_VTTK;
 }

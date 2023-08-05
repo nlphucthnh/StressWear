@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.web.Entity.VaiTroTaiKhoan;
 
-public interface VaiTroTaiKhoanDAO extends JpaRepository<VaiTroTaiKhoan,Integer> {
+public interface VaiTroTaiKhoanDAO extends JpaRepository<VaiTroTaiKhoan, Integer> {
     
 }

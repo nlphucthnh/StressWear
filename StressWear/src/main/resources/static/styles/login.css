@@ -155,7 +155,28 @@ body {
     text-decoration: none;
     font-weight: 600;
 }
+.login-ct-left-form .login-with-mxh .login-with-gg-fb a{
+    margin: 0 8px;
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    border: 20px;
+    font-size: 30px;
+    text-decoration: none;
+    /* display: flex; */
+}
+.login-ct-left-form .login-with-mxh .login-with-gg-fb i {
+    /* display: flex; */
+    padding: 18px 12px;
+    /* width: 50; */
+    /* font-size: 38px; */
+}
 
+.login-with-mxh .login-with-gg-fb .gg{
+    background-color: #EC534A;
+}
+.login-with-mxh .login-with-gg-fb .fb{
+    background-color: #007BFF;
+}
 /* -------------------------------- */
 
 

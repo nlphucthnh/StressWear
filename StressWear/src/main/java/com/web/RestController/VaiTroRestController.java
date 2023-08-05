@@ -26,7 +26,7 @@ public class VaiTroRestController {
     @Autowired
     VaiTroDAO vaiTroDAO;
 
-    @GetMapping
+    @GetMapping 
     public ResponseEntity<List<VaiTro>> findAll(){
         return ResponseEntity.ok(vaiTroDAO.findAll());
     }
