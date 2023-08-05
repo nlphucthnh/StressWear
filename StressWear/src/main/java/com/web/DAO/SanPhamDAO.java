@@ -19,6 +19,7 @@ public interface SanPhamDAO extends JpaRepository<SanPham, Integer> {
     @Query("SELECT p FROM SanPham p WHERE p.nhomLoaiSP.idNhomLoai = ?1 AND p.giaSanPham BETWEEN ?2 AND ?3")
     List<SanPham> findByLoaiSanphamPrice(Integer idNhomLoai, Sort sort, int min, int max);
 
+    @Query("SELECT s FROM SanPham s WHERE s.tenSanPham LIKE CONCAT('%', ?1, '%')")
     Page<SanPham> findByTenSanPham(String nameproduct, Pageable pageableSP);
 
 

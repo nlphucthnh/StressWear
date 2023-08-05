@@ -1,5 +1,7 @@
 package com.web.Entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "danh_sach_kt")
-public class DanhSachKT {
+public class DanhSachKT implements Serializable {
     @Id
     @Column(name = "id_danh_sach_kt")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

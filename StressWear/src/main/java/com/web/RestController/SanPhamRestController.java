@@ -50,7 +50,7 @@ public class SanPhamRestController {
     //     return sanPhamDAO.findById(idSanPham);
     // }
 
-    @GetMapping("sanpham/paging")
+    @GetMapping("paging")
     public ResponseEntity<Page<SanPham>> findAllPage2(
             @RequestParam(name = "name", defaultValue = "") String nameproduct,
             @RequestParam("page") Optional<Integer> numberpage) {

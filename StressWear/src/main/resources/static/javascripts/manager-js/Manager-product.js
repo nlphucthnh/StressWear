@@ -174,7 +174,7 @@ app.controller("ctrl-sp", function ($scope, $http) {
     var url = `${API_DANHSACHKT}/sanphamchitiet/${idSanPhamChiTiet}`;
     $http.get(url).then((result) => {
       result.data.forEach(element => {
-        $("#size" + element.kichThuoc.tenKichThuoc)[0].checked = true;
+        $("#size" + element.kichThuoc.idKichThuoc)[0].checked = true;
       });
     }).catch((err) => {
       console.log("ERROR", err);
@@ -211,7 +211,8 @@ app.controller("ctrl-sp", function ($scope, $http) {
         console.log(url);
         $("#uploadImg").css("display", "block");
         $("#btn-loading").css("display", "none");
-        img_post(url, file.size, nameFile);
+
+        img_post(url.replace("https://",""), file.size, nameFile);
       })
       .catch(console.error)
   });
@@ -225,38 +226,38 @@ app.controller("ctrl-sp", function ($scope, $http) {
     }
     var url = `${API_HINHANH}`;
     $http.post(url, hinhAnh).then((result) => {
-      add_dsha(result.data, $scope.SPCT);
+      // add_dsha(result.data, $scope.SPCT);
     }).catch((err) => {
       console.log("ERROR", err);
     });
   }
 
-  function add_dsha(hinhAnh, SPCT) {
-    var dsHinhAnh = {
-      idHinhAnh: hinhAnh.idHinhAnh,
-      idSanPhamChiTiet: SPCT.idSanPhamChiTiet,
-      hinhAnh: {
-        idHinhAnh: hinhAnh.idHinhAnh,
-        tenHinhAnh: hinhAnh.tenHinhAnh,
-        ngayDang: hinhAnh.ngayDang,
-        dungLuongAnh: hinhAnh.dungLuongAnh
-      },
-      sanPhamChiTiet: {
-        idSanPhamChiTiet: SPCT.idSanPhamChiTiet,
-        tenMau: SPCT.tenMau,
-        sanPhamSPCT: SPCT.sanPhamSPCT,
-        mauSacSPCT: SPCT.mauSacSPCT
-      }
-    }
-    var url = `${API_DANHSACHHA}`;
-    $http.post(url, dsHinhAnh).then((result) => {
-      $scope.list_ha.push(result.data);
-      console.log(result.data);
-      alert("Đã thêm hình ảnh vào danh sách");
-    }).catch((err) => {
-      console.log("ERROR", err);
-    });
-  }
+  // function add_dsha(hinhAnh, SPCT) {
+  //   var dsHinhAnh = {
+  //     idHinhAnh: hinhAnh.idHinhAnh,
+  //     idSanPhamChiTiet: SPCT.idSanPhamChiTiet,
+  //     hinhAnh: {
+  //       idHinhAnh: hinhAnh.idHinhAnh,
+  //       tenHinhAnh: hinhAnh.tenHinhAnh,
+  //       ngayDang: hinhAnh.ngayDang,
+  //       dungLuongAnh: hinhAnh.dungLuongAnh
+  //     },
+  //     sanPhamChiTiet: {
+  //       idSanPhamChiTiet: SPCT.idSanPhamChiTiet,
+  //       tenMau: SPCT.tenMau,
+  //       sanPhamSPCT: SPCT.sanPhamSPCT,
+  //       mauSacSPCT: SPCT.mauSacSPCT
+  //     }
+  //   }
+  //   var url = `${API_DANHSACHHA}`;
+  //   $http.post(url,dsHinhAnh).then((result) => {
+  //     $scope.list_ha.push(result.data);
+  //     console.log(result.data);
+  //     alert("Đã thêm hình ảnh vào danh sách");
+  //   }).catch((err) => {
+  //     console.log("ERROR", err);
+  //   });
+  // }
 
 
   // $scope.update_sp = function (nhomLoai) {

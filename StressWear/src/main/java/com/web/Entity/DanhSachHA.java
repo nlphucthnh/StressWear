@@ -1,6 +1,8 @@
 package com.web.Entity;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,18 +21,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "danh_sach_ha")
-public class DanhSachHA {
+public class DanhSachHA implements Serializable{
     @Id
     @Column(name = "id_danh_sach_ha")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDanhSachHA;
 
     @ManyToOne
-    @JoinColumn(name = "id_hinh_anh", insertable = false, updatable = false)
+    @JoinColumn(name = "id_hinh_anh")
     private HinhAnh hinhAnh;
 
     @ManyToOne
-    @JoinColumn(name = "id_san_pham_chi_tiet", insertable = false, updatable = false)
+    @JoinColumn(name = "id_san_pham_chi_tiet")
     private SanPhamChiTiet sanPhamChiTiet;
 
 }
