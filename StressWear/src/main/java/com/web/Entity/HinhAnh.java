@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,10 +30,14 @@ import lombok.NoArgsConstructor;
 public class HinhAnh implements Serializable {
     @Id
     @Column(name = "id_hinh_anh")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String idHinhAnh;
 
     @Column(name = "ten_hinh_anh")
     private String tenHinhAnh;
+
+    @Column(name = "duong_dan")
+    private String duongDan;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
