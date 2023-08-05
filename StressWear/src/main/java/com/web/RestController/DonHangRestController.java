@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.web.DAO.DonHangDAO;
 import com.web.Entity.DonHang;
 
@@ -25,6 +26,11 @@ public class DonHangRestController {
 
     @Autowired
     DonHangDAO donHangDAO;
+
+    // public DonHang create(@RequestBody JsonNode donhangData){
+
+    //     return donHangDAO.create(donhangData);
+    // }
 
     @GetMapping
     public ResponseEntity<List<DonHang>> findAll(){

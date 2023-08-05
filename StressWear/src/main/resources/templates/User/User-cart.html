@@ -64,7 +64,7 @@
                 
               </td>
               <td>
-                <span ng-if="item.khuyenMaiSP">{{item.giaSanPham * (1 - item.khuyenMaiSP.phanTramKhuyenMai/100) |
+                <span ng-if="item.khuyenMaiSP">{{item.giaSanPham * (1 - item.khuyenMaiSP.phanTramKhuyenMai) |
                   number}}</span>
                 <span ng-if="!item.khuyenMaiSP">{{item.giaSanPham | number}}</span>
               </td>
@@ -74,7 +74,7 @@
               </td>
               <td class="table_cart">
                 <span ng-if="item.khuyenMaiSP">{{item.qty * item.giaSanPham * (1 -
-                  item.khuyenMaiSP.phanTramKhuyenMai/100) | number}}</span>
+                  item.khuyenMaiSP.phanTramKhuyenMai) | number}}</span>
                 <span ng-if="!item.khuyenMaiSP">{{item.qty * item.giaSanPham | number}}</span>
               </td>
               <td><button class="delete-btn" ng-click="cart.remove(item.idSanPham)"><span

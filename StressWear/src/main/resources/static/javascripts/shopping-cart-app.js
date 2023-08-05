@@ -45,11 +45,18 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
     },
 
     // Tổng thành tiền các mặt hàng trong giỏ
+    // get amount() {
+    //   return this.items
+    //     .map((item) => item.qty * item.giaSanPham)
+    //     .reduce((total, qty) => (total += qty), 0);
+    // },
+
     get amount() {
       return this.items
-        .map((item) => item.qty * item.giaSanPham)
-        .reduce((total, qty) => (total += qty), 0);
+        .map((item) => item.qty * (item.giaSanPham * (1 - (item.khuyenMaiSP ? item.khuyenMaiSP.phanTramKhuyenMai : 0))))
+        .reduce((total, amount) => (total += amount), 0);
     },
+     
 
     // Lưu giỏ hàng vào localStorage
     saveToLocalStorage() {
@@ -70,32 +77,32 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
 
   // Đặt hàng
 
-  // $scope.order = {
-  //   createDate: new Date(),
-  //   address: "",
-  //   account: {username: $("#username").text()},
-  //   get orderDetails(){
-  //     return $scope.cart.items.map(item => {
-  //       return {
-  //         product:{id: item.id},
-  //         price: item.price,
-  //         quantity: item.qty
-  //       }
-  //     });
-  //   },
-  //   purchase(){
-  //     var order = angular.copty(this);
+  $scope.order = {
+    createDate: new Date(),
+    address: "",
+    account: {username: $("#username").text()},
+    get orderDetails(){
+      return $scope.cart.items.map(item => {
+        return {
+          product:{id: item.idSanPham},
+          // price: item.price,
+          // quantity: item.qty
+        }
+      });
+    },
+    purchase(){
+      var order = angular.copty(this);
 
-  //     //thực hiện đặt hàng
-  //     $http.post("/api/donhang", order).then(resp => {
-  //       alert("Đặt hàng thành công!");
-  //       $scope.cart.clear()
-  //       location.href = "/order/detail/" + resp.data.id;
-  //     }).catch(error => {
-  //       alert("Đặt hàng lỗi")
-  //       console.log(error);
-  //     })
-  //   }
-  // }
+      //thực hiện đặt hàng
+      $http.post("/api/donhang", order).then(resp => {
+        alert("Đặt hàng thành công!");
+        $scope.cart.clear()
+        location.href = "/order/detail/" + resp.data.id;
+      }).catch(error => {
+        alert("Đặt hàng lỗi")
+        console.log(error);
+      })
+    }
+  }
 
 });

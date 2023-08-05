@@ -56,22 +56,29 @@
         <form class="adrress-form-ship" action="/User/pay" method="post">
           <div class="mb-3">
             <label for="fullName" class="form-label">Họ tên khách hàng</label>
-            <input type="text" name="fullname" class="form-control w-100" id="fullName" placeholder="olivia" required>
+            <!-- <input type="text" name="fullname" class="form-control w-100" id="fullName" placeholder="olivia" required> -->
+            <div class="form-control" id="username">[[${#request.remoteUser}]]</div>
+            
           </div>
           <div class="row">
-            <div class="col-md-6 mb-3 my-2">
+            <!-- <div class="col-md-6 mb-3 my-2">
               <label for="phoneNumber" class="form-label">Số điện thoại</label>
               <input type="tel" name="phone" class="form-control w-100" id="phoneNumber" placeholder="0987654321" required>
-            </div>
-            <div class="col-md-6 mb-3 my-2">
+            </div> -->
+            
+            
+            <div class="form-control">{{order.createDate | date : 'dd-MM-yyyy'}}</div>
+
+
+            <!-- <div class="col-md-6 mb-3 my-2">
               <label for="city" class="form-label">Thành phố / Tỉnh</label>
-              <select class="form-select form-select-sm mb-3" id="city" name="city" aria-label=".form-select-sm" required>
+              <select class="form-select form-select-sm mb-3" ng-model="arder.address" id="city" name="city" aria-label=".form-select-sm" required>
                 <option value="city" selected>Chọn tỉnh thành</option>
               </select>
-            </div>
+            </div> -->
           </div>
 
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-6 mb-3 my-2">
               <label for="city" class="form-label">Quận / Huyện</label>
               <select class="form-select form-select-sm mb-3" id="district" name="district"  aria-label=".form-select-sm" required>
@@ -84,16 +91,17 @@
                 <option value="commune" selected>Chọn phường xã</option>
               </select>
             </div>
-          </div>
+          </div> -->
           <div class="mb-3 my-2">
             <label for="fullName" class="form-label">Số nhà / Tên đường</label>
-            <textarea class="form-control" name="apartment_number" id="" cols="30" rows="7"
+            <textarea class="form-control" ng-model="order.address" name="apartment_number" id="" cols="30" rows="7"
               placeholder="Enter a description..."></textarea>
           </div>
 
           <div class="pay-bill  col-3 ">
-            <a th:href="@{/User/pay}">
-              <button class="btn-pay">Tiếp tục thanh toán</button></a>
+            
+              <button class="btn-pay" ng-click="order.purchase()">Tiếp tục thanh toán</button>
+            
           </div>
         </form>
 
@@ -263,5 +271,6 @@
 </script>
 <script src="/javascripts/shopping-cart-app.js"></script>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
 </html>

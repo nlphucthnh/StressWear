@@ -12,7 +12,7 @@
           <a class="nav-link" href="/contact-page">Liên hệ</a>
         </li>
         <li class="nav-item dropdown dropdown-hover has-megamenu">
-          <a class="nav-link " href="/product-page"> Sản phẩm <i class="bi bi-chevron-down"></i></a>
+          <a class="nav-link " th:href="@{/User/product}"> Sản phẩm <i class="bi bi-chevron-down"></i></a>
           <div class="dropdown-menu megamenu" role="menu">
             <div class="row g-3">
               <div class="col-lg-4 col-6 item-group">
@@ -20,13 +20,13 @@
                   <h6 class="title ">Loại quần áo</h6>
                   <ul class="list-unstyled">
                     <li class="item-opsition-menu pb-2" th:each="i : ${#numbers.sequence(0, 4)}">
-                        <th:block th:if="${nhomloai != null and i < nhomloai.size()}">
-                            <a th:href="@{/User/productlist/{nhomloai}(nhomloai=${nhomloai[i].idNhomLoai})}"
-                                th:text="${nhomloai[i].tenNhomLoai}"></a>
-                            <p th:text="${nhomloai[i].moTaNhomLoai}"></p>
-                        </th:block>
+                      <th:block th:if="${nhomloai != null and i < nhomloai.size()}">
+                        <a th:href="@{/User/productlist/{nhomloai}(nhomloai=${nhomloai[i].idNhomLoai})}"
+                          th:text="${nhomloai[i].tenNhomLoai}"></a>
+                        <p th:text="${nhomloai[i].moTaNhomLoai}"></p>
+                      </th:block>
                     </li>
-                </ul>
+                  </ul>
                 </div> <!-- col-megamenu.// -->
               </div><!-- end col-3 -->
               <div class="col-lg-4 col-6 item-group">
@@ -34,13 +34,13 @@
                   <h6 class="title">&#160;</h6>
                   <ul class="list-unstyled">
                     <li class="item-opsition-menu pb-2" th:each="i : ${#numbers.sequence(5, 8)}">
-                        <th:block th:if="${nhomloai != null and i < nhomloai.size()}">
-                            <a th:href="@{/User/productlist/{nhomloai}(nhomloai=${nhomloai[i].idNhomLoai})}"
-                                th:text="${nhomloai[i].tenNhomLoai}"></a>
-                            <p th:text="${nhomloai[i].moTaNhomLoai}"></p>
-                        </th:block>
+                      <th:block th:if="${nhomloai != null and i < nhomloai.size()}">
+                        <a th:href="@{/User/productlist/{nhomloai}(nhomloai=${nhomloai[i].idNhomLoai})}"
+                          th:text="${nhomloai[i].tenNhomLoai}"></a>
+                        <p th:text="${nhomloai[i].moTaNhomLoai}"></p>
+                      </th:block>
                     </li>
-                </ul>
+                  </ul>
                 </div> <!-- col-megamenu.// -->
               </div><!-- end col-3 -->
               <div class="col-lg-4 col-6 room-group">
@@ -121,18 +121,26 @@
       </ul> -->
 
     <div class="registered-group">
-      <!-- <div class="registered-group-search registered-item">
-            <i class="bi bi-search"></i>
-        </div> -->
       <div class="registered-group-cart registered-item">
-        <a class="bi bi-bag"></a>
-        <!-- {{cart.count}} items x {{cart.amount | number : 2}} -->
-        <span class="number-item">{{cart.count}}</span>
+        <a class="bi bi-bag" th:href="@{/User/product/sale}">
+          <span class="number-item">{{cart.count}}</span></a>
       </div>
-      <div class="registered-group-account registered-item">
-        <div class="registered-group-account-text" th:each="us : ${user}">
-          <div class="registered-group-account-name-text" th:text="${us.tenDangNhap}"></div>
-          <div class="registered-group-account-email-text" th:text="${us.email}"></div>
+      <ul class="navbar-nav item-menu ms-auto signin-group" th:unless="${#request.remoteUser}">
+        <li class="nav-item">
+          <a class="nav-link login" th:href="@{/auth/login/form}">Đăng nhập</a>
+        </li>
+        <li class="nav-item sign-navbar ">
+          <a class="nav-link sigin" th:href="@{/auth/login/form}">Đăng ký</a>
+        </li>
+      </ul>
+
+
+      <div class="registered-group-account registered-item" th:if="${#request.remoteUser}"
+        th:object="${#request.userPrincipal}">
+        <div class="registered-group-account-text">
+          <div class="registered-group-account-name-text">[[*{name}]]
+          </div>
+          <!-- <div class="registered-group-account-email-text" th:text="${us.email}"></div> -->
         </div>
         <div class="registered-group-account-img dropdown">
           <img class="img-avata-registered"
@@ -143,10 +151,11 @@
             <li><a class="dropdown-item" th:href="@{/person}">Hồ sơ cá nhân</a></li>
             <li><a class="dropdown-item" th:href="@{/changePassword}">Đổi mật khẩu</a></li>
 
-            <li><a class="dropdown-item" th:href="@{/dangxuat}">Đăng xuất</a></li>
+            <li><a class="dropdown-item" href="/auth/logoff">Đăng xuất</a></li>
           </ul>
         </div>
       </div>
+
     </div>
   </div>
 </nav>

@@ -61,32 +61,32 @@
                         <li class="nav-item">
                             <a class="nav-link active img-item" data-bs-toggle="tab" href="#pic-1">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
-                                    th:src="@{${spcl.ListDSHA_SPCT[0].idHinhAnh}}" alt="Hình ảnh">
+                                    th:src="@{${spcl.ListDSHA_SPCT[0].hinhAnh.idHinhAnh}}" alt="Hình ảnh">
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#pic-2">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 1}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[1].idHinhAnh} }" alt="Hình ảnh">
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[1].hinhAnh.idHinhAnh} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#pic-3">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 2}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[2].idHinhAnh} }" alt="Hình ảnh">
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[2].hinhAnh.idHinhAnh} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#pic-4">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 3}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[3].idHinhAnh} }" alt="Hình ảnh">
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[3].hinhAnh.idHinhAnh} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#pic-5">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 4}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[4].idHinhAnh} }" alt="Hình ảnh">
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[4].hinhAnh.idHinhAnh} }" alt="Hình ảnh">
                             </a>
                         </li>
                     </ul>
@@ -96,23 +96,23 @@
                     <div class="preview-pic tab-content img-tabcontent" th:each="spcl : ${productitem[0]}">
                         <div class="tab-pane active" id="pic-1">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[0].idHinhAnh} }" alt="Hình ảnh">
+                                th:src="@{ ${spcl.ListDSHA_SPCT[0].hinhAnh.idHinhAnh} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane" id="pic-2">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 1}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[1].idHinhAnh} }" alt="Hình ảnh">
+                                th:src="@{ ${spcl.ListDSHA_SPCT[1].hinhAnh.idHinhAnh} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane" id="pic-3">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 2}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[2].idHinhAnh} }" alt="Hình ảnh">
+                                th:src="@{ ${spcl.ListDSHA_SPCT[2].hinhAnh.idHinhAnh} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane" id="pic-4">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 3}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[3].idHinhAnh} }" alt="Hình ảnh">
+                                th:src="@{ ${spcl.ListDSHA_SPCT[3].hinhAnh.idHinhAnh} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane" id="pic-5">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 4}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[4].idHinhAnh} }" alt="Hình ảnh">
+                                th:src="@{ ${spcl.ListDSHA_SPCT[4].hinhAnh.idHinhAnh} }" alt="Hình ảnh">
                         </div>
                     </div>
 
@@ -128,7 +128,7 @@
                           <h5 th:if="${products.khuyenMaiSP == null}" class="products-list-price"
                              th:text="${#numbers.formatDecimal(products.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></h5>
                           <h5 class="product-list-price-new" th:if="${products.khuyenMaiSP != null}">
-                              <span th:text="${#numbers.formatDecimal(products.giaSanPham * (1 - products.khuyenMaiSP.phanTramKhuyenMai / 100), 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                              <span th:text="${#numbers.formatDecimal(products.giaSanPham * (1 - products.khuyenMaiSP.phanTramKhuyenMai ), 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
                               <del class="old-price mx-3" th:text="${#numbers.formatDecimal(products.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></del>
                           </h5>
                       </div>
@@ -164,8 +164,8 @@
 
                     <div class="row">
                         <div class="col-6 button-sell d-flex">
-                            <button th:attr="ng-click=@{|cart.add(${products.idSanPham})|}" class="btn-sell"> Mua ngay
-                            </button>
+                            <!-- <button th:attr="ng-click=@{|cart.add(${products.idSanPham})|}" class="btn-sell"> Mua ngay
+                            </button> -->
                         </div>
                         <div class="col-6 button-sell d-flex">
                             <button th:attr="ng-click=@{|cart.add(${products.idSanPham})|}" class="btn-base"> Thêm vào

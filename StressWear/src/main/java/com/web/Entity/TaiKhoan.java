@@ -6,19 +6,17 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+@SuppressWarnings("serial")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "tai_khoan")
 public class TaiKhoan implements Serializable {
@@ -35,9 +33,6 @@ public class TaiKhoan implements Serializable {
     @Column(name = "trang_thai")
     private boolean trangThai;
 
-    @Column(name = "vai_tro")
-    private String vaiTro;
-
     // Relationship 1-1
     @JsonIgnore
     @OneToOne(mappedBy = "taiKhoanTTTK")
@@ -51,7 +46,9 @@ public class TaiKhoan implements Serializable {
     @OneToOne(mappedBy = "taiKhoanGH")
     GioHang gioHangTK;
 
-   
+    @JsonIgnore
+    @OneToMany(mappedBy = "taiKhoan", fetch = FetchType.EAGER)
+    List<VaiTroTaiKhoan> List_VTTK;
 
 
 }

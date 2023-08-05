@@ -18,27 +18,5 @@ import com.web.Entity.TaiKhoan;
 @Controller
 public class CartController {
 
-       @Autowired
-    SanPhamDAO dao;
-
-    @Autowired
-    SanPhamChiTietDAO spctdao;
-
-    @Autowired
-    DanhSachKTDAO ktdao;
-
-    @Autowired
-    TaiKhoanDAO tkdao;
-
-    @Autowired
-    NhomLoaiDAO nlDao;
-        // User tam
-    @GetMapping("/User/product/sale")
-    public String demo(Model model) {
-        List<NhomLoai> nhomloai = nlDao.findAll();
-        model.addAttribute("nhomloai", nhomloai);
-        List<TaiKhoan> tk = tkdao.findByTenDangNhap("thienlc");
-        model.addAttribute("user", tk);
-        return "User/User-cart";
-    }
+    
 }

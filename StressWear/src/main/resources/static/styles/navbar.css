@@ -370,6 +370,7 @@
 
 .registered-group .registered-group-cart .number-item {
   position: absolute;
+  font-size: 17px;
   right: -20px;
 }
 

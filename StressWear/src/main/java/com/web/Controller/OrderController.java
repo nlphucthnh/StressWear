@@ -11,63 +11,46 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.web.DAO.PhuongThucThanhToanDAO;
 import com.web.DAO.TaiKhoanDAO;
-import com.web.DAO.ThanhToanDAO;
 import com.web.DAO.ThongTinGiaoHangDAO;
 import com.web.Entity.PhuongThucThanhToan;
 import com.web.Entity.TaiKhoan;
-import com.web.Entity.ThanhToan;
 import com.web.Entity.ThongTinGiaoHang;
 
 @Controller
 public class OrderController {
 
-    @Autowired
-    TaiKhoanDAO tkdao;
-
-    @Autowired
-    ThongTinGiaoHangDAO ttghdao;
-
-    @Autowired
-    PhuongThucThanhToanDAO pThucThanhToanDAO;
-
-    @GetMapping("/User/address")
-    public String order(Model model) {
-        List<TaiKhoan> tk = tkdao.findByTenDangNhap("thienlc");
-        model.addAttribute("user", tk);
-
-        return "User/User-adreess";
+    @GetMapping("/order/checkout")
+    public String checkout() {
+    return "User/User-adreess";
     }
 
-    @GetMapping("/User/pay")
-    public String pay(Model model) {
-        List<TaiKhoan> tk = tkdao.findByTenDangNhap("thienlc");
-        List<PhuongThucThanhToan> ptthanhtoan = pThucThanhToanDAO.findAll();
-        model.addAttribute("phuongthucthanhtoan", ptthanhtoan);
-        model.addAttribute("user", tk);
-        return "User/User-pay";
+    @GetMapping("/order/list")
+    public String list(){
+    return "order/list";
     }
 
-    @PostMapping("/User/address")
-    public String address(Model model, @RequestParam("fullname") String fullname, @RequestParam("phone") String phone,
-            @RequestParam(name = "city") String city,
-            @RequestParam(name = "district", required = false) String district,
-            @RequestParam(name = "commune", required = false) String commune,
-            @RequestParam(name = "apartment_number", required = false) String apartment_number) {
-
-        String diaChi = district + ", " + commune + ", " + apartment_number;
-        ThongTinGiaoHang thongtingiaohang = new ThongTinGiaoHang();
-        thongtingiaohang.setTenNguoiMua(fullname);
-        thongtingiaohang.setSoDienThoai(phone);
-        thongtingiaohang.setDiaChi(city);
-        thongtingiaohang.setDiaChiChiTiet(diaChi);
-        // ttghdao.save(thongtingiaohang);
-        model.addAttribute("message", "Lưu thông tin giao hàng thành công");
-        return "User/User-pay";
+    @GetMapping("/order/detail/{id}")
+    public String detail(){
+    return "order/detail";
     }
 
-    @PostMapping("/User/pay")
-    public String address(Model model) {
-        model.addAttribute("message", "Lưu thông tin giao hàng thành công");
-        return "User/User-orderdetail";
-    }
+
+
+
+
+
+
+    // @GetMapping("/home/index")
+    // public String demo(Model model) {
+    //     model.addAttribute("message","This is home");
+    //     return "User/demo";
+    // }
+
+    // @GetMapping("/home/about")
+    // public String demo1(Model model) {
+    //     model.addAttribute("message","This is introduction page");
+    //     return "User/demo";
+    // }
+
+
 }

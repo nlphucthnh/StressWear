@@ -6,7 +6,8 @@ body {
     background-color: #f7f8f9;
     /* font-family: 'Open Sans', sans-serif; */
     font-size: 14px;
-    background-image: url(/img/log-in-main.png);
+    /* display: flex; */
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Flog-in-main.png?alt=media&token=a6b73c92-2305-4897-a995-4abb0785e1e9);
     background-size: cover;
 }
 
@@ -154,7 +155,28 @@ body {
     text-decoration: none;
     font-weight: 600;
 }
+.login-ct-left-form .login-with-mxh .login-with-gg-fb a{
+    margin: 0 8px;
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    border: 20px;
+    font-size: 30px;
+    text-decoration: none;
+    /* display: flex; */
+}
+.login-ct-left-form .login-with-mxh .login-with-gg-fb i {
+    /* display: flex; */
+    padding: 18px 12px;
+    /* width: 50; */
+    /* font-size: 38px; */
+}
 
+.login-with-mxh .login-with-gg-fb .gg{
+    background-color: #EC534A;
+}
+.login-with-mxh .login-with-gg-fb .fb{
+    background-color: #007BFF;
+}
 /* -------------------------------- */
 
 
