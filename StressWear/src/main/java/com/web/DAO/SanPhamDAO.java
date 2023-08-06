@@ -3,8 +3,10 @@ package com.web.DAO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.util.Streamable;
 
 import com.web.Entity.SanPham;
 import java.util.List;
@@ -21,6 +23,10 @@ public interface SanPhamDAO extends JpaRepository<SanPham, Integer> {
 
     @Query("SELECT s FROM SanPham s WHERE s.tenSanPham LIKE CONCAT('%', ?1, '%')")
     Page<SanPham> findByTenSanPham(String nameproduct, Pageable pageableSP);
+
+    @Query("SELECT s FROM SanPham s WHERE s.tenSanPham LIKE CONCAT('%', ?1, '%')")
+    List<SanPham> findByTenSanPham(String search);
+
 
 
 }

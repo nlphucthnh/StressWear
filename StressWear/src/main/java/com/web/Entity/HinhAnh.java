@@ -36,8 +36,8 @@ public class HinhAnh implements Serializable {
     @Column(name = "ten_hinh_anh")
     private String tenHinhAnh;
 
-    // @Column(name = "duong_dan")
-    // private String duongDan;
+    @Column(name = "duong_dan")
+    private String duongDan;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.web.DAO.DonHangDAO;
 import com.web.Entity.DonHang;
+import com.web.service.DonHangService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -27,47 +28,50 @@ public class DonHangRestController {
     @Autowired
     DonHangDAO donHangDAO;
 
-    // public DonHang create(@RequestBody JsonNode donhangData){
+    @Autowired
+    DonHangService donhangSevice;
 
-    //     return donHangDAO.create(donhangData);
-    // }
+    @PostMapping()
+    public DonHang create(@RequestBody JsonNode donhangData){
+    return donhangSevice.create(donhangData);
+    }
 
-    @GetMapping
-    public ResponseEntity<List<DonHang>> findAll(){
+    @GetMapping()
+    public ResponseEntity<List<DonHang>> findAll() {
         return ResponseEntity.ok(donHangDAO.findAll());
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<DonHang> findById(@PathVariable("id") String idDonHang){
-       Optional<DonHang> optional = donHangDAO.findById(Integer.valueOf(idDonHang));
-        if(!optional.isPresent()){
+    public ResponseEntity<DonHang> findById(@PathVariable("id") String idDonHang) {
+        Optional<DonHang> optional = donHangDAO.findById(Integer.valueOf(idDonHang));
+        if (!optional.isPresent()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(optional.get());
-        
+
     }
 
-    @PostMapping()
-    public ResponseEntity<DonHang> post(@RequestBody DonHang donHang){
-        if(donHangDAO.existsById(donHang.getIdDonHang())){
-            return ResponseEntity.badRequest().build();
+    // @PostMapping()
+    // public ResponseEntity<DonHang> post(@RequestBody DonHang donHang) {
+    //     if (donHangDAO.existsById(donHang.getIdDonHang())) {
+    //         return ResponseEntity.badRequest().build();
+    //     }
+    //     donHangDAO.save(donHang);
+    //     return ResponseEntity.ok(donHang);
+    // }
+
+    @PutMapping("{id}")
+    public ResponseEntity<DonHang> put(@PathVariable("id") Integer idDonHang, @RequestBody DonHang donHang) {
+        if (!donHangDAO.existsById(idDonHang)) {
+            return ResponseEntity.notFound().build();
         }
         donHangDAO.save(donHang);
         return ResponseEntity.ok(donHang);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<DonHang> put(@PathVariable("id") Integer idDonHang, @RequestBody DonHang donHang){
-        if(!donHangDAO.existsById(idDonHang)){
-            return ResponseEntity.notFound().build();
-        }
-        donHangDAO.save(donHang);
-         return ResponseEntity.ok(donHang);
-    }
-
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer idDonHang){
-       if(!donHangDAO.existsById(idDonHang)){
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer idDonHang) {
+        if (!donHangDAO.existsById(idDonHang)) {
             return ResponseEntity.notFound().build();
         }
         donHangDAO.deleteById(idDonHang);

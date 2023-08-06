@@ -49,6 +49,7 @@
         <h2>Tất cả sản phẩm</h2>
       </div>
       <div class="product row">
+        <h3 style="color: red;" th:text="${message}"></h3>
         <div class="product-list col-3 my-3" th:each="product : ${products}">
           <a th:href="@{'/User/product/edit/' + ${product.idSanPham}}">
             <div class="zoom_color sale">
@@ -86,21 +87,7 @@
         </div>
 
       </div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item" th:if="${currIndex}>0"><a class="page-link text-white bg-dark "
-              th:href="@{/User/User-product/page?p=__${currIndex-1}__}" href="#">Previous</a></li>
-          <tr th:each="i: ${#numbers.sequence(0, numberOfPages - 1)}">
-            <li class="page-item"><a th:style="${'background-color:' + (i==currIndex?'lightgrey':'white')}"
-                th:href="@{/User/User-product/page?p=__${i}__}" class="page-link text-dark" href="#"
-                th:text="${i+1}"></a></li>
-          </tr>
-          <li class="page-item " th:if="(${currIndex}>-1 and (${currIndex})<${numberOfPages-1})"><a
-              class="page-link text-white bg-dark " th:href="@{/User/User-product/page?p=__${currIndex+1}__}"
-              href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
+     
     </div>
 
   </article>

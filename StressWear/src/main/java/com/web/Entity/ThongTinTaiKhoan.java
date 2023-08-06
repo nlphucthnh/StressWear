@@ -53,6 +53,4 @@ public class ThongTinTaiKhoan implements Serializable {
     @OneToOne
     @JoinColumn(name = "ten_dang_nhap")
     TaiKhoan taiKhoanTTTK;
-
-
 }

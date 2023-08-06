@@ -98,15 +98,14 @@
           </div> <!-- dropdown-mega-menu.// -->
         </li>
         <li class="nav-item">
-          <form class="d-flex mx-5 w-100">
+          <form class="d-flex mx-5 w-75" method="POST" action="/User/product/search">
             <div class="input-group">
-              <input class="form-control me-2" type="search" placeholder="        Tìm kiếm" aria-label="Search">
-              <span class="input-group-icon material-symbols-outlined">
-                search
-              </span>
+              <input class="form-control me-2" name="search" type="text" placeholder="Tìm kiếm">
             </div>
-
+            <button class="btn btn-secondary" type="submit">Search</button>
           </form>
+          
+          
         </li>
       </ul>
 
@@ -140,7 +139,7 @@
         <div class="registered-group-account-text">
           <div class="registered-group-account-name-text">[[*{name}]]
           </div>
-          <!-- <div class="registered-group-account-email-text" th:text="${us.email}"></div> -->
+          <!-- <div class="registered-group-account-email-text">[[*{name}]]</div> -->
         </div>
         <div class="registered-group-account-img dropdown">
           <img class="img-avata-registered"

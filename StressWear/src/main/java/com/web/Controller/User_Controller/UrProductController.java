@@ -3,6 +3,8 @@ package com.web.Controller.User_Controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.web.DAO.DanhSachKTDAO;
@@ -27,7 +31,7 @@ import com.web.Entity.TaiKhoan;
 
 @Controller
 public class UrProductController {
-       @Autowired
+    @Autowired
     SanPhamDAO dao;
 
     @Autowired
@@ -86,12 +90,12 @@ public class UrProductController {
             @RequestParam("selectName") String select) {
         // model.addAttribute("title", idNhomLoai);
         if (select.equals("AZ")) {
-            List<SanPham> prolists = dao.findByLoaiSanpham( idNhomLoai ,
+            List<SanPham> prolists = dao.findByLoaiSanpham(idNhomLoai,
                     Sort.by(Direction.ASC, "tenSanPham"));
             model.addAttribute("nhomloaisanpham", prolists);
             model.addAttribute("messagename", "Lọc từ A - Z");
         } else {
-            List<SanPham> prolists = dao.findByLoaiSanpham(idNhomLoai ,
+            List<SanPham> prolists = dao.findByLoaiSanpham(idNhomLoai,
                     Sort.by(Direction.DESC, "tenSanPham"));
             model.addAttribute("nhomloaisanpham", prolists);
             model.addAttribute("messagename", "Lọc từ Z - A");
@@ -160,5 +164,18 @@ public class UrProductController {
         }
 
         return "User/User-product-List";
+    }
+
+    // Tìm kiếm
+    @RequestMapping("/User/product/search")
+    public String search(Model model, @RequestParam("search") String search) {
+        List<SanPham> products = dao.findByTenSanPham(search);
+        List<NhomLoai> nhomloai = nlDao.findAll();
+        if (products.isEmpty()) {
+            model.addAttribute("message", "Không tìm thấy sản phẩm có tên là: " + search);
+        }
+        model.addAttribute("nhomloai", nhomloai);
+        model.addAttribute("products", products);
+        return "User/User-product-search.html";
     }
 }

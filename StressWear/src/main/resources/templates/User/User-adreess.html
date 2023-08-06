@@ -53,32 +53,32 @@
       </div>
       <i class="" style="color: red;" th:text="${message}"></i>
       <div class="col-9">
-        <form class="adrress-form-ship" action="/User/pay" method="post">
+
+        <form class="adrress-form-ship" action="/User/address" method="post">
           <div class="mb-3">
             <label for="fullName" class="form-label">Họ tên khách hàng</label>
-            <!-- <input type="text" name="fullname" class="form-control w-100" id="fullName" placeholder="olivia" required> -->
-            <div class="form-control" id="username">[[${#request.remoteUser}]]</div>
+            <input type="text" name="fullname" class="form-control w-100" id="fullName" placeholder="olivia" required>
+            
             
           </div>
           <div class="row">
-            <!-- <div class="col-md-6 mb-3 my-2">
+            <div class="col-md-6 mb-3 my-2">
               <label for="phoneNumber" class="form-label">Số điện thoại</label>
-              <input type="tel" name="phone" class="form-control w-100" id="phoneNumber" placeholder="0987654321" required>
-            </div> -->
+              <input type="tel" name="phone" class="form-control w-100" id="phoneNumber" placeholder="0987654321" 
+              required pattern="[0-9]{10}" title="Số điện thoại phải có 10 chữ số">
+            </div>
             
-            
-            <div class="form-control">{{order.createDate | date : 'dd-MM-yyyy'}}</div>
+          
 
-
-            <!-- <div class="col-md-6 mb-3 my-2">
+            <div class="col-md-6 mb-3 my-2">
               <label for="city" class="form-label">Thành phố / Tỉnh</label>
               <select class="form-select form-select-sm mb-3" ng-model="arder.address" id="city" name="city" aria-label=".form-select-sm" required>
                 <option value="city" selected>Chọn tỉnh thành</option>
               </select>
-            </div> -->
+            </div>
           </div>
 
-          <!-- <div class="row">
+          <div class="row">
             <div class="col-md-6 mb-3 my-2">
               <label for="city" class="form-label">Quận / Huyện</label>
               <select class="form-select form-select-sm mb-3" id="district" name="district"  aria-label=".form-select-sm" required>
@@ -87,23 +87,23 @@
             </div>
             <div class="col-md-6 mb-3 my-2">
               <label for="city" class="form-label">Phường / Xã</label>
-              <select class="form-select form-select-sm" id="ward" name="commune" aria-label=".form-select-sm" required>
+              <select class="form-select form-select-sm" id="ward" name="commune" aria-label=".form-select-sm"required >
                 <option value="commune" selected>Chọn phường xã</option>
               </select>
             </div>
-          </div> -->
+          </div>
           <div class="mb-3 my-2">
             <label for="fullName" class="form-label">Số nhà / Tên đường</label>
-            <textarea class="form-control" ng-model="order.address" name="apartment_number" id="" cols="30" rows="7"
+            <textarea class="form-control"  name="apartment_number" id="" cols="30" rows="7"
               placeholder="Enter a description..."></textarea>
           </div>
 
           <div class="pay-bill  col-3 ">
             
-              <button class="btn-pay" ng-click="order.purchase()">Tiếp tục thanh toán</button>
-            
+              <button class="btn btn-success"  ng-click="address.addAddress()">Tiếp tục thanh toán</button>
+              <!-- btn-pay -->
           </div>
-        </form>
+       </form>
 
 
       </div>
@@ -224,7 +224,7 @@
     </div>
   </footer>
 </body>
-<script src="js/cart.js"></script>
+<!-- <script src="js/cart.js"></script> -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>

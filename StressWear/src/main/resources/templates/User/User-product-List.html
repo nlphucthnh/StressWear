@@ -109,7 +109,7 @@
 
                             <th:block th:each="spcl : ${product.ListSPCT_SP[0]}">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
-                                    th:src="@{${spcl.ListDSHA_SPCT[0].hinhAnh.idHinhAnh}}" alt="Hình ảnh">
+                                    th:src="@{${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan}}" alt="Hình ảnh">
                             </th:block>
 
                         </div>
@@ -138,5 +138,6 @@
     <nav th:replace="~{/layout/footer.html :: footer}"></nav>
 </body>
 <script src="/javascripts/shopping-cart-app.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </html>

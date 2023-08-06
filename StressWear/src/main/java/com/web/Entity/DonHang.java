@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,11 +27,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@SuppressWarnings("serial")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "don_hang")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DonHang implements Serializable {
     @Id
     @Column(name = "id_don_hang")
@@ -48,10 +51,12 @@ public class DonHang implements Serializable {
     @Column(name = "trang_thai_don_Hang")
     private String trangThaiDonHang;
 
+    
     @ManyToOne
 	@JoinColumn(name = "tai_khoan_mua")
 	TaiKhoan taiKhoanMuaHang;
    
+    
     @OneToOne
     @JoinColumn(name = "id_thong_tin_giao_hang")
     ThongTinGiaoHang thongTinGiaoHang;
@@ -60,8 +65,8 @@ public class DonHang implements Serializable {
     @OneToOne(mappedBy = "donHangTT")
     ThanhToan thanhToanDH;
 
+    
     @JsonIgnore
     @OneToMany(mappedBy = "donHangDHCT")
     List<DonHangChiTiet> ListDHCT;
-
 }
