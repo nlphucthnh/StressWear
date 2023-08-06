@@ -13,10 +13,7 @@ public class MgController {
         return "Manager/Manager-filter-page";
     }
 
-    @GetMapping("account")
-    public String getAccountPage() {
-        return "Manager/Manager-account-page";
-    }
+    
 
     @GetMapping("login")
     public String getLoginPage() {

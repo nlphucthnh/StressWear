@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "san_pham_chi_tiet")
-public class SanPhamChiTiet implements Serializable  {
+public class SanPhamChiTiet implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_san_pham_chi_tiet")
