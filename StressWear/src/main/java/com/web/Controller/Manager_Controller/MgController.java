@@ -18,7 +18,7 @@ public class MgController {
     public String getLoginPage() {
         return "Manager/Manager-login-page";
     }
-
+    @GetMapping("order")
     public String getOrderPage() {
         return "Manager/Manager-order-page";
     }

@@ -14,7 +14,7 @@ public interface VaiTroTaiKhoanDAO extends JpaRepository<VaiTroTaiKhoan, Integer
     List<VaiTroTaiKhoan> findByTenDangNhapVaiTro(String tenDangNhap);
 
     @Query("SELECT s FROM VaiTroTaiKhoan s WHERE s.taiKhoan.tenDangNhap LIKE CONCAT('%', ?1, '%')")
-    Page<VaiTroTaiKhoan> findByVaiTroTenDangNhap(String nameaccount, Pageable pageableVTTK);
+    Page<VaiTroTaiKhoan> findByVaiTroTenDangNhap(String tenDangNhap, Pageable pageableVTTK);
 
     Page<VaiTroTaiKhoan> findByVaiTroIdVaiTroContaining(String idVaiTro, Pageable pageable);
 

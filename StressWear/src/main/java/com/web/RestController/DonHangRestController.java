@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -51,7 +55,17 @@ public class DonHangRestController {
 
     }
 
-    // @PostMapping()
+    @GetMapping("paging")
+    public ResponseEntity<Page<DonHang>> findAllPage(
+            @RequestParam(name = "idDonHang", defaultValue = "") String idDonHang,
+            @RequestParam("page") Optional<Integer> numberpage) {
+        Pageable pageableDH = PageRequest.of(numberpage.orElse(0), 5);
+        Page<DonHang> pageDonHang = donHangDAO.findById(idDonHang, pageableDH);
+        return ResponseEntity.ok(pageDonHang);
+    }
+
+
+    // @PostMapping("")
     // public ResponseEntity<DonHang> post(@RequestBody DonHang donHang) {
     //     if (donHangDAO.existsById(donHang.getIdDonHang())) {
     //         return ResponseEntity.badRequest().build();
