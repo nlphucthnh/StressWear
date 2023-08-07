@@ -38,6 +38,14 @@ public class VaiTroTaiKhoanRestController {
         return ResponseEntity.ok(vaiTroTaiKhoanDAO.findAll());
     }
     
+    @GetMapping("paging")
+    public ResponseEntity<Page<VaiTroTaiKhoan>> findAllPage2(
+            @RequestParam(name = "tenDangNhap", defaultValue = "") String tenDangNhap,
+            @RequestParam("page") Optional<Integer> numberpage) {
+        Pageable pageableVTTK = PageRequest.of(numberpage.orElse(0), 5);
+        Page<VaiTroTaiKhoan> pageVaiTroTaiKhoan = vaiTroTaiKhoanDAO.findByVaiTroTenDangNhap(tenDangNhap, pageableVTTK);
+        return ResponseEntity.ok(pageVaiTroTaiKhoan);
+    }
 
     @GetMapping("{id}")
     public ResponseEntity<VaiTroTaiKhoan> findById(@PathVariable("id") Integer idVaiTro){
@@ -45,8 +53,7 @@ public class VaiTroTaiKhoanRestController {
         if(!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(optional.get());
-        
+        return ResponseEntity.ok(optional.get());  
     }
 
     @PostMapping()

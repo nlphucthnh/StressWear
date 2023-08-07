@@ -25,14 +25,14 @@
     <!-- Bootstrap JavaScript: -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+        </script>
     <!-- link icon -->
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!--link css -->
     <link rel="stylesheet" href="/styles/root.css">
     <link rel="stylesheet" href="/styles/navigation.css">
-    <link rel="stylesheet" href="/styles/Manager-style/manager-account-page.css">
+    <link rel="stylesheet" href="/styles/account-page.css">
     <title>Manager account</title>
 </head>
 
@@ -70,24 +70,34 @@
                         <div class="list_blogs-header">
                             <div class="list_blogs-header-seletion-group d-flex">
                                 <div class="mb-3" style="margin-right: 10px;">
-                                    <button ng-click="sort_list_acc(false)" class="btn btn-style filte-sort"
+                                    <button ng-click="sort_list_vttk(false)" class="btn btn-style filte-sort"
                                         id="sort-down-id" style="height: 100%;"><i class="bi bi-sort-up"></i></button>
-                                    <button ng-click="sort_list_acc(true)" class="btn btn-style filte-sort"
+                                    <button ng-click="sort_list_vttk(true)" class="btn btn-style filte-sort"
                                         id="sort-up-id" style="height: 100%;display: none;"><i
                                             class="bi bi-sort-down-alt"></i></button>
                                 </div>
                                 <div class="mb-3" style="margin-right: 20px;">
-                                    <select class="form-select form-select-lg" name="sortField" id="sortField">
-                                        <option value="tenDangNhap" selected>Theo tên đăng nhập</option>
-                                        <option value="email">Theo email</option>
-                                        <option value="trangThai">Theo trạng thái hoạt động</option>
-                                     </select>
+                                    <select class="form-select form-select-lg" name="sortField" id="status_account">
+                                        <option value="" selected>Tất cả trạng thái</option>
+                                        <option value="true">Đang hoạt động</option>
+                                        <option value="false">Dùng hoạt động</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3" style="margin-right: 20px;">
+                                    <select class="form-select form-select-lg" name="sortField" id="role_account">
+                                        <option value="">Tất cả vai trò</option>
+                                        <option value="USER">Người dùng</option>
+                                        <option value="STAFF">Nhân viên</option>
+                                        <option value="ADMIN">Quản trị viên</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3" style="margin-right: 20px;">
                                 </div>
                                 <button style="display: none;" id="Sort">Sắp sếp</button>
                             </div>
                             <div class="list_blogs-header-search-group">
                                 <div class="input-group mb-3">
-                                    <button ng-click="paging_data_acc(text_search,0)"
+                                    <button ng-click="paging_data_vttk(text_search,0)"
                                         class="btn btn-outline-secondary box-shadow-none" type="button"
                                         id="button-search"><i class="bi bi-search"></i></button>
                                     <input ng-model="text_search" type="text" class="form-control box-shadow-none"
@@ -109,55 +119,52 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="acc in list_acc | orderBy : sort_list">
-
+                                        <tr
+                                            ng-repeat="vttk in list_vttk | orderBy : sort_list |  filter : { vaiTro : { idVaiTro : role_account } , taiKhoan : { trangThai : status_account} }">
                                             <td scope="row" class="td-first-table">
                                                 <div class="text-blogs-group">
-                                                    <h6 class="text-title-blogs text-title">{{acc.tenDangNhap}}</h6>
+                                                    <h4 class="text-title-blogs text-title">
+                                                        {{vttk.taiKhoan.tenDangNhap}}</h4>
+                                                    <h6 class="text-id-blogs text-title">{{vttk.taiKhoan.email}}</h6>
                                                 </div>
                                             </td>
-                                            <td>{{acc.email}}</td>
-
-                                            <td>
-                                                <span ng-repeat="role in infor_role" ng-if="acc.tenDangNhap == role.taiKhoan.tenDangNhap" >{{role.vaiTro.idVaiTro}}<br></span>
-                                                
-                                               
+                                            <td>{{vttk.taiKhoan.email}}</td>
+                                            <td>{{vttk.vaiTro.idVaiTro}}</td>
+                                            <td ng-if="vttk.taiKhoan.trangThai"><span class="badge badge-green">Đang
+                                                    hoạt động</span>
                                             </td>
-                                            
-                                            <td><p ng-class="{'badge bg-danger': !acc.trangThai, 'badge badge-green': acc.trangThai}">{{acc.trangThai ? 'Đang hoạt động' : 'Ngưng hoạt động' }}</p></td>
-                                           
-                                            
-                                            
-                                            <td>
-                                                <button ng-click="edit_acc(acc)" class="btn"
-                                                style="color: var(--gray_600);"><i
-                                                    class="bi bi-pen-fill"></i></button>
-                                            <button ng-click="delete_acc(acc.tenDangNhap)" class="btn"
-                                                style="color: var(--gray_600);"><i
-                                                    class="bi bi-trash-fill"></i></button>
+                                            <td ng-if="!vttk.taiKhoan.trangThai"><span class="badge badge-red">Dừng hoạt
+                                                    động</span>
                                             </td>
-
+                                            <td>
+                                                <button ng-click="edit_acc(vttk)" class="btn"
+                                                    style="color: var(--gray_600);"><i
+                                                        class="bi bi-pen-fill"></i></button>
+                                                <button ng-click="delete_acc(vttk.taiKhoan.tenDangNhap)" class="btn"
+                                                    style="color: var(--gray_600);"><i
+                                                        class="bi bi-trash-fill"></i></button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td style="text-align: left;">
-                                                <button ng-if="infor_acc.number == 0"
+                                                <button ng-if="infor_vttk.number == 0"
                                                     class="btn-style btn-prev m-0 disnable">Trước đó</button>
-                                                <button ng-if="infor_acc.number > 0"
-                                                    ng-click="paging_data_acc(text_search,infor_acc.number - 1)"
+                                                <button ng-if="infor_vttk.number > 0"
+                                                    ng-click="paging_data_vttk(text_search,infor_vttk.number - 1)"
                                                     class="btn-style btn-prev m-0">Trước đó</button>
-                                                <button ng-if="infor_acc.number < infor_acc.totalPages - 1"
-                                                    ng-click="paging_data_acc(text_search,infor_acc.number + 1)"
+                                                <button ng-if="infor_vttk.number < infor_vttk.totalPages - 1"
+                                                    ng-click="paging_data_vttk(text_search,infor_vttk.number + 1)"
                                                     class="btn-style btn-next m-0">Kế tiếp</button>
-                                                <button ng-if="infor_acc.number == infor_acc.totalPages - 1"
+                                                <button ng-if="infor_vttk.number == infor_vttk.totalPages - 1"
                                                     class="btn-style btn-next m-0 disnable">Kế tiếp</button>
                                                 <br>
                                             </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td> Trang {{infor_acc.number + 1}} của {{infor_acc.totalPages}}</td>
+                                            <td> Trang {{infor_vttk.number + 1}} của {{infor_vttk.totalPages}}</td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -167,71 +174,81 @@
                     </div>
                     <div class="tab-pane" id="form_blogs" role="tabpanel" aria-labelledby="form-account-tab">
                         <div class="form_blogs-pane">
-                            <form action="">
-                                <div class="group-fleld group-fleld-01">
-                                    <div class="mb-3 form-group">
-                                        <label for="username_account" class="form-label">Tên đăng nhập</label>
-                                        <input type="text" ng-model="form_acc.tenDangNhap" name="username-account" id="username_account"
-                                            class="form-control box-shadow-none" placeholder="">
-                                        <!-- <small id="helpId" class="text-muted">Help text</small> -->
-                                    </div>
-                                    <div class="mb-3 form-group">
-                                        <label for="password_account" class="form-label">Mật khẩu</label>
-                                        <input type="password"ng-model="form_acc.matKhau" name="password-account" id="password_account"
-                                            class="form-control box-shadow-none" placeholder="">
-                                        <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                            <div class="group-fleld group-fleld-01">
+                                <div class="mb-3 form-group">
+                                    <label for="username_account" class="form-label">Tên đăng nhập</label>
+                                    <input style="pointer-events: none;" type="text" ng-model="form_acc.tenDangNhap"
+                                        name="username-account" id="username_account"
+                                        class="form-control box-shadow-none" placeholder="">
+                                    <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="password_account" class="form-label">Mật khẩu</label>
+                                    <input type="password" ng-model="form_acc.matKhau" name="password-account"
+                                        id="password_account" class="form-control box-shadow-none" placeholder="">
+                                    <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                </div>
+                            </div>
+
+                            <div class="group-fleld group-fleld-03">
+                                <div class="mb-3 form-group">
+                                    <label for="status_account" class="form-label">Trạng thái</label>
+                                    <select ng-model="form_acc.trangThai" class="form-control  box-shadow-none"
+                                        name="status-account" id="status_account" aria-describedby="calendar">
+                                        <option value="true">Đang hoạt động</option>
+                                        <option value="false">Dừng hoạt động</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="email_account" class="form-label">Email</label>
+                                    <input type="email" ng-model="form_acc.email" name="email-account"
+                                        id="email_account" class="form-control box-shadow-none" placeholder="">
+                                    <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                </div>
+                            </div>
+                            <div class="group-fleld group-fleld-04">
+                                <div class="mb-3 form-group">
+                                    <label for="role_account" class="form-label">Vai trò</label>
+                                    <select ng-model="idVaiTro" class="form-control  box-shadow-none"
+                                        name="role-account" id="role_account" aria-describedby="calendar">
+                                        <option value="USER">Người dùng</option>
+                                        <option value="STAFF">Nhân viên</option>
+                                        <option value="ADMIN">Quản trị viên</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="group-fleld group-fleld-06">
+                                <div class="mb-3 form-group check-box-size">
+                                    <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                        <h6 class="text-title">Người dùng</h6>
+                                        <input style="pointer-events: none;"
+                                            class="form-check-input form-control box-shadow-none" type="checkbox"
+                                            value="S" id="sizeS" name="sizecheck">
                                     </div>
                                 </div>
-                                <div class="group-fleld group-fleld-02">
-                                    <div class="mb-3 form-group">
-                                        <label for="email_account" class="form-label">Email</label>
-                                        <input type="email"ng-model="form_acc.email" name="email-account" id="email_account"
-                                            class="form-control box-shadow-none" placeholder="">
-                                        <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                <div class="mb-3 form-group check-box-size">
+                                    <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                        <h6 class="text-title">Nhân Viên</h6>
+                                        <input style="pointer-events: none;"
+                                            class="form-check-input form-control box-shadow-none" type="checkbox"
+                                            value="M" id="sizeM" name="sizecheck">
                                     </div>
-                                    <!-- <div class="mb-3 form-group">
-                                        <label for="date_account" class="form-label">Ngày đăng ký</label>
-                                        <input type="date"  ng-model="form_acc.ngayTaoSanPham" name="date-account" id="date_account"
-                                            aria-describedby="img-blog" class="form-control box-shadow-none"
-                                            placeholder="">
-                                         <small id="helpId" class="text-muted">Help text</small> 
-                                    </div> -->
                                 </div>
-                                <div class="group-fleld group-fleld-03">
-                                    <div class="mb-3 form-group">
-                                        <label for="status_account" class="form-label">Trạng thái</label>
-                                        <select ng-model="form_acc.trangThai"  class="form-control  box-shadow-none" name="status-account"
-                                            id="status_account" aria-describedby="calendar">
-                                            <option ng-if="form_acc.trangThai == true"  selected>{{form_acc.trangThai ? 'Đang hoạt động' : 'Ngưng hoạt động'}}</option>
-                                            <option ng-if="form_acc.trangThai == false"  selected>{{form_acc.trangThai ? 'Đang hoạt động' : 'Ngưng hoạt động'}}</option>
-                                            <option value="true">ON</option>
-                                            <option value="false">OFF</option>
-                                        </select>
+                                <div class="mb-3 form-group check-box-size">
+                                    <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                        <h6 class="text-title">Quản trị viên</h6>
+                                        <input style="pointer-events: none;"
+                                            class="form-check-input form-control box-shadow-none" type="checkbox"
+                                            value="L" id="sizeL" name="sizecheck">
                                     </div>
-                                    
-                                    <div class="mb-3 form-group">
-                                        <label for="role_account" class="form-label">Vai trò</label>
-                                        <select ng-model="list_acct.vaiTro.idVaiTro" class="form-control  box-shadow-none" name="role-account"
-                                            id="role_account" aria-describedby="calendar">
-
-                                            
-                                            <option value="">USER</option>
-                                            <option value="">STAFF</option>
-
-
-                                        </select>
-                                    </div>
-
                                 </div>
-                                <div class="group-fleld group-fleld-05">
-                                    <button class="btn btn-style"><i class="bi-brush"></i></button>
-                                    <button class="btn btn-style btn-update btn-update-acc">Cập nhật</button>
-                                    <button class="btn btn-style btn-add btn-add-acc">Thêm</button>
-                                    <button ng-click="delete_acc(form_acc.tenDangNhap)" class="btn btn-style">Xóa</button>
-                                    <button ng-click="reset_acc()" class="btn btn-style btn-reset-acc">Làm mới</button>
-                                </div>
-
-                            </form>
+                            </div>
+                            <div class="group-fleld group-fleld-05">
+                                <button class="btn btn-style"><i class="bi-brush"></i></button>
+                                <button ng-click="update_acc()" class="btn btn-style btn-update btn-update-acc">Cập
+                                    nhật</button>
+                                <button class="btn btn-style btn-add btn-add-acc">Thêm mới</button>
+                            </div>
                         </div>
 
                     </div>
@@ -239,7 +256,8 @@
             </div>
         </div>
     </div>
-    
+
 </body>
 <script src="/javascripts/manager-js/Manager-account.js"></script>
+
 </html>
