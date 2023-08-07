@@ -1,6 +1,29 @@
 const app = angular.module("shopping-cart-app", []);
 
 app.controller("shopping-cart-ctrl", function ($scope, $http) {
+  function showError() {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.classList.add("visible");
+  
+    // Sau 3 giây, ẩn thông báo lỗi
+    setTimeout(() => {
+      errorMessage.classList.remove("visible");
+    }, 3000);
+  }
+  
+  function showsucces() {
+    const errorMessage = document.getElementById("success-message");
+    errorMessage.classList.add("visible");
+  
+    // Sau 3 giây, ẩn thông báo lỗi
+    setTimeout(() => {
+      errorMessage.classList.remove("visible");
+    }, 3000);
+  }
+  
+
+
+  
   //Addess
   $scope.address = {
     ad: [],
@@ -38,8 +61,14 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
     add(idSanPham) {
       var item = this.items.find((item) => item.idSanPham == idSanPham);
       if (item) {
-        item.qty++;
-        this.saveToLocalStorage();
+        // Kiểm tra nếu số lượng hiện tại đã đạt tối đa (ví dụ: 10 là số lượng tối đa)
+        if (item.qty >= item.soLuongSP) {
+          // alert("Số lượng đã đạt tối đa.");
+          showError();
+        } else {
+          item.qty++;
+          this.saveToLocalStorage();
+        }
       } else {
         $http.get(`/api/sanpham/${idSanPham}`).then((resp) => {
           resp.data.qty = 1;
@@ -47,6 +76,17 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
           this.saveToLocalStorage();
         });
       }
+    },
+
+   //Bắt lỗi số lượng
+    updateQty(item) {
+      // Giả sử số lượng tối đa là `item.soLuong` (thay `soLuong` bằng tên thật trong bảng sản phẩm)
+      if (item.qty >= item.soLuongSP) {
+       
+        item.qty = item.soLuongSP;
+        showError();
+      }
+      this.saveToLocalStorage();
     },
 
     // xóa sản phẩm
@@ -72,12 +112,6 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
         .reduce((total, qty) => (total += qty), 0);
     },
     // Tổng thành tiền các mặt hàng trong giỏ
-    // get amount() {
-    //   return this.items
-    //     .map((item) => item.qty * item.giaSanPham)
-    //     .reduce((total, qty) => (total += qty), 0);
-    // },
-
     get amount() {
       return this.items
         .map(
@@ -112,7 +146,6 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
       lastIdThongTinGiaoHang = lastItem[lastItem.length - 1].idThongTinGiaoHang;
     }
   }
-  
 
   // Đặt hàng
   $scope.order = {
@@ -136,14 +169,13 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
       $http
         .post("/api/donhang", order)
         .then((resp) => {
-          alert("Đặt hàng thành công!");
+         showsucces();
           $scope.cart.clear();
           $scope.address.clear();
-          location.href = "/order/detail/"+ resp.data.idDonHang;
-
+          location.href = "/order/detail/" + resp.data.idDonHang;
         })
         .catch((error) => {
-          alert("Đặt hàng lỗi");
+          showError();
           console.log(error);
         });
     },

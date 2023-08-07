@@ -32,7 +32,7 @@
     <!-- Angularjs -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
     <link rel="stylesheet" href="/styles/root.css">
     <link rel="stylesheet" href="/styles/pay.css">
@@ -128,8 +128,13 @@
                 </div>
 
                 <div class="pay-bill  col-3 my-3">
-
-                    <button class="btn btn-success" ng-click="order.purchase()">Tiếp tục thanh toán</button>
+                    <div id="error-message" class="error-message">
+                        <span>Thanh toán thất bại</span>
+                      </div>
+                      <div id="success-message" class="success-message">
+                        <span>Thanh toán thành công</span>
+                      </div>
+                    <button class="btn btn-success" ng-click="order.purchase()">Thanh toán</button>
                     <!-- btn-pay -->
                 </div>
             </div>
@@ -205,5 +210,49 @@
 <script src="/javascripts/shopping-cart-app.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+    #error-message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ff0000;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    
+    #error-message.visible {
+      opacity: 1;
+    }
+    #success-message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #197511;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    
+    #success-message.visible {
+      opacity: 1;
+    }
+    
+    
 
+    </style>
 </html>
