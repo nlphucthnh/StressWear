@@ -101,9 +101,7 @@
                                 <table class="table table-striped m-0">
                                     <thead>
                                         <tr>
-                                            <th  scope="col" style="text-align: center;">
-                                                Tài khoản
-                                            </th>
+                                            <th scope="col"> Tài khoản</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Vai trò</th>
                                             <th scope="col">Trạng thái</th>
@@ -119,12 +117,6 @@
                                                 </div>
                                             </td>
                                             <td>{{acc.email}}</td>
-
-                                            <!-- <td th:each="acc : ${productitem}">
-                                                <th:block th:each="spsize : ${spcl.ListDSKT_SPCT}">
-                                                    <span th:text="${spsize.kichThuoc.tenKichThuoc}"></span>
-                                                </th:block>
-                                            </td> -->
 
                                             <td>USER</td>
                                             
@@ -225,10 +217,10 @@
 
                                 </div>
                                 <div class="group-fleld group-fleld-05">
-                                    <button class="btn btn-style btn-clear"><i class="bi-brush"></i></button>
+                                    <button class="btn btn-style"><i class="bi-brush"></i></button>
                                     <button class="btn btn-style btn-update btn-update-acc">Cập nhật</button>
                                     <button class="btn btn-style btn-add btn-add-acc">Thêm</button>
-                                    <button ng-click="delete_acc(acc.tenDangNhap)" class="btn btn-style btn-delete-acc">Xóa</button>
+                                    <button ng-click="delete_acc(form_acc.tenDangNhap)" class="btn btn-style">Xóa</button>
                                     <button ng-click="reset_acc()" class="btn btn-style btn-reset-acc">Làm mới</button>
                                 </div>
 

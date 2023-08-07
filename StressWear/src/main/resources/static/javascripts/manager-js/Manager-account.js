@@ -186,8 +186,6 @@ app.controller("ctrl-acc", function ($scope, $http) {
       alert("Xóa tài khoản thành công");
       var index = $scope.list_acc.findIndex(item => item.tenDangNhap === result.data.tenDangNhap.strim());
       $scope.list_acc.splice(index, 1);
-     
-      $scope.reset_acc();
     }).catch((err) => {
       console.log("ERROR", err);
     });
