@@ -47,7 +47,7 @@ public class SanPhamRestController {
 
     // @GetMapping("{id}")
     // public Optional<SanPham> getOne(@PathVariable("id") Integer idSanPham) {
-    //     return sanPhamDAO.findById(idSanPham);
+    // return sanPhamDAO.findById(idSanPham);
     // }
 
     @GetMapping("paging")

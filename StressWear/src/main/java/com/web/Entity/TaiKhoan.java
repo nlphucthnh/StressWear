@@ -49,6 +49,6 @@ public class TaiKhoan implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "taiKhoan", fetch = FetchType.EAGER)
     List<VaiTroTaiKhoan> List_VTTK;
-
-
+    
+    
 }

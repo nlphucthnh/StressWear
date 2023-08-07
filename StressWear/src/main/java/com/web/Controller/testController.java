@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class testController {
 
-
     @GetMapping("index")
     public String index() {
         return "User/User-index";
@@ -34,7 +33,7 @@ public class testController {
 
     // @RequestMapping("login-page")
     // public String loginPage() {
-    //     return "User/User-login-page";
+    // return "User/User-login-page";
     // }
 
     @GetMapping("sign-up-page")
