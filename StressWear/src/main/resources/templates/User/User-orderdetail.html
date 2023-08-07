@@ -87,12 +87,32 @@
               <tr th:each="donHangDHCT : ${donhang.ListDHCT}">
                 <th scope="row">[[*{donHangDHCT.sanPhamDHCT.idSanPham}]]</th>
                 <td>[[*{donHangDHCT.sanPhamDHCT.tenSanPham}]]</td>
-                <td>[[*{#numbers.formatDecimal((donHangDHCT.sanPhamDHCT.giaSanPham) - (donHangDHCT.sanPhamDHCT.giaSanPham)* (donHangDHCT.sanPhamDHCT.khuyenMaiSP.phanTramKhuyenMai), 0,'COMMA', 0, 'POINT')}+' đ']]</td>
+                <td>
+                  <!-- Ki?m tra n?u s?n ph?m có khuy?n m?i -->
+                  <span th:if="${donHangDHCT.sanPhamDHCT.khuyenMaiSP != null}">
+                    <!-- Tính toán giá s?n ph?m sau khuy?n m?i -->
+                    [[*{#numbers.formatDecimal(
+                      (donHangDHCT.sanPhamDHCT.giaSanPham) - (donHangDHCT.sanPhamDHCT.giaSanPham) * (donHangDHCT.sanPhamDHCT.khuyenMaiSP.phanTramKhuyenMai),
+                      0, 'COMMA', 0, 'POINT')
+                    }+' đ']]
+                  </span>
+                  <!-- N?u không có khuy?n m?i, in giá b?nh thư?ng -->
+                  <span th:if="${donHangDHCT.sanPhamDHCT.khuyenMaiSP == null}">
+                    [[*{#numbers.formatDecimal(donHangDHCT.sanPhamDHCT.giaSanPham, 0, 'COMMA', 0, 'POINT')}+' đ']]
+                  </span>
+                </td>
                 <td>[[*{donHangDHCT.soLuong}]]</td>
-                <td>[[*{#numbers.formatDecimal((donHangDHCT.soLuong) * (donHangDHCT.sanPhamDHCT.giaSanPham) - (donHangDHCT.sanPhamDHCT.giaSanPham)* (donHangDHCT.sanPhamDHCT.khuyenMaiSP.phanTramKhuyenMai), 0,'COMMA', 0, 'POINT')}+' đ']]</td>
+                <td>
+                  <!-- Tính toán t?ng giá s?n ph?m sau khuy?n m?i -->
+                  [[*{#numbers.formatDecimal(
+                    (donHangDHCT.soLuong) * (donHangDHCT.sanPhamDHCT.giaSanPham) -
+                    (donHangDHCT.sanPhamDHCT.giaSanPham) * (donHangDHCT.sanPhamDHCT.khuyenMaiSP != null ? donHangDHCT.sanPhamDHCT.khuyenMaiSP.phanTramKhuyenMai : 0),
+                    0, 'COMMA', 0, 'POINT')
+                  }+' đ']]
+                </td>
               </tr>
-
             </tbody>
+            
           </table>
 
           <!-- <div class="mb-3">
