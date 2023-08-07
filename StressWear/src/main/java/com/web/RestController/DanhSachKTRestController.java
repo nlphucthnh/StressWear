@@ -50,8 +50,8 @@ public class DanhSachKTRestController {
         if(danhSachKTDAO.existsById(danhSachKT.getIdDanhSachKT())){
             return ResponseEntity.badRequest().build();
         }
-        danhSachKTDAO.save(danhSachKT);
-        return ResponseEntity.ok(danhSachKT);
+        DanhSachKT danhSachKT2 = danhSachKTDAO.save(danhSachKT);
+        return ResponseEntity.ok(danhSachKT2);
     }
 
     @PutMapping("{id}")

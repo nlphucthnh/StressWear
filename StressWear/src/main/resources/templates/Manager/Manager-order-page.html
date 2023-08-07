@@ -17,7 +17,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="/javascripts/library-js/angular.min.js"></script>
+    <script src="/javascripts/library-js/angular-route.js"></script>
     <!-- Bootstrap JavaScript: -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -34,7 +35,7 @@
 <body>
     <div class="background-manager">
         <nav id="Manager_Navigation" th:include="components/Manager-navigation"></nav>
-        <div id="Manager_Content">
+        <div id="Manager_Content" ng-app="app" ng-controller="ctrl-dh">
             <div class="header_content">
                 <div class="header_content_text-group">
                     <h3 class="header_content_main-text text-title">Quản lý đơn hàng</h3>
@@ -52,7 +53,8 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs body_content_tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button style="background-color: var(--gray_50); border: 1px solid var(--gray_300);" class="btn-style" id="list-order-tab" data-bs-toggle="tab" data-bs-target="#list_order"
+                        <button style="background-color: var(--gray_50); border: 1px solid var(--gray_300);"
+                            class="btn-style" id="list-order-tab" data-bs-toggle="tab" data-bs-target="#list_order"
                             type="button" role="tab" aria-controls="list_order" aria-selected="true">Danh sách đơn
                             hàng</button>
                     </li>
@@ -68,43 +70,41 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="list_order" role="tabpanel" aria-labelledby="list-order-tab">
                         <div class="list_order-header">
-                            <div class="list_order-header-seletion-group">
-                                <form action="" method="post">
-                                    <div class="mb-3" style="margin-right: 10px;">
-                                        <a class="btn btn-style filte-sort" id="sort-down-id" style="height: 100%; display: flex; justify-content: center;"><i
-                                                class="bi bi-sort-up"></i></a>
-                                        <a class="btn btn-style filte-sort" id="sort-up-id"
-                                            style="height: 100% ;display: none;"><i class="bi bi-sort-down-alt"></i></a>
-                                    </div>
-                                    <div class="mb-3" style="margin-right: 20px;">
-                                        <select class="form-select form-select-lg" name="" id="">
-                                            <option selected>Chưa thanh toán</option>
-                                            <option value="">New Delhi</option>
-                                            <option value="">Istanbul</option>
-                                            <option value="">Jakarta</option>
-                                        </select>
-                                    </div>
+                            <div class="list_order-header-seletion-group d-flex">
+                                <div class="mb-3" style="margin-right: 10px;">
+                                    <button ng-click="sort_list_dh(false)" class="btn btn-style filte-sort"
+                                        id="sort-down-id" style="height: 100%;"><i class="bi bi-sort-up"></i></button>
+                                    <button ng-click="sort_list_dh(true)" class="btn btn-style filte-sort"
+                                        id="sort-up-id" style="height: 100%;display: none;"><i
+                                            class="bi bi-sort-down-alt"></i></button>
+                                </div>
+                                <div class="mb-3" style="margin-right: 20px;">
+                                    <select class="form-select form-select-lg" name="" id="method_payment">
+                                        <option value="" selected>Tất cả</option>
+                                        <option value="cash">Tiền mặt</option>
+                                        <option value="wallet">Ví điện tử</option>
+                                        <option value="credit">Thẻ tính dụng</option>
+                                    </select>
+                                </div>
 
-                                    <div class="mb-3">
-                                        <select class="form-select form-select-lg" name="" id="">
-                                            <option selected>Đã hoàn thành</option>
-                                            <option value="">New Delhi</option>
-                                            <option value="">Istanbul</option>
-                                            <option value="">Jakarta</option>
-                                        </select>
-                                    </div>
-                                </form>
+                                <div class="mb-3">
+                                    <select class="form-select form-select-lg" name="" id="status_order">
+                                        <option  value="" selected>Tất cả</option>
+                                        <option value="doing">Đang xử lý</option>
+                                        <option value="cancel">Đã hủy</option>
+                                        <option value="done">Đã giao hàng</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="list_order-header-search-group">
-                                <form action="">
-                                    <div class="input-group mb-3">
-                                        <button class="btn btn-outline-secondary box-shadow-none" type="button"
-                                            id="button-search"><i class="bi bi-search"></i></button>
-                                        <input type="text" class="form-control box-shadow-none" placeholder="Tìm kiếm"
-                                            aria-label="Example text with button addon"
-                                            aria-describedby="button-search">
-                                    </div>
-                                </form>
+                                <div class="input-group mb-3">
+                                    <button ng-click="paging_data_dh(0)"
+                                        class="btn btn-outline-secondary box-shadow-none" type="button"
+                                        id="button-search"><i class="bi bi-search"></i></button>
+                                    <input ng-model="text_search" type="text" class="form-control box-shadow-none"
+                                        placeholder="Tìm kiếm" aria-label="Example text with button addon"
+                                        aria-describedby="button-search">
+                                </div>
                             </div>
                         </div>
                         <div class="list_order-body">
@@ -113,62 +113,73 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" style="text-align: left;">
-                                                <form action="" method="post">
-                                                    <input class="form-check-input box-shadow-none"
-                                                        style="margin-right: 10px;" name="" id="" type="checkbox"
-                                                        value="checkedValue" aria-label="Text for screen reader">
-                                                    Đơn hàng
-                                                    <i class="bi bi-arrow-down"></i>
-                                                </form>
+                                                <input class="form-check-input box-shadow-none"
+                                                    style="margin-right: 10px;" name="" id="" type="checkbox"
+                                                    value="checkedValue" aria-label="Text for screen reader">
+                                                Đơn hàng
+                                                <i class="bi bi-arrow-down"></i>
                                             </th>
                                             <th scope="col">Tài khoản mua</th>
                                             <th scope="col">Ngày tạo</th>
                                             <th scope="col">Thanh toán</th>
-                                            <th scope="col">Trang thái thanh toán</th>
                                             <th scope="col">Trang thái đơn hàng</th>
                                             <th scope="col">Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="">
-                                            <form action="">
-                                                <td scope="row" class="td-first-table">
-                                                    <input class="form-check-input box-shadow-none" name="" id=""
-                                                        type="checkbox" value="checkedValue"
-                                                        aria-label="Text for screen reader">
+                                        <tr
+                                            ng-repeat="dh in list_dh | orderBy : sort_list | filter : { phuongThucThanhToan : method_payment, trangThaiDonHang : status_order }">
+                                            <td scope="row" class="td-first-table text-order-group ">
+                                                <h4 class="text-title-order text-title">{{dh.idDonHang}}</h4>
+                                            </td>
+                                            <td>{{dh.taiKhoanMuaHang.tenDangNhap}}</td>
+                                            <td>{{convert_date(dh.ngayTao)}}</td>
 
-                                                    <div class="text-order-group">
-                                                        <h4 class="text-title-order text-title">DH19023781209</h4>
-                                                        <h6 class="text-id-order text-title">Mã đơn hàng</h6>
-                                                    </div>
-                                                </td>
-                                                <td>phucthnh123</td>
-                                                <td>13/03/2023</td>
-                                                <td>Tiền mặt</td>
-                                                <td><span class="badge badge-gray">Chưa thanh toán</span></td>
-                                                <td><span class="badge badge-blue">Đang vận chuyển</span></td>
-                                                <td>
-                                                    <button class="btn" style="color: var(--gray_600);"><i
-                                                            class="bi bi-trash-fill"></i></button>
-                                                    <button class="btn" style="color: var(--gray_600);"><i
-                                                            class="bi bi-pen-fill"></i></button>
-                                                </td>
-                                            </form>
+                                            <td ng-if="dh.phuongThucThanhToan == 'credit'"><span
+                                                    class="badge badge-purple">Thẻ tính dụng</span></td>
+                                            <td ng-if="dh.phuongThucThanhToan == 'wallet'"><span
+                                                    class="badge badge-gray">Ví điện tử</span></td>
+                                            <td ng-if="dh.phuongThucThanhToan == 'cash'"><span
+                                                    class="badge badge-yellow">Tiền mặt</span></td>
+
+
+
+                                            <td ng-if="dh.trangThaiDonHang == 'done'"><span class="badge badge-green">Đã
+                                                    giao hàng</span></td>
+                                            <td ng-if="dh.trangThaiDonHang == 'doing'"><span
+                                                    class="badge badge-blue">Đang xử lý</span></td>
+                                            <td ng-if="dh.trangThaiDonHang == 'cancel'"><span class="badge badge-red">Đã
+                                                    hủy</span></td>
+                                            <td>
+                                                <button ng-click="edit_dh(dh)" class="btn"
+                                                    style="color: var(--gray_600);"><i class="bi bi-pen"></i></button>
+                                                <button ng-click="delete_dh(dh.idDonHang)" class="btn"
+                                                    style="color: var(--gray_600);"><i class="bi bi-trash"></i></button>
+                                            </td>
+
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td style="text-align: left;">
-                                                <button class="btn-style btn-prev">Trước đó</button>
-                                                <button class="btn-style btn-next">Kế tiếp</button>
+                                                <button ng-if="infor_dh.number == 0"
+                                                    class="btn-style btn-prev m-0 disnable">Trước đó</button>
+                                                <button ng-if="infor_dh.number > 0"
+                                                    ng-click="paging_data_dh(infor_dh.number - 1)"
+                                                    class="btn-style btn-prev m-0">Trước đó</button>
+                                                <button ng-if="infor_dh.number < infor_dh.totalPages - 1"
+                                                    ng-click="paging_data_dh(infor_dh.number + 1)"
+                                                    class="btn-style btn-next m-0">Kế tiếp</button>
+                                                <button ng-if="infor_dh.number == infor_dh.totalPages - 1"
+                                                    class="btn-style btn-next m-0 disnable">Kế tiếp</button>
                                             </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td></td>
+
                                             <td>
-                                                Trang 1 của 10
+                                                Trang {{infor_dh.number + 1}} của {{infor_dh.totalPages}}
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -179,68 +190,59 @@
                     </div>
                     <div class="tab-pane" id="form_order" role="tabpanel" aria-labelledby="form-order-tab">
                         <div class="form_order-pane">
-                            <form action="">
+                            <form>
                                 <div class="group-fleld group-fleld-01">
                                     <h5 class="title-order title-order-infor">Thông tin đơn hàng</h5>
                                 </div>
                                 <div class="group-fleld group-fleld-02">
                                     <div class="mb-3 form-group">
                                         <label for="id_order" class="form-label">Mã đơn hàng</label>
-                                        <input type="number" min="0" name="id-order" id="id_order"
-                                            class="form-control box-shadow-none" placeholder="">
+                                        <input style="pointer-events: none; background-color: rgb(235, 238, 240);"
+                                            ng-model="form_dh.idDonHang" type="number" min="0" name="id-order"
+                                            id="id_order" class="form-control box-shadow-none" placeholder="">
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="account_order" class="form-label">Tài khoản Mua</label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="calendar"><i class="bi-person-fill"
+                                            <span class="input-group-text" id="calendar"><i class="bi-person"
                                                     style="color: var(--gray_700);"></i></span>
-                                            <select class="form-control form-select  box-shadow-none"
-                                                name="account-order" id="account_order" aria-describedby="calendar">
-                                                <option selected>phucThinh123</option>
-                                                <option value="">NewDelhi</option>
-                                                <option value="">Istanbul</option>
-                                                <option value="">Jakarta</option>
-                                            </select>
+                                            <input style="pointer-events: none; background-color: rgb(235, 238, 240);"
+                                                ng-model="form_dh.taiKhoanMuaHang.tenDangNhap" type="text"
+                                                name="name-order" id="name_order" class="form-control box-shadow-none"
+                                                placeholder="">
                                         </div>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="date_order" class="form-label">Ngày tạo</label>
-                                        <input type="date" name="date-order" id="date_order"
+                                        <input ng-model="form_dh.ngayTao" type="date" name="date-order" id="date_order"
                                             class="form-control box-shadow-none" placeholder="">
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
                                     </div>
                                 </div>
-                                <div class="group-fleld group-fleld-03">
+                                <div class="group-fleld group-fleld-07">
                                     <div class="mb-3 form-group">
                                         <label for="method_order" class="form-label">Phương thức thanh toán</label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="card-credit"><i
-                                                    class="bi-credit-card-fill"
+                                            <span class="input-group-text" id="card-credit"><i class="bi-credit-card"
                                                     style="color: var(--gray_700);"></i></span>
-                                            <select class="form-control form-select box-shadow-none" name="method-order"
+                                            <select ng-model="form_dh.phuongThucThanhToan"
+                                                class="form-control form-select box-shadow-none" name="method-order"
                                                 id="method_order" aria-describedby="card-credit">
-                                                <option selected>Tiền mặt</option>
-                                                <option value="">Thẻ ngân hàng</option>
+                                                <option value="cash" selected>Tiền mặt</option>
+                                                <option value="wallet">Ví điện tử</option>
+                                                <option value="credit">Thẻ tính dụng</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="mb-3 form-group">
-                                        <label for="status-buy_order" class="form-label">Trạng thái thanh toán</label>
-                                        <select class="form-control form-select box-shadow-none" name="status-buy-order"
-                                            id="status-buy_order">
-                                            <option selected>Chưa thanh toán</option>
-                                            <option value="">Đã thanh toán</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3 form-group">
                                         <label for="status-order_order" class="form-label">Trạng thái đơn hàng</label>
-                                        <select class="form-control form-select box-shadow-none"
-                                            name="status-order_order" id="">
-                                            <option selected>Đang xử lý</option>
-                                            <option value="">Chờ thanh toán</option>
-                                            <option value="">Đang vận chuyển</option>
-                                            <option value="">Đã hoàn thành</option>
+                                        <select ng-model="form_dh.trangThaiDonHang"
+                                            class="form-control form-select box-shadow-none" name="status-order_order"
+                                            id="">
+                                            <option value="doing" selected>Đang xử lý</option>
+                                            <option value="cancel">Đã hủy</option>
+                                            <option value="done">Đã giao hàng</option>
                                         </select>
                                     </div>
                                 </div>
@@ -264,131 +266,34 @@
                                                             <i class="bi bi-arrow-down"></i>
                                                         </form>
                                                     </th>
-                                                    <th scope="col">Số lượng</th>
+                                                    <th scope="col">Số lượng mua</th>
                                                     <th scope="col">Đơn giá</th>
+                                                    <th scope="col">Tổng tiền</th>
                                                     <th scope="col">Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="">
-                                                    <form action="">
-                                                        <td scope="row" class="td-first-table">
-                                                            <input class="form-check-input box-shadow-none" name=""
-                                                                id="" type="checkbox" value="checkedValue"
-                                                                aria-label="Text for screen reader">
-
-                                                            <div class="text-order-group">
-                                                                <h4 class="text-title-order text-title">Tên sản phẩm
-                                                                </h4>
-                                                                <h6 class="text-id-order text-title">Mã sản phẩm</h6>
-                                                            </div>
-                                                        </td>
-                                                        <td>Số lượng</td>
-                                                        <td>Đơn giá</td>
-                                                        <td>
-                                                            <button class="btn" style="color: var(--gray_600);"><i
-                                                                    class="bi bi-trash-fill"></i></button>
-                                                            <button class="btn" style="color: var(--gray_600);"><i
-                                                                    class="bi bi-pen-fill"></i></button>
-                                                        </td>
-                                                    </form>
-                                                </tr>
-                                                <tr class="">
-                                                    <form action="">
-                                                        <td scope="row" class="td-first-table">
-                                                            <input class="form-check-input box-shadow-none" name=""
-                                                                id="" type="checkbox" value="checkedValue"
-                                                                aria-label="Text for screen reader">
-
-                                                            <div class="text-order-group">
-                                                                <h4 class="text-title-order text-title">Tên sản phẩm
-                                                                </h4>
-                                                                <h6 class="text-id-order text-title">Mã sản phẩm</h6>
-                                                            </div>
-                                                        </td>
-                                                        <td>Số lượng</td>
-                                                        <td>Đơn giá</td>
-                                                        <td>
-                                                            <button class="btn" style="color: var(--gray_600);"><i
-                                                                    class="bi bi-trash-fill"></i></button>
-                                                            <button class="btn" style="color: var(--gray_600);"><i
-                                                                    class="bi bi-pen-fill"></i></button>
-                                                        </td>
-                                                    </form>
-                                                </tr>
-                                                <tr class="">
-                                                    <form action="">
-                                                        <td scope="row" class="td-first-table">
-                                                            <input class="form-check-input box-shadow-none" name=""
-                                                                id="" type="checkbox" value="checkedValue"
-                                                                aria-label="Text for screen reader">
-
-                                                            <div class="text-order-group">
-                                                                <h4 class="text-title-order text-title">Tên sản phẩm
-                                                                </h4>
-                                                                <h6 class="text-id-order text-title">Mã sản phẩm</h6>
-                                                            </div>
-                                                        </td>
-                                                        <td>Số lượng</td>
-                                                        <td>Đơn giá</td>
-                                                        <td>
-                                                            <button class="btn" style="color: var(--gray_600);"><i
-                                                                    class="bi bi-trash-fill"></i></button>
-                                                            <button class="btn" style="color: var(--gray_600);"><i
-                                                                    class="bi bi-pen-fill"></i></button>
-                                                        </td>
-                                                    </form>
-                                                </tr>
-                                                <tr class="">
-                                                    <form action="">
-                                                        <td scope="row" class="td-first-table">
-                                                            <input class="form-check-input box-shadow-none" name=""
-                                                                id="" type="checkbox" value="checkedValue"
-                                                                aria-label="Text for screen reader">
-
-                                                            <div class="text-order-group">
-                                                                <h4 class="text-title-order text-title">Tên sản phẩm
-                                                                </h4>
-                                                                <h6 class="text-id-order text-title">Mã sản phẩm</h6>
-                                                            </div>
-                                                        </td>
-                                                        <td>Số lượng</td>
-                                                        <td>Đơn giá</td>
-                                                        <td>
-                                                            <button class="btn" style="color: var(--gray_600);"><i
-                                                                    class="bi bi-trash-fill"></i></button>
-                                                            <button class="btn" style="color: var(--gray_600);"><i
-                                                                    class="bi bi-pen-fill"></i></button>
-                                                        </td>
-                                                    </form>
-                                                </tr>
-                                                <tr class="">
-                                                    <form action="">
-                                                        <td scope="row" class="td-first-table">
-                                                            <input class="form-check-input box-shadow-none" name=""
-                                                                id="" type="checkbox" value="checkedValue"
-                                                                aria-label="Text for screen reader">
-
-                                                            <div class="text-order-group">
-                                                                <h4 class="text-title-order text-title">Tên sản phẩm
-                                                                </h4>
-                                                                <h6 class="text-id-order text-title">Mã sản phẩm</h6>
-                                                            </div>
-                                                        </td>
-                                                        <td>Số lượng</td>
-                                                        <td>Đơn giá</td>
-                                                        <td>
-                                                            <button class="btn" style="color: var(--gray_600);"><i
-                                                                    class="bi bi-trash-fill"></i></button>
-                                                            <button class="btn" style="color: var(--gray_600);"><i
-                                                                    class="bi bi-pen-fill"></i></button>
-                                                        </td>
-                                                    </form>
+                                                <tr ng-repeat="dhct in list_dhct">
+                                                    <td scope="row" class="td-first-table">
+                                                        <div class="text-order-group">
+                                                            <h4 class="text-title-order text-title">
+                                                                {{dhct.sanPhamDHCT.tenSanPham}}
+                                                            </h4>
+                                                            <h6 class="text-id-order text-title">
+                                                                {{dhct.sanPhamDHCT.idSanPham}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{dhct.soLuong}}</td>
+                                                    <td>{{dhct.sanPhamDHCT.giaSanPham}}</td>
+                                                    <td>{{dhct.sanPhamDHCT.giaSanPham * dhct.soLuong}}</td>
+                                                    <td>
+                                                        <button ng-click="delete_dhct(dhct.idDonHangChiTiet)"
+                                                            class="btn" style="color: var(--gray_600);"><i
+                                                                class="bi bi-trash"></i></button>
+                                                    </td>
                                                 </tr>
                                             </tbody>
-
                                         </table>
-
                                     </div>
                                 </div>
                                 <div class="group-fleld group-fleld-06">
@@ -397,22 +302,31 @@
                                 <div class="group-fleld group-fleld-010">
                                     <div class="mb-3 form-group">
                                         <label for="total-sub_order" class="form-label">Tên người Nhận</label>
-                                        <input type="text" name="person-order" id="person_order"
-                                            class="form-control box-shadow-none" placeholder="">
+                                        <input ng-model="form_dh.thongTinGiaoHang.tenNguoiMua" type="text"
+                                            name="person-order" id="person_order" class="form-control box-shadow-none"
+                                            placeholder="">
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="transport-fee_order" class="form-label">Số điện thoại</label>
-                                        <input type="tel" name="transport-fee-order" id="transport-fee_order"
+                                        <input ng-model="form_dh.thongTinGiaoHang.soDienThoai" type="tel"
+                                            name="transport-fee-order" id="transport-fee_order"
                                             class="form-control box-shadow-none" placeholder="">
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
                                     </div>
                                 </div>
-                                <div class="group-fleld group-fleld-011">
+                                <div class="group-fleld group-fleld-07">
                                     <div class="mb-3 form-group">
-                                        <label for="total_order" class="form-label">Địa chỉ nhận</label>
-                                        <input type="text" name="total-order" id="total_order"
-                                            class="form-control box-shadow-none" placeholder="">
+                                        <label for="total_order" class="form-label">Địa chỉ</label>
+                                        <input ng-model="form_dh.thongTinGiaoHang.diaChi" type="text" name="total-order"
+                                            id="total_order" class="form-control box-shadow-none" placeholder="">
+                                        <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="total_order" class="form-label">Địa chỉ chi tiết</label>
+                                        <input ng-model="form_dh.thongTinGiaoHang.diaChiChiTiet" type="text"
+                                            name="total-order" id="total_order" class="form-control box-shadow-none"
+                                            placeholder="">
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
                                     </div>
                                 </div>
@@ -423,9 +337,9 @@
                                     <div class="mb-3 form-group">
                                         <label for="total-sub_order" class="form-label">Tổng phụ</label>
                                         <div class="input-group">
-                                            <input type="text" data-type='currency' name="total-sub-order"
-                                                id="total-sub_order" class="form-control box-shadow-none"
-                                                placeholder="">
+                                            <input ng-model="form_cp.tong_phu" type="text" data-type='currency'
+                                                name="total-sub-order" id="total-sub_order"
+                                                class="form-control box-shadow-none" placeholder="">
                                             <span class="input-group-text" id="card-credit">VND</span>
                                         </div>
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
@@ -433,9 +347,9 @@
                                     <div class="mb-3 form-group">
                                         <label for="transport-fee_order" class="form-label">Phí vận chuyển</label>
                                         <div class="input-group">
-                                            <input type="text" data-type='currency' name="transport-fee-order"
-                                                id="transport-fee_order" class="form-control box-shadow-none"
-                                                placeholder="">
+                                            <input ng-model="form_cp.phi_van_chuyen" type="text" data-type='currency'
+                                                name="transport-fee-order" id="transport-fee_order"
+                                                class="form-control box-shadow-none" placeholder="">
                                             <span class="input-group-text" id="card-credit">VND</span>
                                         </div>
 
@@ -446,19 +360,21 @@
                                     <div class="mb-3 form-group">
                                         <label for="total_order" class="form-label">Tổng cộng</label>
                                         <div class="input-group">
-                                            <input type="text" data-type='currency' name="total-order" id="total_order"
-                                                class="form-control box-shadow-none" placeholder="">
+                                            <input ng-model="form_cp.tong_cong" type="text" data-type='currency'
+                                                name="total-order" id="total_order" class="form-control box-shadow-none"
+                                                placeholder="">
                                             <span class="input-group-text" id="card-credit">VND</span>
                                         </div>
                                         <!-- <small id="helpId" class="text-muted">Help text</small> -->
                                     </div>
                                 </div>
                                 <div class="group-fleld group-fleld-012">
-                                    <button class="btn btn-style btn-update">Cập nhật</button>
-                                    <button class="btn btn-style btn-add"><i class="bi bi-printer-fill"></i> Xuất hóa
-                                        đơn</button>
+                                    <button ng-click="reset_dh()" class="btn btn-style btn-update">Làm mới</button>
+                                    <button ng-click="update_dh()" class="btn btn-style btn-update btn-update-dh">Cập
+                                        nhật</button>
+                                    <button class="btn btn-style btn-add btn-add-dh"><i class="bi bi-printer"></i> Xuất
+                                        hóa đơn</button>
                                 </div>
-
                             </form>
                         </div>
 

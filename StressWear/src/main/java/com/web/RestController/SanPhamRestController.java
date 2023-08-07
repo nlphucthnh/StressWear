@@ -64,8 +64,8 @@ public class SanPhamRestController {
         if (sanPhamDAO.existsById(sanPham.getIdSanPham())) {
             return ResponseEntity.badRequest().build();
         }
-        sanPhamDAO.save(sanPham);
-        return ResponseEntity.ok(sanPham);
+        SanPham sanPham2 = sanPhamDAO.save(sanPham);
+        return ResponseEntity.ok(sanPham2);
     }
 
     @PutMapping("{id}")

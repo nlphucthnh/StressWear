@@ -177,7 +177,7 @@
 
 #Manager_Content .list_order-body  .td-first-table,
 #Manager_Content  .td-first-table {
-    display: flex;
+    /* display: flex; */
     align-items: center;
 }
 

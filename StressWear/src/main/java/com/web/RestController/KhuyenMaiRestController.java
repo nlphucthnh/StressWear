@@ -29,6 +29,7 @@ public class KhuyenMaiRestController {
 
     @Autowired
     KhuyenMaiDAO khuyenMaiDAO;
+    
 
     @GetMapping
     public ResponseEntity<List<KhuyenMai>> findAll(){

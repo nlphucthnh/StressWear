@@ -26,11 +26,11 @@ public class DanhSachKT implements Serializable {
     private int idDanhSachKT;
 
     @ManyToOne
-    @JoinColumn(name = "id_kich_thuoc", insertable = false, updatable = false)
+    @JoinColumn(name = "id_kich_thuoc")
     private KichThuoc kichThuoc;
 
     @ManyToOne
-    @JoinColumn(name = "id_san_pham_chi_tiet", insertable = false, updatable = false)
+    @JoinColumn(name = "id_san_pham_chi_tiet")
     private SanPhamChiTiet sanPhamChiTiet;
 
 }

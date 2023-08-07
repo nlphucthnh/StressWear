@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.DAO.DonHangChiTietDAO;
+import com.web.DAO.DonHangDAO;
+import com.web.Entity.DonHang;
 import com.web.Entity.DonHangChiTiet;
+import com.web.Entity.SanPham;
+import com.web.Entity.SanPhamChiTiet;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -25,10 +29,19 @@ public class DonHangChiTietRestController {
 
     @Autowired
     DonHangChiTietDAO donHangChiTietDAO;
+    
+    @Autowired
+    DonHangDAO donHangDAO;
 
     @GetMapping
     public ResponseEntity<List<DonHangChiTiet>> findAll(){
         return ResponseEntity.ok(donHangChiTietDAO.findAll());
+    }
+    
+    @GetMapping("donhang/{id}")
+    public ResponseEntity<List<DonHangChiTiet>> find_DHCT_by_DH(@PathVariable("id") Integer idDonHang){
+        Optional<DonHang> donHang = donHangDAO.findById(idDonHang);
+        return ResponseEntity.ok(donHangChiTietDAO.findByDonHangDHCT(donHang));
     }
 
     @GetMapping("{id}")

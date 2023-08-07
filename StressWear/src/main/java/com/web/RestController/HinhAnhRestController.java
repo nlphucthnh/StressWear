@@ -46,8 +46,8 @@ public class HinhAnhRestController {
         if(hinhAnhDAO.existsById(hinhAnh.getIdHinhAnh())){
             return ResponseEntity.badRequest().build();
         }
-        hinhAnhDAO.save(hinhAnh);
-        return ResponseEntity.ok(hinhAnh);
+        HinhAnh hinhanh2 =  hinhAnhDAO.save(hinhAnh);
+        return ResponseEntity.ok(hinhanh2);
     }
 
     @PutMapping("{id}")

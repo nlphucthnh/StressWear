@@ -85,6 +85,10 @@
     border: 1px solid var(--gray_300);
 }
 
+.badge-red {
+    background-color: #fff8ef;
+    color: #d34317;
+}
 
 .badge-blue {
     background-color: #EFF8FF;

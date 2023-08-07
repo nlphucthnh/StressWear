@@ -123,10 +123,10 @@
                                             <td>
                                                 <button ng-click="edit_sp(sp)" class="btn"
                                                     style="color: var(--gray_600);"><i
-                                                        class="bi bi-pen-fill"></i></button>
+                                                        class="bi bi-pen"></i></button>
                                                 <button ng-click="delete_sp(sp.idSanPham)" class="btn"
                                                     style="color: var(--gray_600);"><i
-                                                        class="bi bi-trash-fill"></i></button>
+                                                        class="bi bi-trash"></i></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -159,13 +159,13 @@
                     </div>
                     <div class="tab-pane" id="form_product" role="tabpanel" aria-labelledby="form-product-tab">
                         <div class="form_product-pane">
-                           
+                            <form name="formProduct">
                                 <div class="group-fleld group-fleld-01">
                                     <div class="mb-3 form-group">
                                         <label for="id_product" class="form-label">Mã sản phẩm</label>
                                         <input ng-model="form_sp.idSanPham" type="text" name="id-product"
-                                            id="id_product" class="form-control box-shadow-none input-form"
-                                            placeholder="">
+                                            id="id_product" style="pointer-events: none;"
+                                            class="form-control box-shadow-none input-form" placeholder="">
                                         <small id="id_product-text" class="text-muted" style="display: none;">Vui lòng
                                             nhập mã sản phẩm</small>
                                     </div>
@@ -173,8 +173,9 @@
                                         <label for="name_product" class="form-label">Tên sản phẩm</label>
                                         <input ng-model="form_sp.tenSanPham" type="text" name="name-product"
                                             id="name_product" class="form-control box-shadow-none  input-form"
-                                            placeholder="">
-                                        <small id="name_product-text" class="text-muted" style="display: none;">Vui lòng
+                                            placeholder="" required>
+                                        <small ng-hide="formProduct.name-product.$valid" id="name_product-text"
+                                            class="text-muted" style="display: none;">Vui lòng
                                             nhập tên sản phẩm</small>
                                     </div>
                                     <div class="mb-3 form-group">
@@ -183,10 +184,11 @@
                                             <input ng-model="form_sp.giaSanPham" type="text" data-type="currency"
                                                 name="price-product" id="price_product"
                                                 class="form-control box-shadow-none input-form" placeholder=""
-                                                aria-describedby="price_product-span">
+                                                aria-describedby="price_product-span" required>
                                             <span class="input-group-text" id="price_product-span">VND</span>
                                         </div>
-                                        <small id="price_product-text" class="text-muted" style="display: none;">Vui
+                                        <small ng-hide="formProduct.price-product.$valid" id="price_product-text"
+                                            class="text-muted" style="display: none;">Vui
                                             lòng nhập đơn giá sản phẩm</small>
                                     </div>
                                 </div>
@@ -194,14 +196,15 @@
                                     <div class="mb-3 form-group">
                                         <label for="type-group_product" class="form-label">Phân nhóm loại</label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="card-credit"><i class="bi-layers-fill"
+                                            <span class="input-group-text" id="card-credit"><i class="bi-layers"
                                                     style="color: var(--gray_700);"></i></span>
-                                            <select ng-model="form_sp.nhomLoaiSP"
+                                            <select ng-model="form_sp.nhomLoaiSP.idNhomLoai"
                                                 class="form-control form-select box-shadow-none"
                                                 name="type-group-product" id="type-group_product"
                                                 aria-describedby="card-credit">
-                                                <option selected>{{form_sp.nhomLoaiSP.tenNhomLoai}}</option>
-                                                <option ng-repeat="nl in list_nl" value="nl.idNhomLoai">
+                                                <option ng-if="form_sp.nhomLoaiSP.tenNhomLoai != null" selected>
+                                                    {{form_sp.nhomLoaiSP.tenNhomLoai}}</option>
+                                                <option ng-repeat="nl in list_nl" value="{{nl.idNhomLoai}}">
                                                     {{nl.tenNhomLoai}}
                                                 </option>
                                             </select>
@@ -222,16 +225,18 @@
                                         <label for="quatity_product" class="form-label">Số lượng sản phẩm</label>
                                         <input ng-model="form_sp.soLuongSP" type="number" name="quatity-product"
                                             id="quatity_product" class="form-control box-shadow-none input-form"
-                                            placeholder="">
-                                        <small id="quatity_product-text" class="text-muted" style="display: none;">Vui
+                                            placeholder="" required>
+                                        <small ng-hide="formProduct.quatity-product.$valid" id="quatity_product-text"
+                                            class="text-muted" style="display: none;">Vui
                                             lòng nhập số lượng sản phẩm</small>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="date_product" class="form-label">Ngày đăng</label>
                                         <input ng-model="form_sp.ngayTaoSanPham" type="date" name="date-product"
                                             id="date_product" class="form-control box-shadow-none input-form"
-                                            placeholder="">
-                                        <small id="date_product-text" class="text-muted" style="display: none;">Vui lòng
+                                            placeholder="" required>
+                                        <small ng-hide="formProduct.date-product.$valid" id="date_product-text"
+                                            class="text-muted" style="display: none;">Vui lòng
                                             nhập ngày đăng sản phẩm</small>
                                     </div>
                                 </div>
@@ -241,7 +246,8 @@
                                         <textarea ng-model="form_sp.moTaSanPham" class="form-control input-form" name=""
                                             id="description_product" rows="9"></textarea>
                                         <small id="description_product-text" class="text-muted"
-                                            style="display: none;">Vui lòng nhập mô tả sản phẩm</small>
+                                            style="display: none;">Vui
+                                            lòng nhập mô tả sản phẩm</small>
                                     </div>
                                 </div>
                                 <div class="group-fleld group-fleld-06">
@@ -249,22 +255,21 @@
                                         <table class="table  m-0 table-hover ">
                                             <div class="on-the-table">
                                                 <h6 class="on-the-table-title text-title">Chi tiết sản phẩm</h6>
-                                                <a style="cursor: pointer;" data-bs-toggle="modal"
-                                                    data-bs-target="#product-samples"
+                                                <button id="btn_open_modal_spct" style="cursor: pointer;"
+                                                    data-bs-toggle="modal" data-bs-target="#product-samples"
                                                     class="on-the-table-button btn-style hover-zoom"><i
-                                                        class="bi-plus-lg"></i>Thêm mẫu sản phẩm</a>
+                                                        class="bi-plus-lg"></i>Thêm mẫu sản phẩm</button>
                                             </div>
                                             <thead>
                                                 <tr class="table-active">
                                                     <th scope="col" style="text-align: left;">
-                                                       
-                                                            <input class="form-check-input box-shadow-none"
-                                                                style="margin-right: 10px;" name="" id=""
-                                                                type="checkbox" value="checkedValue"
-                                                                aria-label="Text for screen reader">
-                                                            Mẫu sản phẩm
-                                                            <i class="bi bi-arrow-down"></i>
-                                                     
+
+                                                        <input class="form-check-input box-shadow-none"
+                                                            style="margin-right: 10px;" name="" id="" type="checkbox"
+                                                            value="checkedValue" aria-label="Text for screen reader">
+                                                        Mẫu sản phẩm
+                                                        <i class="bi bi-arrow-down"></i>
+
                                                     </th>
                                                     <th scope="col">Thuộc sản phẩm</th>
                                                     <th scope="col">Tên màu sắc</th>
@@ -284,12 +289,14 @@
                                                     <td>{{spct.sanPhamSPCT.tenSanPham}}</td>
                                                     <td>{{spct.mauSacSPCT.tenMauSac}}</td>
                                                     <td>
-                                                        <button ng-click="edit_spct(spct)" data-bs-toggle="modal" data-bs-target="#product-samples"
+                                                        <button ng-click="edit_spct(spct)" data-bs-toggle="modal"
+                                                            data-bs-target="#product-samples" class="btn"
+                                                            style="color: var(--gray_600);"><i
+                                                                class="bi bi-pen"></i></button>
+
+                                                        <button ng-click="delete_spct(spct.idSanPhamChiTiet)"
                                                             class="btn" style="color: var(--gray_600);"><i
-                                                                class="bi bi-pen-fill"></i></button>
-                                                                
-                                                        <button class="btn" style="color: var(--gray_600);"><i
-                                                                class="bi bi-trash-fill"></i></button>
+                                                                class="bi bi-trash"></i></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -297,13 +304,16 @@
                                     </div>
                                 </div>
                                 <div class="group-fleld group-fleld-012">
-                                    <a href="/Manager/product/clear" class="btn btn-style btn-clear">Làm mới</a>
-                                    <button class="btn btn-style btn-update btn-update-sp">Cập
+                                    <button ng-click="reset_sp()" class="btn btn-style btn-clear">Làm mới</button>
+                                    <button ng-click="update_sp()" class="btn btn-style btn-update btn-update-sp"
+                                        style="pointer-events: none; background-color: var(--gray_100);">Cập
                                         nhật</button>
-                                    <button class="btn btn-style btn-add btn-update-sp">Thêm
+                                    <button ng-if="!formProduct.$valid"  style="pointer-events: none; background-color: var(--gray_100);" class="btn btn-style btn-add btn-add-sp">Thêm
+                                        mới</button>
+                                    <button ng-show="formProduct.$valid" ng-click="create_sp()" class="btn btn-style btn-add btn-add-sp">Thêm
                                         mới</button>
                                 </div>
-                           
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -320,14 +330,16 @@
                             <div class="group-fleld group-fleld-01">
                                 <div class="mb-3 form-group">
                                     <label for="id_product" class="form-label">Tên mẫu sản phẩm</label>
-                                    <input ng-model="form_spct.tenMau" type="text" name="name-product-samples" id="name_product-samples"
-                                        class="form-control box-shadow-none input-form" placeholder="">
+                                    <input ng-model="form_spct.tenMau" type="text" name="name-product-samples"
+                                        id="name_product-samples" class="form-control box-shadow-none input-form"
+                                        placeholder="">
                                     <small id="id_product-text" class="text-muted" style="display: none;">Vui lòng
                                         nhập tên mẫu</small>
                                 </div>
                                 <div class="mb-3 form-group">
                                     <label for="id_product" class="form-label">Tên màu sản phẩm</label>
-                                    <input ng-model="form_spct.mauSacSPCT.tenMauSac" type="text" name="name-product-samples" id="name_product-samples"
+                                    <input ng-model="form_spct.mauSacSPCT.tenMauSac" type="text"
+                                        name="name-product-samples" id="name_product-samples"
                                         class="form-control box-shadow-none input-form" placeholder="">
                                     <small id="id_product-text" class="text-muted" style="display: none;">Vui lòng
                                         nhập tên màu</small>
@@ -338,7 +350,8 @@
                                         <input type="color" style="height: inherit; width: 20%;" name="code-hex-color"
                                             id="code_hex-color" class="form-control box-shadow-none" placeholder=""
                                             aria-describedby="price_product-span">
-                                        <input ng-model="form_spct.mauSacSPCT.maHex" type="text" style="width: 80%;" name="" id="input-text-color"
+                                        <input ng-model="form_spct.mauSacSPCT.maHex" type="text" style="width: 80%;"
+                                            name="" id="input-text-color"
                                             class="form-control box-shadow-none input-form" placeholder="">
                                     </div>
                                     <small id="name_product-text" class="text-muted" style="display: none;">Vui lòng
@@ -349,21 +362,24 @@
                                 <div class="mb-3 form-group check-box-size">
                                     <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
                                         <h6 class="text-title">Size S (Smail)</h6>
-                                        <input ng-model="list_size" class="form-check-input form-control box-shadow-none" type="checkbox"
+                                        <input style="pointer-events: none;"
+                                            class="form-check-input form-control box-shadow-none" type="checkbox"
                                             value="S" id="sizeS" name="sizecheck">
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group check-box-size">
                                     <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
                                         <h6 class="text-title">Size M (Medium)</h6>
-                                        <input  ng-model="list_size" class="form-check-input form-control box-shadow-none" type="checkbox"
+                                        <input style="pointer-events: none;"
+                                            class="form-check-input form-control box-shadow-none" type="checkbox"
                                             value="M" id="sizeM" name="sizecheck">
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group check-box-size">
                                     <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
                                         <h6 class="text-title">Size L (Large)</h6>
-                                        <input  ng-model="list_size" class="form-check-input form-control box-shadow-none" type="checkbox"
+                                        <input style="pointer-events: none;"
+                                            class="form-check-input form-control box-shadow-none" type="checkbox"
                                             value="L" id="sizeL" name="sizecheck">
                                     </div>
                                 </div>
@@ -372,14 +388,16 @@
                                 <div class="mb-3 form-group check-box-size">
                                     <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
                                         <h6 class="text-title">Size XL (Extra Large)</h6>
-                                        <input  ng-model="list_size" class="form-check-input form-control box-shadow-none" type="checkbox"
+                                        <input style="pointer-events: none;"
+                                            class="form-check-input form-control box-shadow-none" type="checkbox"
                                             value="XL" id="sizeXL" name="sizecheck">
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group check-box-size">
                                     <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
                                         <h6 class="text-title">Size XXL (Double Extra Large)</h6>
-                                        <input  ng-model="list_size" class="form-check-input form-control box-shadow-none" type="checkbox"
+                                        <input style="pointer-events: none;"
+                                            class="form-check-input form-control box-shadow-none" type="checkbox"
                                             value="XXL" id="sizeXXL" name="sizecheck">
                                     </div>
                                 </div>
@@ -423,11 +441,12 @@
                                         <tbody id="body-table-hinhanh">
                                             <tr ng-repeat="ha in list_ha">
                                                 <td scope="row" style="text-align: left;">{{ha.hinhAnh.tenHinhAnh}}</td>
-                                                <td>{{ha.hinhAnh.dungLuongAnh}}</td>
+                                                <td>{{ha.hinhAnh.dungLuongAnh}} MB</td>
                                                 <td>{{ha.hinhAnh.ngayDang}}</td>
                                                 <td>
-                                                    <a class="btn btn-deleteHinhAnh" style="color: var(--gray_600);"><i
-                                                            class="bi bi-trash-fill"></i></a>
+                                                    <button ng-click="delete_image(ha.hinhAnh)"
+                                                        class="btn btn-deleteHinhAnh" style="color: var(--gray_600);"><i
+                                                            class="bi bi-trash"></i></button>
                                                 </td>
                                             </tr>
 
@@ -439,10 +458,12 @@
                                 </div>
                             </div>
                             <div class="group-fleld group-fleld-012">
-                                <a href="/Manager/product/clear" class="btn btn-style btn-clear">Làm mới</a>
-                                <button class="btn btn-style btn-update">Cập
+                                <button ng-click="reset_spct()" class="btn btn-style btn-clear">Làm mới</button>
+                                <button ng-click="update_spct()"
+                                    style="pointer-events: none; background-color: var(--gray_300);"
+                                    class="btn btn-style btn-update btn-update-spct">Cập
                                     nhật</button>
-                                <button class="btn btn-style btn-add">Thêm
+                                <button ng-click="create_spct()" class="btn btn-style btn-add btn-add-spct">Thêm
                                     mới</button>
                             </div>
                         </div>

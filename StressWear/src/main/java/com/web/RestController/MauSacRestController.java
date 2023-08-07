@@ -46,8 +46,8 @@ public class MauSacRestController {
         if(mauSacDAO.existsById(mauSac.getIdMauSac())){
             return ResponseEntity.badRequest().build();
         }
-        mauSacDAO.save(mauSac);
-        return ResponseEntity.ok(mauSac);
+        MauSac mauSac2 =  mauSacDAO.save(mauSac);
+        return ResponseEntity.ok(mauSac2);
     }
 
     @PutMapping("{id}")
