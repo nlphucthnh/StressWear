@@ -118,7 +118,11 @@
                                             </td>
                                             <td>{{acc.email}}</td>
 
-                                            <td>USER</td>
+                                            <td>
+                                                <span ng-repeat="role in infor_role" ng-if="acc.tenDangNhap == role.taiKhoan.tenDangNhap" >{{role.vaiTro.idVaiTro}}<br></span>
+                                                
+                                               
+                                            </td>
                                             
                                             <td><p ng-class="{'badge bg-danger': !acc.trangThai, 'badge badge-green': acc.trangThai}">{{acc.trangThai ? 'Đang hoạt động' : 'Ngưng hoạt động' }}</p></td>
                                            
@@ -207,10 +211,13 @@
                                     
                                     <div class="mb-3 form-group">
                                         <label for="role_account" class="form-label">Vai trò</label>
-                                        <select  class="form-control  box-shadow-none" name="role-account"
+                                        <select ng-model="list_acct.vaiTro.idVaiTro" class="form-control  box-shadow-none" name="role-account"
                                             id="role_account" aria-describedby="calendar">
-                                            <option value="false">USER</option>
-                                            <option value="true">STAFF</option>
+
+                                            
+                                            <option value="">USER</option>
+                                            <option value="">STAFF</option>
+
 
                                         </select>
                                     </div>

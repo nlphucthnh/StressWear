@@ -120,15 +120,15 @@ app.controller("ctrl-acc", function ($scope, $http) {
   }
 
    // load role của những tài khoản lên table và phân trang
-   $scope.paging_data_role = function (nameAccount, numberPage) {
-    var url = `${API_VAITROTAIKHOAN}/paging?page=${numberPage}&&name=${nameAccount}`;
-    $http.get(url).then((result) => {
-      $scope.list_role = result.data.content;
-      $scope.infor_role = result.data;
-    }).catch((err) => {
-      console.log("ERROR", err);
-    });
-  }
+  //  $scope.paging_data_role = function (nameAccount, numberPage) {
+  //   var url = `${API_VAITROTAIKHOAN}/paging?page=${numberPage}&&name=${nameAccount}`;
+  //   $http.get(url).then((result) => {
+  //     $scope.list_role = result.data.content;
+  //     $scope.infor_role = result.data;
+  //   }).catch((err) => {
+  //     console.log("ERROR", err);
+  //   });
+  // }
 
  
 
@@ -170,7 +170,7 @@ app.controller("ctrl-acc", function ($scope, $http) {
     $("#btn-add-acc").css("pointer-events", "none");
     $("#btn-add-acc").css("background-color", "var(--gray_500)");
     $scope.form_acc = angular.copy(taikhoan);
-
+    
     var url = `${API_VAITROTAIKHOAN}/taikhoan/${taiKhoan.tenDangNhap}`;
     $http.get(url).then((result) => {
       $scope.list_acct = [];
@@ -179,6 +179,8 @@ app.controller("ctrl-acc", function ($scope, $http) {
       console.log("ERROR", err);
     });
   }
+
+  
 
   $scope.delete_acc = function (tenDangNhap) {
     var url = `${API_TAIKHOAN}/${tenDangNhap}`;
