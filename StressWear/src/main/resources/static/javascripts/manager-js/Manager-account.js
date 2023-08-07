@@ -67,9 +67,20 @@ app.controller("ctrl-acc", function ($scope, $http) {
     $scope.list_acc = [];
     $scope.form_acctct = {};
     $scope.list_acct = [];
+    $scope.ACCT;
+
     $scope.text_search = "";
     $scope.list_size = [];
-    $scope.ACCT;
+
+    
+
+    $scope.form_role = {};
+    $scope.list_role = [];
+    $scope.form_roletct = {};
+    $scope.list_rolet = [];
+    $scope.ROLET;
+
+    
 
 
     
@@ -85,6 +96,17 @@ app.controller("ctrl-acc", function ($scope, $http) {
       console.log("ERROR", err);
     });
   }
+   //load role của những tài khoản lên table
+   $scope.load_data_role = function(){
+    var url =`${API_VAITROTAIKHOAN}`;
+
+    $http.get(url).then((result) => {
+      $scope.list_role = result.data.content;
+      $scope.infor_role = result.data;
+    }).catch((err) => {
+      console.log("ERROR", err);
+    });
+   }
 
   // load dữ liệu của những tài khoản lên table và phân trang
   $scope.paging_data_acc = function (nameAccount, numberPage) {
@@ -96,6 +118,19 @@ app.controller("ctrl-acc", function ($scope, $http) {
       console.log("ERROR", err);
     });
   }
+
+   // load role của những tài khoản lên table và phân trang
+   $scope.paging_data_role = function (nameAccount, numberPage) {
+    var url = `${API_VAITROTAIKHOAN}/paging?page=${numberPage}&&name=${nameAccount}`;
+    $http.get(url).then((result) => {
+      $scope.list_role = result.data.content;
+      $scope.infor_role = result.data;
+    }).catch((err) => {
+      console.log("ERROR", err);
+    });
+  }
+
+ 
 
   // sắp xếp dữ liệu trong table sản phẩm
   $scope.sort_list_acc = function (sort) {
@@ -112,6 +147,21 @@ app.controller("ctrl-acc", function ($scope, $http) {
     $scope.load_data_acc();
   });
 
+  // sắp xếp role
+  $scope.sort_list_role = function (sort) {
+    $scope.sort = sort;
+    if (sort) {
+      $scope.sort_list = `${$("#sortField").val()}`;
+    } else {
+      $scope.sort_list = `-${$("#sortField").val()}`;
+    }
+  }
+
+  $("#sortField").change(function () {
+    $scope.sort_list_role($scope.sort);
+    $scope.load_data_role();
+  });
+
   // Hiện sản phẩm lên form
   $scope.edit_acc = function (taikhoan) {
     $("#btn-update-acc").css("pointer-events", "all");
@@ -119,7 +169,6 @@ app.controller("ctrl-acc", function ($scope, $http) {
 
     $("#btn-add-acc").css("pointer-events", "none");
     $("#btn-add-acc").css("background-color", "var(--gray_500)");
-    taikhoan.ngayTaoTaiKhoan = new Date(taikhoan.ngayTaoTaiKhoan);
     $scope.form_acc = angular.copy(taikhoan);
 
     var url = `${API_VAITROTAIKHOAN}/taikhoan/${taiKhoan.tenDangNhap}`;
@@ -131,6 +180,28 @@ app.controller("ctrl-acc", function ($scope, $http) {
     });
   }
 
+  $scope.delete_acc = function (tenDangNhap) {
+    var url = `${API_TAIKHOAN}/${tenDangNhap}`;
+    $http.delete(url).then((result) => {
+      alert("Xóa tài khoản thành công");
+      var index = $scope.list_acc.findIndex(item => item.tenDangNhap === result.data.tenDangNhap.strim());
+      $scope.list_acc.splice(index, 1);
+     
+      $scope.reset_acc();
+    }).catch((err) => {
+      console.log("ERROR", err);
+    });
+  }
+  $scope.reset_acc = function () {
+    $scope.form_acc = {
+      tenDangNhap: "",
+      matKhau: "",
+      email:"",
+      trangThai: false,
+      vaiTro:"USER"
+  };
+  }
 
     $scope.load_data_acc();
+    $scope.load_data_role();
 });

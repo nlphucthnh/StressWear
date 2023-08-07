@@ -78,9 +78,10 @@
                                 </div>
                                 <div class="mb-3" style="margin-right: 20px;">
                                     <select class="form-select form-select-lg" name="sortField" id="sortField">
-                                        <option value="theoNguoiDung" selected>Theo người dùng</option>
-                                        <option value="theoNhanVien">Theo nhân viên</option>
-                                    </select>
+                                        <option value="tenDangNhap" selected>Theo tên đăng nhập</option>
+                                        <option value="email">Theo email</option>
+                                        <option value="trangThai">Theo trạng thái hoạt động</option>
+                                     </select>
                                 </div>
                                 <button style="display: none;" id="Sort">Sắp sếp</button>
                             </div>
@@ -100,9 +101,8 @@
                                 <table class="table table-striped m-0">
                                     <thead>
                                         <tr>
-                                            <th scope="col" style="text-align: center;">
+                                            <th  scope="col" style="text-align: center;">
                                                 Tài khoản
-                                                <i class="bi bi-arrow-down"></i>
                                             </th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Vai trò</th>
@@ -126,10 +126,10 @@
                                                 </th:block>
                                             </td> -->
 
-
                                             <td>USER</td>
-
-                                            <td ng-class="{'badge bg-danger': !acc.trangThai, 'badge badge-green': acc.trangThai}">{{acc.trangThai ? 'Đang hoạt động' : 'Ngưng hoạt động' }}</td>
+                                            
+                                            <td><p ng-class="{'badge bg-danger': !acc.trangThai, 'badge badge-green': acc.trangThai}">{{acc.trangThai ? 'Đang hoạt động' : 'Ngưng hoạt động' }}</p></td>
+                                           
                                             
                                             
                                             <td>
@@ -204,13 +204,15 @@
                                 <div class="group-fleld group-fleld-03">
                                     <div class="mb-3 form-group">
                                         <label for="status_account" class="form-label">Trạng thái</label>
-                                        <select ng-model="form_acc.trangThai" class="form-control  box-shadow-none" name="status-account"
+                                        <select ng-model="form_acc.trangThai"  class="form-control  box-shadow-none" name="status-account"
                                             id="status_account" aria-describedby="calendar">
-                                            <option selected>Đang hoạt động</option>
-                                            <option value="">Ngừng hoạt động</option>
-                                            <option ng-repeat="acc in list_acc"  value="acc.trangThai">{{acc.trangThai}}</option>
+                                            <option ng-if="form_acc.trangThai == true"  selected>{{form_acc.trangThai ? 'Đang hoạt động' : 'Ngưng hoạt động'}}</option>
+                                            <option ng-if="form_acc.trangThai == false"  selected>{{form_acc.trangThai ? 'Đang hoạt động' : 'Ngưng hoạt động'}}</option>
+                                            <option value="true">ON</option>
+                                            <option value="false">OFF</option>
                                         </select>
                                     </div>
+                                    
                                     <div class="mb-3 form-group">
                                         <label for="role_account" class="form-label">Vai trò</label>
                                         <select  class="form-control  box-shadow-none" name="role-account"
@@ -224,8 +226,10 @@
                                 </div>
                                 <div class="group-fleld group-fleld-05">
                                     <button class="btn btn-style btn-clear"><i class="bi-brush"></i></button>
-                                    <button class="btn btn-style btn-update btn-update-sp">Cập nhật</button>
-                                    <button class="btn btn-style btn-add btn-update-sp">Thêm mới</button>
+                                    <button class="btn btn-style btn-update btn-update-acc">Cập nhật</button>
+                                    <button class="btn btn-style btn-add btn-add-acc">Thêm</button>
+                                    <button ng-click="delete_acc(acc.tenDangNhap)" class="btn btn-style btn-delete-acc">Xóa</button>
+                                    <button ng-click="reset_acc()" class="btn btn-style btn-reset-acc">Làm mới</button>
                                 </div>
 
                             </form>

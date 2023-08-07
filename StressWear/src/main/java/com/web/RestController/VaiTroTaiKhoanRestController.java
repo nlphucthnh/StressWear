@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,10 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import com.web.DAO.VaiTroTaiKhoanDAO;
+import com.web.Entity.TaiKhoan;
 import com.web.Entity.VaiTroTaiKhoan;
 
 
@@ -32,6 +37,7 @@ public class VaiTroTaiKhoanRestController {
     public ResponseEntity<List<VaiTroTaiKhoan>> findAll(){
         return ResponseEntity.ok(vaiTroTaiKhoanDAO.findAll());
     }
+    
 
     @GetMapping("{id}")
     public ResponseEntity<VaiTroTaiKhoan> findById(@PathVariable("id") Integer idVaiTro){
