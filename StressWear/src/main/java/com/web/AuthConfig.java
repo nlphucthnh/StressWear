@@ -40,6 +40,7 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 
 		// phân quyền sử dụng
 		http.authorizeRequests().anyRequest().permitAll(); // anonymous
+		// http.authorizeRequests().antMatchers("/auth/login/*").permitAll().anyRequest().authenticated();
 
 		// điều khiển lỗi truy cập không đúng vai trò
 		http.exceptionHandling().accessDeniedPage("/auth/access/denied"); // [error]
@@ -51,6 +52,8 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("tenDangNhap") // [username]
 				.passwordParameter("matKhau"); // [password]
 		http.rememberMe().rememberMeParameter("remember"); // [remember]
+		
+
 
 		// đăng xuất
 		http.logout().logoutUrl("/auth/logoff") // [/logout]

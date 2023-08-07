@@ -32,7 +32,7 @@
     <!-- Angularjs -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
     <link rel="stylesheet" href="/styles/root.css">
     <link rel="stylesheet" href="/styles/pay.css">
@@ -47,18 +47,22 @@
     <nav th:replace="~{/layout/user-nav.html :: nav}"></nav>
     <div class="container mt-5 py-5">
 
-        <form action="/User/pay" method="post">
-            <div class="row">
-                <div class="title-pay-main">
-                    <h1>Phương thức thanh toán</h1>
-                    <p class="duongdancon"><a href="cart">Giỏ hàng </a> / <a href="adreess.html">Thông tin giao hàng</a>
-                        /
-                        <a href="pay.html">Phương thức thanh toán</a>
-                    </p>
-                </div>
+        <!-- <form action="/User/pay" method="post"> -->
+        <div class="row">
+            <div class="title-pay-main">
+                <h1>Phương thức thanh toán</h1>
+                <p class="duongdancon"><a href="cart">Giỏ hàng </a> / <a href="adreess.html">Thông tin giao hàng</a>
+                    
+                    <a href="pay.html">Phương thức thanh toán</a>
+                </p>
+            </div>
 
-                <div class="col-9">
-                    <!-- <div class="pay-matercard-main">
+            <div class="col-9">
+                <div class="form-control" hidden id="taiKhoanMuaHang">[[${#request.remoteUser}]]</div>
+
+
+             
+                <!-- <div class="pay-matercard-main">
                         <div class="header-matercard d-flex justify-content-between px-3" for="pay">
                             <label for="pay-matercard">
                                 <div class="auther-item d-flex align-items-center ">
@@ -103,52 +107,61 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="header-matercard d-flex justify-content-between px-3 my-2" for="pay"
-                        th:each="tt : ${phuongthucthanhtoan}">
-                        <label for="pay-$">
-                            <div class="auther-item d-flex align-items-center ">
-                                <img src="/img/thanhtoan.png" alt="Avatar" width="32px" height="32px"
-                                    class="avatar rounded-circle mx-3">
-                                <span class="navbar-text text-start me-2">
-                                    <span class="text-dark" th:text="${tt.tenPhuongThuc}">
-                                    </span>
-                                    <br> <span class="text-black-50" th:text="${tt.moTaPhuongThuc}">
-
-                                    </span>
+                <div class="header-matercard d-flex justify-content-between px-3 my-2" for="pay"
+                    th:each="tt : ${phuongthucthanhtoan}">
+                    <label for="pay-$">
+                        <div class="auther-item d-flex align-items-center ">
+                            <img src="/img/thanhtoan.png" alt="Avatar" width="32px" height="32px"
+                                class="avatar rounded-circle mx-3">
+                            <span class="navbar-text text-start me-2">
+                                <span class="text-dark">Thanh toán sau khi nhận hàng
                                 </span>
+                                <br> <span class="text-black-50" >Thanh toán sau khi giao dịch thành công
 
-                            </div>
-                        </label>
-                        <input name="pay" type="radio" id="pay-$" required>
+                                </span>
+                            </span>
 
-                    </div>
-
+                        </div>
+                    </label>
+                    <input name="pay" type="radio" id="pay-$" ng-checked="true" >
 
                 </div>
 
-                <div class="col-3" th:fragment="shopping-cart">
+                <div class="pay-bill  col-3 my-3">
+                    <div id="error-message" class="error-message">
+                        <span>Thanh toán thất bại</span>
+                      </div>
+                      <div id="success-message" class="success-message">
+                        <span>Thanh toán thành công</span>
+                      </div>
+                    <button class="btn btn-success" ng-click="order.purchase()">Thanh toán</button>
+                    <!-- btn-pay -->
+                </div>
+            </div>
 
-                    <div class="bill">
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label for="subtotal" class="form-label bill-text">Tổng phụ</label>
-                            </div>
-                            <div class="col-6">
-                                <label for="discount" class="form-label bill-number ">{{cart.amount | number}}</label>
-                            </div>
+            <div class="col-3" th:fragment="shopping-cart">
+
+                <div class="bill">
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label for="subtotal" class="form-label bill-text">Tổng phụ</label>
                         </div>
-
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label for="subtotal" class="form-label bill-text">Tổng số lượng</label>
-                            </div>
-                            <div class="col-6">
-                                <label for="discount" class="form-label bill-number ">{{cart.count}}</label>
-                            </div>
+                        <div class="col-6">
+                            <label for="discount" class="form-label bill-number ">{{cart.amount | number}}</label>
                         </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label for="subtotal" class="form-label bill-text">Tổng số lượng</label>
+                        </div>
+                        <div class="col-6">
+                            <label for="discount" class="form-label bill-number ">{{cart.count}}</label>
+                        </div>
+                    </div>
 
 
-                        <!-- <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                     <div class="col-6">
                       <label for="subtotal" class="form-label bill-text">Phụ thu</label>
                     </div>
@@ -157,36 +170,36 @@
                     </div>
                   </div> -->
 
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label for="subtotal" class="form-label bill-text">Phí vận chuyển</label>
-                            </div>
-                            <div class="col-6">
-                                <label for="discount" class="form-label bill-number ">Miễn phí</label>
-                            </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label for="subtotal" class="form-label bill-text">Phí vận chuyển</label>
                         </div>
-                        <hr class="my-4">
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label for="subtotal" class="form-label bill-text">Tổng cộng:</label>
-                            </div>
-                            <div class="col-6">
-                                <label for="discount" class="form-label bill-number ">{{cart.amount | number}}</label>
-                            </div>
+                        <div class="col-6">
+                            <label for="discount" class="form-label bill-number ">Miễn phí</label>
                         </div>
-                        <div class="row mb-3">
+                    </div>
+                    <hr class="my-4">
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label for="subtotal" class="form-label bill-text">Tổng cộng:</label>
+                        </div>
+                        <div class="col-6">
+                            <label for="discount" class="form-label bill-number ">{{cart.amount | number}}</label>
+                        </div>
+                    </div>
+                    <!-- <div class="row mb-3">
                             <div class="pay-bill">
                                 <a th:href="@{/User/pay}">
-                                    <button class="btn-pay">Thanh toán</button></a>
+                                    <button class="btn-pay" ng-click="order()">Thanh toán</button></a>
                             </div>
-                        </div>
+                        </div> -->
 
-                    </div>
                 </div>
-
-
             </div>
-        </form>
+
+
+        </div>
+        <!-- </form> -->
     </div>
 
 
@@ -196,4 +209,50 @@
 <script src="js/cart.js"></script>
 <script src="/javascripts/shopping-cart-app.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+    #error-message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ff0000;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    
+    #error-message.visible {
+      opacity: 1;
+    }
+    #success-message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #197511;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    
+    #success-message.visible {
+      opacity: 1;
+    }
+    
+    
+
+    </style>
 </html>

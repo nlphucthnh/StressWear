@@ -27,11 +27,11 @@ public class UserController {
 		return "forward:/auth/login/form";
 	}
 	
-	// @RequestMapping("/auth/logoff/success")
-	// public String logoff(Model model) {
-	// 	model.addAttribute("message", "Đăng xuất thành công");
-	// 	return "forward:/auth/login/form";
-	// }
+	@RequestMapping("/auth/logoff/success")
+	public String logoff(Model model) {
+		model.addAttribute("message", "Đăng xuất thành công");
+		return "forward:/auth/login/form";
+	}
 	
 	@RequestMapping("/auth/access/denied")
 	public String denided(Model model) {

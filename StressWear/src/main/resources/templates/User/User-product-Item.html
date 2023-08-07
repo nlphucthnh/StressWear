@@ -41,7 +41,7 @@
 </head>
 
 <body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
-  <nav th:replace="~{/layout/user-nav.html :: nav}"></nav>
+    <nav th:replace="~{/layout/user-nav.html :: nav}"></nav>
 
 
     <header class="container product-item-title my-5">
@@ -61,32 +61,32 @@
                         <li class="nav-item">
                             <a class="nav-link active img-item" data-bs-toggle="tab" href="#pic-1">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
-                                    th:src="@{${spcl.ListDSHA_SPCT[0].idHinhAnh}}" alt="Hình ảnh">
+                                    th:src="@{${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan}}" alt="Hình ảnh">
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#pic-2">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 1}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[1].idHinhAnh} }" alt="Hình ảnh">
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[1].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#pic-3">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 2}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[2].idHinhAnh} }" alt="Hình ảnh">
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[2].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#pic-4">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 3}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[3].idHinhAnh} }" alt="Hình ảnh">
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[3].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#pic-5">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 4}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[4].idHinhAnh} }" alt="Hình ảnh">
+                                    th:src="@{ ${spcl.ListDSHA_SPCT[4].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
                         </li>
                     </ul>
@@ -96,23 +96,23 @@
                     <div class="preview-pic tab-content img-tabcontent" th:each="spcl : ${productitem[0]}">
                         <div class="tab-pane active" id="pic-1">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[0].idHinhAnh} }" alt="Hình ảnh">
+                                th:src="@{ ${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane" id="pic-2">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 1}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[1].idHinhAnh} }" alt="Hình ảnh">
+                                th:src="@{ ${spcl.ListDSHA_SPCT[1].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane" id="pic-3">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 2}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[2].idHinhAnh} }" alt="Hình ảnh">
+                                th:src="@{ ${spcl.ListDSHA_SPCT[2].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane" id="pic-4">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 3}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[3].idHinhAnh} }" alt="Hình ảnh">
+                                th:src="@{ ${spcl.ListDSHA_SPCT[3].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane" id="pic-5">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 4}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[4].idHinhAnh} }" alt="Hình ảnh">
+                                th:src="@{ ${spcl.ListDSHA_SPCT[4].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
                     </div>
 
@@ -125,13 +125,16 @@
                         </h5> -->
 
                         <div>
-                          <h5 th:if="${products.khuyenMaiSP == null}" class="products-list-price"
-                             th:text="${#numbers.formatDecimal(products.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></h5>
-                          <h5 class="product-list-price-new" th:if="${products.khuyenMaiSP != null}">
-                              <span th:text="${#numbers.formatDecimal(products.giaSanPham * (1 - products.khuyenMaiSP.phanTramKhuyenMai / 100), 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
-                              <del class="old-price mx-3" th:text="${#numbers.formatDecimal(products.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></del>
-                          </h5>
-                      </div>
+                            <h5 th:if="${products.khuyenMaiSP == null}" class="products-list-price"
+                                th:text="${#numbers.formatDecimal(products.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'">
+                            </h5>
+                            <h5 class="product-list-price-new" th:if="${products.khuyenMaiSP != null}">
+                                <span
+                                    th:text="${#numbers.formatDecimal(products.giaSanPham * (1 - products.khuyenMaiSP.phanTramKhuyenMai ), 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                <del class="old-price mx-3"
+                                    th:text="${#numbers.formatDecimal(products.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></del>
+                            </h5>
+                        </div>
 
                         <input hidden type="text" name="idSanPham" id="idSanPham" th:value="${products.idSanPham}">
                         <h2>Loại: <span th:text="${products.nhomLoaiSP.tenNhomLoai}"></span></h2>
@@ -164,13 +167,17 @@
 
                     <div class="row">
                         <div class="col-6 button-sell d-flex">
-                            <button th:attr="ng-click=@{|cart.add(${products.idSanPham})|}" class="btn-sell"> Mua ngay
-                            </button>
-                        </div>
-                        <div class="col-6 button-sell d-flex">
-                            <button th:attr="ng-click=@{|cart.add(${products.idSanPham})|}" class="btn-base"> Thêm vào
+                            <button th:attr="ng-click=@{|cart.add(${products.idSanPham})|}" class="btn-sell"> Thêm vào
                                 giỏ
                             </button>
+                            <div id="error-message" class="error-message">
+                                <span>Đã hết hàng</span>
+                            </div>
+                        </div>
+                        <div class="col-6 button-sell d-flex">
+                            <!-- <button th:attr="ng-click=@{|cart.add(${products.idSanPham})|}" class="btn-base"> Thêm vào
+                                giỏ
+                            </button> -->
                         </div>
                     </div>
                     </form>
@@ -218,85 +225,35 @@
         </article>
     </div>
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-6 col-md-3 mb-3">
-                        <h5>Sản phẩm</h5>
-                        <ul class="nav flex-column footer-link">
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">BÀN -
-                                    tables</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">SOFA -
-                                    sofas</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">TỦ -
-                                    cabinets</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GHẾ -
-                                    chairs</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">ĐÈN -
-                                    lamps</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">KỆ - shelf
-                                    units</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-3 mb-3">
-                        <h5>Phòng</h5>
-                        <ul class="nav flex-column footer-link">
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG KHÁCH
-                                    -Living room</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG NGỦ -
-                                    Bedroom</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG BẾP -
-                                    Kitchen room</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG TẮM -
-                                    Bathroom</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG LÀM
-                                    VIỆC - Office</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-3 mb-3">
-                        <h5>Trang khác</h5>
-                        <ul class="nav flex-column footer-link">
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang giới
-                                    thiệu</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang liên
-                                    hệ</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang bài
-                                    viết</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cá
-                                    nhân</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cài
-                                    đặt</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-3 mb-3">
-                        <h5>Mạng xã hội</h5>
-                        <ul class="nav flex-column footer-link">
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Twitter</a>
-                            </li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Linkedln</a>
-                            </li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Facebook</a>
-                            </li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GitHub</a>
-                            </li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">AngelList</a>
-                            </li>
-                            <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Dribble</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-                    <div class="logo-footer">
-                        <a href="#"><img src="img/Logowebsite.png" alt=""></a>
-                    </div>
-                    <p class="text-white-50">© 2023 Company, Inc. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+    <nav th:replace="~{/layout/footer.html :: footer}"></nav>
 </body>
 
 <script src="/javascripts/shopping-cart-app.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+    #error-message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ff0000;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    #error-message.visible {
+        opacity: 1;
+    }
+</style>
 
 </html>

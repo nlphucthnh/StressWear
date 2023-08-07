@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@SuppressWarnings("serial")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,4 +36,5 @@ public class DonHangChiTiet implements Serializable  {
     @ManyToOne
     @JoinColumn(name = "id_don_hang")
     DonHang donHangDHCT;
+
 }

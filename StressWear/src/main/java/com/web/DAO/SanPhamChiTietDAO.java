@@ -11,8 +11,9 @@ import com.web.Entity.SanPhamChiTiet;
 
 public interface SanPhamChiTietDAO extends JpaRepository<SanPhamChiTiet, Integer> {
 
-    @Query(value = "SELECT p FROM SanPhamChiTiet p where p.sanPhamSPCT.idSanPham LIKE %?1%")
+    @Query(value = "SELECT p FROM SanPhamChiTiet p where p.sanPhamSPCT.idSanPham LIKE ?1")
     List<SanPhamChiTiet> findByidsanpham(Integer p);
 
+    
     List<SanPhamChiTiet> findBySanPhamSPCT(Optional<SanPham> sanPham);
 }
