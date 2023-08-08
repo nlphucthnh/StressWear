@@ -63,34 +63,33 @@ app.controller("ctrl-dh", function ($scope, $http) {
     var url = `${API_DONHANG}/paging`;
     $http.get(url).then((result) => {
       $scope.list_dh = result.data.content;
-      console.log($scope.list_dh);
       $scope.infor_dh = result.data;
     }).catch((err) => {
       console.log("ERROR", err);
     });
   }
 
-    // sắp xếp dữ liệu trong table sản phẩm
-    $scope.sort_list_dh = function (sort) {
-      $scope.sort = sort;
-      if (sort) {
-        $scope.sort_list = `idDonHang`;
-      } else {
-        $scope.sort_list = `-idDonHang`;
-      }
+  // sắp xếp dữ liệu trong table sản phẩm
+  $scope.sort_list_dh = function (sort) {
+    $scope.sort = sort;
+    if (sort) {
+      $scope.sort_list = `idDonHang`;
+    } else {
+      $scope.sort_list = `-idDonHang`;
     }
+  }
 
-    $("#method_payment").change(function () { 
-      $scope.method_payment = this.value;
-      $scope.load_data_dh();
-    });
+  $("#method_payment").change(function () {
+    $scope.method_payment = this.value;
+    $scope.load_data_dh();
+  });
 
-    $("#status_order").change(function () { 
-      $scope.status_order = this.value;
-      $scope.load_data_dh();
-    });
+  $("#status_order").change(function () {
+    $scope.status_order = this.value;
+    $scope.load_data_dh();
+  });
 
-    
+
 
   // load dữ liệu của những sản phẩm lên table và phân trang
   $scope.paging_data_dh = function (numberPage) {
@@ -106,11 +105,12 @@ app.controller("ctrl-dh", function ($scope, $http) {
   $scope.edit_dh = function (donhang) {
     $(".btn-update-dh").css("pointer-events", "all");
     $(".btn-update-dh").css("background-color", "white");
+    $("#status_order2").css("pointer-events", "none");
+    $("#form-order-tab").trigger('click');
     donhang.ngayTao = new Date(donhang.ngayTao);
     $scope.form_dh = angular.copy(donhang);
 
     $http.get(`${API_DONHANGCHITIET}/donhang/${donhang.idDonHang}`).then((result) => {
-      console.log(result.data);
       $scope.list_dhct = result.data;
       $scope.form_cp.tong_phu = 0.0;
       result.data.forEach(element => {
@@ -138,7 +138,6 @@ app.controller("ctrl-dh", function ($scope, $http) {
     var item2 = angular.copy($scope.form_dh.thongTinGiaoHang);
     var url = `${API_THONGTINDONHANG}/${item2.idThongTinGiaoHang}`;
     $http.put(url, item2).then((result) => {
-      alert("Cập nhật thong tin giao hàng thành công");
     }).catch((err) => {
       console.log("ERROR", err);
     });
@@ -146,25 +145,29 @@ app.controller("ctrl-dh", function ($scope, $http) {
   }
 
   $scope.delete_dh = function (idDonHang) {
-    var url = `${API_DONHANG}/${idDonHang}`;
-    $http.delete(url).then((result) => {
-      alert("Xóa đơn hàng thành công");
-      var index = $scope.list_dh.findIndex(item => item.idDonHang === result.data.idDonHang);
-      $scope.list_dh.splice(index, 1);
-    }).catch((err) => {
-      console.log("ERROR", err);
-    });
+    if (confirm("Bạn muốn xóa hóa đơn này ?")) {
+      var url = `${API_DONHANG}/${idDonHang}`;
+      $http.delete(url).then((result) => {
+        alert("Xóa đơn hàng thành công");
+        var index = $scope.list_dh.findIndex(item => item.idDonHang == idDonHang);
+        $scope.list_dh.splice(index, 1);
+      }).catch((err) => {
+        console.log("ERROR", err);
+      });
+    }
   }
 
   $scope.delete_dhct = function (idDonHangChiTiet) {
-    var url = `${API_DONHANGCHITIET}/${idDonHangChiTiet}`;
-    $http.delete(url).then((result) => {
-      alert("Xóa đơn hàng chi tiết thành công");
-      var index = $scope.list_dhctct.findIndex(item => item.idDonHangChiTiet === result.data.idDonHangChiTiet);
-      $scope.list_dhct.splice(index, 1);
-    }).catch((err) => {
-      console.log("ERROR", err);
-    });
+    if (confirm("bạn muốn xóa đơn hàng chi tiết này ?")) {
+      var url = `${API_DONHANGCHITIET}/${idDonHangChiTiet}`;
+      $http.delete(url).then((result) => {
+        alert("Xóa đơn hàng chi tiết thành công");
+        var index = $scope.list_dhct.findIndex(item => item.idDonHangChiTiet == idDonHangChiTiet);
+        $scope.list_dhct.splice(index, 1);
+      }).catch((err) => {
+        console.log("ERROR", err);
+      });
+    }
   }
 
   $scope.reset_dh = function () {
@@ -202,7 +205,7 @@ app.controller("ctrl-dh", function ($scope, $http) {
     }
   }
 
-  // $scope.reset_dh();
+  $scope.reset_dh();
   $scope.load_data_dh();
 })
 
