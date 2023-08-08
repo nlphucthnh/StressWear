@@ -19,8 +19,6 @@ import com.web.DAO.DonHangChiTietDAO;
 import com.web.DAO.DonHangDAO;
 import com.web.Entity.DonHang;
 import com.web.Entity.DonHangChiTiet;
-import com.web.Entity.SanPham;
-import com.web.Entity.SanPhamChiTiet;
 
 @RestController
 @CrossOrigin(origins = "*")

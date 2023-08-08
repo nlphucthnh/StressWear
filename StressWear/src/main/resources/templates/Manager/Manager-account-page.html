@@ -45,6 +45,51 @@
                     <h3 class="header_content_main-text text-title">Quản lý tài khoản</h3>
                     <h5 class="header_content_sub-text text-title">Quản lý tài khoản đang hoạt động tại trang web</h5>
                 </div>
+                <div class="header_content_button-group">
+                    <button class="btn btn-style" data-bs-toggle="modal" data-bs-target="#modalId"
+                        style="padding: 10px;">Tài khoản không vai trò</button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-sm  modal-dialog-scrollable modal-dialog-centered modal-lg"
+                        role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalTitleId">Danh sách tài khoản không quyền</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-bordered table-striped-columns">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: left !important; " scope="col">Tên đăng nhập</th>
+                                            <th style="text-align: left !important; " scope="col">email</th>
+                                            <th scope="col">trạng thái</th>
+                                            <th scope="col">Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="tk in list_tk_notrole">
+                                            <td style="text-align: left !important; " scope="row">{{tk.tenDangNhap}}</td>
+                                            <td style="text-align: left !important;">{{tk.email}}</td>
+                                            <td>{{tk.trangThai}}</td>
+                                            <td>
+                                                <button ng-click="edit_acc2(tk)" class="btn"
+                                                    style="color: var(--gray_600);"><i data-bs-dismiss="modal"
+                                                        aria-label="Close" class="bi bi-pen-fill"></i></button>
+                                                <button ng-click="delete_acc(tk.tenDangNhap)" class="btn"
+                                                    style="color: var(--gray_600);"><i
+                                                        class="bi bi-trash-fill"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="body_content">
                 <!-- Nav tabs -->
@@ -85,7 +130,6 @@
                                 </div>
                                 <div class="mb-3" style="margin-right: 20px;">
                                     <select class="form-select form-select-lg" name="sortField" id="role_account">
-                                        <option value="">Tất cả vai trò</option>
                                         <option value="USER">Người dùng</option>
                                         <option value="STAFF">Nhân viên</option>
                                         <option value="ADMIN">Quản trị viên</option>
@@ -140,7 +184,7 @@
                                                 <button ng-click="edit_acc(vttk)" class="btn"
                                                     style="color: var(--gray_600);"><i
                                                         class="bi bi-pen-fill"></i></button>
-                                                <button ng-click="delete_acc(vttk.taiKhoan.tenDangNhap)" class="btn"
+                                                <button ng-click="delete_vttk(vttk.idVaiTroTaiKhoan)" class="btn"
                                                     style="color: var(--gray_600);"><i
                                                         class="bi bi-trash-fill"></i></button>
                                             </td>
@@ -168,87 +212,99 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-
                             </div>
                         </div>
+
+
                     </div>
                     <div class="tab-pane" id="form_blogs" role="tabpanel" aria-labelledby="form-account-tab">
                         <div class="form_blogs-pane">
-                            <div class="group-fleld group-fleld-01">
-                                <div class="mb-3 form-group">
-                                    <label for="username_account" class="form-label">Tên đăng nhập</label>
-                                    <input style="pointer-events: none;" type="text" ng-model="form_acc.tenDangNhap"
-                                        name="username-account" id="username_account"
-                                        class="form-control box-shadow-none" placeholder="">
-                                    <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                            <form name="accountForm">
+                                <div class="group-fleld group-fleld-01">
+                                    <div class="mb-3 form-group">
+                                        <label for="username_account" class="form-label">Tên đăng nhập</label>
+                                        <input  type="text" ng-model="form_acc.tenDangNhap" name="txtUsername"
+                                            id="username_account" class="form-control box-shadow-none" placeholder=""
+                                            required>
+                                        <small ng-if="!accountForm.txtUsername.$valid"
+                                            class="text-muted color-style-validate">Vui lòng
+                                            nhập Tên đăng nhập</small>
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="password_account" class="form-label">Mật khẩu</label>
+                                        <input type="password" ng-model="form_acc.matKhau" name="txtPassword"
+                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password_account"
+                                            class="form-control box-shadow-none"
+                                            title="Phải chứa ít nhất một số và một chữ hoa và chữ thường và ít nhất 8 ký tự trở lên"
+                                            required>
+                                        <small ng-if="!accountForm.txtPassword.$valid"
+                                            class="text-muted color-style-validate">Vui lòng
+                                            nhập mật khẩu</small>
+                                    </div>
                                 </div>
-                                <div class="mb-3 form-group">
-                                    <label for="password_account" class="form-label">Mật khẩu</label>
-                                    <input type="password" ng-model="form_acc.matKhau" name="password-account"
-                                        id="password_account" class="form-control box-shadow-none" placeholder="">
-                                    <!-- <small id="helpId" class="text-muted">Help text</small> -->
-                                </div>
-                            </div>
 
-                            <div class="group-fleld group-fleld-03">
-                                <div class="mb-3 form-group">
-                                    <label for="status_account" class="form-label">Trạng thái</label>
-                                    <select ng-model="form_acc.trangThai" class="form-control  box-shadow-none"
-                                        name="status-account" id="status_account" aria-describedby="calendar">
-                                        <option value="true">Đang hoạt động</option>
-                                        <option value="false">Dừng hoạt động</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3 form-group">
-                                    <label for="email_account" class="form-label">Email</label>
-                                    <input type="email" ng-model="form_acc.email" name="email-account"
-                                        id="email_account" class="form-control box-shadow-none" placeholder="">
-                                    <!-- <small id="helpId" class="text-muted">Help text</small> -->
-                                </div>
-                            </div>
-                            <div class="group-fleld group-fleld-04">
-                                <div class="mb-3 form-group">
-                                    <label for="role_account" class="form-label">Vai trò</label>
-                                    <select ng-model="idVaiTro" class="form-control  box-shadow-none"
-                                        name="role-account" id="role_account" aria-describedby="calendar">
-                                        <option value="USER">Người dùng</option>
-                                        <option value="STAFF">Nhân viên</option>
-                                        <option value="ADMIN">Quản trị viên</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="group-fleld group-fleld-06">
-                                <div class="mb-3 form-group check-box-size">
-                                    <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
-                                        <h6 class="text-title">Người dùng</h6>
-                                        <input style="pointer-events: none;"
-                                            class="form-check-input form-control box-shadow-none" type="checkbox"
-                                            value="S" id="sizeS" name="sizecheck">
+                                <div class="group-fleld group-fleld-03">
+                                    <div class="mb-3 form-group">
+                                        <label for="status_account" class="form-label">Trạng thái</label>
+                                        <select ng-model="form_acc.trangThai" class="form-control  box-shadow-none"
+                                            name="status-account" id="status_account" aria-describedby="calendar">
+                                            <option value="true">Đang hoạt động</option>
+                                            <option value="false">Dừng hoạt động</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="email_account" class="form-label">Email</label>
+                                        <input type="email" ng-model="form_acc.email" name="txtEmail" id="email_account"
+                                            class="form-control box-shadow-none" title="Email không hợp lệ" required>
+                                        <small ng-if="!accountForm.txtEmail.$valid"
+                                            class="text-muted color-style-validate">Vui lòng
+                                            nhập email</small>
                                     </div>
                                 </div>
-                                <div class="mb-3 form-group check-box-size">
-                                    <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
-                                        <h6 class="text-title">Nhân Viên</h6>
-                                        <input style="pointer-events: none;"
-                                            class="form-check-input form-control box-shadow-none" type="checkbox"
-                                            value="M" id="sizeM" name="sizecheck">
+                                <div class="group-fleld mb-3 form-group" style="margin: 3px auto !important; ">
+                                    <label for="role_account" class="form-label">Các vai trò</label>
+                                </div>
+                                <div class="group-fleld group-fleld-06">
+                                    <div class="mb-3 form-group check-box-size">
+                                        <div
+                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                            <h6 class="text-title">Người dùng</h6>
+                                            <input style="pointer-events: none;"
+                                                class="form-check-input form-control box-shadow-none" type="checkbox"
+                                                value="USER" id="USER" name="sizecheck">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 form-group check-box-size">
+                                        <div
+                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                            <h6 class="text-title">Nhân Viên</h6>
+                                            <input style="pointer-events: none;"
+                                                class="form-check-input form-control box-shadow-none" type="checkbox"
+                                                value="STAFF" id="STAFF" name="sizecheck">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 form-group check-box-size">
+                                        <div
+                                            class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
+                                            <h6 class="text-title">Quản trị viên</h6>
+                                            <input style="pointer-events: none;"
+                                                class="form-check-input form-control box-shadow-none" type="checkbox"
+                                                value="ADMIN" id="ADMIN" name="sizecheck">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="mb-3 form-group check-box-size">
-                                    <div class="form-check m-0 p-0 d-flex align-items-center justify-content-between">
-                                        <h6 class="text-title">Quản trị viên</h6>
-                                        <input style="pointer-events: none;"
-                                            class="form-check-input form-control box-shadow-none" type="checkbox"
-                                            value="L" id="sizeL" name="sizecheck">
-                                    </div>
+                                <div class="group-fleld group-fleld-05">
+                                    <button ng-click="reset_acc()" class="btn btn-style"><i
+                                            class="bi-brush"></i></button>
+                                    <button ng-click="update_acc()" class="btn btn-style btn-update btn-update-acc">Cập
+                                        nhật</button>
+                                    <button ng-if="!accountForm.$valid" class="btn btn-style btn-add btn-add-acc">Thêm
+                                        mới</button>
+                                    <button ng-if="accountForm.$valid" ng-show="accountForm.$valid"
+                                        ng-click="create_acc()" class="btn btn-style btn-add btn-add-acc">Thêm
+                                        mới</button>
                                 </div>
-                            </div>
-                            <div class="group-fleld group-fleld-05">
-                                <button class="btn btn-style"><i class="bi-brush"></i></button>
-                                <button ng-click="update_acc()" class="btn btn-style btn-update btn-update-acc">Cập
-                                    nhật</button>
-                                <button class="btn btn-style btn-add btn-add-acc">Thêm mới</button>
-                            </div>
+                            </form>
                         </div>
 
                     </div>
