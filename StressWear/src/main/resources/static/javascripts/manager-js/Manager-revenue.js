@@ -43,20 +43,21 @@ async function drawStuff() {
 }
 
 
-    const API_THONGKESANPHAM= "http://localhost:8080/api/donhangchitiet/thongkesanpham";
+    const API_DONHANG= "http://localhost:8080/api/donhangchitiet";
     const app = angular.module("app", []);
     app.controller("ctrl-revenue", function ($scope, $http) {
 
       $scope.list_thongkesanpham = [];
 
-      $scope.load_data_thongkesanpham = function () {
-        var url = `${API_THONGKESANPHAM}`;
+      $scope.load_data_thongkesanpham = function (numberPage) {
+        var url = `${API_DONHANG}/paging?page=${numberPage}`;
         $http.get(url).then((result) => {
-          $scope.list_thongkesanpham = result.data;
+          $scope.list_thongkesanpham = result.data.content;
+          $scope.infor_tksp = result.data
           console.log(result.data);
         }).catch((err) => {
           console.log(err);
         });
       }
-      $scope.load_data_thongkesanpham();
+      $scope.load_data_thongkesanpham(0);
     })

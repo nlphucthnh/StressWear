@@ -112,23 +112,21 @@
                     <div id="chart_div"></div>
                     <br />
                     <div id="btn-group">
-                        <button style="background-color: gainsboro ; margin-bottom: 50px; padding: 5px; margin-left: 5px; border-radius: 10px; border: none;" class="button" id="none">No Format</button>
-                        <button style="background-color: gainsboro ; margin-bottom: 50px; padding: 5px; margin-left: 5px; border-radius: 10px; border: none;" class="button" id="scientific">Scientific Notation</button>
-                        <button style="background-color: gainsboro ; margin-bottom: 50px; padding: 5px; margin-left: 5px; border-radius: 10px; border: none;" class="button" id="decimal">Decimal</button>
-                        <button style="background-color: gainsboro ; margin-bottom: 50px; padding: 5px; margin-left: 5px; border-radius: 10px; border: none;" class="button" id="short">Short</button>
+                        <button
+                            style="background-color: gainsboro ; margin-bottom: 50px; padding: 5px; margin-left: 5px; border-radius: 10px; border: none;"
+                            class="button" id="none">No Format</button>
+                        <button
+                            style="background-color: gainsboro ; margin-bottom: 50px; padding: 5px; margin-left: 5px; border-radius: 10px; border: none;"
+                            class="button" id="scientific">Scientific Notation</button>
+                        <button
+                            style="background-color: gainsboro ; margin-bottom: 50px; padding: 5px; margin-left: 5px; border-radius: 10px; border: none;"
+                            class="button" id="decimal">Decimal</button>
+                        <button
+                            style="background-color: gainsboro ; margin-bottom: 50px; padding: 5px; margin-left: 5px; border-radius: 10px; border: none;"
+                            class="button" id="short">Short</button>
                     </div>
                     <div class="list_blogs-header">
                         <div class="list_blogs-header-seletion-group" style="margin-left: 20px;">
-                            <form action="" method="post">
-                                <div class="mb-3" style="margin-right: 10px;">
-                                    <input type="date" class="form-control box-shadow-none" name="" id="">
-                                </div>
-                                <div class="input-group mb-3 w-50">
-                                    <span class="input-group-text" id="id_product">ID</span>
-                                    <input type="text" class="form-control box-shadow-none"
-                                        aria-describedby="id_product">
-                                </div>
-                            </form>
                         </div>
                         <div class="list_blogs-header-search-group">
                             <form action="">
@@ -182,15 +180,23 @@
                                 <tfoot>
                                     <tr>
                                         <td style="text-align: left;">
-                                            <button class="btn-style btn-prev">Trước đó</button>
-                                            <button class="btn-style btn-next">Kế tiếp</button>
+                                            <button ng-if="infor_tksp.number == 0"
+                                                class="btn-style btn-prev m-0 disnable">Trước đó</button>
+                                            <button ng-if="infor_tksp.number > 0"
+                                                ng-click="load_data_thongkesanpham(infor_tksp.number - 1)"
+                                                class="btn-style btn-prev m-0">Trước đó</button>
+                                            <button ng-if="infor_tksp.number < infor_tksp.totalPages - 1"
+                                                ng-click="load_data_thongkesanpham(infor_tksp.number + 1)"
+                                                class="btn-style btn-next m-0">Kế tiếp</button>
+                                            <button ng-if="infor_tksp.number == infor_tksp.totalPages - 1"
+                                                class="btn-style btn-next m-0 disnable">Kế tiếp</button>
                                         </td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td>
-                                            Trang 1 của 10
+                                            Trang {{infor_tksp.number + 1}} của {{infor_tksp.totalPages}}
                                         </td>
                                     </tr>
                                 </tfoot>
