@@ -2,6 +2,8 @@ package com.web.service;
 
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,6 +23,9 @@ import com.web.Entity.TaiKhoan;
 public class UserService implements UserDetailsService{
 	@Autowired
 	TaiKhoanDAO taiKhoanDAO;
+
+
+
 	@Autowired
 	BCryptPasswordEncoder pe;
 
@@ -50,7 +55,8 @@ public class UserService implements UserDetailsService{
 		
 		UserDetails userDetails = User.withUsername(email)
 				.password(pe.encode(password)).roles("GUEST").build();
-		Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+		
+		Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());	
 		SecurityContextHolder.getContext().setAuthentication(auth);
 	}
 }

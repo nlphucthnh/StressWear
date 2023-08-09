@@ -137,8 +137,11 @@
       <div class="registered-group-account registered-item" th:if="${#request.remoteUser}"
         th:object="${#request.userPrincipal}">
         <div class="registered-group-account-text">
-          <div class="registered-group-account-name-text">[[*{name}]]
+          <!-- <div class="registered-group-account-name-text">[[*{name.substring(0 ,name.indexOf("@"))}]]
+          </div> -->
+          <div class="registered-group-account-name-text">[[${#session.getAttribute("oAuth2")}]]
           </div>
+          <p></p>
           <!-- <div class="registered-group-account-email-text">[[*{name}]]</div> -->
         </div>
         <div class="registered-group-account-img dropdown">
