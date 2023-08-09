@@ -1,15 +1,23 @@
 package com.web.Controller;
 
+import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.web.service.UserService;
 
 @Controller
 public class UserController {
+	@Autowired
+	HttpSession session;
+
+
 	@RequestMapping("/auth/login/form")
     public String loginPage() {
         return "User/User-login-page";
@@ -46,8 +54,10 @@ public class UserController {
 	UserService userService;
 	
 	@RequestMapping("/oauth2/login/success")
-	public String success(OAuth2AuthenticationToken oAuth2) {
+	public String success(OAuth2AuthenticationToken oAuth2,Model model) {
 		userService.loginFromOAuth2(oAuth2);
+		session.setAttribute("oAuth2", oAuth2);
+		session.getAttribute("oAuth2");
 		return "forward:/auth/login/success";
 	}
 }
