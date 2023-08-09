@@ -355,6 +355,14 @@ tbody, td, tfoot, th, thead, tr {
 #Manager_Content #form_blogs .group-fleld-06 .check-box-size:hover {
     background-color: var(--gray_100);
 }
+ .modal-body tr {
+    border-bottom: 1px solid black !important;
+    text-align: left !important;
+}
+
+.modal-body td {
+    vertical-align: middle !important;
+} 
 
 
 

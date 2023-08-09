@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.web.DAO.TaiKhoanDAO;
 import com.web.DAO.VaiTroDAO;
 import com.web.DAO.VaiTroTaiKhoanDAO;
-import com.web.Entity.SanPham;
 import com.web.Entity.TaiKhoan;
 
 @RestController

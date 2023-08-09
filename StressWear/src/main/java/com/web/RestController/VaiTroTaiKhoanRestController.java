@@ -20,8 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import com.web.DAO.VaiTroTaiKhoanDAO;
+import com.web.DAO.*;
 import com.web.Entity.TaiKhoan;
+import com.web.Entity.VaiTro;
 import com.web.Entity.VaiTroTaiKhoan;
 
 
@@ -32,6 +33,12 @@ public class VaiTroTaiKhoanRestController {
 
     @Autowired
     VaiTroTaiKhoanDAO vaiTroTaiKhoanDAO;
+
+    @Autowired
+    TaiKhoanDAO taiKhoanDAO;
+
+    @Autowired
+    VaiTroDAO vaiTroDAO;
 
     @GetMapping
     public ResponseEntity<List<VaiTroTaiKhoan>> findAll(){
@@ -66,8 +73,8 @@ public class VaiTroTaiKhoanRestController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<VaiTroTaiKhoan> put(@PathVariable("id") Integer idVaiTro, @RequestBody VaiTroTaiKhoan vaiTro){
-        if(!vaiTroTaiKhoanDAO.existsById(idVaiTro)){
+    public ResponseEntity<VaiTroTaiKhoan> put(@PathVariable("id") Integer idVaiTroTaiKhoan, @RequestBody VaiTroTaiKhoan vaiTro){
+        if(!vaiTroTaiKhoanDAO.existsById(idVaiTroTaiKhoan)){
             return ResponseEntity.notFound().build();
         }
         vaiTroTaiKhoanDAO.save(vaiTro);
@@ -75,11 +82,23 @@ public class VaiTroTaiKhoanRestController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer idVaiTro){
-       if(!vaiTroTaiKhoanDAO.existsById(idVaiTro)){
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer idVaiTroTaiKhoan){
+       if(!vaiTroTaiKhoanDAO.existsById(idVaiTroTaiKhoan)){
             return ResponseEntity.notFound().build();
         }
-        vaiTroTaiKhoanDAO.deleteById(idVaiTro);
+        vaiTroTaiKhoanDAO.deleteById(idVaiTroTaiKhoan);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("{tendangnhap}/{idvaitro}")
+    public ResponseEntity<Void> delete2(@PathVariable("tendangnhap") String tenDangNhap,@PathVariable("idvaitro") String idVaiTro){
+        TaiKhoan taiKhoan = taiKhoanDAO.findById(tenDangNhap).get();
+        VaiTro vaiTro = vaiTroDAO.findById(idVaiTro).get();
+        VaiTroTaiKhoan vaiTroTaiKhoan = vaiTroTaiKhoanDAO.findVaiTroTaiKhoan(taiKhoan,vaiTro);
+       if(!vaiTroTaiKhoanDAO.existsById(vaiTroTaiKhoan.getIdVaiTroTaiKhoan())){
+            return ResponseEntity.notFound().build();
+        }
+        vaiTroTaiKhoanDAO.deleteById(vaiTroTaiKhoan.getIdVaiTroTaiKhoan());
         return ResponseEntity.ok().build();
     }
 }

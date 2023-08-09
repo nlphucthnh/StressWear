@@ -42,12 +42,6 @@
                     <h5 class="header_content_sub-text text-title">Chức năng quản lý đơn hàng giúp cho doanh nghiệp có
                         thể dễ dàng theo dõi, xử lý ...</h5>
                 </div>
-                <div class="header_content_button-group">
-                    <form action="" method="post">
-                        <button class="btn btn-export btn-style"><i class="bi bi-cloud-download icon-text"></i> Xuất
-                            file</button>
-                    </form>
-                </div>
             </div>
             <div class="body_content">
                 <!-- Nav tabs -->
@@ -89,7 +83,7 @@
 
                                 <div class="mb-3">
                                     <select class="form-select form-select-lg" name="" id="status_order">
-                                        <option  value="" selected>Tất cả</option>
+                                        <option value="" selected>Tất cả</option>
                                         <option value="doing">Đang xử lý</option>
                                         <option value="cancel">Đã hủy</option>
                                         <option value="done">Đã giao hàng</option>
@@ -102,7 +96,7 @@
                                         class="btn btn-outline-secondary box-shadow-none" type="button"
                                         id="button-search"><i class="bi bi-search"></i></button>
                                     <input ng-model="text_search" type="text" class="form-control box-shadow-none"
-                                        placeholder="Tìm kiếm" aria-label="Example text with button addon"
+                                        placeholder="Tìm kiếm mã đơn hàng" aria-label="Example text with button addon"
                                         aria-describedby="button-search">
                                 </div>
                             </div>
@@ -112,10 +106,7 @@
                                 <table class="table table-striped m-0">
                                     <thead>
                                         <tr>
-                                            <th scope="col" style="text-align: left;">
-                                                <input class="form-check-input box-shadow-none"
-                                                    style="margin-right: 10px;" name="" id="" type="checkbox"
-                                                    value="checkedValue" aria-label="Text for screen reader">
+                                            <th scope="col" style="width: 20%; text-align: left;">
                                                 Đơn hàng
                                                 <i class="bi bi-arrow-down"></i>
                                             </th>
@@ -130,7 +121,7 @@
                                         <tr
                                             ng-repeat="dh in list_dh | orderBy : sort_list | filter : { phuongThucThanhToan : method_payment, trangThaiDonHang : status_order }">
                                             <td scope="row" class="td-first-table text-order-group ">
-                                                <h4 class="text-title-order text-title">{{dh.idDonHang}}</h4>
+                                                <h4 class="text-title-order text-title">Mã đơn hàng : {{dh.idDonHang}}</h4>
                                             </td>
                                             <td>{{dh.taiKhoanMuaHang.tenDangNhap}}</td>
                                             <td>{{convert_date(dh.ngayTao)}}</td>
@@ -173,7 +164,9 @@
                                                 <button ng-if="infor_dh.number == infor_dh.totalPages - 1"
                                                     class="btn-style btn-next m-0 disnable">Kế tiếp</button>
                                             </td>
-                                            <td></td>
+                                            <td>
+
+                                            </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -239,7 +232,7 @@
                                         <label for="status-order_order" class="form-label">Trạng thái đơn hàng</label>
                                         <select ng-model="form_dh.trangThaiDonHang"
                                             class="form-control form-select box-shadow-none" name="status-order_order"
-                                            id="">
+                                            id="status_order2">
                                             <option value="doing" selected>Đang xử lý</option>
                                             <option value="cancel">Đã hủy</option>
                                             <option value="done">Đã giao hàng</option>
