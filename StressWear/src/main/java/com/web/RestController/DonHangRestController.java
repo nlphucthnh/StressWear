@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.web.DAO.DonHangDAO;
 import com.web.Entity.DonHang;
+import com.web.Entity.ThongKe;
 import com.web.service.DonHangService;
 
 @RestController
@@ -36,14 +37,16 @@ public class DonHangRestController {
     DonHangService donhangSevice;
 
     @PostMapping()
-    public DonHang create(@RequestBody JsonNode donhangData){
-    return donhangSevice.create(donhangData);
+    public DonHang create(@RequestBody JsonNode donhangData) {
+        return donhangSevice.create(donhangData);
     }
 
     @GetMapping()
     public ResponseEntity<List<DonHang>> findAll() {
         return ResponseEntity.ok(donHangDAO.findAll());
     }
+
+  
 
     @GetMapping("{id}")
     public ResponseEntity<DonHang> findById(@PathVariable("id") String idDonHang) {
@@ -64,14 +67,13 @@ public class DonHangRestController {
         return ResponseEntity.ok(pageDonHang);
     }
 
-
     // @PostMapping("")
     // public ResponseEntity<DonHang> post(@RequestBody DonHang donHang) {
-    //     if (donHangDAO.existsById(donHang.getIdDonHang())) {
-    //         return ResponseEntity.badRequest().build();
-    //     }
-    //     donHangDAO.save(donHang);
-    //     return ResponseEntity.ok(donHang);
+    // if (donHangDAO.existsById(donHang.getIdDonHang())) {
+    // return ResponseEntity.badRequest().build();
+    // }
+    // donHangDAO.save(donHang);
+    // return ResponseEntity.ok(donHang);
     // }
 
     @PutMapping("{id}")

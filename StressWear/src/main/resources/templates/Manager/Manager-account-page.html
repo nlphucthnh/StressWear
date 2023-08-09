@@ -65,8 +65,8 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: left !important; " scope="col">Tên đăng nhập</th>
-                                            <th style="text-align: left !important; " scope="col">email</th>
-                                            <th scope="col">trạng thái</th>
+                                            <th style="text-align: left !important; " scope="col">Email</th>
+                                            <th scope="col">Trạng thái</th>
                                             <th scope="col">Thao tác</th>
                                         </tr>
                                     </thead>
@@ -74,7 +74,8 @@
                                         <tr ng-repeat="tk in list_tk_notrole">
                                             <td style="text-align: left !important; " scope="row">{{tk.tenDangNhap}}</td>
                                             <td style="text-align: left !important;">{{tk.email}}</td>
-                                            <td>{{tk.trangThai}}</td>
+                                            <td ng-if="tk.trangThai"><span class="badge badge-green">Đang hoạt động</span> </td>
+                                        <td ng-if="!tk.trangThai"><span class="badge badge-red">Dừng hoạt động</td>
                                             <td>
                                                 <button ng-click="edit_acc2(tk)" class="btn"
                                                     style="color: var(--gray_600);"><i data-bs-dismiss="modal"

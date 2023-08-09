@@ -19,6 +19,7 @@ import com.web.DAO.DonHangChiTietDAO;
 import com.web.DAO.DonHangDAO;
 import com.web.Entity.DonHang;
 import com.web.Entity.DonHangChiTiet;
+import com.web.Entity.ThongKe;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -34,6 +35,11 @@ public class DonHangChiTietRestController {
     @GetMapping
     public ResponseEntity<List<DonHangChiTiet>> findAll(){
         return ResponseEntity.ok(donHangChiTietDAO.findAll());
+    }
+
+    @GetMapping("thongkesanpham")
+    public ResponseEntity<List<ThongKe>> findListThongKeSP() {
+        return ResponseEntity.ok(donHangChiTietDAO.findListThongKeSP());
     }
     
     @GetMapping("donhang/{id}")
