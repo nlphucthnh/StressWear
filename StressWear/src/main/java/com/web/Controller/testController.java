@@ -21,15 +21,7 @@
 //     //     return "User/User-index";
 //     // }
 
-//     @GetMapping("about")
-//     public String about() {
-//         return "User/User-about";
-//     }
 
-//     @GetMapping("product")
-//     public String product() {
-//         return "User/User-product";
-//     }
 
     // @GetMapping("hello")
     // public String getPage() {

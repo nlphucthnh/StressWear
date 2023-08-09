@@ -166,7 +166,7 @@ body {
 }
 .login-ct-left-form .login-with-mxh .login-with-gg-fb i {
     /* display: flex; */
-    padding: 18px 12px;
+    padding: 18px 20px;
     /* width: 50; */
     /* font-size: 38px; */
 }
@@ -174,9 +174,7 @@ body {
 .login-with-mxh .login-with-gg-fb .gg{
     background-color: #EC534A;
 }
-.login-with-mxh .login-with-gg-fb .fb{
-    background-color: #007BFF;
-}
+
 /* -------------------------------- */
 
 

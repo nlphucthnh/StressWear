@@ -36,18 +36,18 @@
         <div id="Manager_Content">
             <div class="header_content">
                 <div class="background-profile">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/stock-photo-1073420532.jpg?alt=media&token=d919ec37-b7bd-4c78-afe3-a1b66646f549"
+                    <img th:src="${ThongTinTK.anhNen}"
                         alt="" class="background-profile-img">
                 </div>
                 <div class="avatar-group-profile">
                     <div class="avatar-left-group">
                         <div class="avatar-left-group-pic">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/ChucPhuong.png?alt=media&token=c02128a9-0d05-4b56-9710-2d8b887f2377"
+                            <img th:src="${ThongTinTK.anhDaiDien}"
                                 alt="" class="avata-img">
                         </div>
                         <div class="avatar-left-group-text">
-                            <h4 class="account-name m-0">Olivia Rhye</h4>
-                            <h6 class="account-email m-0">olivia@untitledui.com</h6>
+                            <h4 class="account-name m-0">[[${ThongTinTK.hoTen}]]</h4>
+                            <h6 class="account-email m-0">[[${ThongTinTK.taiKhoanTTTK.email}]]</h6>
                         </div>
                     </div>
                     <div class="avatar-right-group">
@@ -74,7 +74,7 @@
                                     <div class="mb-3 form-group">
                                         <label for="username_profile" class="form-label">Tên Đăng Nhập</label>
                                         <input type="text" name="username-profile" id="username_profile"
-                                            class="form-control box-shadow-none input-form" placeholder="">
+                                            class="form-control box-shadow-none input-form" th:value="${ThongTinTK.taiKhoanTTTK.tenDangNhap}" placeholder="">
                                         <small id="username_profile-text" class="text-muted" style="display: none;">Vui
                                             lòng nhập số lượng sản phẩm</small>
                                     </div>
@@ -133,7 +133,7 @@
                     <div class="container-fluid p-0">
                         <div class="modal-background-avatar-profile">
                             <div class="modal-background-profile">
-                                <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/stock-photo-1073420532.jpg?alt=media&token=d919ec37-b7bd-4c78-afe3-a1b66646f549"
+                                <img th:src="${ThongTinTK.anhNen}"
                                     alt="" class="background-profile-img" style="border-radius: 7px;">
                                 <div id="spinner" class=" d-flex justify-content-center" style="position: absolute;">
                                     <div style="display: none;" class="spinner-border" role="status">
@@ -145,7 +145,7 @@
                             </div>
                             <div class="modal-avatar-profile">
                                 <div class="avatar">
-                                    <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/ChucPhuong.png?alt=media&token=c02128a9-0d05-4b56-9710-2d8b887f2377"
+                                    <img th:src="${ThongTinTK.anhDaiDien}"
                                         alt="" class="avata-img">
                                     <span id="upload-avata-pen"><i class="bi bi-pen"></i></span>
                                 </div>
@@ -155,13 +155,13 @@
                         <br>
                         <div class="mb-3">
                             <label for="" class="form-label">Họ tên</label>
-                            <input type="text" name="" id="" class="form-control" placeholder=""
+                            <input type="text" name="" id="" th:value="${ThongTinTK.hoTen}" class="form-control" placeholder=""
                                 aria-describedby="helpId">
                             <!-- <small id="helpId" class="text-muted">Help text</small> -->
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Giới Tính</label>
-                            <select class="form-select form-control" name="" id="">
+                            <select class="form-select form-control" name="" id="" th:value="${ThongTinTK.gioiTinh}">
                                 <option value="true" selected>Nam</option>
                                 <option value="false">Nữ</option>
                             </select>
@@ -169,7 +169,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Ngày sinh</label>
-                            <input type="date" name="" id="" class="form-control" placeholder=""
+                            <input type="date" name="" id="" th:value="${ThongTinTK.ngaySinh}" class="form-control" placeholder=""
                                 aria-describedby="helpId">
                             <!-- <small id="helpId" class="text-muted">Help text</small> -->
                         </div>

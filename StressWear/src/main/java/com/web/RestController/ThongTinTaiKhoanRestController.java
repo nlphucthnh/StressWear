@@ -41,6 +41,16 @@ public class ThongTinTaiKhoanRestController {
         
     }
 
+    @GetMapping("taikhoan/{tenDangNhap}")
+    public ResponseEntity<ThongTinTaiKhoan> findByTenDangNhap(@PathVariable("tenDangNhap") String tenDangNhap){
+       Optional<ThongTinTaiKhoan> optional = thongTinTaiKhoanDAO.findBytaiKhoanTTTK2(tenDangNhap);
+        if(!optional.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(optional.get());
+        
+    }
+
     @PostMapping()
     public ResponseEntity<ThongTinTaiKhoan> post(@RequestBody ThongTinTaiKhoan thongTinTaiKhoan){
         if(thongTinTaiKhoanDAO.existsById(thongTinTaiKhoan.getIdThongTinTaiKhoan())){

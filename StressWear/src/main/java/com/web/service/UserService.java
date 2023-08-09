@@ -17,13 +17,20 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.stereotype.Service;
 
 import com.web.DAO.TaiKhoanDAO;
+import com.web.DAO.ThongTinTaiKhoanDAO;
 import com.web.Entity.TaiKhoan;
+import com.web.Entity.ThongTinTaiKhoan;
 
 @Service
 public class UserService implements UserDetailsService{
 	@Autowired
 	TaiKhoanDAO taiKhoanDAO;
 
+	@Autowired
+	ThongTinTaiKhoanDAO thongTinTaiKhoanDAO;
+
+	@Autowired
+	HttpSession session;
 
 
 	@Autowired
@@ -37,8 +44,9 @@ public class UserService implements UserDetailsService{
 			// tạo userdetail từ account
 			String password = taiKhoan.getMatKhau(); // lấy từ csdl
 			String[] roles = taiKhoan.getList_VTTK().stream() // lấy từ csdl
-					.map(au -> au.getVaiTro().getIdVaiTro()) // list đổi sang mảng -> lamda
+					.map(au -> au.getVaiTro().getIdVaiTro().trim()) // list đổi sang mảng -> lamda
 					.collect(Collectors.toList()).toArray(new String[0]);
+			session.setAttribute("tenDangNhapLogin",taiKhoan.getTenDangNhap());
 			return User.withUsername(username)
 					.password(pe.encode(password))
 					.roles(roles).build();

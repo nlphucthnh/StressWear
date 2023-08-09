@@ -16,7 +16,6 @@ import com.web.service.UserService;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // cho phép sử dụng annotati
 public class AuthConfig extends WebSecurityConfigurerAdapter {
-	
 
 	/* Mã hóa mật khẩu */
 	@Bean
@@ -26,6 +25,7 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	UserService userService;
+
 	/* Quản lý người dữ liệu người sử dụng */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -39,8 +39,10 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().cors().disable();
 
 		// phân quyền sử dụng
-		http.authorizeRequests().anyRequest().permitAll(); // anonymous
-		// http.authorizeRequests().antMatchers("/auth/login/*").permitAll().anyRequest().authenticated();
+		http.authorizeRequests()
+				.antMatchers("/manager/account", "/manager/revenue").hasRole("ADMIN")
+				.antMatchers("/manager/filter", "/manager/order", "/manager/product", "/manager/profile").hasAnyRole("ADMIN", "STAFF")
+				.anyRequest().permitAll();
 
 		// điều khiển lỗi truy cập không đúng vai trò
 		http.exceptionHandling().accessDeniedPage("/auth/access/denied"); // [error]
@@ -52,8 +54,6 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("tenDangNhap") // [username]
 				.passwordParameter("matKhau"); // [password]
 		http.rememberMe().rememberMeParameter("remember"); // [remember]
-		
-
 
 		// đăng xuất
 		http.logout().logoutUrl("/auth/logoff") // [/logout]
@@ -61,12 +61,11 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 
 		// OAuth2 đăng nhập từ mạng xã hội
 		http.oauth2Login()
-			.loginPage("/auth/login/form")
-			.defaultSuccessUrl("/oauth2/login/success", true)
-			.failureUrl("/auth/login/error")
-			.authorizationEndpoint()
+				.loginPage("/auth/login/form")
+				.defaultSuccessUrl("/oauth2/login/success", true)
+				.failureUrl("/auth/login/error")
+				.authorizationEndpoint()
 				.baseUri("/oauth2/authorization");
 
 	}
 }
-

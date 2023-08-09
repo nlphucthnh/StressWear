@@ -1,6 +1,6 @@
- // ------------------ Load image backgourd ------------------ //
+// ------------------ Load image backgourd ------------------ //
 
- $("#upload-bg-pen").click(function (e) {
+$("#upload-bg-pen").click(function (e) {
     $("#upload_bg").trigger("click");
 
 });
@@ -25,10 +25,10 @@ $("#upload_bg").change(function () {
         .catch(console.error)
 });
 
- // ------------------ Load image backgourd ------------------ //
+// ------------------ Load image backgourd ------------------ //
 
 
- // ------------------ Load image avatar ------------------ //
+// ------------------ Load image avatar ------------------ //
 
 $("#upload-avata-pen").click(function (e) {
     $("#upload_avatar").trigger("click");
@@ -53,4 +53,4 @@ $("#upload_avatar").change(function () {
         .catch(console.error)
 });
 
- // ------------------ Load image backgourd ------------------ //
+// ------------------ Load image backgourd ------------------ //
