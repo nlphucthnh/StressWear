@@ -13,4 +13,14 @@ public class UrController {
         return "User/User-about";
     }
 
+    @GetMapping("contact")
+    public String contact() {
+        return "User/User-contact";
+    }
+
+    // @GetMapping("person")
+    // public String person() {
+    //     return "User/User-person";
+    // }
+
 }
