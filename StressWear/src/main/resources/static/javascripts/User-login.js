@@ -1,64 +1,59 @@
-$("#btnLogin01").hide();
-function checkFormLogin() {
-    var flag = [true, true];  // flag = [0,1]
-    if ($("#tenDangNhap").val() == "") {
-        $("#tenDangNhap-text").show(); // hiện 
-        flag[0] = false; // flag = 0
-    } else {
-        $("#tenDangNhap-text").hide(); // ẩn 
-    }
-    if ($("#matKhau").val() == "") {
-        $("#matKhau-text").show();
-        flag[1] = false;  // flag = 1
-    } else {
-        $("#matKhau-text").hide();
-    }
 
-    if (flag[0] && flag[1]) {
-        return true;
-    }
-    return false;
-}
+const API_TAIKHOAN = "http://localhost:8080/api/taikhoan";
+const API_VAITROTAIKHOAN = "http://localhost:8080/api/vaitrotaikhoan";
+const app = angular.module("app", []);
+app.controller("ctrl-confirm", function ($scope, $http) {
 
-$(".login-input").keyup(function (e) {
-    if (e.keyCode == 13) {
-        LoginCheckError();
-    }
-});
+    $scope.input_confirm = "";
 
-function LoginCheckError() {
-    if (!checkFormLogin()) {
-        return;
-    }
-    var tenDangNhap = $("#tenDangNhap").val();
-    var matKhau = $("#matKhau").val();
-    console.log(tenDangNhap);
-    $.ajax({
-        type: "POST",
-        url: "/User/login/json/data?tenDangNhap=" + tenDangNhap,
-        contentType: "application/json",
-        success: function (response) {
-            console.log(response);
-            if (response == "") {
-                alert("Đăng nhập thất bại, có thể sai tên đăng nhập hoặc mật khẩu");
-            } else {
-                if (response.matKhau != matKhau) {
-                    alert("Đăng nhập thất bại, có thể sai tên đăng nhập hoặc mật khẩu");
-                } else if (!response.trangThai) {
-                    alert("Tài khoản đã tạm dừng hoạt động !");
-                } else {
-                    alert("Đăng nhập thành công");
-                    $("#btnLogin01").prop('disabled', false);
-                    $("#btnLogin01").trigger('click');
-                }
+    $scope.confirm = function () {
+        $http.get(`${API_TAIKHOAN}/numberConfirm`).then((result) => {
+            if (result.data == $scope.input_confirm) {
+                $http.get(`${API_TAIKHOAN}/taikhoandangky`).then((result) => {
+                    console.log(result.data);
+                    addTaikhoan(result.data)
+                }).catch((err) => {
+                    console.log("ERROR", err);
+                });
+            }else {
+                alert("Mã xác thực không đúng");
             }
+        }).catch((err) => {
+            console.log("ERROR", err);
+        });
+    }
 
-        },
-        error: function (error) {
-            console.log(error);
+    function addTaikhoan(taiKhoanDangKy) {
+        var url = `${API_TAIKHOAN}`;
+        $http.post(url, taiKhoanDangKy).then((result) => {
+            add_role(result.data.tenDangNhap, "USER");
+            alert("Thêm tài khoản Thành công");
+        }).catch((err) => {
+            console.log("ERROR", err);
+        });
+    }
+
+    function add_role(username, id_role) {
+        var vaiTroTaiKhoan = {
+          idVaiTroTaiKhoan: "",
+          vaiTro: {
+            idVaiTro: id_role,
+            tenVaiTro: ""
+          },
+          taiKhoan: {
+            tenDangNhap: username,
+            matKhau: "",
+            email: "",
+            trangThai: true
+          }
         }
-    });
+        var url = `${API_VAITROTAIKHOAN}`;
+        $http.post(url, vaiTroTaiKhoan).then((result) => {
+          window.location="http://localhost:8080/auth/login/form";
+        }).catch((err) => {
+          console.log("ERROR", err);
+        });
+      }
 
 
-}
-
+})

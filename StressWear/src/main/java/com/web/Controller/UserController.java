@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.web.DAO.ThongTinTaiKhoanDAO;
-import com.web.Entity.ThongTinTaiKhoan;
 import com.web.service.UserService;
 
 @Controller
@@ -59,6 +58,11 @@ public class UserController {
 	public String denided(Model model) {
 		model.addAttribute("message", "Bạn không có quyền truy xuất");
 		return "forward:/auth/login/form";
+	}
+
+	@RequestMapping("auth/sign/form")
+	public String signInPage() {
+		return "User/User-register-page";
 	}
 
 	/*
