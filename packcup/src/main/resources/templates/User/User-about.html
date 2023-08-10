@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- icon web  -->
+    <link rel="website icon" type="png" href="img/logo--noname.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS: -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JavaScript: -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- link icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="styles/root.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/about.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <title>About</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a href="/home-page"><img
+                    src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/Logo%20website.png?alt=media&token=e446c505-b0a6-44a8-aad5-f7caccb1c28b"
+                    style="background-color: var(--gray_25);" alt=""></a>
+            <div class="navbar-collapse">
+                <ul class="navbar-nav item-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about-page">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact-page">Liên hệ</a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover has-megamenu">
+                        <a class="nav-link " href="/product-page"> Sản phẩm <i class="bi bi-chevron-down"></i></a>
+                        <div class="dropdown-menu megamenu" role="menu">
+                            <div class="row g-3">
+                                <div class="col-lg-4 col-6 item-group">
+                                    <div class="col-megamenu">
+                                        <h6 class="title ">Loại quần áo</h6>
+                                        <ul class="list-unstyled ">
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo thun -
+                                                    T-shirt</a>
+                                                <p>Find the best solution for you.</p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo tay dài
+                                                    - Long Sleeves</a>
+                                                <p>Monitor your metrics.</p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo len -
+                                                    Sweaters</a>
+                                                <p>Surface hidden trends.</p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Áo hoodie
+                                                    - Hoodie</a>
+                                                <p>Measure B2B account health.</p>
+                                            </li>
+
+                                        </ul>
+                                    </div> <!-- col-megamenu.// -->
+                                </div><!-- end col-3 -->
+                                <div class="col-lg-4 col-6 item-group">
+                                    <div class="col-megamenu">
+                                        <h6 class="title">&#160;</h6>
+                                        <ul class="list-unstyled">
+
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Quần dài -
+                                                    Pants
+                                                </a>
+                                                <p>Analyze conversion rates.</p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Quần ngắn
+                                                    - ShortShort</a>
+                                                <p>Measure active usage.</p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Váy -
+                                                    Skirt</a>
+                                                <p>Find retention drivers./p>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 "><a href="/product-item-page">Phụ kiện -
+                                                    Accessory
+                                                    goods</a>
+                                                <p>Grow your user base faster.</p>
+                                            </li>
+                                        </ul>
+                                    </div> <!-- col-megamenu.// -->
+                                </div><!-- end col-3 -->
+                                <div class="col-lg-4 col-6 room-group">
+                                    <div class="col-megamenu">
+                                        <h6 class="title">Danh mục sản phẩm</h6>
+                                        <ul class="list-unstyled ">
+                                            <li class="item-opsition-menu pb-2 ">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="material-symbols-sharp me-3">
+                                                        laundry
+                                                    </span>
+                                                    <div class="nav-icon">
+                                                        <a href="product-item-page">Danh mục áo - Tops</a>
+                                                        <p>Analyze conversion rates.</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 ">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="material-symbols-sharp me-3">
+                                                        taunt
+                                                    </span>
+                                                    <div class="nav-icon">
+                                                        <a href="#">Danh mục quần - Bottoms</a>
+                                                        <p>Measure active usage.</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 ">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="material-symbols-sharp me-3">
+                                                        man_2
+                                                    </span>
+                                                    <div class="nav-icon">
+                                                        <a href="product-item-page">Quần áo nam - Male</a>
+                                                        <p>Find retention drivers.</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item-opsition-menu pb-2 ">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="material-symbols-sharp me-3">
+                                                        woman_2
+                                                    </span>
+                                                    <div class="nav-icon">
+                                                        <a href="product-item-page">Quần áo nữ - Female</a>
+                                                        <p>Grow your user base faster.</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div> <!-- col-megamenu.// -->
+                                </div>
+                            </div><!-- end row -->
+                        </div> <!-- dropdown-mega-menu.// -->
+                    </li>
+                    <li class="nav-item">
+                        <form class="d-flex mx-5 w-100">
+                            <div class="input-group">
+                                <input class="form-control me-2" type="search" placeholder="        Tìm kiếm"
+                                    aria-label="Search">
+                                <span class="input-group-icon material-symbols-outlined">
+                                    search
+                                </span>
+                            </div>
+
+                        </form>
+                    </li>
+                </ul>
+
+            </div>
+            <ul class="navbar-nav item-menu ms-auto signin-group">
+                <li class="nav-item">
+                    <a class="nav-link login" href="login-page">Đăng nhập</a>
+                </li>
+                <li class="nav-item sign-navbar ">
+                    <a class="nav-link sigin" href="sign-up-page">Đăng ký</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <banner>
+        <div class="about">
+            <div class="row">
+                <div class="col-6">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fbannerabout.jfif?alt=media&token=f5981f19-9241-43d2-9337-3b0f7cb4aa8e"
+                        alt="Banner About" height="720px" width="720px">
+                </div>
+                <div class="col-6">
+                    <div class="about-baner-item">
+                        <span>Shopping website</span>
+                        <h1>Ztreet Zear</h1>
+                        <p>Ztreet Zear là một website bán quần áo street wear chất lượng cao, <br> phong cách độc đáo và
+                            giá
+                            cả hợp lý. Ztreet Zear cung cấp <br>nhiều loại sản phẩm như áo thun, áo khoác, quần jean,
+                            quần
+                            <br> short, mũ, túi xách và phụ kiện.
+                        </p>
+                        <button class="btn about-baner-item-btn">MUA NGAY</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </banner>
+
+    <section class="container about">
+        <h3 class="about-title">Ztreet Zear</h3>
+        <p class="about-description my-5">Quy trình mua hàng tiết kiệm thời gian.</p>
+        <div class="row">
+            <div class="col-3 mx-5 about-product bg-light">
+                <div class="about-product-item">
+                    <span class="material-symbols-outlined">
+                        shopping_cart
+                    </span>
+                    <h5 class="mt-3">Lựa chọn sản phẩm</h5>
+                    <p class="text-muted">
+                        Khách hàng lựa chọn những sản phẩm ưng ý với mình tại trang web
+                    </p>
+                </div>
+            </div>
+            <div class="col-3 mx-5 about-product bg-light">
+                <div class="about-product-item">
+                    <span class="material-symbols-outlined">
+                        shopping_bag
+                    </span>
+                    <h5 class="mt-3">Bỏ vào giỏ hàng</h5>
+                    <p class="text-muted">
+                        Thêm những sản phẩm mình thích vào giỏ hàng đợi thanh toán
+                    </p>
+                </div>
+            </div>
+            <div class="col-3 mx-5 about-product bg-light">
+                <div class="about-product-item">
+                    <span class="material-symbols-outlined">
+                        credit_card
+                    </span>
+                    <h5 class="mt-3">Thanh toán đơn hàng</h5>
+                    <p class="text-muted">Thanh toán đơn giản với nhiều phương thức chi trả để lựa chọn.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <header class="title-mid-about my-5">
+        <div class="banner-slide-mid">
+            <div class="banner-content-mid">
+                <p>
+                    Các sản phẩm được phân loại rõ ràng và đầy đủ thông tin, hình ảnh chi tiết để giúp khách hàng dễ
+                    dàng lựa chọn cho mình những sản phẩm phù hợp nhất.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <article class="container create-website">
+
+        <div class="creator d-flex justify-content-between">
+            <div class="creator-title">
+                <h3> Người tạo ra trang web</h3>
+                <h5>Future Interior</h5>
+            </div>
+        </div>
+
+        <div class="creator-img">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="creator-card">
+                        <img src="img/Img_Thien.jpg" alt="Product Image">
+                        <h3 class="mt-3">Công Thiện</h3>
+                        <p class="text-muted">Front end developers <br> Databese creater</p>
+                        <h5>Team 02 - 05/2023</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="creator-card">
+                        <img src="img/Img_Phuong.jpg" alt="Product Image">
+                        <h3 class="mt-3">Trúc Phương</h3>
+                        <p class="text-muted">Design UI website <br> Support front end</p>
+                        <h5>Team 02 - 05/2023</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="creator-card">
+                        <img src="img/Img_Thinh.jpg" alt="Product Image">
+                        <h3 class="mt-3">Phúc Thịnh</h3>
+                        <p class="text-muted">Design UI website <br> Fullstack developers</p>
+                        <h5>Team 02 - 05/2023</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="creator-card">
+                        <img src="img/Img_Thao.jpg" alt="Product Image">
+                        <h3 class="mt-3">Hoàng Thảo</h3>
+                        <p class="text-muted">Back end developers <br> Database creater</p>
+                        <h5>Team 02 - 05/2023</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+
+</body>
+
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <!-- icon web  -->
+    <link rel="icon" type="image/x-icon" href="../../img/logoMark.ico">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS: -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Bootstrap JavaScript: -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- link icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--  -->
+    <link rel="stylesheet" href="styles/person.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/root.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+
+    <title>PerSon</title>
+
+</head>
+
+<body>
+    <!-- <nav th:include="components/header-registered"></nav> -->
+    <nav th:replace="~{/layout/user-nav.html :: nav}"></nav>
+
+    <!-- <nav th:replace="navbaruser"></nav> -->
+    <header class="header-person">
+        <div class="banner-person">
+            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2FbannerPerson.png?alt=media&token=3a53c915-eb88-4171-904a-be2894aa9b10" alt="Lỗi" width="100%" height="450px">
+        </div>
+        <div class="container my-4 d-flex justify-content-between">
+            <div class="header-person-main " style="display: flex; justify-content: space-between; width: 100%;">
+
+                <div class="auther-item d-flex align-items-center ">
+                    <div class="avatar-container">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2FavtPerson.png?alt=media&token=f5d0c92c-8a0e-4e99-82c5-579bbd34b09a" alt="Khong tìm thấy" width="160px"
+                            height="160px" class="avatar rounded-circle mx-3" id="img-avata">
+                        <input id="avatar-input" name="avatar" class="avatar-input" type="file"
+                            accept="image/*">
+                    </div>
+                    <span class="navbar-text text-start me-2">
+                        <div class="text-decoration-none text-dark text-user-person">PhucThinh </div> 
+                        <span class="text-black-50"></span>
+                        nlphucthinh@gmail.com
+                    </span>
+                    <div class="btn-upload">
+                        <button id="confirm-button" class="btn btn-info" onclick="notify()" style="display: none;">xác
+                            nhận</button>
+                    </div>
+                </div>
+                <div class="auther-item d-flex align-items-center ">
+                    <div class="edit-profile my-3">
+                        <button class="btn btn-edit-profile" data-bs-toggle="modal" data-bs-target="#editProfile">Chỉnh
+                            sửa thông tin</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <article class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3>Quản lý đặt hàng</h3>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table table-light">
+                        <thead>
+                            <tr>
+                                <th style="width: 68%;" scope="col">Tên</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Tổng đơn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="">
+                                <td scope="row" style="align-items: center;">
+                                    <div class="table-body-first-col d-flex">
+                                        <div class="table-body-first-col-img-product" style="margin-right: 20px;">
+                                            <img width="50px" height="50px" style="border-radius: 5px;" src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c" alt="" class="img-product">
+                                        </div>
+                                        <div class="table-body-first-col-content-product">
+                                            <h5 class="text-name-product">Áo thun</h5>
+                                            <h6 class="text-price-product">120.000d</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge text-bg-primary">Active</span></td>
+                                <td>2 Cái</td>
+                                <td>olivia@untitledui.com</td>
+                            </tr>
+                            <tr class="">
+                                <td scope="row" style="align-items: center;">
+                                    <div class="table-body-first-col d-flex">
+                                        <div class="table-body-first-col-img-product" style="margin-right: 20px;">
+                                            <img width="50px" height="50px" style="border-radius: 5px;" src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c" alt="" class="img-product">
+                                        </div>
+                                        <div class="table-body-first-col-content-product">
+                                            <h5 class="text-name-product">Áo thun</h5>
+                                            <h6 class="text-price-product">120.000d</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge text-bg-primary">Active</span></td>
+                                <td>2 Cái</td>
+                                <td>olivia@untitledui.com</td>
+                            </tr>
+                            <tr class="">
+                                <td scope="row" style="align-items: center;">
+                                    <div class="table-body-first-col d-flex">
+                                        <div class="table-body-first-col-img-product" style="margin-right: 20px;">
+                                            <img width="50px" height="50px" style="border-radius: 5px;" src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c" alt="" class="img-product">
+                                        </div>
+                                        <div class="table-body-first-col-content-product">
+                                            <h5 class="text-name-product">o thun</h5>
+                                            <h6 class="text-price-product">120.000d</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge text-bg-primary">Active</span></td>
+                                <td>2 Cái</td>
+                                <td>olivia@untitledui.com</td>
+                            </tr>
+                            <!-- <tr class="">
+                                <td scope="row">Item</td>
+                                <td>Item</td>
+                                <td>Item</td>
+                                <td>Item</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </article>
+    <aside>
+        <div class="container">
+            <div class="product-title">
+                <h3 class="my-5">Sản phẩn bán chạy</h3>
+            </div>
+            <div class="product">
+                <div class="product-item">
+                    <a href="product-item-page">
+                        <div class="zoom_color zoom_img">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c" alt="Sản phẩm 1">
+                        </div>
+
+                        <h3 class="product-title my-3">Áo thun body nữ</h3>
+                    </a>
+                    <p class="product-description">Áo thun</p>
+                    <p class="product-price">880,000₫</p>
+                </div>
+                <div class="product-item">
+                    <a href="product-item-page">
+                        <div class="zoom_color zoom_img">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c" alt="Sản phẩm 2">
+                        </div>
+                        <h3 class="product-title my-3">Quần tây ống rộng</h3>
+                    </a>
+                    <p class="product-description">Quần tây</p>
+                    <p class="product-price">4,730,000₫</p>
+                </div>
+                <div class="product-item">
+                    <a href="product-item-page">
+                        <div class="zoom_color zoom_img">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c" alt="Sản phẩm 3">
+                        </div>
+                        <h3 class="product-title my-3">Áo khoác chống tia UV</h3>
+                    </a>
+                    <p class="product-description">Áo khoác</p>
+                    <p class="product-price">4,250,000₫</p>
+                </div>
+                <div class="product-item">
+                    <a href="product-item-page">
+                        <div class="zoom_color zoom_img">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c" alt="Sản phẩm 4">
+                        </div>
+                        <h3 class="product-title my-3">Áo PIXAR</h3>
+                    </a>
+                    <p class="product-description">Áo</p>
+                    <p class="product-price">450,000₫</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-3 mb-3">
+                    <h5>Sản phẩm</h5>
+                    <ul class="nav flex-column footer-link">
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">BÀN - tables</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">SOFA - sofas</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">TỦ - cabinets</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GHẾ - chairs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">ĐÈN - lamps</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">KỆ - shelf units</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <h5>Phòng</h5>
+                    <ul class="nav flex-column footer-link">
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG KHÁCH -Living room</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG NGỦ - Bedroom</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG BẾP - Kitchen room</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG TẮM - Bathroom</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">PHÒNG LÀM VIỆC - Office</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <h5>Trang khác</h5>
+                    <ul class="nav flex-column footer-link">
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang giới thiệu</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang liên hệ</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang bài viết</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cá nhân</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Trang cài đặt</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <h5>Mạng xã hội</h5>
+                    <ul class="nav flex-column footer-link">
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Twitter</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Linkedln</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Facebook</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">GitHub</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">AngelList</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="text-footer p-0 ">Dribble</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                <div class="logo-footer">
+                    <!-- <a href="#"><img src="../img/Logowebsite.png" alt=""></a> -->
+                </div>
+                <p class="text-white-50">© 2023 Company, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- --------- -->
+
+
+    <div class="modal fade" id="editProfile" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+        role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">Chỉnh sửa thông tin cá nhân</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="map1-1">
+                        <input type="file" class="input-file" id="map1-input-bg">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fbackground.png?alt=media&token=bd49b03c-e30c-41f0-a441-c96425b2e490" class="moda-body-map1-background" alt="">
+                        <div class="btn modal-body-map1-btnEdit1 modal-body-map1-btnEdit"><i class="bi bi-pencil-square"></i></div>
+                    </div>
+                    <div class="map1-2">
+                        <input type="file" class="input-file" id="map1-input-ava">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2FavtEditPerson.png?alt=media&token=a2cbc4a4-b699-4d79-a220-2b8dc2296e59" alt="">
+                        <div class="btn modal-body-map1-btnEdit2 modal-body-map1-btnEdit"><i class="bi bi-pencil"></i></div>
+                    </div>
+                    <form th:action="@{/User/person/handle}" method="post" class="needs-validation" novalidate>
+                        <div class="map2">
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label profile-title">Họ tên</label>
+                                <input id="fullName" 
+                                    class="form-control profile-input box-shadow-none" type="text" required />
+                                <div class="invalid-feedback">Không được bỏ trống.</div>
+                            </div>
+                            <div class="mb-3">
+                               <div class="mb-3">
+                                <label for="" class="form-label">Giới tính</label>
+                                <select class="form-select form-control" name="">
+                                    <option selected value="Male">Nam</option>
+                                    <option value="Female">Nữ</option>
+
+                                </select>
+                               </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phoneNumber" class="form-label profile-title">Số điện thoại:</label>
+                                <input id="phoneNumber" 
+                                    name="sdt" class="form-control profile-input box-shadow-none" type="text" required
+                                    maxlength="10" minlength="10" pattern="^\d+$" />
+                                <div class="invalid-feedback">
+                                    Phải nhập 10 só hoặc phải nhập số.
+                                </div>
+                            </div>
+                            <hr>
+                            <button class="btn btn-dark">Xác nhận</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(".input-file").hide();
+        $(".modal-body-map1-btnEdit1").click(function(){
+           $("#map1-input-bg").trigger("click");
+        })
+        $(".modal-body-map1-btnEdit2").click(function(){
+           $("#map1-input-ava").trigger("click");
+        })
+    </script>
+</body>
+</html>
