@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import com.web.DAO.TaiKhoanDAO;
 import com.web.DAO.ThongTinTaiKhoanDAO;
 import com.web.Entity.TaiKhoan;
-import com.web.Entity.ThongTinTaiKhoan;
 
 @Service
 public class UserService implements UserDetailsService{

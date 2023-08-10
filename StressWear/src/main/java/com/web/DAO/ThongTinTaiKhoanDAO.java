@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.web.Entity.TaiKhoan;
 import com.web.Entity.ThongTinTaiKhoan;
 
 public interface ThongTinTaiKhoanDAO extends JpaRepository<ThongTinTaiKhoan,Integer> {

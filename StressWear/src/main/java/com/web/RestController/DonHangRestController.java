@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.web.DAO.DonHangDAO;
 import com.web.Entity.DonHang;
-import com.web.Entity.ThongKe;
 import com.web.service.DonHangService;
 
 @RestController
