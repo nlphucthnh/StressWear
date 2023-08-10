@@ -5,10 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UrLoginController {
-    @RequestMapping("/user/changepass")
-    public String getChangePass(){
-        return "User/User-change-pass";
-    } 
+   
 
     @RequestMapping("/user/confirm")
     public String getConfirm(){
@@ -19,4 +16,10 @@ public class UrLoginController {
     public String getFogotPass(){
         return "User/User-forgot-pass";
     } 
+
+    // @RequestMapping("auth/sign/form")
+	// public String signInPage() {
+	// 	return "User/User-register-page";
+	// }
+    
 }
