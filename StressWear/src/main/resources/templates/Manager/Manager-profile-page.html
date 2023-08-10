@@ -16,7 +16,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="/javascripts/library-js/angular.min.js"></script>
+    <script src="/javascripts/library-js/angular-route.js"></script>
     <!-- Bootstrap JavaScript: -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -36,14 +37,12 @@
         <div id="Manager_Content">
             <div class="header_content">
                 <div class="background-profile">
-                    <img th:src="${ThongTinTK.anhNen}"
-                        alt="" class="background-profile-img">
+                    <img th:src="${ThongTinTK.anhNen}" alt="" class="background-profile-img">
                 </div>
                 <div class="avatar-group-profile">
                     <div class="avatar-left-group">
                         <div class="avatar-left-group-pic">
-                            <img th:src="${ThongTinTK.anhDaiDien}"
-                                alt="" class="avata-img">
+                            <img th:src="${ThongTinTK.anhDaiDien}" alt="" class="avata-img">
                         </div>
                         <div class="avatar-left-group-text">
                             <h4 class="account-name m-0">[[${ThongTinTK.hoTen}]]</h4>
@@ -53,6 +52,88 @@
                     <div class="avatar-right-group">
                         <button data-bs-toggle="modal" data-bs-target="#modal-profile"
                             class="btn btn-edit-profile">Chỉnh sửa cá nhân</button>
+
+                        <div class="modal fade" id="modal-profile" tabindex="-1" role="dialog"
+                            aria-labelledby="modalTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalTitleId">Thông tin cá nhân</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form action="/manager/profile/update" th:object="${ThongTinTK}"
+                                            class="modal-dialog-scrollable" method="post">
+                                            <div class="container-fluid p-0">
+                                                <div class="modal-background-avatar-profile">
+                                                    <div class="modal-background-profile">
+                                                        <img th:src="${ThongTinTK.anhNen}" alt=""
+                                                            class="background-profile-img" style="border-radius: 7px;">
+                                                        <div id="spinner" class=" d-flex justify-content-center"
+                                                            style="position: absolute;">
+                                                            <div style="display: none;" class="spinner-border"
+                                                                role="status">
+                                                                <span class="visually-hidden">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <span id="upload-bg-pen"><i
+                                                                class="bi bi-pencil-square"></i></span>
+                                                        <input type="file" id="upload_bg" style="display: none;">
+                                                        <input th:field="*{anhNen}" th:value="${ThongTinTK.anhNen}"
+                                                            type="text" id="upload_bg-text" style="display: none;">
+                                                    </div>
+                                                    <div class="modal-avatar-profile">
+                                                        <div class="avatar">
+                                                            <img th:src="${ThongTinTK.anhDaiDien}" alt=""
+                                                                class="avata-img">
+                                                            <span id="upload-avata-pen"><i class="bi bi-pen"></i></span>
+                                                        </div>
+                                                        <input type="file" id="upload_avatar" style="display: none;">
+                                                        <input th:field="*{anhDaiDien}"
+                                                            th:value="${ThongTinTK.anhDaiDien}" type="text"
+                                                            id="upload_avatar-text" style="display: none;">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Họ tên</label>
+                                                    <input th:field="*{hoTen}" type="text" name="" id=""
+                                                        class="form-control" placeholder="" aria-describedby="helpId"
+                                                        required>
+                                                    <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Giới Tính</label>
+                                                    <select th:field="*{gioiTinh}" class="form-select form-control"
+                                                        name="" id="">
+                                                        <option value="true" selected>Nam</option>
+                                                        <option value="false">Nữ</option>
+                                                    </select>
+                                                    <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Ngày sinh</label>
+                                                    <input th:field="*{ngaySinh}" type="date" name="" id=""
+                                                        class="form-control" placeholder="" aria-describedby="helpId"
+                                                        required>
+                                                    <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    data-bs-dismiss="modal">Hủy
+                                                    bỏ</button>
+                                                <button class="btn btn-primary box-shadow-none"
+                                                    style="background-color: var(--gray_800); border: none;">Cập
+                                                    nhật</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -68,47 +149,42 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="form_profile" role="tabpanel" aria-labelledby="form-profile-tab">
-                        <div class="form_profile-pane">
-                            <form action="/Manager/profile/create" method="post">
+                        <div class="form_profile-pane" ng-app="app" ng-controller="ctrl-changePass">
+                            <form name="changePassForm" >
                                 <div class="group-fleld group-fleld-03">
                                     <div class="mb-3 form-group">
                                         <label for="username_profile" class="form-label">Tên Đăng Nhập</label>
-                                        <input type="text" name="username-profile" id="username_profile"
-                                            class="form-control box-shadow-none input-form" th:value="${ThongTinTK.taiKhoanTTTK.tenDangNhap}" placeholder="">
-                                        <small id="username_profile-text" class="text-muted" style="display: none;">Vui
-                                            lòng nhập số lượng sản phẩm</small>
+                                        <input type="text" name="username-profile" style="pointer-events: none;"
+                                            id="username_profile" class="form-control box-shadow-none input-form"
+                                            th:value="${ThongTinTK.taiKhoanTTTK.tenDangNhap}" placeholder="">
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="password_profile" class="form-label">Mật khẩu</label>
-                                        <input type="password" name="password-profile" id="password_profile"
-                                            class="form-control box-shadow-none input-form" placeholder="">
-                                        <small id="date_profile-text" class="text-muted" style="display: none;">Vui lòng
-                                            nhập ngày đăng sản phẩm</small>
+                                        <input ng-model="form_changepass.matKhau" type="password" name="txtPassword" id="password_profile"
+                                            class="form-control box-shadow-none input-form" placeholder="Vui lòng nhập mật khẩu" required>
+                                        <small ng-if="!changePassForm.txtPassword.$valid" id="date_profile-text" class="text-muted">Vui lòng nhập mật khẩu</small>
                                     </div>
                                 </div>
                                 <div class="group-fleld group-fleld-03">
                                     <div class="mb-3 form-group">
                                         <label for="newpassword_profile" class="form-label">Mật khẩu mới</label>
-                                        <input type="password" name="newpassword-profile" id="newpassword_profile"
-                                            class="form-control box-shadow-none input-form" placeholder="">
-                                        <small id="newpassword_profile-text" class="text-muted"
-                                            style="display: none;">Vui
-                                            lòng nhập số lượng sản phẩm</small>
+                                        <input ng-model="form_changepass.matKhauMoi" type="password" name="txtNewpassword" id="newpassword_profile"
+                                            class="form-control box-shadow-none input-form"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Phải chứa ít nhất một số và một chữ hoa và chữ thường và ít nhất 8 ký tự trở lên" placeholder="Vui lòng nhập mật khẩu mới" required>
+                                        <small ng-if="!changePassForm.txtNewpassword.$valid" id="newpassword_profile-text" class="text-muted" >Vui lòng nhập mật khẩu mới</small>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="confim_profile" class="form-label">Xác nhận</label>
-                                        <input type="password" name="confim-profile" id="confim_profile"
-                                            class="form-control box-shadow-none input-form" placeholder="">
-                                        <small id="confim_profile-text" class="text-muted" style="display: none;">Vui
-                                            lòng
-                                            nhập ngày đăng sản phẩm</small>
+                                        <input ng-model="form_changepass.xacNhan" type="password" name="txtConfim" id="confim_profile"
+                                            class="form-control box-shadow-none input-form" placeholder="Vui lòng lại mật khẩu mới" required>
+                                        <small ng-if="!changePassForm.txtConfim.$valid" id="confim_profile-text" class="text-muted">Vui lòng lại mật khẩu mới</small>
                                     </div>
                                 </div>
                                 <div class="group-fleld group-fleld-012">
-                                    <a href="/Manager/profile/clear" class="btn btn-style btn-clear">Làm mới</a>
-                                    <button class="btn btn-style btn-update">Cập
+                                    <button class="btn btn-style btn-clear">Làm mới</button>
+                                    <!-- <button ng-if="!changePassForm.$vaild" class="btn btn-style btn-update disabled">Cập
+                                        nhật</button> -->
+                                    <button ng-click="update_pass()"  class="btn btn-style btn-update">Cập
                                         nhật</button>
-
                                 </div>
                             </form>
                         </div>
@@ -121,68 +197,6 @@
     <!-- Button trigger modal -->
 
     <!-- Modal -->
-    <div class="modal fade" id="modal-profile" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleId">Thông tin cá nhân</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid p-0">
-                        <div class="modal-background-avatar-profile">
-                            <div class="modal-background-profile">
-                                <img th:src="${ThongTinTK.anhNen}"
-                                    alt="" class="background-profile-img" style="border-radius: 7px;">
-                                <div id="spinner" class=" d-flex justify-content-center" style="position: absolute;">
-                                    <div style="display: none;" class="spinner-border" role="status">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </div>
-                                </div>
-                                <span id="upload-bg-pen"><i class="bi bi-pencil-square"></i></span>
-                                <input type="file" id="upload_bg" style="display: none;">
-                            </div>
-                            <div class="modal-avatar-profile">
-                                <div class="avatar">
-                                    <img th:src="${ThongTinTK.anhDaiDien}"
-                                        alt="" class="avata-img">
-                                    <span id="upload-avata-pen"><i class="bi bi-pen"></i></span>
-                                </div>
-                                <input type="file" id="upload_avatar" style="display: none;">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Họ tên</label>
-                            <input type="text" name="" id="" th:value="${ThongTinTK.hoTen}" class="form-control" placeholder=""
-                                aria-describedby="helpId">
-                            <!-- <small id="helpId" class="text-muted">Help text</small> -->
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Giới Tính</label>
-                            <select class="form-select form-control" name="" id="" th:value="${ThongTinTK.gioiTinh}">
-                                <option value="true" selected>Nam</option>
-                                <option value="false">Nữ</option>
-                            </select>
-                            <!-- <small id="helpId" class="text-muted">Help text</small> -->
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Ngày sinh</label>
-                            <input type="date" name="" id="" th:value="${ThongTinTK.ngaySinh}" class="form-control" placeholder=""
-                                aria-describedby="helpId">
-                            <!-- <small id="helpId" class="text-muted">Help text</small> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
-                    <button type="button" style="background-color: var(--gray_800); border: none;"
-                        class="btn btn-primary box-shadow-none">Cập nhật</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -201,4 +215,5 @@
     </script>
     <script src="/javascripts/manager-js/Manager-profile.js"></script>
 </body>
+
 </html>

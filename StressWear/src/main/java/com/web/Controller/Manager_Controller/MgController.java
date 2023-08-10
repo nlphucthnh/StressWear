@@ -69,20 +69,7 @@ public class MgController {
         return "Manager/Manager-product-page";
     }
 
-    @GetMapping("profile")
-    public String getProfliePage(Model model) {
-        String tenDangNhap = (String) session.getAttribute("tenDangNhapLogin");
-        ThongTinTaiKhoan thongTinTaiKhoan = thongTinTaiKhoanDAO.findBytaiKhoanTTTK(tenDangNhap);
-        if (thongTinTaiKhoan != null) {
-            model.addAttribute("ThongTinTK", thongTinTaiKhoan);
-        } else {
-            ThongTinTaiKhoan thongTinTaiKhoan2 = new ThongTinTaiKhoan();
-            thongTinTaiKhoan2.setTaiKhoanTTTK(taiKhoanDAO.findById(tenDangNhap).get());
-            thongTinTaiKhoanDAO.save(thongTinTaiKhoan2);
-            model.addAttribute("ThongTinTK", thongTinTaiKhoan2);
-        }
-        return "Manager/Manager-profile-page";
-    }
+
 
     @GetMapping("revenue")
     public String getRevenuePage(Model model) {

@@ -41,7 +41,7 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 		// phân quyền sử dụng
 		http.authorizeRequests()
 				.antMatchers("/manager/account", "/manager/revenue").hasRole("ADMIN")
-				.antMatchers("/manager/filter", "/manager/order", "/manager/product", "/manager/profile").hasAnyRole("ADMIN", "STAFF")
+				.antMatchers("/manager/filter", "/manager/order", "/manager/product", "/manager/profile/**").hasAnyRole("ADMIN", "STAFF")
 				.anyRequest().permitAll();
 
 		// điều khiển lỗi truy cập không đúng vai trò
