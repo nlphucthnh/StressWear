@@ -48,9 +48,6 @@
 
                 <h3 th:each="loai : ${nhomloaisanpham[0]}" th:text="${'Danh mục: ' + loai.nhomLoaiSP.tenNhomLoai}"></h3>
             </div>
-
-
-
             <div class="row">
                 <div class="col-2 flex-fill ">
                     <label for="selectPrice" class="form-label">Mức giá</label>
@@ -71,21 +68,9 @@
                     </div>
                 </div>
                 <div class="col-2 flex-fill ">
-                    <!-- <label for="select3" class="form-label">Chất liệu</label>
-                    <select class="form-select">
-                        <option selected>Gỗ ép</option>
-                        <option value="1">Lựa chọn 1</option>
-                        <option value="2">Lựa chọn 2</option>
-                        <option value="3">Lựa chọn 3</option>
-                    </select> -->
-
                 </div>
-
                 <div class="col-2 flex-fill">
-
-
                 </div>
-
                 <div class="col-2 flex-fill  ">
                     <label for="selectName" class="form-label">Sắp xếp</label>
                     <form th:action="@{/User/productlist/{idNhomLoai}/name(idNhomLoai=${idNhomLoai})}" method="POST">
@@ -98,7 +83,6 @@
                     <h5 class="text-price-list my-4 mx-2" style="color: red;" th:text="${messagename}"></h5>
                 </div>
             </div>
-
             <div class="product row">
                 <div class="product-list col-3 my-3" th:each="product : ${nhomloaisanpham}">
                     <a th:href="@{'/User/product/edit/' + ${product.idSanPham}}">
@@ -106,12 +90,12 @@
                             <span class="product-list-onsale" th:if="${product.khuyenMaiSP != null}"
                                 th:text="${#numbers.formatDecimal((product.khuyenMaiSP.phanTramKhuyenMai) * 100, 0, 0)} + '%'">
                             </span>
-
                             <th:block th:each="spcl : ${product.ListSPCT_SP[0]}">
-                                <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
-                                    th:src="@{${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan}}" alt="Hình ảnh">
+                                <div class="image-container">
+                                    <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
+                                        th:src="@{${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan}}" alt="Hình ảnh">
+                                </div>
                             </th:block>
-
                         </div>
                         <h3 class="product-list-title" th:text="${product.tenSanPham}"></h3>
                     </a>

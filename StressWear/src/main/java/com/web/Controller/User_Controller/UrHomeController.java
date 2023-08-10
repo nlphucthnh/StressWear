@@ -13,13 +13,13 @@ import com.web.Entity.NhomLoai;
 
 @Controller
 public class UrHomeController {
-        @Autowired
+    @Autowired
     SanPhamDAO dao;
 
     @Autowired
     NhomLoaiDAO nlDao;
 
-    @GetMapping("index")
+    @GetMapping("/")
     public String index(Model model) {
         var products = dao.findAll();
         List<NhomLoai> nhomloai = nlDao.findAll();

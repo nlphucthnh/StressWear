@@ -39,7 +39,7 @@ public class UserController {
 			return "redirect:/manager/profile";
 		}
 		model.addAttribute("message", "Đăng nhập thành công");
-		return "redirect:/index";
+		return "redirect:/";
 	}
 
 	@RequestMapping("/auth/login/error")

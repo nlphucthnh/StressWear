@@ -242,7 +242,7 @@
 
 .banner-slide {
   /* Chiều rộng của phần khúc cần hiển thị */
-
+  
   /* Chiều cao của phần khúc cần hiển thị */
   overflow: hidden;
   /* Ẩn các phần tử vượt ra khỏi phạm vi của .image-container */
@@ -251,7 +251,7 @@
 .banner-slide img {
   width: 100%;
   /* Đảm bảo hình ảnh điền vào phần tử cha */
-  height: 700px;
+  height: 500px;
   /* Tự động tính toán chiều cao phù hợp với tỷ lệ khung hình */
   object-fit: cover;
   /* Cắt và điều chỉnh kích thước hình ảnh để điền vào phần tử */
@@ -261,7 +261,7 @@
 
 .carousel-inner .carousel-item .banner-content {
   position: absolute;
-  top: 160px;
+  top: 100px;
   left: 80px;
   /* transform: translate(-300%, -150%); */
   z-index: 2;
