@@ -42,49 +42,43 @@
 
 <body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
     <nav th:replace="~{/layout/user-nav.html :: nav}"></nav>
-
-
     <header class="container product-item-title my-5">
         <h3>Chi tiết sản phẩm</h3>
         <p class="duongdancon"><a href="product-page">Sản phẩm</a> / <a href="product-item-page">Chi tiết sản phẩm</a>
         </p>
     </header>
-
-
-
-
     <div class="container">
         <div class="container-fluid">
             <div class="wrapper row">
                 <div class="col-md-2">
                     <ul class="nav" th:each="spcl : ${productitem}">
                         <li class="nav-item">
-                            <a class="nav-link active img-item" data-bs-toggle="tab" href="#pic-1">
+                            <a class="nav-link active image-container" data-bs-toggle="tab" href="#pic-1">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
                                     th:src="@{${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan}}" alt="Hình ảnh">
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#pic-2">
+                            <a class="nav-link img-item" data-bs-toggle="tab" href="#pic-2">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 1}"
                                     th:src="@{ ${spcl.ListDSHA_SPCT[1].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#pic-3">
+                            <a class="nav-link img-item" data-bs-toggle="tab" href="#pic-3">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 2}"
                                     th:src="@{ ${spcl.ListDSHA_SPCT[2].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#pic-4">
+                            <a class="nav-link img-item" data-bs-toggle="tab" href="#pic-4">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 3}"
                                     th:src="@{ ${spcl.ListDSHA_SPCT[3].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#pic-5">
+                            <a class="nav-link img-item" data-bs-toggle="tab" href="#pic-5">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 4}"
                                     th:src="@{ ${spcl.ListDSHA_SPCT[4].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
@@ -94,23 +88,23 @@
 
                 <div class="preview col-md-6">
                     <div class="preview-pic tab-content img-tabcontent" th:each="spcl : ${productitem[0]}">
-                        <div class="tab-pane active" id="pic-1">
+                        <div class="tab-pane active image-container" id="pic-1">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
                                 th:src="@{ ${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
-                        <div class="tab-pane" id="pic-2">
+                        <div class="tab-pane img-item" id="pic-2">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 1}"
                                 th:src="@{ ${spcl.ListDSHA_SPCT[1].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
-                        <div class="tab-pane" id="pic-3">
+                        <div class="tab-pane img-item" id="pic-3">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 2}"
                                 th:src="@{ ${spcl.ListDSHA_SPCT[2].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
-                        <div class="tab-pane" id="pic-4">
+                        <div class="tab-pane img-item" id="pic-4">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 3}"
                                 th:src="@{ ${spcl.ListDSHA_SPCT[3].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
-                        <div class="tab-pane" id="pic-5">
+                        <div class="tab-pane img-item" id="pic-5">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 4}"
                                 th:src="@{ ${spcl.ListDSHA_SPCT[4].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
@@ -135,33 +129,12 @@
                                     th:text="${#numbers.formatDecimal(products.giaSanPham, 0, 'COMMA', 0, 'POINT')} + ' đ'"></del>
                             </h5>
                         </div>
-
-                        <input hidden type="text" name="idSanPham" id="idSanPham" th:value="${products.idSanPham}">
+                        
+                        <input  ng-hide="true" type="text" name="idSanPham" id="idSanPham" th:value="${products.idSanPham}">
                         <h2>Loại: <span th:text="${products.nhomLoaiSP.tenNhomLoai}"></span></h2>
                         <div class='my-4 options pricing-section' id='pricing'>
-                            <div class='color-options'>
-                                <span>Màu sắc</span>
-                                <div class='color-picker'>
-                                    <th:block th:each="pro : ${productitem}">
-                                        <div class="color-option">
-                                            <input type="color" class="color-picker" id="hexColor" name="hexColor"
-                                                th:value="'#' + ${pro.mauSacSPCT.maHex}" disabled />
-                                            <input type="radio" value="color" name="color"> <span
-                                                th:text="${pro.mauSacSPCT.tenMauSac}"></span>
-                                        </div>
-                                    </th:block>
-                                </div>
-                            </div>
-                            <div class='product-item-size-title my-3'>
-                                <span>Kích thước</span>
-                                <div class='range-picker' th:each="spcl : ${productitem}">
-                                    <th:block th:each="spsize : ${spcl.ListDSKT_SPCT}">
-                                        <span th:text="${spsize.kichThuoc.tenKichThuoc}"></span>
-                                        <input type="radio" value="size" name="size">
-                                    </th:block>
-
-                                </div>
-                            </div>
+                            <h2 for="">Số lượng trong giỏ: <span>{{cart.countByProductId}}</span></h2>
+                            
                         </div>
                     </div>
 
@@ -170,22 +143,11 @@
                             <button th:attr="ng-click=@{|cart.add(${products.idSanPham})|}" class="btn-sell"> Thêm vào
                                 giỏ
                             </button>
-                            <div id="error-message" class="error-message">
-                                <span>Đã hết hàng</span>
-                            </div>
                         </div>
                         <div class="col-6 button-sell d-flex">
-                            <!-- <button th:attr="ng-click=@{|cart.add(${products.idSanPham})|}" class="btn-base"> Thêm vào
-                                giỏ
-                            </button> -->
                         </div>
                     </div>
                     </form>
-                    <!-- <div class=''> -->
-                    <!-- </div> -->
-                    <!-- <th:block th:each="list : ${spcl.ListDSKT_SPCT}">
-                        <h3 th:text="${list.idKichThuoc.tenKichThuoc}"></h3>
-                    </th:block> -->
                 </div>
             </div>
         </div>
@@ -224,7 +186,17 @@
                 xước, lỏng ốc vít sau một khoảng thời gian...).</p>
         </article>
     </div>
+    <div class="toast-container">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Thông báo</strong>
 
+            </div>
+            <div class="toast-body">
+                This is a cart notification.
+            </div>
+        </div>
+    </div>
     <nav th:replace="~{/layout/footer.html :: footer}"></nav>
 </body>
 
@@ -232,28 +204,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<style>
-    #error-message {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #ff0000;
-        color: #ffffff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        z-index: 9999;
-        opacity: 0;
-        transition: opacity 0.3s ease-in-out;
-    }
-
-    #error-message.visible {
-        opacity: 1;
-    }
-</style>
-
 </html>

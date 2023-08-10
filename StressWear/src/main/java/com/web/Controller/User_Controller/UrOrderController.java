@@ -69,7 +69,7 @@ public class UrOrderController {
         thongtingiaohang.setDiaChiChiTiet(diaChi);
         ttghdao.save(thongtingiaohang);
         model.addAttribute("message", "Lưu thông tin giao hàng thành công");
-        return "User/User-pay";
+        return "User/User-adreess";
     }
 
     @PostMapping("/User/pay")

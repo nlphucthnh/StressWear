@@ -1,29 +1,16 @@
 const app = angular.module("shopping-cart-app", []);
 
 app.controller("shopping-cart-ctrl", function ($scope, $http) {
-  function showError() {
-    const errorMessage = document.getElementById("error-message");
-    errorMessage.classList.add("visible");
-  
-    // Sau 3 giây, ẩn thông báo lỗi
-    setTimeout(() => {
-      errorMessage.classList.remove("visible");
-    }, 3000);
-  }
-  
-  function showsucces() {
-    const errorMessage = document.getElementById("success-message");
-    errorMessage.classList.add("visible");
-  
-    // Sau 3 giây, ẩn thông báo lỗi
-    setTimeout(() => {
-      errorMessage.classList.remove("visible");
-    }, 3000);
-  }
-  
+  // function showError() {
+  //   const errorMessage = document.getElementById("error-message");
+  //   errorMessage.classList.add("visible");
 
+  //   // Sau 3 giây, ẩn thông báo lỗi
+  //   setTimeout(() => {
+  //     errorMessage.classList.remove("visible");
+  //   }, 3000);
+  // }
 
-  
   //Addess
   $scope.address = {
     ad: [],
@@ -63,9 +50,9 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
       if (item) {
         // Kiểm tra nếu số lượng hiện tại đã đạt tối đa (ví dụ: 10 là số lượng tối đa)
         if (item.qty >= item.soLuongSP) {
-          // alert("Số lượng đã đạt tối đa.");
-          showError();
+          showCartNotification("Đã hết hàng !!");
         } else {
+          showsussce("Thêm vào giỏ thành công");
           item.qty++;
           this.saveToLocalStorage();
         }
@@ -78,13 +65,12 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
       }
     },
 
-   //Bắt lỗi số lượng
+    //Bắt lỗi số lượng
     updateQty(item) {
       // Giả sử số lượng tối đa là `item.soLuong` (thay `soLuong` bằng tên thật trong bảng sản phẩm)
       if (item.qty >= item.soLuongSP) {
-       
         item.qty = item.soLuongSP;
-        showError();
+        showCartNotification("Đã hết hàng !!");
       }
       this.saveToLocalStorage();
     },
@@ -111,6 +97,16 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
         .map((item) => item.qty)
         .reduce((total, qty) => (total += qty), 0);
     },
+    get countByProductId() {
+      var idSanPhamInput = document.getElementById("idSanPham");
+      var targetIdSanPham = parseInt(idSanPhamInput.value);
+      
+      return this.items
+        .filter(item => item.idSanPham === targetIdSanPham)
+        .map(item => item.qty)
+        .reduce((total, qty) => (total += qty), 0);
+    },
+
     // Tổng thành tiền các mặt hàng trong giỏ
     get amount() {
       return this.items
@@ -150,7 +146,7 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
   // Đặt hàng
   $scope.order = {
     ngayTao: new Date(),
-    phuongThucThanhToan: "Thanh toán sau khi nhận hàng", // Bỏ chú thích và để giá trị mặc định là chuỗi rỗng
+    phuongThucThanhToan: "cash", // Bỏ chú thích và để giá trị mặc định là chuỗi rỗng
     taiKhoanMuaHang: { tenDangNhap: $("#taiKhoanMuaHang").text() }, // Sử dụng một đối tượng chứa tên người dùng
     trangThaiDonHang: "Đang xử lý",
     thongTinGiaoHang: { idThongTinGiaoHang: lastIdThongTinGiaoHang }, //
@@ -169,15 +165,104 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
       $http
         .post("/api/donhang", order)
         .then((resp) => {
-         showsucces();
-          $scope.cart.clear();
-          $scope.address.clear();
-          location.href = "/order/detail/" + resp.data.idDonHang;
+          document
+            .getElementById("showAlertButton")
+            .addEventListener("click", function () {
+              // Hàm hiển thị thông báo
+              Swal.fire({
+                title: "Thông báo",
+                text: "Đặt hàng thành công",
+                icon: "success",
+                confirmButtonText: "OK",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  $scope.cart.clear();
+                  $scope.address.clear();
+                  location.href = "/order/detail/" + resp.data.idDonHang;
+                }
+              });
+            });
         })
         .catch((error) => {
-          showError();
+          // showError();
+          console.log(error);
+        });
+    },
+  };
+  $scope.orderpaypal = {
+    ngayTao: new Date(),
+    phuongThucThanhToan: "credit", // Bỏ chú thích và để giá trị mặc định là chuỗi rỗng
+    taiKhoanMuaHang: { tenDangNhap: $("#taiKhoanMuaHang").text() }, // Sử dụng một đối tượng chứa tên người dùng
+    trangThaiDonHang: "Đang xử lý",
+    thongTinGiaoHang: { idThongTinGiaoHang: lastIdThongTinGiaoHang }, //
+    get ListDHCT() {
+      return $scope.cart.items.map((item) => {
+        return {
+          sanPhamDHCT: { idSanPham: item.idSanPham },
+          // // price: item.giaSanPham,
+          soLuong: item.qty,
+        };
+      });
+    },
+    purchasepaypal() {
+      var order = angular.copy(this);
+      //thực hiện đặt hàng
+      $http
+        .post("/api/donhang", order)
+        .then((resp) => {
+          $scope.cart.clear();
+          $scope.address.clear();
+          // location.href = "/order/detail/" + resp.data.idDonHang;
+        })
+        .catch((error) => {
+          // showError();
           console.log(error);
         });
     },
   };
 });
+function showCartNotification(message) {
+  var toast = document.querySelector(".toast").cloneNode(true);
+  var toastBody = toast.querySelector(".toast-body");
+  toastBody.textContent = message;
+
+  var toastContainer = document.querySelector(".toast-container");
+  
+    toast.classList.add("bg-danger", "text-white"); // Thêm lớp bg-danger và text-white
+  
+  
+  toastContainer.appendChild(toast);
+
+  var bootstrapToast = new bootstrap.Toast(toast);
+  bootstrapToast.show();
+
+  setTimeout(function () {
+    bootstrapToast.hide();
+  }, 3000); // 3000 milliseconds = 3 seconds
+}
+
+function showsussce(message) {
+  var toast = document.querySelector(".toast").cloneNode(true);
+  var toastBody = toast.querySelector(".toast-body");
+  toastBody.textContent = message;
+
+  var toastContainer = document.querySelector(".toast-container");
+  
+    toast.classList.add("bg-success", "text-white"); // Thêm lớp bg-danger và text-white
+  
+  
+  toastContainer.appendChild(toast);
+
+  var bootstrapToast = new bootstrap.Toast(toast);
+  bootstrapToast.show();
+
+  setTimeout(function () {
+    bootstrapToast.hide();
+  }, 3000); // 3000 milliseconds = 3 seconds
+}
+
+document
+  .getElementById("addToCartButton")
+  .addEventListener("click", function () {});
+
+  

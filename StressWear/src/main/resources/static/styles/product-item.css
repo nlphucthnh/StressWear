@@ -1,12 +1,13 @@
 /* title */
 .product-item-title h3 {
-  font-family: "EB Garamond";
+  font-family: Open Sans;
   font-size: 32px;
   font-weight: 600;
   line-height: 43px;
   letter-spacing: 0em;
   text-align: left;
   margin-bottom: 20px;
+  color: #000;
 }
 
 .product-item-title h5 {
@@ -355,7 +356,6 @@ img {
   color: white;
 }
 
-
 .button-sell .btn-sell:hover {
   color: black;
   background-color: white;
@@ -363,7 +363,6 @@ img {
 }
 
 .button-sell .btn-base {
-  
   margin-top: 38px;
   font-size: 18px;
   font-weight: 600;
@@ -627,8 +626,6 @@ a:hover {
   margin-right: auto;
 }
 
-
-
 /* .color-options {
             display: -webkit-box;
             display: -webkit-flex;
@@ -725,10 +722,10 @@ a:hover {
   line-height: 0.9em;
 }
 
-.range-picker input{
+.range-picker input {
   margin-right: 20px;
 }
-.range-picker span{
+.range-picker span {
   margin-right: 10px;
 }
 .range-picker div {
@@ -889,4 +886,11 @@ a:hover {
   .product-block {
     margin-top: 0px;
   }
+}
+
+.toast-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  /* z-index: 100; */
 }

@@ -42,8 +42,8 @@
 
 
 <body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
- 
-  
+
+
   <nav th:replace="~{/layout/user-nav.html :: nav}"></nav>
   <div class="container mt-5">
     <div class="row">
@@ -51,28 +51,31 @@
         <h1>Thông tin giao hàng</h1>
         <p>Giỏ hàng / Thông tin giao hàng</p>
       </div>
-      <i class="" style="color: red;" th:text="${message}"></i>
-      <div class="col-9">
+      <i id="notification" class="" style="color: red;" th:text="${message}"></i>
 
+
+
+      <div class="col-9">
         <form class="adrress-form-ship" action="/User/address" method="post">
           <div class="mb-3">
             <label for="fullName" class="form-label">Họ tên khách hàng</label>
             <input type="text" name="fullname" class="form-control w-100" id="fullName" placeholder="olivia" required>
-            
-            
+
+
           </div>
           <div class="row">
             <div class="col-md-6 mb-3 my-2">
               <label for="phoneNumber" class="form-label">Số điện thoại</label>
-              <input type="tel" name="phone" class="form-control w-100" id="phoneNumber" placeholder="0987654321" 
-              required pattern="[0-9]{10}" title="Số điện thoại phải có 10 chữ số">
+              <input type="tel" name="phone" class="form-control w-100" id="phoneNumber" placeholder="0987654321"
+                required pattern="[0-9]{10}" title="Số điện thoại phải có 10 chữ số">
             </div>
-            
-          
+
+
 
             <div class="col-md-6 mb-3 my-2">
               <label for="city" class="form-label">Thành phố / Tỉnh</label>
-              <select class="form-select form-select-sm mb-3" ng-model="arder.address" id="city" name="city" aria-label=".form-select-sm" required>
+              <select class="form-select form-select-sm mb-3" ng-model="arder.address" id="city" name="city"
+                aria-label=".form-select-sm" required>
                 <option value="city" selected>Chọn tỉnh thành</option>
               </select>
             </div>
@@ -81,37 +84,34 @@
           <div class="row">
             <div class="col-md-6 mb-3 my-2">
               <label for="city" class="form-label">Quận / Huyện</label>
-              <select class="form-select form-select-sm mb-3" id="district" name="district"  aria-label=".form-select-sm" required>
+              <select class="form-select form-select-sm mb-3" id="district" name="district" aria-label=".form-select-sm"
+                required>
                 <option value="district" selected>Chọn quận huyện</option>
               </select>
             </div>
             <div class="col-md-6 mb-3 my-2">
               <label for="city" class="form-label">Phường / Xã</label>
-              <select class="form-select form-select-sm" id="ward" name="commune" aria-label=".form-select-sm"required >
+              <select class="form-select form-select-sm" id="ward" name="commune" aria-label=".form-select-sm" required>
                 <option value="commune" selected>Chọn phường xã</option>
               </select>
             </div>
           </div>
           <div class="mb-3 my-2">
             <label for="fullName" class="form-label">Số nhà / Tên đường</label>
-            <textarea class="form-control"  name="apartment_number" id="" cols="30" rows="7"
+            <textarea class="form-control" name="apartment_number" id="" cols="30" rows="7"
               placeholder="Enter a description..."></textarea>
           </div>
 
           <div class="pay-bill  col-3 ">
-            
-              <button class="btn btn-success" >Tiếp tục thanh toán</button>
-              <!-- btn-pay -->
-          </div>
-       </form>
 
-       <div class="pay-bill  col-3 ">
-            
-        <button class="btn btn-success"  ng-click="address.addAddress()">Tiếp tục thanh toán</button>
-        <!-- btn-pay -->
-    </div>
+            <button class="btn btn-success">Lưu địa chỉ</button>
+            <!-- btn-pay -->
+          </div>
+        </form>
+
+
       </div>
-    
+
       <div class="col-3" th:fragment="shopping-cart">
         <div class="bill">
 
@@ -133,17 +133,6 @@
               <label for="discount" class="form-label bill-number ">{{cart.count}}</label>
             </div>
           </div>
-
-
-          <!-- <div class="row mb-3">
-            <div class="col-6">
-              <label for="subtotal" class="form-label bill-text">Phụ thu</label>
-            </div>
-            <div class="col-6">
-              <label for="discount" class="form-label bill-number ">Không có</label>
-            </div>
-          </div> -->
-
           <div class="row mb-3">
             <div class="col-6">
               <label for="subtotal" class="form-label bill-text">Phí vận chuyển</label>
@@ -162,65 +151,25 @@
             </div>
           </div>
           <div class="row mb-3">
-          
-          </div>
+            <div class="pay-bill">
 
+              <button id="continueBtn" class="btn btn-dark" ng-click="address.addAddress()" style="display: none;">Tiếp
+                tục thanh toán</button>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
-
   <nav th:replace="~{/layout/footer.html :: footer}"></nav>
 
 </body>
 <!-- <script src="js/cart.js"></script> -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script>
-  var citis = document.getElementById("city");
-  var districts = document.getElementById("district");
-  var wards = document.getElementById("ward");
-  var Parameter = {
-    url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
-    method: "GET",
-    responseType: "application/json",
-  };
-  var promise = axios(Parameter);
-  promise.then(function (result) {
-    renderCity(result.data);
-  });
-
-  function renderCity(data) {
-    for (const x of data) {
-      citis.options[citis.options.length] = new Option(x.Name, x.Name);
-    }
-    citis.onchange = function () {
-      district.length = 1;
-      ward.length = 1;
-      if (this.value != "") {
-        const result = data.filter(n => n.Name === this.value);
-
-        for (const k of result[0].Districts) {
-          district.options[district.options.length] = new Option(k.Name, k.Name);
-        }
-      }
-    };
-    district.onchange = function () {
-      ward.length = 1;
-      const dataCity = data.filter((n) => n.Name === citis.value);
-      if (this.value != "") {
-        const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
-
-        for (const w of dataWards) {
-          wards.options[wards.options.length] = new Option(w.Name, w.Name);
-        }
-      }
-    };
-  }
-</script>
 <script src="/javascripts/shopping-cart-app.js"></script>
-
+<script src="/javascripts/User-address.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </script>
+
 </html>

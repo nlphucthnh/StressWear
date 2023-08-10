@@ -70,9 +70,9 @@
               </td>
               <td>
                 <input ng-change="cart.updateQty(item)" type="number" ng-model="item.qty" min="1" style="width: 60px;">
-                <div id="error-message" class="error-message">
+                <!-- <div id="error-message" class="error-message">
                   <span>Đã hết hàng</span>
-                </div>
+                </div> -->
               </td>
               <td class="table_cart">
                 <span ng-if="item.khuyenMaiSP">{{item.qty * item.giaSanPham * (1 -
@@ -150,58 +150,21 @@
       </div>
     </div>
   </div>
-  
+  <div class="toast-container">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Thông báo</strong>
+           
+        </div>
+        <div class="toast-body">
+            This is a cart notification.
+        </div>
+    </div>
+</div>
   <nav th:replace="~{/layout/footer.html :: footer}"></nav>
 </body>
 <script src="/javascripts/shopping-cart-app.js"></script>
-
-
-<script>
-  function increaseCount(event, element) {
-    var input = element.parentElement.querySelector('input');
-    var value = parseInt(input.getAttribute('data-quantity'), 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    input.setAttribute('data-quantity', value);
-    input.value = value;
-  }
-
-  function decreaseCount(event, element) {
-    var input = element.parentElement.querySelector('input');
-    var value = parseInt(input.getAttribute('data-quantity'), 10);
-    if (value > 1) {
-      value = isNaN(value) ? 0 : value;
-      value--;
-      input.setAttribute('data-quantity', value);
-      input.value = value;
-    }
-  }
-</script>
-
+<script src="/javascripts/User-cart.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </script>
-<style>
-#error-message {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ff0000;
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-#error-message.visible {
-  opacity: 1;
-}
-
-
-</style>
 </html>

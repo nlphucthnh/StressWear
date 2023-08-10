@@ -27,6 +27,7 @@
     <!-- font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 
     <!-- Angularjs -->
@@ -52,7 +53,7 @@
             <div class="title-pay-main">
                 <h1>Phương thức thanh toán</h1>
                 <p class="duongdancon"><a href="cart">Giỏ hàng </a> / <a href="adreess.html">Thông tin giao hàng</a>
-                    
+
                     <a href="pay.html">Phương thức thanh toán</a>
                 </p>
             </div>
@@ -61,7 +62,7 @@
                 <div class="form-control" hidden id="taiKhoanMuaHang">[[${#request.remoteUser}]]</div>
 
 
-             
+
                 <!-- <div class="pay-matercard-main">
                         <div class="header-matercard d-flex justify-content-between px-3" for="pay">
                             <label for="pay-matercard">
@@ -107,38 +108,52 @@
                             </div>
                         </div>
                     </div> -->
-                <div class="header-matercard d-flex justify-content-between px-3 my-2" for="pay"
-                    th:each="tt : ${phuongthucthanhtoan}">
-                    <label for="pay-$">
-                        <div class="auther-item d-flex align-items-center ">
-                            <img src="/img/thanhtoan.png" alt="Avatar" width="32px" height="32px"
-                                class="avatar rounded-circle mx-3">
-                            <span class="navbar-text text-start me-2">
-                                <span class="text-dark">Thanh toán sau khi nhận hàng
+                <div class="row">
+                    <div class="col-5 header-matercard px-3 my-2" for="pay">
+                        <label for="pay-$" class="my-3">
+                            <div class="auther-item d-flex align-items-center ">
+                                <img src="/img/thanhtoan.png" alt="Avatar" width="32px" height="32px"
+                                    class="avatar rounded-circle mx-3">
+                                <span class="navbar-text text-start me-2">
+                                    <span class="text-dark">Thanh toán sau khi nhận hàng
+                                    </span>
+                                    <br> <span class="text-black-50">Thanh toán sau khi giao dịch thành công
+
+                                    </span>
                                 </span>
-                                <br> <span class="text-black-50" >Thanh toán sau khi giao dịch thành công
 
+                            </div>
+                        </label>
+                        <button class="btn btn-dark btn-pay" id="showAlertButton" ng-click="order.purchase()">Thanh
+                            toán</button>
+                    </div>
+
+                    <div class="col-5 header-matercard px-3 my-2 mx-5" for="pay">
+                        <label for="pay-$" class="my-3">
+                            <div class="auther-item d-flex align-items-center ">
+                                <img alt="Avatar" width="70px" height="32px"
+                                    th:src="@{https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/images-removebg-preview.png?alt=media&token=6fc68cd8-5b0f-4acc-87bc-81021894a901}"
+                                    class="avatar rounded-circle mx-3">
+                                <span class="navbar-text text-start me-2">
+                                    <span class="text-dark">Thanh toán PayPal
+                                    </span>
+                                    <br> <span class="text-black-50">thanh toán trực tuyến quốc tế
+                                        <!-- Giấu phần tử input nhưng vẫn có thể sử dụng giá trị của nó -->
+
+
+                                    </span>
                                 </span>
-                            </span>
+                            </div>
+                        </label>
+                        <form action="/pay" method="post">
+                            <input type="text" name="price" ng-model="cart.amount" ng-hide="true">
+                            <button class="btn btn-dark btn-pay" ng-click="orderpaypal.purchasepaypal()">Thanh
+                                toán</button>
+                        </form>
+                    </div>
 
-                        </div>
-                    </label>
-                    <input name="pay" type="radio" id="pay-$" ng-checked="true" >
-
-                </div>
-
-                <div class="pay-bill  col-3 my-3">
-                    <div id="error-message" class="error-message">
-                        <span>Thanh toán thất bại</span>
-                      </div>
-                      <div id="success-message" class="success-message">
-                        <span>Thanh toán thành công</span>
-                      </div>
-                    <button class="btn btn-success" ng-click="order.purchase()">Thanh toán</button>
-                    <!-- btn-pay -->
                 </div>
             </div>
-
             <div class="col-3" th:fragment="shopping-cart">
 
                 <div class="bill">
@@ -208,51 +223,7 @@
 </body>
 <script src="js/cart.js"></script>
 <script src="/javascripts/shopping-cart-app.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<style>
-    #error-message {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #ff0000;
-      color: #ffffff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      z-index: 9999;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-    }
-    
-    #error-message.visible {
-      opacity: 1;
-    }
-    #success-message {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #197511;
-      color: #ffffff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      z-index: 9999;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-    }
-    
-    #success-message.visible {
-      opacity: 1;
-    }
-    
-    
 
-    </style>
 </html>
