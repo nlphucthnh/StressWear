@@ -77,6 +77,11 @@
 
 /* ------------ list blogs Manager_Content ---------------- */
 
+#Manager_Content #list_blogs  {
+    border: 1px solid var(--gray_200);
+    border-radius: 4px;
+}
+
 #Manager_Content #list_blogs .list_blogs-header {
     width: 100%;
     margin: 0 auto;

@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <!-- <link rel="stylesheet" href="styles/root.css"> -->
-    <link rel="stylesheet" href="/login.css">
     <link rel="stylesheet" href="/styles/login.css">
 
     <style>
@@ -36,7 +35,7 @@
                    
                     <form action="/auth/login" method="post">
                         <div class="login-content-top-form">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2FlogoMark.png?alt=media&token=5deca848-ae43-44d5-ab9a-22b9a060bafb" alt="">
+                           <a href="/index" style="text-decoration: none;"><img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2FlogoMark.png?alt=media&token=5deca848-ae43-44d5-ab9a-22b9a060bafb" alt=""></a>
                             <h2 class="lg-ct-title">Chào mừng bạn đến với Ztreet Zear</h2>
                         </div>
                         <small th:text="${message}" class="text-danger"></small>
@@ -73,12 +72,11 @@
                        
                     <div class="login-ct-end">
                         <p>Bạn chưa có tài khoản?</p>
-                        <a href="/User/register">Đăng Ký</a>
+                        <a href="/auth/sign/form">Đăng Ký</a>
                     </div>
                     <div class="login-with-mxh">
                         <div class="login-with-gg-fb">
                             <a href="/oauth2/authorization/google" class="login-mxh gg"><i class="bi bi-google"></i></a>
-                            <a href="#" class="login-mxh fb"><i class="bi bi-facebook"></i></a>
                         </div>
                     </div>
                 </div>

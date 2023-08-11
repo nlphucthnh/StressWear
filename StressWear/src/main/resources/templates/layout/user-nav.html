@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container">
+  <div class="containers d-flex" style="width: 95%;  align-items: center;margin: 0 auto;">
     <a href="/"><img
         src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/Logo%20website.png?alt=media&token=e446c505-b0a6-44a8-aad5-f7caccb1c28b"
         style="background-color: var(--gray_25);" alt=""></a>
     <div class="navbar-collapse">
       <ul class="navbar-nav item-menu">
         <li class="nav-item">
-          <a class="nav-link" href="/about-page">Giới thiệu</a>
+          <a class="nav-link" href="/user/about">Giới thiệu</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/contact-page">Liên hệ</a>
+          <a class="nav-link" href="/user/contact">Liên hệ</a>
         </li>
         <li class="nav-item dropdown dropdown-hover has-megamenu">
           <a class="nav-link " th:href="@{/User/product}"> Sản phẩm <i class="bi bi-chevron-down"></i></a>
@@ -129,7 +129,7 @@
           <a class="nav-link login" th:href="@{/auth/login/form}">Đăng nhập</a>
         </li>
         <li class="nav-item sign-navbar ">
-          <a class="nav-link sigin" th:href="@{/auth/login/form}">Đăng ký</a>
+          <a class="nav-link sigin" th:href="@{/auth/sign/form}">Đăng ký</a>
         </li>
       </ul>
 
@@ -137,18 +137,17 @@
       <div class="registered-group-account registered-item" th:if="${#request.remoteUser}"
         th:object="${#request.userPrincipal}">
         <div class="registered-group-account-text">
-          <div class="registered-group-account-name-text">[[*{name}]]
-          </div>
-          <!-- <div class="registered-group-account-email-text">[[*{name}]]</div> -->
+          <div th:if="${#session.getAttribute('oAuth2') != null}" class="registered-group-account-name-text">[[*{name.substring(0 ,name.indexOf("@"))}]]</div>
+          <div th:if="${#session.getAttribute('oAuth2') == null}" class="registered-group-account-name-text">[[${ThongTinTK.hoTen}]]</div>
         </div>
+        <p style="color: rgb(59, 52, 52);"></p>
         <div class="registered-group-account-img dropdown">
-          <img class="img-avata-registered"
-            src="https://firebasestorage.googleapis.com/v0/b/future-interior.appspot.com/o/Null.png?alt=media"
-            alt="Avatar" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          <img th:if="${#session.getAttribute('oAuth2') != null}" class="img-avata-registered" th:src="${#session.getAttribute('picture')}" alt="Avatar" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          <img th:if="${#session.getAttribute('oAuth2') == null}" class="img-avata-registered" th:src="${ThongTinTK.anhDaiDien}" alt="Avatar" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
             style="right: 50%; left: auto;  transform: translateX(50%); ">
-            <li><a class="dropdown-item" th:href="@{/person}">Hồ sơ cá nhân</a></li>
-            <li><a class="dropdown-item" th:href="@{/changePassword}">Đổi mật khẩu</a></li>
+            <li><a class="dropdown-item" th:if="${#session.getAttribute('oAuth2') == null}" th:href="@{/user/profile}">Hồ sơ cá nhân</a></li>
+            <li><a class="dropdown-item" th:href="@{/user/changepass}">Đổi mật khẩu</a></li>
 
             <li><a class="dropdown-item" href="/auth/logoff">Đăng xuất</a></li>
           </ul>

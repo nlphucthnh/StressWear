@@ -130,15 +130,17 @@ app.controller("ctrl-sp", function ($scope, $http) {
   }
 
   $scope.delete_sp = function (idSanPham) {
-    var url = `${API_SANPHAM}/${idSanPham}`;
-    $http.delete(url).then((result) => {
-      alert("Xóa sản phẩm thành công");
-      var index = $scope.list_sp.findIndex(item => item.idSanPham === result.data.idSanPham);
-      $scope.list_sp.splice(index, 1);
-      $scope.reset_sp();
-    }).catch((err) => {
-      console.log("ERROR", err);
-    });
+    if (confirm("bạn muốn xóa sản phẩm này ? ")) {
+      var url = `${API_SANPHAM}/${idSanPham}`;
+      $http.delete(url).then((result) => {
+        alert("Xóa sản phẩm thành công");
+        var index = $scope.list_sp.findIndex(item => item.idSanPham == idSanPham);
+        $scope.list_sp.splice(index, 1);
+        $scope.reset_sp();
+      }).catch((err) => {
+        console.log("ERROR", err);
+      });
+    }
   }
 
   $scope.reset_sp = function () {
@@ -228,7 +230,7 @@ app.controller("ctrl-sp", function ($scope, $http) {
     var url = `${API_DANHSACHHA}/sanphamchitiet/${idSanPhamChiTiet}`;
     $http.get(url).then((result) => {
       $scope.list_ha = result.data;
-      console.log(result.data);
+
     }).catch((err) => {
       console.log("ERROR", err);
     });
@@ -283,7 +285,7 @@ app.controller("ctrl-sp", function ($scope, $http) {
     }
     var url = `${API_DANHSACHHA}`;
     $http.post(url, dsHinhAnh).then((result) => {
-      console.log(result);
+     
 
       $scope.list_ha.push(result.data);
       alert("Đã thêm hình ảnh vào danh sách");
@@ -302,7 +304,7 @@ app.controller("ctrl-sp", function ($scope, $http) {
         alert("xóa hình ảnh thành công");
       }).then(() => {
         $http.delete(`${API_HINHANH}/${hinhAnh.idHinhAnh}`).then((result) => {
-          var index = $scope.list_ha.findIndex(item => item.idHinhAnh === result.data.idHinhAnh);
+          var index = $scope.list_ha.findIndex(item => item.idHinhAnh == hinhAnh.idHinhAnh);
           $scope.list_ha.splice(index, 1);
           console.log("SUCCESS", result);
         })
@@ -342,7 +344,6 @@ app.controller("ctrl-sp", function ($scope, $http) {
     if (!$(this).children()[1].checked) {
       $(this).children()[1].checked = true;
       var index = $scope.list_size.findIndex(item => item.slice(0, item.indexOf("/")) == $(this).children()[1].value);
-      console.log(index);
       if (index == -1) {
         var kichThuoc = {
           idDanhSachKT: "",
@@ -364,7 +365,6 @@ app.controller("ctrl-sp", function ($scope, $http) {
       var index = $scope.list_size.findIndex(item => item.slice(0, item.indexOf("/")) == $(this).children()[1].value);
       if (index >= 0) {
         var idDanhSachKT = $scope.list_size[index].slice($scope.list_size[index].indexOf("/") + 1);
-        console.log(idDanhSachKT);
         $http.delete(`${API_DANHSACHKT}/${idDanhSachKT}`, kichThuoc).then((result) => {
           $scope.list_size.splice(index, 1);
           alert("Đã Xóa kích thước");
@@ -381,14 +381,16 @@ app.controller("ctrl-sp", function ($scope, $http) {
   });
 
   $scope.delete_spct = function (idSanPhamChiTiet) {
-    var url = `${API_SANPHAMCHITIET}/${idSanPhamChiTiet}`;
-    $http.delete(url).then((result) => {
-      alert("Xóa sản phẩm chi tiết thành công");
-      var index = $scope.list_spct.findIndex(item => item.idSanPhamChiTiet == result.data.idSanPhamChiTiet);
-      $scope.list_spct.splice(index, 1);
-    }).catch((err) => {
-      console.log("ERROR", err);
-    });
+    if (confirm("Bạn muốn xóa sản phẩm chi tiết này ?")) {
+      var url = `${API_SANPHAMCHITIET}/${idSanPhamChiTiet}`;
+      $http.delete(url).then((result) => {
+        alert("Xóa sản phẩm chi tiết thành công");
+        var index = $scope.list_spct.findIndex(item => item.idSanPhamChiTiet == idSanPhamChiTiet);
+        $scope.list_spct.splice(index, 1);
+      }).catch((err) => {
+        console.log("ERROR", err);
+      });
+    }
   }
 
   $scope.reset_spct = function () {
@@ -410,11 +412,11 @@ app.controller("ctrl-sp", function ($scope, $http) {
 
     $scope.list_ha = [];
 
-    $("#btn-update-spct").css("pointer-events", "none");
-    $("#btn-update-spct").css("background-color", "var(--gray_100)");
+    $(".btn-update-spct").css("pointer-events", "none");
+    $(".btn-update-spct").css("background-color", "var(--gray_100)");
 
-    $("#btn-add-spct").css("pointer-events", "all");
-    $("#btn-add-spct").css("background-color", "var(--gray_900)");
+    $(".btn-add-spct").css("pointer-events", "all");
+    $(".btn-add-spct").css("background-color", "var(--gray_900)");
   };
 
   $scope.create_spct = function () {

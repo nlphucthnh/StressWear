@@ -3,7 +3,8 @@ package com.web.Controller.User_Controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.websocket.server.PathParam;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,10 +24,11 @@ import com.web.DAO.NhomLoaiDAO;
 import com.web.DAO.SanPhamChiTietDAO;
 import com.web.DAO.SanPhamDAO;
 import com.web.DAO.TaiKhoanDAO;
+import com.web.DAO.ThongTinTaiKhoanDAO;
 import com.web.Entity.NhomLoai;
 import com.web.Entity.SanPham;
 import com.web.Entity.SanPhamChiTiet;
-import com.web.Entity.TaiKhoan;
+import com.web.Entity.ThongTinTaiKhoan;
 
 @Controller
 public class UrProductController {
@@ -46,9 +47,26 @@ public class UrProductController {
     @Autowired
     NhomLoaiDAO nlDao;
 
+    @Autowired
+    HttpSession session;
+
+    @Autowired
+    HttpServletRequest request;
+
+    @Autowired
+    ThongTinTaiKhoanDAO thongTinTaiKhoanDAO;
+
+    @Autowired
+    TaiKhoanDAO taiKhoanDAO;
+
     // Sản phẩm
     @GetMapping("User/product")
     public String product(Model model, @RequestParam("p") Optional<Integer> p) {
+        String tenDangNhap = (String) session.getAttribute("tenDangNhapLogin");
+        ThongTinTaiKhoan thongTinTaiKhoan = thongTinTaiKhoanDAO.findBytaiKhoanTTTK(tenDangNhap);
+        if (thongTinTaiKhoan != null) {
+            model.addAttribute("ThongTinTK", thongTinTaiKhoan);
+        }
         Pageable pageable = PageRequest.of(p.orElse(0), 12, Sort.by("tenSanPham").ascending());
         var products = dao.findAll(pageable);
         var numberOfPages = products.getTotalPages();
@@ -63,6 +81,11 @@ public class UrProductController {
     // Chi tiết sản phẩm
     @GetMapping("/User/product/edit/{idSanPham}")
     public String product_Item(Model model, @PathVariable("idSanPham") Integer id) {
+        String tenDangNhap = (String) session.getAttribute("tenDangNhapLogin");
+        ThongTinTaiKhoan thongTinTaiKhoan = thongTinTaiKhoanDAO.findBytaiKhoanTTTK(tenDangNhap);
+        if (thongTinTaiKhoan != null) {
+            model.addAttribute("ThongTinTK", thongTinTaiKhoan);
+        }
         SanPham products = dao.findById(id).get();
         List<SanPhamChiTiet> productItem = spctdao.findByidsanpham(id);
         List<NhomLoai> nhomloai = nlDao.findAll();
@@ -76,7 +99,13 @@ public class UrProductController {
 
     // List Sản phẩm
     @GetMapping("/User/productlist/{idNhomLoai}")
+
     public String productList(Model model, @PathVariable("idNhomLoai") Integer id) {
+        String tenDangNhap = (String) session.getAttribute("tenDangNhapLogin");
+        ThongTinTaiKhoan thongTinTaiKhoan = thongTinTaiKhoanDAO.findBytaiKhoanTTTK(tenDangNhap);
+        if (thongTinTaiKhoan != null) {
+            model.addAttribute("ThongTinTK", thongTinTaiKhoan);
+        }
         List<SanPham> nhomloaisanpham = dao.findByNhomLoai(id);
         List<NhomLoai> nhomloai = nlDao.findAll();
         model.addAttribute("nhomloaisanpham", nhomloaisanpham);
@@ -88,6 +117,11 @@ public class UrProductController {
     @PostMapping("/User/productlist/{idNhomLoai}/name")
     public String productListPage(Model model, @PathVariable("idNhomLoai") Integer idNhomLoai,
             @RequestParam("selectName") String select) {
+        String tenDangNhap = (String) session.getAttribute("tenDangNhapLogin");
+        ThongTinTaiKhoan thongTinTaiKhoan = thongTinTaiKhoanDAO.findBytaiKhoanTTTK(tenDangNhap);
+        if (thongTinTaiKhoan != null) {
+            model.addAttribute("ThongTinTK", thongTinTaiKhoan);
+        }
         // model.addAttribute("title", idNhomLoai);
         if (select.equals("AZ")) {
             List<SanPham> prolists = dao.findByLoaiSanpham(idNhomLoai,
@@ -107,6 +141,11 @@ public class UrProductController {
     @PostMapping("/User/productlist/{idNhomLoai}/price")
     public String productListPagePrice(Model model, @PathVariable("idNhomLoai") Integer idNhomLoai,
             @RequestParam("selectPrice") String selectPrice) {
+        String tenDangNhap = (String) session.getAttribute("tenDangNhapLogin");
+        ThongTinTaiKhoan thongTinTaiKhoan = thongTinTaiKhoanDAO.findBytaiKhoanTTTK(tenDangNhap);
+        if (thongTinTaiKhoan != null) {
+            model.addAttribute("ThongTinTK", thongTinTaiKhoan);
+        }
         model.addAttribute("title", idNhomLoai);
         switch (selectPrice) {
             case "1":
@@ -169,6 +208,11 @@ public class UrProductController {
     // Tìm kiếm
     @RequestMapping("/User/product/search")
     public String search(Model model, @RequestParam("search") String search) {
+        String tenDangNhap = (String) session.getAttribute("tenDangNhapLogin");
+        ThongTinTaiKhoan thongTinTaiKhoan = thongTinTaiKhoanDAO.findBytaiKhoanTTTK(tenDangNhap);
+        if (thongTinTaiKhoan != null) {
+            model.addAttribute("ThongTinTK", thongTinTaiKhoan);
+        }
         List<SanPham> products = dao.findByTenSanPham(search);
         List<NhomLoai> nhomloai = nlDao.findAll();
         if (products.isEmpty()) {
@@ -178,5 +222,5 @@ public class UrProductController {
         model.addAttribute("products", products);
         return "User/User-product-search.html";
     }
-    
+
 }

@@ -32,10 +32,10 @@ public class ThongTinTaiKhoan implements Serializable {
     private int idThongTinTaiKhoan;
 
     @Column(name = "ho_ten")
-    private String hoTen;
-
+    private String hoTen = "Unknown"; 
+    
     @Column(name = "gioi_tinh")
-    private boolean gioiTinh;
+    private boolean gioiTinh = true;
 
     @Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -43,10 +43,10 @@ public class ThongTinTaiKhoan implements Serializable {
 	private Date ngaySinh = new Date();
 
     @Column(name = "anh_dai_dien")
-    private String anhDaiDien;
+    private String anhDaiDien = "https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2FNull.png?alt=media&token=d26ce611-dce6-49a3-ba46-9f92cbc1a70d";
 
     @Column(name = "anh_nen")
-    private String anhNen;
+    private String anhNen = "https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fstock-photo-1073420532.jpg?alt=media&token=f90867be-f6ed-432a-b000-2ee5b4080423";
 
 
     // Relationship 1-1
