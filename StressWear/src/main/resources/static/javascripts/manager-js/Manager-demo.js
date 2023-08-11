@@ -1,37 +1,64 @@
 google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses', 'Profit'],
-          ['2014', 1000, 400, 200],
-          ['2015', 1170, 460, 250],
-          ['2016', 660, 1120, 300],
-          ['2017', 1030, 540, 350]
-        ]);
+async function fetchData() {
+  try {
+    const response = await fetch('http://localhost:8080/api/donhangchitiet/thongkesanpham'); 
+    const apiData = await response.json();
+    return apiData;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];
+  }
+}
+async function drawChart() {
+  const apiData = await fetchData();
 
-        var options = {
-          chart: {
-            title: 'Company Performance',
-            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-          },
-          bars: 'vertical',
-          vAxis: {format: 'decimal'},
-          height: 400,
-          colors: ['#1b9e77', '#d95f02', '#7570b3']
-        };
+  // Group data by year and calculate total quantity and total amount for each year
+  const groupedData = apiData.reduce((groups, item) => {
+    const year = new Date(item.ngayMuaSanPham).getFullYear();
+    if (!groups[year]) {
+      groups[year] = {
+        year: year,
+        totalAmount: 0
+      };
+    }
+    groups[year].totalAmount += item.soLuong * item.sanPham.giaSanPham;
+    return groups;
+  }, {});
 
-        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+  // Convert grouped data to an array of arrays for the chart
+  const chartData = Object.values(groupedData).map(group => {
+    return [group.year.toString(), group.totalAmount];
+  });
 
-        chart.draw(data, google.charts.Bar.convertOptions(options));
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Year');
+  data.addColumn('number', 'Tổng tiền');
 
-        var btns = document.getElementById('btn-group');
+  data.addRows(chartData);
 
-        btns.onclick = function (e) {
+  var options = {
+    chart: {
+      title: 'Thống kê theo năm',
+      subtitle: 'Tổng số lượng và tổng số tiền theo năm'
+    },
+    bars: 'vertical',
+    vAxis: {format: 'decimal'},
+    height: 400,
+    colors: ['#1b9e77', '#d95f02']
+  };
 
-          if (e.target.tagName === 'BUTTON') {
-            options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
-            chart.draw(data, google.charts.Bar.convertOptions(options));
-          }
-        }
-      }
+  var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+  chart.draw(data, google.charts.Bar.convertOptions(options));
+
+  var btns = document.getElementById('btn-group');
+
+  btns.onclick = function (e) {
+    if (e.target.tagName === 'BUTTON') {
+      options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+  };
+}

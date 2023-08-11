@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +24,7 @@ import com.web.utils.Utils;
 public class PaymentController {
     
     
-	// tk: sb-es5f4727003177@personal.example.com
+	// tk:sb-es5f4727003177@personal.example.com
 	//mk: DV/#c7$5
 
     public static final String URL_PAYPAL_SUCCESS = "pay/success";
@@ -54,21 +53,18 @@ public class PaymentController {
 
 	@GetMapping(URL_PAYPAL_CANCEL)
 	public String cancelPay() {
-		return "/message/error";
-	}	
+		return "redirect:/";
+	}
 
 	@GetMapping(URL_PAYPAL_SUCCESS)
-	public String successPay(Model model,@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
+	public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
 		try {
-		
 			Payment payment = paypalService.executePayment(paymentId, payerId);
 			if (payment.getState().equals("approved"))
-				return "/message/success";
+				return "redirect:/";
 		} catch (PayPalRESTException e) {
 			log.error(e.getMessage());
 		}
-		return "/message/success";
+		return "redirect:/";
 	}
-	
-	// profile
 }

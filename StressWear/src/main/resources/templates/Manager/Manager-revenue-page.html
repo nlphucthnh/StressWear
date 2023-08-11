@@ -107,9 +107,11 @@
             <div class="body_content">
                 <div class="tab-pane active" id="list_blogs" role="tabpanel" aria-labelledby="list-blogs-tab">
                     <!-- Bieeur ddo 1 -->
-                    <div id="top_x_div" style="width: 100%; height: 700px; text-align: center;"></div>
+                    <div id="top_x_div" style="width: 70%; height: 400px; text-align: center;"></div>
                     <!-- Bieu do 2 -->
-                    <div id="chart_div"></div>
+                    <div id="chart_div" style="margin-top: 100px; width: 100%;  height: 300px; "></div>
+
+
                     <br />
                     <div id="btn-group">
                         <button
@@ -126,32 +128,33 @@
                             class="button" id="short">Short</button>
                     </div>
                     <div class="list_blogs-header">
-                        <div class="list_blogs-header-seletion-group" style="margin-left: 20px;">
-                        </div>
+                        <div class="list_blogs-header-seletion-group"></div>
+                        <div class="totalAmount">Doanh thu: <strong>{{ totalAmount | number }} VND</strong></div>
                         <div class="list_blogs-header-search-group">
-                            <form action="">
-                                <div class="input-group mb-3">
-                                    <button class="btn btn-outline-secondary box-shadow-none" type="button"
-                                        id="button-search"><i class="bi bi-search"></i></button>
-                                    <input type="text" class="form-control box-shadow-none" placeholder="Tìm kiếm"
-                                        aria-label="Example text with button addon" aria-describedby="button-search">
-                                </div>
-                            </form>
+
+                            <!-- <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary box-shadow-none" ng-click="searchProducts()"
+                                    type="button" id="button-search"><i class="bi bi-search"></i></button>
+                                <input type="text" class="form-control box-shadow-none" ng-model="searchKeyword"
+                                    placeholder="Tìm kiếm" aria-label="Example text with button addon"
+                                    aria-describedby="button-search">
+                            </div> -->
+
                         </div>
                     </div>
                     <div class="list_blogs-body">
+
                         <div class="table-responsive">
 
                             <table class="table table-striped m-0">
                                 <thead>
                                     <tr>
                                         <th scope="col">Sản phẩm</th>
-                                        <th></th>
                                         <th scope="col">Số lượng mua</th>
                                         <th scope="col">Giá sản phẩm</th>
                                         <th scope="col">Tổng tiền</th>
                                         <th scope="col">Ngày mua</th>
-                                        <th scope="col">Thao tác</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -163,17 +166,13 @@
                                                     {{dhct.sanPham.idSanPham}}</p>
                                             </div>
                                         </td>
-                                        <td></td>
+
                                         <td>{{dhct.soLuong}}</td>
-                                        <td>{{dhct.sanPham.giaSanPham}}</td>
-                                        <td>{{dhct.soLuong * dhct.sanPham.giaSanPham}}</td>
-                                        <td>{{dhct.ngayMuaSanPham}}</td>
-                                        <td>
-                                            <button class="btn" style="color: var(--gray_500);"><i
-                                                    class="bi bi-trash3"></i></button>
-                                            <button class="btn" style="color: var(--gray_500);"><i
-                                                    class="bi bi-pen"></i></button>
-                                        </td>
+                                        <td>{{ dhct.sanPham.giaSanPham | number }} VND</td>
+
+                                        <td>{{dhct.soLuong * dhct.sanPham.giaSanPham | number }} VND</td>
+                                        <td>{{dhct.ngayMuaSanPham | date:'dd/MM/yyyy'}}</td>
+
 
                                     </tr>
                                 </tbody>
@@ -191,13 +190,13 @@
                                             <button ng-if="infor_tksp.number == infor_tksp.totalPages - 1"
                                                 class="btn-style btn-next m-0 disnable">Kế tiếp</button>
                                         </td>
+                                        <td> Trang {{infor_tksp.number + 1}} của {{infor_tksp.totalPages}}</td>
+                                        <td></td>
+                                        <!-- <td>Tổng cộng: <strong>{{ totalAmount | number }} VND</strong></td> -->
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            Trang {{infor_tksp.number + 1}} của {{infor_tksp.totalPages}}
-                                        </td>
+
+
                                     </tr>
                                 </tfoot>
                             </table>

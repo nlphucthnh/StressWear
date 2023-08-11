@@ -105,7 +105,7 @@ app.controller("ctrl-dh", function ($scope, $http) {
   $scope.edit_dh = function (donhang) {
     $(".btn-update-dh").css("pointer-events", "all");
     $(".btn-update-dh").css("background-color", "white");
-    $("#status_order2").css("pointer-events", "none");
+    // $("#status_order2").css("pointer-events", "none");
     $("#form-order-tab").trigger('click');
     donhang.ngayTao = new Date(donhang.ngayTao);
     $scope.form_dh = angular.copy(donhang);

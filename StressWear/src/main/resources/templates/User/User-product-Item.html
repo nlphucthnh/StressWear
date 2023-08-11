@@ -55,32 +55,32 @@
                         <li class="nav-item">
                             <a class="nav-link active image-container" data-bs-toggle="tab" href="#pic-1">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
-                                    th:src="@{${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan}}" alt="Hình ảnh">
+                                    th:src="'https://'+@{${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan}}" alt="Hình ảnh">
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link img-item" data-bs-toggle="tab" href="#pic-2">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 1}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[1].hinhAnh.duongDan} }" alt="Hình ảnh">
+                                    th:src="'https://'+@{ ${spcl.ListDSHA_SPCT[1].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link img-item" data-bs-toggle="tab" href="#pic-3">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 2}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[2].hinhAnh.duongDan} }" alt="Hình ảnh">
+                                    th:src="'https://'+@{ ${spcl.ListDSHA_SPCT[2].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link img-item" data-bs-toggle="tab" href="#pic-4">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 3}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[3].hinhAnh.duongDan} }" alt="Hình ảnh">
+                                    th:src="'https://'+@{ ${spcl.ListDSHA_SPCT[3].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link img-item" data-bs-toggle="tab" href="#pic-5">
                                 <img th:if="${spcl.ListDSHA_SPCT.size() > 4}"
-                                    th:src="@{ ${spcl.ListDSHA_SPCT[4].hinhAnh.duongDan} }" alt="Hình ảnh">
+                                    th:src="'https://'+@{ ${spcl.ListDSHA_SPCT[4].hinhAnh.duongDan} }" alt="Hình ảnh">
                             </a>
                         </li>
                     </ul>
@@ -90,23 +90,23 @@
                     <div class="preview-pic tab-content img-tabcontent" th:each="spcl : ${productitem[0]}">
                         <div class="tab-pane active image-container" id="pic-1">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 0}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan} }" alt="Hình ảnh">
+                                th:src="'https://'+@{ ${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane img-item" id="pic-2">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 1}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[1].hinhAnh.duongDan} }" alt="Hình ảnh">
+                                th:src="'https://'+@{ ${spcl.ListDSHA_SPCT[1].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane img-item" id="pic-3">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 2}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[2].hinhAnh.duongDan} }" alt="Hình ảnh">
+                                th:src="'https://'+@{ ${spcl.ListDSHA_SPCT[2].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane img-item" id="pic-4">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 3}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[3].hinhAnh.duongDan} }" alt="Hình ảnh">
+                                th:src="'https://'+@{ ${spcl.ListDSHA_SPCT[3].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
                         <div class="tab-pane img-item" id="pic-5">
                             <img th:if="${spcl.ListDSHA_SPCT.size() > 4}"
-                                th:src="@{ ${spcl.ListDSHA_SPCT[4].hinhAnh.duongDan} }" alt="Hình ảnh">
+                                th:src="'https://'+@{ ${spcl.ListDSHA_SPCT[4].hinhAnh.duongDan} }" alt="Hình ảnh">
                         </div>
                     </div>
 
@@ -152,38 +152,8 @@
             </div>
         </div>
 
-        <article class="container description my-5">
-            <p>Bảo quản: <br>
-                &nbsp &nbsp &nbsp &#8226; &nbsp Dùng khăn ẩm với nước sạch hoặc dung dịch tẩy rửa nhẹ để
-                làm sạch sản phẩm.
-                Sau đó, lau khô sản &nbsp &nbsp &nbsp &nbsp phẩm bằng
-                khăn mềm. <br>
-                &nbsp &nbsp &nbsp &#8226; &nbsp Không để sản phẩm tiếp xúc với nước hoặc nguồn nhiệt độ
-                cao trong thời gian
-                dài.
-                <br>
-                &nbsp &nbsp &nbsp &#8226; &nbsp Không dùng các vật sắc nhọn, thô cứng, sần sùi chà xát
-                sản phẩm.
-            </p>
-            <br>
-            <p> Bảo hành: <br>
-                &nbsp &nbsp &nbsp &#8226; &nbsp Thời hạn bảo hành: 12 tháng <br>
-                &nbsp &nbsp &nbsp &#8226; &nbsp Bảo hành cho các sản phẩm có lỗi nguyên vật liệu hay lỗi
-                từ nhà sản xuất
-                (như móp, méo, cong vênh &nbsp &nbsp &nbsp &nbsp các chi
-                tiết sản phẩm, bong tróc sơn,...). Hoặc các sản phẩm bị bể vỡ/trầy/xước biến dạng trong
-                quá &nbsp &nbsp
-                &nbsp &nbsp &nbsp &nbsp &nbsp trình
-                vận
-                chuyển. <br>
-                &nbsp &nbsp &nbsp &#8226; &nbsp Không bảo hành cho các sản phẩm hư hỏng trong quá trình
-                quý khách sử dụng do
-                sử dụng không cẩn &nbsp &nbsp &nbsp thận, bảo
-                quản và vệ sinh không đúng cách. Cũng như sản phẩm bị các hao mòn thông thường (như
-                &nbsp &nbsp &nbsp &nbsp
-                &nbsp &nbsp &nbsp phai
-                mờ, rỉ sét do trầy
-                xước, lỏng ốc vít sau một khoảng thời gian...).</p>
+        <article class="container description my-5 text-dark">
+            <span th:text="${products.moTaSanPham}"></span>
         </article>
     </div>
     <div class="toast-container">

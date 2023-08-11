@@ -148,7 +148,7 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
     ngayTao: new Date(),
     phuongThucThanhToan: "cash", // Bỏ chú thích và để giá trị mặc định là chuỗi rỗng
     taiKhoanMuaHang: { tenDangNhap: $("#taiKhoanMuaHang").text() }, // Sử dụng một đối tượng chứa tên người dùng
-    trangThaiDonHang: "Đang xử lý",
+    trangThaiDonHang: "doing",
     thongTinGiaoHang: { idThongTinGiaoHang: lastIdThongTinGiaoHang }, //
     get ListDHCT() {
       return $scope.cart.items.map((item) => {
@@ -193,7 +193,7 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
     ngayTao: new Date(),
     phuongThucThanhToan: "credit", // Bỏ chú thích và để giá trị mặc định là chuỗi rỗng
     taiKhoanMuaHang: { tenDangNhap: $("#taiKhoanMuaHang").text() }, // Sử dụng một đối tượng chứa tên người dùng
-    trangThaiDonHang: "Đang xử lý",
+    trangThaiDonHang: "doing",
     thongTinGiaoHang: { idThongTinGiaoHang: lastIdThongTinGiaoHang }, //
     get ListDHCT() {
       return $scope.cart.items.map((item) => {
@@ -212,34 +212,14 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
         .then((resp) => {
           $scope.cart.clear();
           $scope.address.clear();
-          // location.href = "/order/detail/" + resp.data.idDonHang;
+          // location.href = "/";
         })
+
         .catch((error) => {
           // showError();
           console.log(error);
         });
     },
-    showpaysuccess() {
-
-      document
-      .getElementById("showpaysuccess")
-      .addEventListener("click", function () {
-          // Hàm hiển thị thông báo
-          Swal.fire({
-              title: "Thông báo",
-              text: "Thanh toán thành công",
-              icon: "success",
-              confirmButtonText: "OK",
-          }).then((result) => {
-              if (result.isConfirmed) {
-                  $scope.cart.clear();
-                  $scope.address.clear();
-                  location.href = "/";
-              }
-          });
-      });
-  },
- 
   };
 });
 function showCartNotification(message) {
@@ -279,7 +259,3 @@ function showsussce(message) {
     bootstrapToast.hide();
   }, 3000); // 3000 milliseconds = 3 seconds
 }
-
-// document
-//   .getElementById("addToCartButton")
-//   .addEventListener("click", function () {});

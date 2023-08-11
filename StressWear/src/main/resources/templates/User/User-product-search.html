@@ -64,7 +64,7 @@
 
           
               <th:block th:each="spcl : ${product.ListSPCT_SP[0]}">
-                <img th:if="${spcl.ListDSHA_SPCT.size() > 0}" th:src="@{${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan}}" alt="Hình ảnh">
+                <img th:if="${spcl.ListDSHA_SPCT.size() > 0}" th:src="'https://'+@{${spcl.ListDSHA_SPCT[0].hinhAnh.duongDan}}" alt="Hình ảnh">
               </th:block>
 
             </div>

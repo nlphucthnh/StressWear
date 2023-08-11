@@ -160,6 +160,11 @@
 }
 .megamenu .item-group .item-opsition-menu p {
   color: var(--gray_400) !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .megamenu .item-group .item-opsition-menu a,

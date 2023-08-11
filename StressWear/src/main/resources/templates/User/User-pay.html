@@ -147,7 +147,7 @@
                         </label>
                         <form action="/pay" method="post">
                             <input type="text" name="price" ng-model="cart.amount" ng-hide="true">
-                            <button class="btn btn-dark btn-pay" ng-click="orderpaypal.purchasepaypal()">Thanh
+                            <button class="btn btn-dark btn-pay" id="btnpay" ng-click="orderpaypal.purchasepaypal()">Thanh
                                 toán</button>
                         </form>
                     </div>
