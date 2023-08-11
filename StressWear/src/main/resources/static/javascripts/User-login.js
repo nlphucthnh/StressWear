@@ -1,4 +1,3 @@
-
 const API_TAIKHOAN = "http://localhost:8080/api/taikhoan";
 const API_VAITROTAIKHOAN = "http://localhost:8080/api/vaitrotaikhoan";
 const app = angular.module("app", []);

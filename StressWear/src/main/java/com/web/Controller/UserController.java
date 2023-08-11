@@ -71,6 +71,7 @@ public class UserController {
 
 	@RequestMapping("/oauth2/login/success")
 	public String success(OAuth2AuthenticationToken oAuth2, Model model) {
+		// toàn bộ thông tin login từ mxh OAuth2AuthenticationToken 
 		userService.loginFromOAuth2(oAuth2);
 		session.setAttribute("oAuth2", oAuth2);
 		String rootString = oAuth2.getPrincipal().toString();

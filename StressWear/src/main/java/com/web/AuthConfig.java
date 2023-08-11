@@ -30,6 +30,7 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userService); // từ userService
+		// đưa nguồn từ cơ sở dữ liệu
 	}
 
 	/* Phân quyền sử dụng và hình thức đăng nhập */
@@ -62,10 +63,10 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 		// OAuth2 đăng nhập từ mạng xã hội
 		http.oauth2Login()
 				.loginPage("/auth/login/form")
-				.defaultSuccessUrl("/oauth2/login/success", true)
+				.defaultSuccessUrl("/oauth2/login/success", true) // lấy từ controller oauth2
 				.failureUrl("/auth/login/error")
 				.authorizationEndpoint()
-				.baseUri("/oauth2/authorization");
+				.baseUri("/oauth2/authorization"); // lấy từ href html
 
 	}
 }

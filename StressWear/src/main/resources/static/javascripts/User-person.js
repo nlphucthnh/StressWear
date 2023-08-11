@@ -2,20 +2,20 @@
 
 $("#upload-bg-pen").click(function (e) {
     $("#upload_bg").trigger("click");
-
+    // khi ấn vào btn sẽ auto click 
 });
 $("#upload_bg").change(function () {
-    $("#spinner .spinner-border").show();
-    $("#upload-bg-pen").css("pointer-events", "none");
-    var img_bg_old = $(".background-profile-img").attr('src');
-    const ref = firebase.storage().ref();
-    const file = document.querySelector("#upload_bg").files[0];
+    $("#spinner .spinner-border").show(); // hiện icon loading
+    $("#upload-bg-pen").css("pointer-events", "none"); // ko cho phép nhấn vào btn pencil
+    var img_bg_old = $(".background-profile-img").attr('src'); // lấy img lưu 
+    const ref = firebase.storage().ref(); // gọi firebase
+    const file = document.querySelector("#upload_bg").files[0]; // lấy file ra 
     const metadata = {
-        contentType: 'image/jpeg'
+        contentType: 'image/jpeg' // định dạng kiểu dữ liệu là hình ảnh
     };
-    const nameFile = $("#upload_bg").val().split(/(\\|\/)/g).pop();
+    const nameFile = $("#upload_bg").val().split(/(\\|\/)/g).pop(); // cắt chuỗi http 
     const uploadIMG = ref.child(nameFile).put(file, metadata);
-    uploadIMG
+    uploadIMG // insert lên fire base
         .then(snapshot => snapshot.ref.getDownloadURL())
         .then(url => {
             $(".background-profile-img").attr('src', url);
@@ -56,6 +56,8 @@ $("#upload_avatar").change(function () {
 });
 
 // ------------------ Load image backgourd ------------------ //
+
+
 const API_DONHANG = "http://localhost:8080/api/donhang";
 const app = angular.module("app", []);
 app.controller("ctrl", function ($scope, $http) {

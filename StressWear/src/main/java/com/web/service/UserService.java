@@ -39,16 +39,16 @@ public class UserService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
 			TaiKhoan taiKhoan = taiKhoanDAO.findById(username).get();
-			
-			// tạo userdetail từ account
+			// tài khoản lấy từ csdl với DAO
+			// tạo userdetail từ thông tin account
 			String password = taiKhoan.getMatKhau(); // lấy từ csdl
 			String[] roles = taiKhoan.getList_VTTK().stream() // lấy từ csdl
-					.map(au -> au.getVaiTro().getIdVaiTro().trim()) // list đổi sang mảng -> lamda
+					.map(au -> au.getVaiTro().getIdVaiTro().trim()) // list đổi sang mảng -> lamda / cắt khoảng trắng ở đầu
 					.collect(Collectors.toList()).toArray(new String[0]);
 			session.setAttribute("tenDangNhapLogin",taiKhoan.getTenDangNhap());
 			return User.withUsername(username)
 					.password(pe.encode(password))
-					.roles(roles).build();
+					.roles(roles).build(); // roles yêu cầu mảng 
 		} catch (Exception e) {
 			throw new UsernameNotFoundException(username + "not found"); 
 		}
@@ -57,13 +57,17 @@ public class UserService implements UserDetailsService{
 
 	public void loginFromOAuth2(OAuth2AuthenticationToken oauth2) {
 //		String fullname = oauth2.getPrincipal().getAttribute("name");
+		// principal = thông tin user
+		// đọc thông tin tài khoản từ mạng xã hội 
 		String email = oauth2.getPrincipal().getAttribute("email");
 		String password = Long.toHexString(System.currentTimeMillis());
-		
+
+		// tạo đối tượng userDetails(Principal) lấy email làm username
 		UserDetails userDetails = User.withUsername(email)
 				.password(pe.encode(password)).roles("GUEST").build();
-		
+		// tạo đối tượng authentication từ userDetails
 		Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());	
+		// thay đổi thông tin đăng nhập của hệ thống	
 		SecurityContextHolder.getContext().setAuthentication(auth);
 	}
 }

@@ -40,7 +40,7 @@ public class UrPerson {
     public String getProfliePage(Model model) {
         List<NhomLoai> nhomloai = nlDao.findAll();
         model.addAttribute("nhomloai", nhomloai);
-        String tenDangNhap = (String) session.getAttribute("tenDangNhapLogin");
+        String tenDangNhap = (String) session.getAttribute("tenDangNhapLogin"); // set từ user service
         if (tenDangNhap != null) {
             ThongTinTaiKhoan thongTinTaiKhoan = thongTinTaiKhoanDAO.findBytaiKhoanTTTK(tenDangNhap);
             if (thongTinTaiKhoan != null) {
