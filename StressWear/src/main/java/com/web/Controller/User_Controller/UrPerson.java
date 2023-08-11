@@ -47,7 +47,7 @@ public class UrPerson {
                 model.addAttribute("ThongTinTK", thongTinTaiKhoan);
             } else {
                 ThongTinTaiKhoan thongTinTaiKhoan2 = new ThongTinTaiKhoan();
-                thongTinTaiKhoan2.setTaiKhoanTTTK(taiKhoanDAO.findById(tenDangNhap).get());
+                thongTinTaiKhoan2.setTaiKhoanTTTK(taiKhoanDAO.findById(tenDangNhap).get()); // nếu chưa có thông tin thì set tttk rồi lưu
                 thongTinTaiKhoanDAO.save(thongTinTaiKhoan2);
                 model.addAttribute("ThongTinTK", thongTinTaiKhoan2);
             }
@@ -60,8 +60,8 @@ public class UrPerson {
         if (thongTinTaiKhoan != null) {
             String tenDangNhap = (String) session.getAttribute("tenDangNhapLogin");
             ThongTinTaiKhoan thongTinTaiKhoan2 = thongTinTaiKhoanDAO.findBytaiKhoanTTTK(tenDangNhap);
-            thongTinTaiKhoan.setIdThongTinTaiKhoan(thongTinTaiKhoan2.getIdThongTinTaiKhoan());
-            thongTinTaiKhoan.setTaiKhoanTTTK(thongTinTaiKhoan2.getTaiKhoanTTTK());
+            thongTinTaiKhoan.setIdThongTinTaiKhoan(thongTinTaiKhoan2.getIdThongTinTaiKhoan()); // set thongTinTaiKhoan vào thongTinTaiKhoan2
+            thongTinTaiKhoan.setTaiKhoanTTTK(thongTinTaiKhoan2.getTaiKhoanTTTK()); // set tttk từ model lấy từ form về vào taikhoan null
             thongTinTaiKhoanDAO.save(thongTinTaiKhoan);
         }
         return "redirect:/user/profile";
