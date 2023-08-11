@@ -1,37 +1,51 @@
 google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses', 'Profit'],
-          ['2014', 1000, 400, 200],
-          ['2015', 1170, 460, 250],
-          ['2016', 660, 1120, 300],
-          ['2017', 1030, 540, 350]
-        ]);
+async function fetchData() {
+  try {
+    const response = await fetch('http://localhost:8080/api/donhangchitiet/thongkesanpham'); 
+    const apiData = await response.json();
+    return apiData;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];
+  }
+}
 
-        var options = {
-          chart: {
-            title: 'Company Performance',
-            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-          },
-          bars: 'vertical',
-          vAxis: {format: 'decimal'},
-          height: 400,
-          colors: ['#1b9e77', '#d95f02', '#7570b3']
-        };
+async function drawChart() {
+  const apiData = await fetchData();
 
-        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Year');
+  data.addColumn('number', 'Sales');
+  data.addColumn('number', 'Expenses');
+  data.addColumn('number', 'Profit');
 
-        chart.draw(data, google.charts.Bar.convertOptions(options));
+  apiData.forEach(item => {
+    data.addRow([item.year, item.sales, item.expenses, item.profit]);
+  });
 
-        var btns = document.getElementById('btn-group');
+  var options = {
+    chart: {
+      title: 'Company Performance',
+      subtitle: 'Sales, Expenses, and Profit'
+    },
+    bars: 'vertical',
+    vAxis: {format: 'decimal'},
+    height: 400,
+    colors: ['#1b9e77', '#d95f02', '#7570b3']
+  };
 
-        btns.onclick = function (e) {
+  var chart = new google.charts.Bar(document.getElementById('chart_div'));
 
-          if (e.target.tagName === 'BUTTON') {
-            options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
-            chart.draw(data, google.charts.Bar.convertOptions(options));
-          }
-        }
-      }
+  chart.draw(data, google.charts.Bar.convertOptions(options));
+
+  var btns = document.getElementById('btn-group');
+
+  btns.onclick = function (e) {
+    if (e.target.tagName === 'BUTTON') {
+      options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+  };
+}
