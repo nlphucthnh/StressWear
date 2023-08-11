@@ -59,16 +59,30 @@ const app = angular.module("app", []);
 app.controller("ctrl-revenue", function ($scope, $http) {
 
   $scope.list_thongkesanpham = [];
+  $scope.list_thongkesanpham1 = [];
 
 
   $scope.load_data_thongkesanpham = function (numberPage) {
     var url = `${API_DONHANG}/paging?page=${numberPage}`;
-    $scope.totalAmount = 0; // Khai báo và khởi tạo biến totalAmount
+    
     $http.get(url).then((result) => {
       $scope.list_thongkesanpham = result.data.content;
       $scope.infor_tksp = result.data
-      result.data.content.forEach(commentitem => {
-        $scope.totalAmount += commentitem.soLuong * commentitem.sanPham.giaSanPham;
+     
+      console.log(result.data);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
+  $scope.load_data_thongkesanpham1 = function () {
+    var url = `${API_DONHANG}`;
+    $scope.totalAmount = 0; // Khai báo và khởi tạo biến totalAmount
+    $http.get(url).then((result) => {
+      $scope.list_thongkesanpham1 = result.data;
+      $scope.infor_tksp1 = result.data
+      result.data.forEach(commentitem => {
+        $scope.totalAmount += commentitem.soLuong * commentitem.sanPhamDHCT.giaSanPham;
       });
       console.log(result.data);
     }).catch((err) => {
@@ -90,4 +104,5 @@ app.controller("ctrl-revenue", function ($scope, $http) {
 
 
   $scope.load_data_thongkesanpham(0);
+  $scope.load_data_thongkesanpham1();
 })
