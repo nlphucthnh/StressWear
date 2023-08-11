@@ -80,9 +80,9 @@ app.controller("ctrl-revenue", function ($scope, $http) {
   $scope.searchKeyword = ''; // Khai báo và khởi tạo biến searchKeyword
 
   $scope.searchProducts = function () {
-    var url = `${API_DONHANG}?searchKeyword=${$scope.searchKeyword}`;
+    var url = `${API_DONHANG}/paging?searchKeyword=${$scope.searchKeyword}`;
     $http.get(url).then(result => {
-      $scope.apiData = result.data;
+      $scope.apiData = result.data.content;
       updateChart($scope.apiData);
     });
   };

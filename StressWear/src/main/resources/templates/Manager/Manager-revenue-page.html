@@ -109,7 +109,9 @@
                     <!-- Bieeur ddo 1 -->
                     <div id="top_x_div" style="width: 70%; height: 400px; text-align: center;"></div>
                     <!-- Bieu do 2 -->
-                    <div id="chart_div" style="margin-top: 100px;"></div>
+                    <div id="chart_div" style="margin-top: 100px; width: 100%;  height: 300px; "></div>
+
+
                     <br />
                     <div id="btn-group">
                         <button
@@ -127,22 +129,23 @@
                     </div>
                     <div class="list_blogs-header">
                         <div class="list_blogs-header-seletion-group"></div>
-                        <div class="totalAmount">Tổng cộng: <strong>{{ totalAmount | number }} VND</strong></div>
+                        <div class="totalAmount">Doanh thu: <strong>{{ totalAmount | number }} VND</strong></div>
                         <div class="list_blogs-header-search-group">
-                        
-                                <div class="input-group mb-3">
-                                    <button class="btn btn-outline-secondary box-shadow-none"  ng-click="searchProducts()" type="button"
-                                        id="button-search"><i class="bi bi-search"></i></button>
-                                    <input type="text" class="form-control box-shadow-none" ng-model="searchKeyword"  placeholder="Tìm kiếm"
-                                        aria-label="Example text with button addon" aria-describedby="button-search">
-                                </div>
-                          
+
+                            <!-- <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary box-shadow-none" ng-click="searchProducts()"
+                                    type="button" id="button-search"><i class="bi bi-search"></i></button>
+                                <input type="text" class="form-control box-shadow-none" ng-model="searchKeyword"
+                                    placeholder="Tìm kiếm" aria-label="Example text with button addon"
+                                    aria-describedby="button-search">
+                            </div> -->
+
                         </div>
                     </div>
                     <div class="list_blogs-body">
-                       
+
                         <div class="table-responsive">
-                            
+
                             <table class="table table-striped m-0">
                                 <thead>
                                     <tr>
@@ -151,7 +154,7 @@
                                         <th scope="col">Giá sản phẩm</th>
                                         <th scope="col">Tổng tiền</th>
                                         <th scope="col">Ngày mua</th>
-                                      
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -163,17 +166,17 @@
                                                     {{dhct.sanPham.idSanPham}}</p>
                                             </div>
                                         </td>
-                                        
+
                                         <td>{{dhct.soLuong}}</td>
                                         <td>{{ dhct.sanPham.giaSanPham | number }} VND</td>
 
                                         <td>{{dhct.soLuong * dhct.sanPham.giaSanPham | number }} VND</td>
                                         <td>{{dhct.ngayMuaSanPham | date:'dd/MM/yyyy'}}</td>
-                                      
+
 
                                     </tr>
                                 </tbody>
-                                <tfoot >
+                                <tfoot>
                                     <tr>
                                         <td style="text-align: left;">
                                             <button ng-if="infor_tksp.number == 0"
@@ -191,8 +194,8 @@
                                         <td></td>
                                         <td>Tổng cộng: <strong>{{ totalAmount | number }} VND</strong></td>
                                         <td></td>
-                                        
-                                        
+
+
                                     </tr>
                                 </tfoot>
                             </table>

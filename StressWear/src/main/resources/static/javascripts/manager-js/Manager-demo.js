@@ -11,29 +11,42 @@ async function fetchData() {
     return [];
   }
 }
-
 async function drawChart() {
   const apiData = await fetchData();
 
+  // Group data by year and calculate total quantity and total amount for each year
+  const groupedData = apiData.reduce((groups, item) => {
+    const year = new Date(item.ngayMuaSanPham).getFullYear();
+    if (!groups[year]) {
+      groups[year] = {
+        year: year,
+        totalAmount: 0
+      };
+    }
+    groups[year].totalAmount += item.soLuong * item.sanPham.giaSanPham;
+    return groups;
+  }, {});
+
+  // Convert grouped data to an array of arrays for the chart
+  const chartData = Object.values(groupedData).map(group => {
+    return [group.year.toString(), group.totalAmount];
+  });
+
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Year');
-  data.addColumn('number', 'Sales');
-  data.addColumn('number', 'Expenses');
-  data.addColumn('number', 'Profit');
+  data.addColumn('number', 'Tổng tiền');
 
-  apiData.forEach(item => {
-    data.addRow([item.year, item.sales, item.expenses, item.profit]);
-  });
+  data.addRows(chartData);
 
   var options = {
     chart: {
-      title: 'Company Performance',
-      subtitle: 'Sales, Expenses, and Profit'
+      title: 'Thống kê theo năm',
+      subtitle: 'Tổng số lượng và tổng số tiền theo năm'
     },
     bars: 'vertical',
     vAxis: {format: 'decimal'},
     height: 400,
-    colors: ['#1b9e77', '#d95f02', '#7570b3']
+    colors: ['#1b9e77', '#d95f02']
   };
 
   var chart = new google.charts.Bar(document.getElementById('chart_div'));
