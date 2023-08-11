@@ -100,10 +100,10 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
     get countByProductId() {
       var idSanPhamInput = document.getElementById("idSanPham");
       var targetIdSanPham = parseInt(idSanPhamInput.value);
-      
+
       return this.items
-        .filter(item => item.idSanPham === targetIdSanPham)
-        .map(item => item.qty)
+        .filter((item) => item.idSanPham === targetIdSanPham)
+        .map((item) => item.qty)
         .reduce((total, qty) => (total += qty), 0);
     },
 
@@ -219,6 +219,27 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
           console.log(error);
         });
     },
+    showpaysuccess() {
+
+      document
+      .getElementById("showpaysuccess")
+      .addEventListener("click", function () {
+          // Hàm hiển thị thông báo
+          Swal.fire({
+              title: "Thông báo",
+              text: "Thanh toán thành công",
+              icon: "success",
+              confirmButtonText: "OK",
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  $scope.cart.clear();
+                  $scope.address.clear();
+                  location.href = "/";
+              }
+          });
+      });
+  },
+ 
   };
 });
 function showCartNotification(message) {
@@ -227,10 +248,9 @@ function showCartNotification(message) {
   toastBody.textContent = message;
 
   var toastContainer = document.querySelector(".toast-container");
-  
-    toast.classList.add("bg-danger", "text-white"); // Thêm lớp bg-danger và text-white
-  
-  
+
+  toast.classList.add("bg-danger", "text-white"); // Thêm lớp bg-danger và text-white
+
   toastContainer.appendChild(toast);
 
   var bootstrapToast = new bootstrap.Toast(toast);
@@ -247,10 +267,9 @@ function showsussce(message) {
   toastBody.textContent = message;
 
   var toastContainer = document.querySelector(".toast-container");
-  
-    toast.classList.add("bg-success", "text-white"); // Thêm lớp bg-danger và text-white
-  
-  
+
+  toast.classList.add("bg-success", "text-white"); // Thêm lớp bg-danger và text-white
+
   toastContainer.appendChild(toast);
 
   var bootstrapToast = new bootstrap.Toast(toast);
@@ -261,8 +280,6 @@ function showsussce(message) {
   }, 3000); // 3000 milliseconds = 3 seconds
 }
 
-document
-  .getElementById("addToCartButton")
-  .addEventListener("click", function () {});
-
-  
+// document
+//   .getElementById("addToCartButton")
+//   .addEventListener("click", function () {});
