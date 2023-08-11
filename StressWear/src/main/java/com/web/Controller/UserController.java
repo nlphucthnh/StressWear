@@ -32,7 +32,7 @@ public class UserController {
 	@RequestMapping("/auth/login/success")
 	public String success(Model model) {
 		if (request.isUserInRole("USER") && (request.isUserInRole("ADMIN") || request.isUserInRole("STAFF"))) {
-			System.out.println("Vừa người dùng vừa quản trị viên");
+			return "redirect:/user/changetab";
 		} else if (request.isUserInRole("ADMIN") || request.isUserInRole("STAFF")) {
 			return "redirect:/manager/profile";
 		}

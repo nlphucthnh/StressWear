@@ -17,6 +17,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="/javascripts/library-js/angular.min.js"></script>
+    <script src="/javascripts/library-js/angular-route.js"></script>
+
     <!-- link icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet"
@@ -30,8 +33,6 @@
     <link rel="stylesheet" href="/styles/navbar.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <link rel="stylesheet" href="/styles/Manager-style/manager-profile-page.css">
-
-
     <title>PerSon</title>
 
 </head>
@@ -43,8 +44,7 @@
     <!-- <nav th:replace="navbaruser"></nav> -->
     <header class="header-person">
         <div class="banner-person">
-            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2FbannerPerson.png?alt=media&token=3a53c915-eb88-4171-904a-be2894aa9b10"
-                alt="Lỗi" width="100%" height="450px">
+            <img th:src="${ThongTinTK.anhNen}" alt="Lỗi" width="100%" height="450px">
         </div>
         <div class="container my-4 d-flex justify-content-between">
             <div class="header-person-main " style="display: flex; justify-content: space-between; width: 100%;">
@@ -52,28 +52,29 @@
                 <div class="auther-item d-flex align-items-center ">
                     <div class="avatar-container">
                         <!-- <img th:src="${ThongTinTK.anhDaiDien}" alt="" class="avata-img"> -->
-                        <img th:src="${ThongTinTKK.anhDaiDien}"
-                            alt="Khong tìm thấy" width="160px" height="160px" class="anhDaidien"
-                            id="img-avata">
+                        <img th:src="${ThongTinTK.anhDaiDien}" alt="Khong tìm thấy" width="160px" height="160px"
+                            class="anhDaidien" id="img-avata">
                         <input id="avatar-input" name="avatar" class="avatar-input" type="file" accept="image/*">
                     </div>
                     <!-- <a href="/user/profile"> -->
                     <span class="navbar-text text-start me-2" style="margin-left: 30px;">
-                        <div class="text-decoration-none text-dark text-user-person">[[${ThongTinTKK.hoTen}]]</div>
+                        <div class="text-decoration-none text-dark text-user-person">[[${ThongTinTK.hoTen}]]</div>
                         <span class="text-black-50"></span>
-                        [[${ThongTinTKK.taiKhoanTTTK.email}]]
-                    <!-- </span> -->
-                    
-                    <div class="btn-upload">
-                        <button id="confirm-button" class="btn btn-info" onclick="notify()" style="display: none;">xác
-                            nhận</button>
-                    </div>
+                        [[${ThongTinTK.taiKhoanTTTK.email}]]
+                        <!-- </span> -->
+                        <input type="text" id="tenDangNhap" style="display: none;" th:value="${ThongTinTK.taiKhoanTTTK.tenDangNhap}">
+                        <div class="btn-upload">
+                            <button id="confirm-button" class="btn btn-info" onclick="notify()"
+                                style="display: none;">xác
+                                nhận</button>
+                        </div>
                 </div>
                 <div class="auther-item d-flex align-items-center ">
                     <div class="edit-profile my-3">
-                        <button class="btn btn-edit-profile" data-bs-toggle="modal" data-bs-target="#modal-profile">Chỉnh
+                        <button class="btn btn-edit-profile" data-bs-toggle="modal"
+                            data-bs-target="#modal-profile">Chỉnh
                             sửa thông tin</button>
-                            <!-- <button data-bs-toggle="modal" data-bs-target="#modal-profile"
+                        <!-- <button data-bs-toggle="modal" data-bs-target="#modal-profile"
                             class="btn btn-edit-profile">Chỉnh sửa cá nhân</button> -->
                     </div>
                 </div>
@@ -82,7 +83,7 @@
         </div>
     </header>
 
-    <article class="container">
+    <article class="container" ng-app="app" ng-controller="ctrl">
         <div class="row">
             <div class="col-12">
                 <h3>Quản lý đặt hàng</h3>
@@ -91,73 +92,23 @@
                     <table class="table table-light">
                         <thead>
                             <tr>
-                                <th style="width: 68%;" scope="col">Tên</th>
+                                <th style="width: 50%;" scope="col">Tên</th>
                                 <th scope="col">Trạng thái</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Tổng đơn</th>
+                                <th scope="col">Địa chỉ giao</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="">
+                            <tr  ng-repeat="dh in list_dh">
                                 <td scope="row" style="align-items: center;">
                                     <div class="table-body-first-col d-flex">
-                                        <div class="table-body-first-col-img-product" style="margin-right: 20px;">
-                                            <img width="50px" height="50px" style="border-radius: 5px;"
-                                                src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c"
-                                                alt="" class="img-product">
-                                        </div>
                                         <div class="table-body-first-col-content-product">
-                                            <h5 class="text-name-product">Áo thun</h5>
-                                            <h6 class="text-price-product">120.000d</h6>
+                                            <h5 class="text-name-product">Đơn hàng {{dh.idDonHang}}</h5>
                                         </div>
                                     </div>
                                 </td>
-                                <td><span class="badge text-bg-primary">Active</span></td>
-                                <td>2 Cái</td>
-                                <td>olivia@untitledui.com</td>
+                                <td><span class="badge text-bg-primary">{{dh.trangThaiDonHang}}</span></td>
+                                <td>{{dh.diaChiChiTiet}}</td>
                             </tr>
-                            <tr class="">
-                                <td scope="row" style="align-items: center;">
-                                    <div class="table-body-first-col d-flex">
-                                        <div class="table-body-first-col-img-product" style="margin-right: 20px;">
-                                            <img width="50px" height="50px" style="border-radius: 5px;"
-                                                src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c"
-                                                alt="" class="img-product">
-                                        </div>
-                                        <div class="table-body-first-col-content-product">
-                                            <h5 class="text-name-product">Áo thun</h5>
-                                            <h6 class="text-price-product">120.000d</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="badge text-bg-primary">Active</span></td>
-                                <td>2 Cái</td>
-                                <td>olivia@untitledui.com</td>
-                            </tr>
-                            <tr class="">
-                                <td scope="row" style="align-items: center;">
-                                    <div class="table-body-first-col d-flex">
-                                        <div class="table-body-first-col-img-product" style="margin-right: 20px;">
-                                            <img width="50px" height="50px" style="border-radius: 5px;"
-                                                src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c"
-                                                alt="" class="img-product">
-                                        </div>
-                                        <div class="table-body-first-col-content-product">
-                                            <h5 class="text-name-product">o thun</h5>
-                                            <h6 class="text-price-product">120.000d</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="badge text-bg-primary">Active</span></td>
-                                <td>2 Cái</td>
-                                <td>olivia@untitledui.com</td>
-                            </tr>
-                            <!-- <tr class="">
-                                <td scope="row">Item</td>
-                                <td>Item</td>
-                                <td>Item</td>
-                                <td>Item</td>
-                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -165,60 +116,6 @@
             </div>
         </div>
     </article>
-    <aside>
-        <div class="container">
-            <div class="product-title">
-                <h3 class="my-5">Sản phẩn bán chạy</h3>
-            </div>
-            <div class="product">
-                <div class="product-item">
-                    <a href="product-item-page">
-                        <div class="zoom_color zoom_img">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c"
-                                alt="Sản phẩm 1">
-                        </div>
-
-                        <h3 class="product-title my-3">Áo thun body nữ</h3>
-                    </a>
-                    <p class="product-description">Áo thun</p>
-                    <p class="product-price">880,000₫</p>
-                </div>
-                <div class="product-item">
-                    <a href="product-item-page">
-                        <div class="zoom_color zoom_img">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c"
-                                alt="Sản phẩm 2">
-                        </div>
-                        <h3 class="product-title my-3">Quần tây ống rộng</h3>
-                    </a>
-                    <p class="product-description">Quần tây</p>
-                    <p class="product-price">4,730,000₫</p>
-                </div>
-                <div class="product-item">
-                    <a href="product-item-page">
-                        <div class="zoom_color zoom_img">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c"
-                                alt="Sản phẩm 3">
-                        </div>
-                        <h3 class="product-title my-3">Áo khoác chống tia UV</h3>
-                    </a>
-                    <p class="product-description">Áo khoác</p>
-                    <p class="product-price">4,250,000₫</p>
-                </div>
-                <div class="product-item">
-                    <a href="product-item-page">
-                        <div class="zoom_color zoom_img">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/ztress-zear.appspot.com/o/img_project%2Fhinhao1.jfif?alt=media&token=d59ae4f4-4919-49a0-aaf8-d2766cf2320c"
-                                alt="Sản phẩm 4">
-                        </div>
-                        <h3 class="product-title my-3">Áo PIXAR</h3>
-                    </a>
-                    <p class="product-description">Áo</p>
-                    <p class="product-price">450,000₫</p>
-                </div>
-            </div>
-        </div>
-    </aside>
     <!-- footer -->
     <footer>
         <div class="container">
@@ -338,102 +235,94 @@
             </div>
         </div>
     </div> -->
-    <div class="modal fade" id="modal-profile" tabindex="-1" role="dialog"
-    aria-labelledby="modalTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">Thông tin cá nhân</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
+    <div class="modal fade" id="modal-profile" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">Thông tin cá nhân</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
-            <div class="modal-body">
-                <form action="/user/profile/update" th:object="${ThongTinTKK}"
-                    class="modal-dialog-scrollable" method="post">
-                    <div class="container-fluid p-0">
-                        <div class="modal-background-avatar-profile">
-                            <div class="modal-background-profile">
-                                <img th:src="${ThongTinTKK.anhNen}" alt=""
-                                    class="background-profile-img" style="border-radius: 7px;">
-                                <div id="spinner" class=" d-flex justify-content-center"
-                                    style="position: absolute;">
-                                    <div style="display: none;" class="spinner-border"
-                                        role="status">
-                                        <span class="visually-hidden">Loading...</span>
+                <div class="modal-body">
+                    <form action="/user/profile/update" th:object="${ThongTinTK}" class="modal-dialog-scrollable"
+                        method="post">
+                        <div class="container-fluid p-0">
+                            <div class="modal-background-avatar-profile">
+                                <div class="modal-background-profile">
+                                    <img th:src="${ThongTinTK.anhNen}" alt="" class="background-profile-img"
+                                        style="border-radius: 7px;">
+                                    <div id="spinner" class=" d-flex justify-content-center"
+                                        style="position: absolute;">
+                                        <div style="display: none;" class="spinner-border" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
                                     </div>
+                                    <span id="upload-bg-pen"><i class="bi bi-pencil-square"></i></span>
+                                    <input type="file" id="upload_bg" style="display: none;">
+                                    <input th:field="*{anhNen}" th:value="${ThongTinTK.anhNen}" type="text"
+                                        id="upload_bg-text" style="display: none;">
                                 </div>
-                                <span id="upload-bg-pen"><i
-                                        class="bi bi-pencil-square"></i></span>
-                                <input type="file" id="upload_bg" style="display: none;">
-                                <input th:field="*{anhNen}" th:value="${ThongTinTKK.anhNen}"
-                                    type="text" id="upload_bg-text" style="display: none;">
-                            </div>
-                            <div class="modal-avatar-profile">
-                                <div class="avatar">
-                                    <img th:src="${ThongTinTKK.anhDaiDien}" alt=""
-                                        class="avata-img">
-                                    <span id="upload-avata-pen"><i class="bi bi-pen"></i></span>
+                                <div class="modal-avatar-profile">
+                                    <div class="avatar">
+                                        <img th:src="${ThongTinTK.anhDaiDien}" alt="" class="avata-img">
+                                        <span id="upload-avata-pen"><i class="bi bi-pen"></i></span>
+                                    </div>
+                                    <input type="file" id="upload_avatar" style="display: none;">
+                                    <input th:field="*{anhDaiDien}" th:value="${ThongTinTK.anhDaiDien}" type="text"
+                                        id="upload_avatar-text" style="display: none;">
                                 </div>
-                                <input type="file" id="upload_avatar" style="display: none;">
-                                <input th:field="*{anhDaiDien}"
-                                    th:value="${ThongTinTKK.anhDaiDien}" type="text"
-                                    id="upload_avatar-text" style="display: none;">
+                            </div>
+                            <br>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Họ tên</label>
+                                <input th:field="*{hoTen}" type="text" name="" id="" class="form-control" placeholder=""
+                                    aria-describedby="helpId" required>
+                                <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Giới Tính</label>
+                                <select th:field="*{gioiTinh}" class="form-select form-control" name="" id="">
+                                    <option value="true" selected>Nam</option>
+                                    <option value="false">Nữ</option>
+                                </select>
+                                <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Ngày sinh</label>
+                                <input th:field="*{ngaySinh}" type="date" name="" id="" class="form-control"
+                                    placeholder="" aria-describedby="helpId" required>
+                                <!-- <small id="helpId" class="text-muted">Help text</small> -->
                             </div>
                         </div>
-                        <br>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Họ tên</label>
-                            <input th:field="*{hoTen}" type="text" name="" id=""
-                                class="form-control" placeholder="" aria-describedby="helpId"
-                                required>
-                            <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy
+                                bỏ</button>
+
+                            <button class="btn btn-primary box-shadow-none"
+                                style="background-color: var(--gray_800); border: none;">Cập
+                                nhật</button>
                         </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Giới Tính</label>
-                            <select th:field="*{gioiTinh}" class="form-select form-control"
-                                name="" id="">
-                                <option value="true" selected>Nam</option>
-                                <option value="false">Nữ</option>
-                            </select>
-                            <!-- <small id="helpId" class="text-muted">Help text</small> -->
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Ngày sinh</label>
-                            <input th:field="*{ngaySinh}" type="date" name="" id=""
-                                class="form-control" placeholder="" aria-describedby="helpId"
-                                required>
-                            <!-- <small id="helpId" class="text-muted">Help text</small> -->
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary"
-                            data-bs-dismiss="modal">Hủy bỏ</button>
-                           
-                        <button class="btn btn-primary box-shadow-none"
-                            style="background-color: var(--gray_800); border: none;">Cập
-                            nhật</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyDzk3CBG4Cc0EGApODvEXqv8c1fmMSiOCQ",
-        authDomain: "ztress-zear.firebaseapp.com",
-        projectId: "ztress-zear",
-        storageBucket: "ztress-zear.appspot.com",
-        messagingSenderId: "558307648015",
-        appId: "1:558307648015:web:5fbfe15cf8bdfa15ee397a"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-</script>
-<script src="/javascripts/User-profile.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDzk3CBG4Cc0EGApODvEXqv8c1fmMSiOCQ",
+            authDomain: "ztress-zear.firebaseapp.com",
+            projectId: "ztress-zear",
+            storageBucket: "ztress-zear.appspot.com",
+            messagingSenderId: "558307648015",
+            appId: "1:558307648015:web:5fbfe15cf8bdfa15ee397a"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="/javascripts/User-person.js"></script>
 </body>
 
 </html>
